@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 
 class Submit extends Component {
     render() {
-        if(this.props.auth.isLoggedIn){
+        if(!this.props.auth.isLoggedIn){
             return (
                 <section className='submit'>
 

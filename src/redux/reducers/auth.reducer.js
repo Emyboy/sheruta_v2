@@ -33,13 +33,13 @@ export default (state = initialState, { type, payload }) => {
                 isLoggedIn: false,
                 authLoading: false,
                 user: null,
-                error: true,
+                error: payload,
             }
         case AUTH_LOADING:
             return {
                 isLoggedIn: false,
                 authLoading: true,
-                error: false
+                error: payload
             }
         default:
             return state

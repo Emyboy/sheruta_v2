@@ -34,7 +34,7 @@ class Blog extends Component {
                             <div className="row">
                                 <div class="col text-center">
                                     <div class="sec-heading center">
-                                        <h2>Latest News</h2>
+                                        <h2>Latest Blog Post</h2>
                                         <p>We post regulary most powerful articles for help and support.</p>
                                     </div>
                                 </div>

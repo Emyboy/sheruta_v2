@@ -62,7 +62,7 @@ export default () => {
                         <div className="col-lg-3 col-md-6">
                             <div className="footer-widget">
                                 <h4 className="widget-title">Follow Us</h4>
-                                <p>Follow &amp; Subscribe your email to get new business tips.</p>
+                                <p>Follow us on socail media.</p>
                                 <ul className="footer-bottom-social">
                                     <li><a target='_blank' rel="noopener noreferrer" href="http://fb.me/sheruta.ng"><i className="ti-facebook"></i></a></li>
                                     <li><a target='_blank' rel="noopener noreferrer" href="https://twitter.com/sheruta_ng"><i className="ti-twitter"></i></a></li>

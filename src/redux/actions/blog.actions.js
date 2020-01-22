@@ -36,5 +36,24 @@ export const getAllBlog = () => dispatch => {
             dispatch(getBlogError(err));
             console.log(err);
         })
+}
+
+export const getBlogByName = name => dispatch => {
+    console.log('Getting blogs');
     
+    dispatch(blogLoading());
+    return Axios(`${process.env.REACT_APP_BASE_URL}/blog/${name}`)
+        .then(res => {
+            if(res.data.status === 200){
+                dispatch(getAllBlogs(res.data.blog[0]))
+            }else {
+                notification.error({message: "Error Loading Post"})
+            }
+            console.log(res)
+        })
+        .catch(err => {
+            dispatch(getBlogError(err));
+            notification.error({message: "Error Loading Post"});
+            console.log(err)
+        })
 }

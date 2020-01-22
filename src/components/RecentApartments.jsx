@@ -31,14 +31,7 @@ class RecentApartments extends Component {
                                     return (
                                         <ProductCard
                                             key={i}
-                                            id={val.id}
-                                            price={val.price}
-                                            type={val.type}
-                                            area={val.area}
-                                            bedrooms={val.bedrooms}
-                                            toilets={val.toilets}
-                                            imageurl1={val.imageurl1}
-                                            status={val.status}
+                                            val={val}
                                         />
                                     )
                                 })

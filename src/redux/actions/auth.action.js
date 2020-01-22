@@ -85,6 +85,7 @@ export const login = data => dispatch => {
     data
   })
     .then(res => {
+      console.log(res);
       if (res.data.status === 200) {
         dispatch(loginSuccess(res.data.user[0]));
         notification.success({ message: res.data.message });

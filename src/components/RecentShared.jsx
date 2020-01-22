@@ -32,14 +32,7 @@ class RecentShared extends Component {
                                     return (
                                         <ProductCard
                                             key={i}
-                                            id={val.id}
-                                            type={val.type}
-                                            price={val.price}
-                                            area={val.area}
-                                            bedrooms={val.bedrooms}
-                                            toilets={val.toilets}
-                                            imageurl1={val.imageurl1}
-                                            status={val.status}
+                                            val={val}
                                         />
                                     )
                                 })

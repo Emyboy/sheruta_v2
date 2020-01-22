@@ -5,10 +5,7 @@ body {
 .modal, #login, #signup{
     background-color: #001f13c7;
 }
-/* #image-view img{
-    max-width: 1%;
-    max-height: 200px !important;
-} */
+
 .carousel-item{
     max-height: 500px !important;
     height: 20%;
@@ -19,11 +16,11 @@ body {
     width: 100%;
 }
 .submit{
-    background-color: rgb(45, 90, 75);
+    background-color: #007548;
     color: #fafffd;
 }
 .submit h3{
-    background-color: rgb(45, 90, 75);
+    background-color: #007548;
     color: #fafffd;
 }
 .submit span{
@@ -31,4 +28,32 @@ body {
 }
 .submit label {
     font-size: 120%;
+}
+a, .btn-order-by-filt .account-drop {
+    color: rgb(39, 39, 39) !important;
+}
+.btn-order-by-filt span {
+    color: rgb(39, 39, 39) !important;
+}
+.footer-menu a {
+    color: #9ea6ba !important;
+}
+.btn{
+    color: #fafffd !important;
+}
+a:hover, .bl-continue{
+    color: #00ba74 !important;
+}
+#preloader {
+    background-image: url('https://www.un-page.org/files/public/styles/panopoly_image_full/public/general/green_city_2-01_0.png?itok=OSatsUMP') !important;
+    background-repeat: no-repeat;
+    background-size: 100% 90%;
+    background-position-y: 570%;
+    background-blend-mode: color;
+}
+.input-with-icon i {
+    color: black !important;
+}
+.top-social i{
+    color: white;
 }

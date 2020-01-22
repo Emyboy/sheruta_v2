@@ -20,7 +20,7 @@ class Navbar extends Component {
                                 <li className="login-attri">
                                     <div className="btn-group account-drop">
                                         <button type="button" className="btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <img src={this.props.auth.user.imageurl} className="avater-img" alt="" />{this.props.auth.user.username}
+                                            <img src={this.props.auth.user.imageurl} className="avater-img" alt="" /><span>{this.props.auth.user.username}</span>
 								</button>
                                         <div className="dropdown-menu pull-right animated flipInX">
                                             <Link to={`/${this.props.auth.user.username}`}><i className="ti-user"></i>My Profile</Link>

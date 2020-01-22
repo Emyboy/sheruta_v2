@@ -1,7 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export default ({area, price,imageurl1, bedrooms, toilets, status, type, id}) => {
+export default (props) => {
+    console.log(props);
+    
+    const { area, price, imageurl1, bedrooms, toilets, status, type, id } = props.val;
     return (
         <div className="single-items" tabindex="1" role="option" aria-selected aria-describedby="slick-slide00" style={{ width: "360px", dataSlickIndex: 0, ariaHidden: "true" }}>
             <div className="property-listing property-2">
@@ -49,9 +52,10 @@ export default ({area, price,imageurl1, bedrooms, toilets, status, type, id}) =>
                 <div className="price-features-wrapper">
                     <div className="listing-price-fx">
                         <h6 className="listing-card-info-price price-prefix">{price}<span className="price-suffix">/mo</span></h6>
-                        <div class="listing-like-top">
-                            <i class="ti-heart"></i>
-                        </div>
+                    </div>
+                    <div class="listing-like-top">
+                        <i class="ti-heart text-danger"></i>
+                        {/* <i><img width='6%' src='https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png' alt='icon' /></i> */}
                     </div>
                     <div className="list-fx-features">
                         <div className="listing-card-info-icon">

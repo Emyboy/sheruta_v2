@@ -24,6 +24,7 @@ import Blog from './pages/Blog/Blog';
 import 'antd/dist/antd.css';
 import Profile from './pages/Profile/Profile';
 import About from './pages/About/About';
+import BlogDetails from './pages/Blog/BlogDetails';
 
 function App() {
   return (
@@ -43,7 +44,9 @@ function App() {
                 <Route exact path="/:username/submit" component={Submit} />
                 <Route exact path="/contact" component={Contact} />
                 <Route exact path="/about" component={About} />
+                <Route exact path="/submit" component={Submit} />
                 <Route exact path="/:username" component={Profile} />
+                <Route exact path="/blog/:title" component={BlogDetails} />
                 <Route exact path="/:type/:id" component={Details} />
                 <Route component={PageNotFound} />
               </Switch>
