@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import userImage from '../img/user-5.jpg';
 
-export default class Navbar extends Component {
+import { logout } from '../redux/actions/auth.action';
+
+class Navbar extends Component {
     render() {
         return (
             <div className="header header-light nav-left-side">
@@ -11,9 +15,35 @@ export default class Navbar extends Component {
                         <button className="toggle-bar core-nav-toggle"><span className="ti-align-justify"></span></button>
                     </div>
                     <div className="wrap-core-nav-list right"><ul className="attributes">
-                        <li><Link to="/signup" data-toggle="modal" data-target="#signup">Sign Up</Link></li>
-                        <li class="login-attri theme-log"><Link to="/login" data-toggle="modal" data-target="#login">Log In</Link></li>
-                        {/* <li className="submit-attri theme-log"><Link to="/submit">Submit Property</Link></li> */}
+                        {
+                            this.props.auth.isLoggedIn ? <ul className="attributes">
+                                <li className="login-attri">
+                                    <div className="btn-group account-drop">
+                                        <button type="button" className="btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <img src={this.props.auth.user.imageurl} className="avater-img" alt="" />{this.props.auth.user.username}
+								</button>
+                                        <div className="dropdown-menu pull-right animated flipInX">
+                                            <Link to={`/${this.props.auth.user.username}`}><i className="ti-user"></i>My Profile</Link>
+                                            <a href="my-property.html"><i className="ti-layers"></i>Property List</a>
+                                            <a href="bookmark-list.html"><i className="ti-bookmark"></i>Bookmarked Listings</a>
+                                            <a className="active" href="change-password.html"><i className="ti-unlock"></i>Change Password</a>
+                                            <hr />
+                                            <Link to="/" onClick={() => this.props.logout()}><i className="ti-power-off"></i>Log Out</Link>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul> 
+                            : 
+                            <ul>
+                                    <li>
+                                        <Link to="/signup" data-toggle="modal" data-target="#signup">Sign Up</Link>
+                                    </li>
+                                    <li className="login-attri theme-log">
+                                        <Link to="/login" data-toggle="modal" data-target="#login">Log In</Link>
+                                    </li>
+                            </ul>
+                        }
+   
                     </ul><ul className="menu core-nav-list">
 
                             <li className="dropdown">
@@ -29,66 +59,8 @@ export default class Navbar extends Component {
 
 
                             <li className="megamenu" data-width="500" style={{ position: 'relative' }}>
-                                <a href="#c">Pages</a>
-                                <div className="megamenu-content" style={{ width: '500px' }}>
-                                    <div className="mg-menu">
-                                        <ul>
-                                            <li>
-                                                <a href="blog.html">
-                                                    <div className="mg-menu-items">
-                                                        <i className="ti-layout-grid2"></i>
-                                                        <h5>Blog Page<span>Checkout Our Articles</span></h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <a href="blog-detail.html">
-                                                    <div className="mg-menu-items">
-                                                        <i className="ti-layout"></i>
-                                                        <h5>Blog Detail<span>Detail Blog Page Design</span></h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <a href="pricing.html">
-                                                    <div className="mg-menu-items">
-                                                        <i className="ti-credit-card"></i>
-                                                        <h5>Pricing Page<span>Our Latest Offers &amp; Package</span></h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <a href="contact.html">
-                                                    <div className="mg-menu-items">
-                                                        <i className="ti-location-pin"></i>
-                                                        <h5>Contact Us<span>Need Help? Get In Touch</span></h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <a href="component.html">
-                                                    <div className="mg-menu-items">
-                                                        <i className="ti-ruler-pencil"></i>
-                                                        <h5>Component<span>List of All Components</span></h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <a href="404.html">
-                                                    <div className="mg-menu-items">
-                                                        <i className="ti-face-sad"></i>
-                                                        <h5>Error Page<span>Error Page Design</span></h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                <Link to="/about">About</Link>
+                                
                             </li>
 
                         </ul></div>
@@ -100,3 +72,13 @@ export default class Navbar extends Component {
         )
     }
 }
+
+const mapStateToProps = state =>({
+    auth: state.auth
+})
+
+const mapActionToProps = {
+    logout
+}
+
+export default connect(mapStateToProps, mapActionToProps)(Navbar);

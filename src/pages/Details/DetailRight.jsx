@@ -3,106 +3,106 @@ import image from '../../img/p-3.jpg'
 
 export default () => {
     return (
-        <div class="col-lg-4 col-md-12 col-sm-12">
-							<div class="page-sidebar">
+        <div className="col-lg-4 col-md-12 col-sm-12">
+							<div className="page-sidebar">
 							
-								<div class="agent-widget">
-									<div class="agent-title">
-										<div class="agent-photo"><img src={{image}} alt=""/></div>
-										<div class="agent-details">
-											<h4><a href="#">Shivangi Preet</a></h4>
-											<span><i class="lni-phone-handset"></i>(91) 123 456 7895</span>
+								<div className="agent-widget">
+									<div className="agent-title">
+										<div className="agent-photo"><img src={{image}} alt=""/></div>
+										<div className="agent-details">
+											<h4><a href="#c">Shivangi Preet</a></h4>
+											<span><i className="lni-phone-handset"></i>(91) 123 456 7895</span>
 										</div>
-										<div class="clearfix"></div>
+										<div className="clearfix"></div>
 									</div>
 
-									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Your Email"/>
+									<div className="form-group">
+										<input type="text" className="form-control" placeholder="Your Email"/>
 									</div>
-									<div class="form-group">
-										<input type="text" class="form-control" placeholder="Your Phone"/>
+									<div className="form-group">
+										<input type="text" className="form-control" placeholder="Your Phone"/>
 									</div>
-									<div class="form-group">
-										<textarea class="form-control">I'm interested in this property.</textarea>
+									<div className="form-group">
+										<textarea className="form-control">I'm interested in this property.</textarea>
 									</div>
-									<button class="btn btn-theme full-width">Send Message</button>
+									<button className="btn btn-theme full-width">Send Message</button>
 								</div>
 								
-								<div class="sidebar-widgets">
+								<div className="sidebar-widgets">
 									
 									<h4>Mortgage Calculator</h4>
 									
-									<div class="form-group">
-										<div class="input-with-icon">
-											<input type="text" class="form-control" placeholder="Sale Price"/>
-											<i class="ti-money"></i>
+									<div className="form-group">
+										<div className="input-with-icon">
+											<input type="text" className="form-control" placeholder="Sale Price"/>
+											<i className="ti-money"></i>
 										</div>
 									</div>
 									
-									<div class="form-group">
-										<div class="input-with-icon">
-											<input type="text" class="form-control" placeholder="Down Payment"/>
-											<i class="ti-money"></i>
+									<div className="form-group">
+										<div className="input-with-icon">
+											<input type="text" className="form-control" placeholder="Down Payment"/>
+											<i className="ti-money"></i>
 										</div>
 									</div>
 									
-									<div class="form-group">
-										<div class="input-with-icon">
-											<input type="text" class="form-control" placeholder="Loan Term (Years)"/>
-											<i class="ti-calendar"></i>
+									<div className="form-group">
+										<div className="input-with-icon">
+											<input type="text" className="form-control" placeholder="Loan Term (Years)"/>
+											<i className="ti-calendar"></i>
 										</div>
 									</div>
 									
-									<div class="form-group">
-										<div class="input-with-icon">
-											<input type="text" class="form-control" placeholder="Interest Rate"/>
-											<i class="fa fa-percent"></i>
+									<div className="form-group">
+										<div className="input-with-icon">
+											<input type="text" className="form-control" placeholder="Interest Rate"/>
+											<i className="fa fa-percent"></i>
 										</div>
 									</div>
 									
-									<button class="btn btn-theme full-width">Calculate</button>
+									<button className="btn btn-theme full-width">Calculate</button>
 									
 								</div>
 								
-								<div class="sidebar-widgets">
+								<div className="sidebar-widgets">
 									
 									<h4>Featured Property</h4>
 									
-									<div class="sidebar-property-slide slick-initialized slick-slider"><button type="button" data-role="none" class="slick-prev slick-arrow" aria-label="Previous" role="button" style={{display: 'block'}}>Previous</button>
+									<div className="sidebar-property-slide slick-initialized slick-slider"><button type="button" data-role="none" className="slick-prev slick-arrow" aria-label="Previous"  style={{display: 'block'}}>Previous</button>
 										
-										<div aria-live="polite" class="slick-list draggable"><div class="slick-track" role="listbox" style={{opacity: 1, width: '1850px', transform: 'translate3d(-370px, 0px, 0px)'}}><div class="single-items slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true" tabindex="-1" style={{width: '370px'}}>
-											<div class="property-listing property-1">
+										<div aria-live="polite" className="slick-list draggable"><div className="slick-track" role="listbox" style={{opacity: 1, width: '1850px', transform: 'translate3d(-370px, 0px, 0px)'}}><div className="single-items slick-slide slick-cloned" data-slick-index="-1" aria-hidden="true" tabindex="-1" style={{width: '370px'}}>
+											<div className="property-listing property-1">
 									
-												<div class="listing-img-wrapper">
+												<div className="listing-img-wrapper">
 													<a href="single-property-2.html" tabindex="-1">
-														<img src={image} class="img-fluid mx-auto" alt=""/>
+														<img src={image} className="img-fluid mx-auto" alt=""/>
 													</a>
-													<div class="listing-like-top">
-														<i class="ti-heart"></i>
+													<div className="listing-like-top">
+														<i className="ti-heart"></i>
 													</div>
-													<div class="listing-rating">
-														<i class="ti-star filled"></i>
-														<i class="ti-star filled"></i>
-														<i class="ti-star filled"></i>
-														<i class="ti-star filled"></i>
-														<i class="ti-star"></i>
+													<div className="listing-rating">
+														<i className="ti-star filled"></i>
+														<i className="ti-star filled"></i>
+														<i className="ti-star filled"></i>
+														<i className="ti-star filled"></i>
+														<i className="ti-star"></i>
 													</div>
-													<span class="property-type">For Sale</span>
+													<span className="property-type">For Sale</span>
 												</div>
 												
-												<div class="listing-content">
+												<div className="listing-content">
 												
-													<div class="listing-detail-wrapper">
-														<div class="listing-short-detail">
-															<h4 class="listing-name"><a href="single-property-2.html" tabindex="-1">Luxury Home in Manhattan</a></h4>
-															<span class="listing-location"><i class="ti-location-pin"></i>588 Oakmound Road, Chicago</span>
+													<div className="listing-detail-wrapper">
+														<div className="listing-short-detail">
+															<h4 className="listing-name"><a href="single-property-2.html" tabindex="-1">Luxury Home in Manhattan</a></h4>
+															<span className="listing-location"><i className="ti-location-pin"></i>588 Oakmound Road, Chicago</span>
 														</div>
-														<div class="list-author">
-															<a href="#c" tabindex="-1"><img src={image} class="img-fluid img-circle avater-30" alt=""/></a>
+														<div className="list-author">
+															<a href="#c" tabindex="-1"><img src={image} className="img-fluid img-circle avater-30" alt=""/></a>
 														</div>
 													</div>
 												
-													<div class="listing-features-info">
+													<div className="listing-features-info">
 														<ul>
 															<li><strong>Bed:</strong>3</li>
 															<li><strong>Bath:</strong>2</li>
@@ -110,51 +110,51 @@ export default () => {
 														</ul>
 													</div>
 												
-													<div class="listing-footer-wrapper">
-														<div class="listing-price">
-															<h4 class="list-pr">$182,880</h4>
+													<div className="listing-footer-wrapper">
+														<div className="listing-price">
+															<h4 className="list-pr">$182,880</h4>
 														</div>
-														<div class="listing-detail-btn">
-															<a href="single-property-2.html" class="more-btn" tabindex="-1">More Info</a>
+														<div className="listing-detail-btn">
+															<a href="single-property-2.html" className="more-btn" tabindex="-1">More Info</a>
 														</div>
 													</div>
 													
 												</div>
 												
 											</div>
-										</div><div class="single-items slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide00" style={{width: '370px'}}>
-											<div class="property-listing property-1">
+										</div><div className="single-items slick-slide slick-current slick-active" data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide00" style={{width: '370px'}}>
+											<div className="property-listing property-1">
 									
-												<div class="listing-img-wrapper">
+												<div className="listing-img-wrapper">
 													<a href="single-property-2.html" tabindex="0">
-														<img src={image} class="img-fluid mx-auto" alt=""/>
+														<img src={image} className="img-fluid mx-auto" alt=""/>
 													</a>
-													<div class="listing-like-top">
-														<i class="ti-heart"></i>
+													<div className="listing-like-top">
+														<i className="ti-heart"></i>
 													</div>
-													<div class="listing-rating">
-														<i class="ti-star filled"></i>
-														<i class="ti-star filled"></i>
-														<i class="ti-star filled"></i>
-														<i class="ti-star filled"></i>
-														<i class="ti-star"></i>
+													<div className="listing-rating">
+														<i className="ti-star filled"></i>
+														<i className="ti-star filled"></i>
+														<i className="ti-star filled"></i>
+														<i className="ti-star filled"></i>
+														<i className="ti-star"></i>
 													</div>
-													<span class="property-type">For Sale</span>
+													<span className="property-type">For Sale</span>
 												</div>
 												
-												<div class="listing-content">
+												<div className="listing-content">
 												
-													<div class="listing-detail-wrapper">
-														<div class="listing-short-detail">
-															<h4 class="listing-name"><a href="single-property-2.html" tabindex="0">Resort Valley Ocs</a></h4>
-															<span class="listing-location"><i class="ti-location-pin"></i>3848 Swick Hill, New Orleans</span>
+													<div className="listing-detail-wrapper">
+														<div className="listing-short-detail">
+															<h4 className="listing-name"><a href="single-property-2.html" tabindex="0">Resort Valley Ocs</a></h4>
+															<span className="listing-location"><i className="ti-location-pin"></i>3848 Swick Hill, New Orleans</span>
 														</div>
-														<div class="list-author">
-															<a href="#" tabindex="0"><img src={image} class="img-fluid img-circle avater-30" alt=""/></a>
+														<div className="list-author">
+															<a href="#c" tabindex="0"><img src={image} className="img-fluid img-circle avater-30" alt=""/></a>
 														</div>
 													</div>
 												
-													<div class="listing-features-info">
+													<div className="listing-features-info">
 														<ul>
 															<li><strong>Bed:</strong>2</li>
 															<li><strong>Bath:</strong>1</li>
@@ -162,51 +162,51 @@ export default () => {
 														</ul>
 													</div>
 												
-													<div class="listing-footer-wrapper">
-														<div class="listing-price">
-															<h4 class="list-pr">$632,580</h4>
+													<div className="listing-footer-wrapper">
+														<div className="listing-price">
+															<h4 className="list-pr">$632,580</h4>
 														</div>
-														<div class="listing-detail-btn">
-															<a href="single-property-2.html" class="more-btn" tabindex="0">More Info</a>
+														<div className="listing-detail-btn">
+															<a href="single-property-2.html" className="more-btn" tabindex="0">More Info</a>
 														</div>
 													</div>
 													
 												</div>
 												
 											</div>
-										</div><div class="single-items slick-slide" data-slick-index="1" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide01" style={{width: '370px'}}>
-											<div class="property-listing property-1">
+										</div><div className="single-items slick-slide" data-slick-index="1" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide01" style={{width: '370px'}}>
+											<div className="property-listing property-1">
 									
-												<div class="listing-img-wrapper">
+												<div className="listing-img-wrapper">
 													<a href="single-property-2.html" tabindex="-1">
-														<img src={image} class="img-fluid mx-auto" alt=""/>
+														<img src={image} className="img-fluid mx-auto" alt=""/>
 													</a>
-													<div class="listing-like-top">
-														<i class="ti-heart"></i>
+													<div className="listing-like-top">
+														<i className="ti-heart"></i>
 													</div>
-													<div class="listing-rating">
-														<i class="ti-star filled"></i>
-														<i class="ti-star filled"></i>
-														<i class="ti-star filled"></i>
-														<i class="ti-star filled"></i>
-														<i class="ti-star"></i>
+													<div className="listing-rating">
+														<i className="ti-star filled"></i>
+														<i className="ti-star filled"></i>
+														<i className="ti-star filled"></i>
+														<i className="ti-star filled"></i>
+														<i className="ti-star"></i>
 													</div>
-													<span class="property-type">For Rent</span>
+													<span className="property-type">For Rent</span>
 												</div>
 												
-												<div class="listing-content">
+												<div className="listing-content">
 												
-													<div class="listing-detail-wrapper">
-														<div class="listing-short-detail">
-															<h4 class="listing-name"><a href="single-property-2.html" tabindex="-1">New Clue Apartment</a></h4>
-															<span class="listing-location"><i class="ti-location-pin"></i>127, Quice Market, New York</span>
+													<div className="listing-detail-wrapper">
+														<div className="listing-short-detail">
+															<h4 className="listing-name"><a href="single-property-2.html" tabindex="-1">New Clue Apartment</a></h4>
+															<span className="listing-location"><i className="ti-location-pin"></i>127, Quice Market, New York</span>
 														</div>
-														<div class="list-author">
-															<a href="#" tabindex="-1"><img src="assets/img/add-user.png" class="img-fluid img-circle avater-30" alt=""/></a>
+														<div className="list-author">
+															<a href="#c" tabindex="-1"><img src="assets/img/add-user.png" className="img-fluid img-circle avater-30" alt=""/></a>
 														</div>
 													</div>
 												
-													<div class="listing-features-info">
+													<div className="listing-features-info">
 														<ul>
 															<li><strong>Bed:</strong>2</li>
 															<li><strong>Bath:</strong>2</li>
@@ -214,51 +214,51 @@ export default () => {
 														</ul>
 													</div>
 												
-													<div class="listing-footer-wrapper">
-														<div class="listing-price">
-															<h4 class="list-pr">$3,570</h4>
+													<div className="listing-footer-wrapper">
+														<div className="listing-price">
+															<h4 className="list-pr">$3,570</h4>
 														</div>
-														<div class="listing-detail-btn">
-															<a href="single-property-2.html" class="more-btn" tabindex="-1">More Info</a>
+														<div className="listing-detail-btn">
+															<a href="single-property-2.html" className="more-btn" tabindex="-1">More Info</a>
 														</div>
 													</div>
 													
 												</div>
 												
 											</div>
-										</div><div class="single-items slick-slide" data-slick-index="2" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide02" style={{width: '370px'}}>
-											<div class="property-listing property-1">
+										</div><div className="single-items slick-slide" data-slick-index="2" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide02" style={{width: '370px'}}>
+											<div className="property-listing property-1">
 									
-												<div class="listing-img-wrapper">
+												<div className="listing-img-wrapper">
 													<a href="single-property-2.html" tabindex="-1">
-														<img src="assets/img/p-3.jpg" class="img-fluid mx-auto" alt=""/>
+														<img src="assets/img/p-3.jpg" className="img-fluid mx-auto" alt=""/>
 													</a>
-													<div class="listing-like-top">
-														<i class="ti-heart"></i>
+													<div className="listing-like-top">
+														<i className="ti-heart"></i>
 													</div>
-													<div class="listing-rating">
-														<i class="ti-star filled"></i>
-														<i class="ti-star filled"></i>
-														<i class="ti-star filled"></i>
-														<i class="ti-star filled"></i>
-														<i class="ti-star"></i>
+													<div className="listing-rating">
+														<i className="ti-star filled"></i>
+														<i className="ti-star filled"></i>
+														<i className="ti-star filled"></i>
+														<i className="ti-star filled"></i>
+														<i className="ti-star"></i>
 													</div>
-													<span class="property-type">For Sale</span>
+													<span className="property-type">For Sale</span>
 												</div>
 												
-												<div class="listing-content">
+												<div className="listing-content">
 												
-													<div class="listing-detail-wrapper">
-														<div class="listing-short-detail">
-															<h4 class="listing-name"><a href="single-property-2.html" tabindex="-1">Luxury Home in Manhattan</a></h4>
-															<span class="listing-location"><i class="ti-location-pin"></i>588 Oakmound Road, Chicago</span>
+													<div className="listing-detail-wrapper">
+														<div className="listing-short-detail">
+															<h4 className="listing-name"><a href="single-property-2.html" tabindex="-1">Luxury Home in Manhattan</a></h4>
+															<span className="listing-location"><i className="ti-location-pin"></i>588 Oakmound Road, Chicago</span>
 														</div>
-														<div class="list-author">
-															<a href="#" tabindex="-1"><img src="assets/img/add-user.png" class="img-fluid img-circle avater-30" alt=""/></a>
+														<div className="list-author">
+															<a href="#" tabindex="-1"><img src="assets/img/add-user.png" className="img-fluid img-circle avater-30" alt=""/></a>
 														</div>
 													</div>
 												
-													<div class="listing-features-info">
+													<div className="listing-features-info">
 														<ul>
 															<li><strong>Bed:</strong>3</li>
 															<li><strong>Bath:</strong>2</li>
@@ -266,51 +266,51 @@ export default () => {
 														</ul>
 													</div>
 												
-													<div class="listing-footer-wrapper">
-														<div class="listing-price">
-															<h4 class="list-pr">$182,880</h4>
+													<div className="listing-footer-wrapper">
+														<div className="listing-price">
+															<h4 className="list-pr">$182,880</h4>
 														</div>
-														<div class="listing-detail-btn">
-															<a href="single-property-2.html" class="more-btn" tabindex="-1">More Info</a>
+														<div className="listing-detail-btn">
+															<a href="single-property-2.html" className="more-btn" tabindex="-1">More Info</a>
 														</div>
 													</div>
 													
 												</div>
 												
 											</div>
-										</div><div class="single-items slick-slide slick-cloned" data-slick-index="3" aria-hidden="true" tabindex="-1" style={{width: '370px'}}>
-											<div class="property-listing property-1">
+										</div><div className="single-items slick-slide slick-cloned" data-slick-index="3" aria-hidden="true" tabindex="-1" style={{width: '370px'}}>
+											<div className="property-listing property-1">
 									
-												<div class="listing-img-wrapper">
+												<div className="listing-img-wrapper">
 													<a href="single-property-2.html" tabindex="-1">
-														<img src="assets/img/p-1.jpg" class="img-fluid mx-auto" alt=""/>
+														<img src="assets/img/p-1.jpg" className="img-fluid mx-auto" alt=""/>
 													</a>
-													<div class="listing-like-top">
-														<i class="ti-heart"></i>
+													<div className="listing-like-top">
+														<i className="ti-heart"></i>
 													</div>
-													<div class="listing-rating">
-														<i class="ti-star filled"></i>
-														<i class="ti-star filled"></i>
-														<i class="ti-star filled"></i>
-														<i class="ti-star filled"></i>
-														<i class="ti-star"></i>
+													<div className="listing-rating">
+														<i className="ti-star filled"></i>
+														<i className="ti-star filled"></i>
+														<i className="ti-star filled"></i>
+														<i className="ti-star filled"></i>
+														<i className="ti-star"></i>
 													</div>
-													<span class="property-type">For Sale</span>
+													<span className="property-type">For Sale</span>
 												</div>
 												
-												<div class="listing-content">
+												<div className="listing-content">
 												
-													<div class="listing-detail-wrapper">
-														<div class="listing-short-detail">
-															<h4 class="listing-name"><a href="single-property-2.html" tabindex="-1">Resort Valley Ocs</a></h4>
-															<span class="listing-location"><i class="ti-location-pin"></i>3848 Swick Hill, New Orleans</span>
+													<div className="listing-detail-wrapper">
+														<div className="listing-short-detail">
+															<h4 className="listing-name"><a href="single-property-2.html" tabindex="-1">Resort Valley Ocs</a></h4>
+															<span className="listing-location"><i className="ti-location-pin"></i>3848 Swick Hill, New Orleans</span>
 														</div>
-														<div class="list-author">
-															<a href="#" tabindex="-1"><img src="assets/img/add-user.png" class="img-fluid img-circle avater-30" alt=""/></a>
+														<div className="list-author">
+															<a href="#c" tabindex="-1"><img src="assets/img/add-user.png" className="img-fluid img-circle avater-30" alt=""/></a>
 														</div>
 													</div>
 												
-													<div class="listing-features-info">
+													<div className="listing-features-info">
 														<ul>
 															<li><strong>Bed:</strong>2</li>
 															<li><strong>Bath:</strong>1</li>
@@ -318,12 +318,12 @@ export default () => {
 														</ul>
 													</div>
 												
-													<div class="listing-footer-wrapper">
-														<div class="listing-price">
-															<h4 class="list-pr">$632,580</h4>
+													<div className="listing-footer-wrapper">
+														<div className="listing-price">
+															<h4 className="list-pr">$632,580</h4>
 														</div>
-														<div class="listing-detail-btn">
-															<a href="single-property-2.html" class="more-btn" tabindex="-1">More Info</a>
+														<div className="listing-detail-btn">
+															<a href="single-property-2.html" className="more-btn" tabindex="-1">More Info</a>
 														</div>
 													</div>
 													
@@ -333,7 +333,7 @@ export default () => {
 										</div></div></div>
 										
 										
-									<button type="button" data-role="none" class="slick-next slick-arrow" aria-label="Next" role="button" style={{display: 'block'}}>Next</button></div>
+									<button type="button" data-role="none" className="slick-next slick-arrow" aria-label="Next"  style={{display: 'block'}}>Next</button></div>
 									
 								</div>
 							

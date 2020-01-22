@@ -49,6 +49,9 @@ export default ({area, price,imageurl1, bedrooms, toilets, status, type, id}) =>
                 <div className="price-features-wrapper">
                     <div className="listing-price-fx">
                         <h6 className="listing-card-info-price price-prefix">{price}<span className="price-suffix">/mo</span></h6>
+                        <div class="listing-like-top">
+                            <i class="ti-heart"></i>
+                        </div>
                     </div>
                     <div className="list-fx-features">
                         <div className="listing-card-info-icon">

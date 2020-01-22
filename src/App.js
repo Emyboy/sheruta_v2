@@ -21,13 +21,17 @@ import Signup from './pages/Signup/Signup';
 import Contact from './pages/Contact/Contact';
 import Blog from './pages/Blog/Blog';
 
+import 'antd/dist/antd.css';
+import Profile from './pages/Profile/Profile';
+import About from './pages/About/About';
+
 function App() {
   return (
     <Provider store={store}>
       <div className="App green-skin">
         <div className='core-content'>
           <div className='main-wrapper'>
-            <div class="clearfix"></div>
+            <div className="clearfix"></div>
             <BrowserRouter>
               <TopHeader />
               <Navbar />
@@ -35,14 +39,16 @@ function App() {
                 <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
-                <Route exact path="/submit" component={Submit} />
                 <Route exact path="/blog" component={Blog} />
+                <Route exact path="/:username/submit" component={Submit} />
                 <Route exact path="/contact" component={Contact} />
+                <Route exact path="/about" component={About} />
+                <Route exact path="/:username" component={Profile} />
                 <Route exact path="/:type/:id" component={Details} />
                 <Route component={PageNotFound} />
               </Switch>
-            </BrowserRouter>
             <Footer />
+            </BrowserRouter>
           </div>
         </div>
       </div>

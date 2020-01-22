@@ -1,7 +1,8 @@
 import {
     AUTH_LOADING,
     LOGIN,
-    LOGIN_ERROR
+    LOGIN_ERROR,
+    LOGOUT
 } from '../actions';
 
 const initialState = {
@@ -13,6 +14,13 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) => {
     switch (type) {
+        case LOGOUT:
+            return {
+                isLoggedIn: false,
+                authLoading: false,
+                user: null,
+                error: false,
+            }
         case LOGIN:
             return {
                 authLoading: false,
