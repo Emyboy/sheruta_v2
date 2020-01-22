@@ -8,9 +8,9 @@ export default () => {
                     <div className="col-lg-9 col-md-10">
 
                         <div className="sec-heading center light">
-                            <h2>Are You Searching Top Places</h2>
-                            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi.</p>
-                            <a href="#c" className="btn btn-theme-2 mt-3">Browse Top Property Places</a>
+                            <h2>SHARE A SPACE WITH SOMEONE</h2>
+                            <p>Here at Sheruta we provide space for sharing.</p>
+                            <a href="#c" className="btn btn-theme-2 mt-3">Get Started</a>
                         </div>
 
                     </div>

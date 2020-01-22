@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default () => {
+export default ({val}) => {
     return (
         <section class="spd-wrap">
             <div class="container">
@@ -12,8 +12,8 @@ export default () => {
 
                             <div class="slide-property-first">
                                 <div class="pr-price-into">
-                                    <h2>$1700 <i>/ monthly</i> <span class="prt-type rent">For Rental</span></h2>
-                                    <span><i class="lni-map-marker"></i> 778 Country St. Panama City, FL</span>
+                                    <h2>${val.price} <i>/ monthly</i> <span class="prt-type rent">{val.status}</span></h2>
+                                    <span><i class="lni-map-marker"></i> {val.street}</span>
                                 </div>
                             </div>
 

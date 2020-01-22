@@ -8,8 +8,8 @@ export default() =>{
                 <div className="row">
                     <div className="col text-center">
                         <div className="sec-heading center">
-                            <h2>How It Works?</h2>
-                            <p>How to start work with us and working process</p>
+                            <h2>About Us</h2>
+                            <p>Why use sheruta? Have access to hundreds of potential apartments, earn an alternative source of income. All possible flatmates are verified ensuring your safety. We provide different payment plans that supports both long-term and short-term. lets be your medium, connecting you to your new apartment or that special place you can call home for long-term, short-term and flatshare</p>
                         </div>
                     </div>
                 </div>

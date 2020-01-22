@@ -1,0 +1,15 @@
+export const SIGNUP = 'SIGNUP';
+export const SIGNUP_ERROR = 'SIGNUP_ERROR';
+
+export const LOGIN = 'LOGIN';
+export const LOGIN_ERROR = 'LOGIN_ERROR';
+export const LOGOUT = 'LOGOUT';
+
+export const AUTH_LOADING = 'AUTH_LOADING';
+
+export const GET_APARTMENT_SUCCESS = 'GET_APARTMENT_SUCCESS';
+export const GET_APARTMENT_ERROR = 'GET_APARTMENT_ERROR';
+
+export const GET_SHARED_SUCCESS = 'GET_SHARED_SUCCESS';
+export const GET_SHARED_ERROR = 'GET_SHARED_ERROR';
+

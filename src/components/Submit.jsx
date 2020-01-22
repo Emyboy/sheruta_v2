@@ -3,7 +3,7 @@ import React, { Component } from 'react'
 export default class Submit extends Component {
     render() {
         return (
-            <section>
+            <section style={{backgroundColor: 'blue'}}>
 
                 <div className="container">
                     <div className="row">

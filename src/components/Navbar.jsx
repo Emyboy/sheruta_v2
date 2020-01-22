@@ -11,9 +11,9 @@ export default class Navbar extends Component {
                         <button className="toggle-bar core-nav-toggle"><span className="ti-align-justify"></span></button>
                     </div>
                     <div className="wrap-core-nav-list right"><ul className="attributes">
-                        <li className="log-icon log-seprate"><a href="#c" data-toggle="modal" data-target="#login">Log In</a></li>
-                        <li className="log-icon"><a href="#c" data-toggle="modal" data-target="#signup">Sign Up</a></li>
-                        <li className="submit-attri theme-log"><Link to="/submit">Submit Property</Link></li>
+                        <li><Link to="/signup" data-toggle="modal" data-target="#signup">Sign Up</Link></li>
+                        <li class="login-attri theme-log"><Link to="/login" data-toggle="modal" data-target="#login">Log In</Link></li>
+                        {/* <li className="submit-attri theme-log"><Link to="/submit">Submit Property</Link></li> */}
                     </ul><ul className="menu core-nav-list">
 
                             <li className="dropdown">
@@ -21,75 +21,12 @@ export default class Navbar extends Component {
                             </li>
 
                             <li className="dropdown">
-                                <a href="#c">Listings</a>
-                                <ul className="dropdown-menu">
-                                    <li className="dropdown">
-                                        <a href="#c">List Layouts</a>
-                                        <ul className="dropdown-menu">
-                                            <li><a href="list-layout-with-sidebar.html">With Sadebar</a></li>
-                                            <li><a href="list-layout-with-map.html">With Map</a></li>
-                                            <li><a href="list-layout-full.html">Full Width</a></li>
-                                        </ul>
-                                    </li>
-                                    <li className="dropdown">
-                                        <a href="#c">Grid Layouts</a>
-                                        <ul className="dropdown-menu">
-                                            <li><a href="grid-layout-with-sidebar.html">With Sidebar</a></li>
-                                            <li><a href="classical-layout-with-sidebar.html">Classical With Sidebar</a></li>
-                                            <li><a href="grid-layout-with-map.html">With Map</a></li>
-                                            <li><a href="grid.html">Full Width</a></li>
-                                            <li><a href="classical-property.html">Classical Full Width</a></li>
-                                        </ul>
-                                    </li>
-                                    <li className="dropdown">
-                                        <a href="#c">With Map Layouts</a>
-                                        <ul className="dropdown-menu">
-                                            <li><a href="list-layout-with-map.html">List With Map</a></li>
-                                            <li><a href="grid-layout-with-map.html">Grid With Map</a></li>
-                                            <li><a href="classical-layout-with-map.html">Classical With Map</a></li>
-                                            <li><a href="half-map.html">Half Map Search</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                <Link to="/blog">Blog</Link>
+                            </li>
+                            <li className="dropdown">
+                                <Link to="/contact">Contact Us</Link>
                             </li>
 
-                            <li className="dropdown">
-                                <a href="#c">Features</a>
-                                <ul className="dropdown-menu">
-                                    <li className="dropdown">
-                                        <a href="#c">Single Property</a>
-                                        <ul className="dropdown-menu">
-                                            <li><a href="single-property-1.html">Single Property 1</a></li>
-                                            <li><a href="single-property-2.html">Single Property 2</a></li>
-                                            <li><a href="single-property-3.html">Single Property 3</a></li>
-                                        </ul>
-                                    </li>
-                                    <li className="dropdown">
-                                        <a href="#c">Agencies &amp; Agents</a>
-                                        <ul className="dropdown-menu">
-                                            <li><a href="agents.html">Agents List</a></li>
-                                            <li><a href="agent-page.html">Agent Page</a></li>
-                                            <li><a href="agencies.html">Agencies List</a></li>
-                                            <li><a href="agency-page.html">Agency Page</a></li>
-                                        </ul>
-                                    </li>
-                                    <li className="dropdown">
-                                        <a href="#c">My Account</a>
-                                        <ul className="dropdown-menu">
-                                            <li><a href="my-profile.html">My Profile</a></li>
-                                            <li><a href="my-property.html">Property List</a></li>
-                                            <li><a href="bookmark-list.html">Bookmarked Listings</a></li>
-                                            <li><a href="change-password.html">Change Password</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="compare-property.html">Compare Property</a>
-                                    </li>
-                                    <li>
-                                        <a href="/submit">Submit Property</a>
-                                    </li>
-                                </ul>
-                            </li>
 
                             <li className="megamenu" data-width="500" style={{ position: 'relative' }}>
                                 <a href="#c">Pages</a>

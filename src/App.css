@@ -1,6 +1,20 @@
+body {
+    background-color: #fafffd;
+}
+
 .modal, #login, #signup{
     background-color: #001f13c7;
 }
-/* body{
-    background-color: #00ba741f;
+/* #image-view img{
+    max-width: 1%;
+    max-height: 200px !important;
 } */
+.carousel-item{
+    max-height: 500px !important;
+    height: 20%;
+}
+.carousel-item img{
+    max-height: 560px !important;
+    height: 20%;
+    width: 100%;
+}

@@ -9,17 +9,17 @@ export default () => {
                     <div className="col-lg-6 col-md-6">
                         <div className="cn-info">
                             <ul>
-                                <li><i className="lni-phone-handset"></i>91 256 584 5748</li>
-                                <li><i className="ti-email"></i>support@Rikada.com</li>
+                                <li><i className="lni-phone-handset"></i>+2348138154470</li>
+                                <li><i className="ti-email"></i>info@sheruta.ng</li>
                             </ul>
                         </div>
                     </div>
                     <div className="col-lg-6 col-md-6">
                         <ul className="top-social">
-                            <li><a href="#c"><i className="lni-facebook"></i></a></li>
-                            <li><a href="#c"><i className="lni-linkedin"></i></a></li>
-                            <li><a href="#c"><i className="lni-instagram"></i></a></li>
-                            <li><a href="#c"><i className="lni-twitter"></i></a></li>
+                            <li><a target='_blank' rel="noopener noreferrer" href="http://fb.me/sheruta.ng"><i className="lni-facebook"></i></a></li>
+                            <li><a target='_blank' rel="noopener noreferrer"  href="https://twitter.com/sheruta_ng"><i className="lni-twitter"></i></a></li>
+                            <li><a target='_blank' rel="noopener noreferrer" href="https://www.instagram.com/sheruta_ng/"><i className="lni-instagram"></i></a></li>
+                            {/* <li><a href="#c"><i className="lni-linkedin"></i></a></li> */}
                         </ul>
                     </div>
 

@@ -2,23 +2,58 @@ import React, { Component } from 'react'
 import DetailHeading from './DetailHeading'
 import DetailLeft from './DetailLeft'
 import DetailRight from './DetailRight';
-import ImageViewer from './ImageViews';
+import Pageloader from '../../components/PageLoader';
 
-export default class Details extends Component {
+import { connect } from 'react-redux';
+import { getApartmentById } from '../../redux/actions/apartment.actions';
+import { getSharedById } from '../../redux/actions/shared.actions';
+
+class Details extends Component {
+    componentDidMount() {
+        const { type, id } = this.props.match.params;
+        switch (type) {
+            case "apartment":
+                this.props.getApartmentById(id)
+                break;
+            case "shared":
+                this.props.getSharedById(id);
+                break;
+            default:
+                break;
+        }
+    }
     render() {
-        return (
-            <section>
-                            <ImageViewer />
-                <DetailHeading />
-                <div className="gray">
-                    <div className="container">
-                        <div className="row">
-                            <DetailLeft />
-                            <DetailRight />
+        const { type } = this.props.match.params;
+        const { sharedLoading, shared } = this.props.shared;
+        const { getApartmentLoading, apartments } = this.props.apartment;
+        if (type === "apartment" ? getApartmentLoading: sharedLoading) {
+            return (<Pageloader />)
+        } else {
+            return (
+                <section>
+                    <DetailHeading val={ type === "apartment" ? apartments : shared} />
+                    <div className="gray">
+                        <div className="container">
+                            <div className="row">
+                                <DetailLeft val={type === "apartment" ? apartments : shared} />
+                                <DetailRight />
+                            </div>
                         </div>
                     </div>
-                </div>
-            </section>
-        )
+                </section>
+            )
+        }
     }
 }
+
+const mapStateToProps = state => ({
+    shared: state.shared,
+    apartment: state.apartment
+})
+
+const mapActionsToProps = {
+    getApartmentById,
+    getSharedById
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(Details);

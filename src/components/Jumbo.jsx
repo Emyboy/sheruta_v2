@@ -1,9 +1,22 @@
 import React from 'react';
-import cityImage from '../img/city.svg';
+import { Link } from 'react-router-dom';
+// import cityImage from '../img/city.svg';
+
+function formatAMPM(date) {
+    var hours = date.getHours();
+    // var minutes = date.getMinutes();
+    var ampm = hours >= 12 ? 'pm' : 'am';
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    // minutes = minutes < 10 ? '0' + minutes : minutes;
+    // var strTime = hours + ':' + minutes + ' ' + ampm;
+    return ampm;
+}
+
 
 export default () => {
     return (
-        <div class="image-cover hero-banner" style={{background: `url(${cityImage}) no-repeat`}} data-overlay="4">
+        <div class="image-cover hero-banner" style={{ background: `url(${formatAMPM(new Date()) === 'am' ? "https://cdn.dribbble.com/users/149082/screenshots/2331083/city-scroll.gif" : "https://i.giphy.com/media/plyXlAk5JjZeg/source.gif"}) no-repeat`}} data-overlay="4">
             <div class="container">
 
                 <h1 class="big-header-capt">Find Your Property</h1>
@@ -33,7 +46,7 @@ export default () => {
                                                 <option value="4" data-select2-id="9">Commercial</option>
                                                 <option value="5" data-select2-id="10">Offices</option>
                                                 <option value="6" data-select2-id="11">Garage</option>
-                                            </select><span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" data-select2-id="1" style={{width: '218px'}}><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-ptypes-container"><span class="select2-selection__rendered" id="select2-ptypes-container" role="textbox" aria-readonly="true"><span class="select2-selection__placeholder">Property Types</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                            </select><span class="select2 select2-container select2-container--default select2-container--below" dir="ltr" data-select2-id="1" style={{width: '218px'}}><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-controls="" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-ptypes-container"><span class="select2-selection__rendered" id="select2-ptypes-container" role="textbox" aria-readonly="true"><span class="select2-selection__placeholder">Property Types</span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
                                             <i class="ti-briefcase"></i>
                                         </div>
                                     </div>
@@ -61,7 +74,7 @@ export default () => {
                                         <div class="col-lg-2 col-md-2 col-sm-12 small-padd">
                                             <div class="form-group">
                                                 <div class="form-group">
-                                                    <a href="#" class="btn search-btn">Search</a>
+                                                    <Link to="/search" class="btn search-btn">Search</Link>
                                                 </div>
                                             </div>
                                         </div>

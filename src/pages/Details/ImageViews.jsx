@@ -1,15 +1,61 @@
 import React from 'react';
-import image from '../../img/p-2.jpg';
+import { Carousel, Image } from 'react-bootstrap';
 
-export default () => {
+export default (props) => {
+    console.log(props.val)
+    const { imageurl1, imageurl2, imageurl3, imageurl4 } = props.val;
     return (
-        <div className="featured-slick">
-            <div className="featured-slick-slide slick-initialized slick-slider"><button type="button" data-role="none" className="slick-prev slick-arrow" aria-label="Previous" role="button" style={{display: 'block'}}>Previous</button>
-                <div aria-live="polite" className="slick-list draggable" style={{padding: '0px 80px'}}><div className="slick-track" role="listbox" style={{opacity: 1, width: '7120px', transform: 'translate3d(-1424px, 0px, 0px)'}}><div className="slick-slide slick-cloned" data-slick-index="-3" aria-hidden="true" tabindex="-1" style={{width: '712px'}}><a href={image} className="mfp-gallery" tabindex="-1"><img src={image} className="img-fluid mx-auto" alt=""/></a></div><div className="slick-slide slick-cloned" data-slick-index="-2" aria-hidden="true" tabindex="-1" style={{width: '712px'}}><a href="assets/img/p-3.jpg" className="mfp-gallery" tabindex="-1"><img src="assets/img/p-3.jpg" className="img-fluid mx-auto" alt=""/></a></div><div className="slick-slide slick-cloned slick-active" data-slick-index="-1" aria-hidden="false" tabindex="-1" style={{width: '712px'}}><a href="assets/img/p-4.jpg" className="mfp-gallery" tabindex="0"><img src="assets/img/p-4.jpg" className="img-fluid mx-auto" alt=""/></a></div><div className="slick-slide slick-current slick-active slick-center" data-slick-index="0" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide40" style={{width: '712px'}}><a href="assets/img/p-1.jpg" className="mfp-gallery" tabindex="0"><img src="assets/img/p-1.jpg" className="img-fluid mx-auto" alt=""/></a></div><div className="slick-slide slick-active" data-slick-index="1" aria-hidden="false" tabindex="-1" role="option" aria-describedby="slick-slide41" style={{width: '712px'}}><a href={image} className="mfp-gallery" tabindex="0"><img src={image} className="img-fluid mx-auto" alt=""/></a></div><div className="slick-slide" data-slick-index="2" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide42" style={{width: '712px'}}><a href="assets/img/p-3.jpg" className="mfp-gallery" tabindex="-1"><img src="assets/img/p-3.jpg" className="img-fluid mx-auto" alt=""/></a></div><div className="slick-slide" data-slick-index="3" aria-hidden="true" tabindex="-1" role="option" aria-describedby="slick-slide43" style={{width: '712px'}}><a href="assets/img/p-4.jpg" className="mfp-gallery" tabindex="-1"><img src="assets/img/p-4.jpg" className="img-fluid mx-auto" alt=""/></a></div><div className="slick-slide slick-cloned slick-center" data-slick-index="4" aria-hidden="true" tabindex="-1" style={{width: '712px'}}><a href="assets/img/p-1.jpg" className="mfp-gallery" tabindex="-1"><img src="assets/img/p-1.jpg" className="img-fluid mx-auto" alt=""/></a></div><div className="slick-slide slick-cloned" data-slick-index="5" aria-hidden="true" tabindex="-1" style={{width: '712px'}}><a href={image} className="mfp-gallery" tabindex="-1"><img src={image} className="img-fluid mx-auto" alt=""/></a></div><div className="slick-slide slick-cloned" data-slick-index="6" aria-hidden="true" tabindex="-1" style={{width: '712px'}}><a href="assets/img/p-3.jpg" className="mfp-gallery" tabindex="-1"><img src="assets/img/p-3.jpg" className="img-fluid mx-auto" alt=""/></a></div></div></div>
+        <div class="property3-slide single-advance-property mb-4">
 
+            <Carousel>
+                <Carousel.Item>
+                    <span aria-hidden="true" className="carousel-control-next-icon" />
+                    <span id='image-viewer' style={{height: "610px", position: "relative"}}>
+                    <Image
+                        fluid
+                        className="item-slick  slick-current slick-active"
+                        src={imageurl1}
+                        alt="Third slide"
+                    />
 
+                    </span>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <span id='image-viewer' style={{height: "610px", position: "relative"}}>
+                    <Image
+                        fluid
+                        className="item-slick  slick-current slick-active"
+                        src={imageurl2}
+                        alt="Third slide"
+                    />
+                        
 
-                    <button type="button" data-role="none" className="slick-next slick-arrow" aria-label="Next" role="button" style={{display: 'block'}}>Next</button></div>
-                </div>
+                    </span>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <span id='image-viewer' style={{height: "610px", position: "relative"}}>
+                    <Image
+                        fluid
+                        className="item-slick  slick-current slick-active"
+                        src={imageurl3}
+                        alt="Third slide"
+                    />
+
+                    </span>
+                </Carousel.Item>
+                <Carousel.Item>
+                    <span id='image-viewer' style={{height: "610px", position: "relative"}}>
+                    <Image
+                        fluid
+                        className="item-slick  slick-current slick-active"
+                        src={imageurl4}
+                        alt="Third slide"
+                    />
+
+                    </span>
+                </Carousel.Item>
+            </Carousel>
+
+        </div>
     )
 }
