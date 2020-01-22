@@ -1,5 +1,4 @@
 import React from 'react';
-import image from '../../img/p-3.jpg'
 
 export default () => {
     return (
@@ -8,7 +7,7 @@ export default () => {
 							
 								<div className="agent-widget">
 									<div className="agent-title">
-										<div className="agent-photo"><img src={{image}} alt=""/></div>
+										<div className="agent-photo"><img src={`image`} alt=""/></div>
 										<div className="agent-details">
 											<h4><a href="#c">Shivangi Preet</a></h4>
 											<span><i className="lni-phone-handset"></i>(91) 123 456 7895</span>
@@ -75,7 +74,7 @@ export default () => {
 									
 												<div className="listing-img-wrapper">
 													<a href="single-property-2.html" tabindex="-1">
-														<img src={image} className="img-fluid mx-auto" alt=""/>
+														<img src={'image'} className="img-fluid mx-auto" alt=""/>
 													</a>
 													<div className="listing-like-top">
 														<i className="ti-heart"></i>
@@ -98,7 +97,7 @@ export default () => {
 															<span className="listing-location"><i className="ti-location-pin"></i>588 Oakmound Road, Chicago</span>
 														</div>
 														<div className="list-author">
-															<a href="#c" tabindex="-1"><img src={image} className="img-fluid img-circle avater-30" alt=""/></a>
+															<a href="#c" tabindex="-1"><img src={'image'} className="img-fluid img-circle avater-30" alt=""/></a>
 														</div>
 													</div>
 												
@@ -127,7 +126,7 @@ export default () => {
 									
 												<div className="listing-img-wrapper">
 													<a href="single-property-2.html" tabindex="0">
-														<img src={image} className="img-fluid mx-auto" alt=""/>
+														<img src={'image'} className="img-fluid mx-auto" alt=""/>
 													</a>
 													<div className="listing-like-top">
 														<i className="ti-heart"></i>
@@ -150,7 +149,7 @@ export default () => {
 															<span className="listing-location"><i className="ti-location-pin"></i>3848 Swick Hill, New Orleans</span>
 														</div>
 														<div className="list-author">
-															<a href="#c" tabindex="0"><img src={image} className="img-fluid img-circle avater-30" alt=""/></a>
+															<a href="#c" tabindex="0"><img src={'image'} className="img-fluid img-circle avater-30" alt=""/></a>
 														</div>
 													</div>
 												
@@ -179,7 +178,7 @@ export default () => {
 									
 												<div className="listing-img-wrapper">
 													<a href="single-property-2.html" tabindex="-1">
-														<img src={image} className="img-fluid mx-auto" alt=""/>
+														<img src={'image'} className="img-fluid mx-auto" alt=""/>
 													</a>
 													<div className="listing-like-top">
 														<i className="ti-heart"></i>

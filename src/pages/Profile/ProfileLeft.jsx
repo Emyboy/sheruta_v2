@@ -1,5 +1,4 @@
 import React from 'react'
-import userImage from '../../img/user-5.jpg';
 import { logout } from '../../redux/actions/auth.action';
 import { Link } from 'react-router-dom';
 

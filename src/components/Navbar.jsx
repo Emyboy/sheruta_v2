@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import userImage from '../img/user-5.jpg';
 
 import { logout } from '../redux/actions/auth.action';
 
