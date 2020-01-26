@@ -12,7 +12,7 @@ export default ({val}) => {
 
                             <div class="slide-property-first">
                                 <div class="pr-price-into">
-                                    <h2>${val.price} <i>/ monthly</i> <span class="prt-type rent">{val.status}</span></h2>
+                                    <h2>${val.price} <i>/ {val.paymentplan}</i> <span class="prt-type rent">{val.status}</span></h2>
                                     <span><i class="lni-map-marker"></i> {val.street}</span>
                                 </div>
                             </div>

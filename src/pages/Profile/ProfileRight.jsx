@@ -1,10 +1,17 @@
 import React from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 export default function ProfileRight(props) {
     const { val } = props;
     console.log(val);
     
     return (
+        // <BrowserRouter>
+        //     <Switch>
+        //         <Route path="/home" component={App} />
+        //         <Redirect from="/" to="/home" />
+        //     </Switch>
+        // </BrowserRouter>
         <div className="col-lg-8 col-md-12">
             <div className="dashboard-wraper">
 
@@ -20,7 +27,7 @@ export default function ProfileRight(props) {
 
                             <div className="form-group col-md-6">
                                 <label>Email</label>
-                                <input type="email" className="form-control" value={val.email} />
+                                <input disabled type="email" className="form-control" value={val.email} />
                             </div>
 
                             <div className="form-group col-md-6">

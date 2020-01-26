@@ -98,6 +98,8 @@ export const login = data => dispatch => {
     })
     .catch(err => {
       console.log(err);
+      err.isAxiosError ? notification.error({message: 'No internet connection'})
+        : notification.error({message: 'Request Error!'})
       dispatch(loginError(err))
     })
 }

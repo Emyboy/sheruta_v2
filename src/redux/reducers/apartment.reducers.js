@@ -15,7 +15,7 @@ export default (state = initialState, { type, payload }) => {
                 getApartmentLoading: false
             }
         case GET_APARTMENT_ERROR:
-            return {
+            return { 
                 ...state,
                 apartments: payload,
                 getApartmentLoading: true

@@ -2,10 +2,50 @@ import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom';
 
 import { connect } from 'react-redux';
+import { Radio, Button, Icon } from 'antd';
+import Dropzone from 'react-dropzone';
+
+import { uploadApartment } from '../redux/actions/user.action';
 
 class Submit extends Component {
+    state = {
+        area: null,
+        street: null,
+        fullstreet: null,
+        bedrooms: null,
+        toilets: null,
+        sittingrooms: null,
+        bio: null,
+        imageurl1: null,
+        imageurl2: null,
+        imageurl3: null,
+        imageurl4: null,
+        price: null,
+        name: null,
+        squarefeet: null,
+        status: null,
+        showModal: false,
+        paymentplan: null,
+        showAmenities: false,
+        amenities: {
+            wifi: true,
+            gym: false,
+        }
+    };
+    handleInputChange(e) {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+    handleSubmit(e) {
+        e.preventDefault();
+        console.log(e.target.value);
+        this.props.uploadApartment(this.state);
+    }
     render() {
-        if(!this.props.auth.isLoggedIn){
+        console.log(this.props);
+        
+        if (!this.props.auth.isLoggedIn) {
             return (
                 <section className='submit'>
 
@@ -15,13 +55,15 @@ class Submit extends Component {
 
                                 {localStorage.getItem('token') ? null : <div className="alert alert-info" role="alert">
                                     <p>If you don't have an account you can create one by <Link to="/login">Click Here</Link></p>
+                                    <small>https://www.hosteleleven.com/wp-content/uploads/2019/05/Hostel_Brno_Eleven_Room_33_1.jpg</small><br />
+                                    <small>https://upload.wikimedia.org/wikipedia/commons/e/e8/Hostel_Dormitory.jpg</small>
                                 </div>}
 
                             </div>
 
                             <div className="col-lg-12 col-md-12">
 
-                                <div className="submit-page">
+                                <form onSubmit={(e) => this.handleSubmit(e)} className="submit-page">
 
                                     <div className="form-submit">
                                         <h3>Basic Information</h3>
@@ -30,33 +72,33 @@ class Submit extends Component {
 
                                                 <div className="form-group col-md-6">
                                                     <label>Property Title<a href="#c" className="tip-topdata" data-tip="Property Title"><i className="ti-help"></i></a></label>
-                                                    <input type="text" className="form-control" />
+                                                    <input type="text" className="form-control" onChange={(e) => this.handleInputChange(e)} />
                                                 </div>
 
                                                 <div className="form-group col-md-6">
                                                     <label>Area</label>
-                                                    <input name='area' type="text" className="form-control" />
+                                                    <input name='area' type="text" className="form-control" onChange={(e) => this.handleInputChange(e)} />
                                                 </div>
 
                                                 <div className="form-group col-md-6">
                                                     <label>Street</label>
-                                                    <input name='street' type="text" className="form-control" />
+                                                    <input name='street' type="text" className="form-control" onChange={(e) => this.handleInputChange(e)} />
                                                 </div>
 
                                                 <div className="form-group col-md-6">
                                                     <label>Full Street</label>
-                                                    <input name='fullstreet' type="text" className="form-control" />
+                                                    <input name='fullstreet' type="text" className="form-control" onChange={(e) => this.handleInputChange(e)} />
                                                 </div>
 
                                                 <div className="form-group col-md-6">
                                                     <label>Price</label>
-                                                    <input name='price' type="text" className="form-control" />
+                                                    <input name='price' type="text" className="form-control" onChange={(e) => this.handleInputChange(e)} />
                                                 </div>
 
                                                 <div className="form-group col-md-6">
                                                     <label>Bedrooms</label>
                                                     <div className="form-group">
-                                                        <select name="bedrooms" className="form-control select2-selection select2-selection--single" id="exampleFormControlSelect1">
+                                                        <select onChange={(e) => this.handleInputChange(e)} name="bedrooms" className="form-control select2-selection select2-selection--single" id="exampleFormControlSelect1">
                                                             <option>1</option>
                                                             <option>2</option>
                                                             <option>3</option>
@@ -70,7 +112,7 @@ class Submit extends Component {
                                                 <div className="form-group col-md-6">
                                                     <label>Sitting Rooms</label>
                                                     <div className="form-group">
-                                                        <select name="sittingrooms" className="form-control select2-selection select2-selection--single" id="exampleFormControlSelect1">
+                                                        <select onChange={(e) => this.handleInputChange(e)} name="sittingrooms" className="form-control select2-selection select2-selection--single" id="exampleFormControlSelect1">
                                                             <option>1</option>
                                                             <option>2</option>
                                                             <option>3</option>
@@ -84,7 +126,7 @@ class Submit extends Component {
                                                 <div className="form-group col-md-6">
                                                     <label>Bathrooms</label>
                                                     <div className="form-group">
-                                                        <select name="toilets" className="form-control select2-selection select2-selection--single" id="exampleFormControlSelect1">
+                                                        <select onChange={(e) => this.handleInputChange(e)} name="toilets" className="form-control select2-selection select2-selection--single" id="exampleFormControlSelect1">
                                                             <option>1</option>
                                                             <option>2</option>
                                                             <option>3</option>
@@ -98,6 +140,8 @@ class Submit extends Component {
                                             </div>
                                         </div>
                                     </div>
+
+                                    <hr />
 
                                     <div className="form-submit">
                                         <h3>Gallery</h3>
@@ -113,86 +157,94 @@ class Submit extends Component {
                                                         </div>
                                                     </form>
                                                 </div>
+                                                <hr />
+
+                                                {/* <Dropzone onDrop={acceptedFiles => console.log(acceptedFiles)}>
+                                                    {({ getRootProps, getInputProps }) => (
+                                                        <section>
+                                                            <div {...getRootProps()}>
+                                                                <input {...getInputProps()} />
+                                                                <Button>
+                                                                    <Icon id='imageurl1' type="upload" /> Click to Upload
+                                                                </Button>
+                                                            </div>
+                                                        </section>
+                                                    )}
+                                                </Dropzone> */}
+
+                                                <div className="form-group col-md-6">
+                                                    <label>ImageUrl 1</label>
+                                                    <div className="form-group">
+                                                        <input placeholder='imageurl 1' name='imageurl1' className='form-control' onChange={(e) => this.handleInputChange(e)} />
+                                                    </div>
+                                                </div>
+                                                <div className="form-group col-md-6">
+                                                    <label>ImageUrl 2</label>
+                                                    <div className="form-group">
+                                                        <input placeholder='imageurl 2' name='imageurl2' className='form-control' onChange={(e) => this.handleInputChange(e)} />
+                                                    </div>
+                                                </div>
+                                                <div className="form-group col-md-6">
+                                                    <label>ImageUrl 3</label>
+                                                    <div className="form-group">
+                                                        <input placeholder='imageurl 3' name='imageurl3' className='form-control' onChange={(e) => this.handleInputChange(e)} />
+                                                    </div>
+                                                </div>
+                                                <div className="form-group col-md-6">
+                                                    <label>ImageUrl 4</label>
+                                                    <div className="form-group">
+                                                        <input placeholder='imageurl 4' name='imageurl4' className='form-control' onChange={(e) => this.handleInputChange(e)} />
+                                                    </div>
+                                                </div>
 
                                             </div>
                                         </div>
                                     </div>
 
+                                    <hr />
+
                                     <div className="form-submit">
-                                        <h3>Location</h3>
+                                        <h3>Types &amp; Plans </h3>
                                         <div className="submit-section">
                                             <div className="form-row">
 
                                                 <div className="form-group col-md-6">
-                                                    <label>Address</label>
-                                                    <input type="text" className="form-control" />
+                                                    <label>Types</label> <br />
+                                                    <Radio.Group name='type' onChange={(e) => this.handleInputChange(e)} buttonStyle="solid">
+                                                        <Radio.Button style={{ fontSize: '180%' }} value="apartment">Apartment</Radio.Button>
+                                                        <Radio.Button style={{ fontSize: '180%' }} value="shared">For Shared</Radio.Button>
+                                                        <Radio.Button style={{ fontSize: '180%' }} value="short-let">Short Let</Radio.Button>
+                                                        <Radio.Button style={{ fontSize: '180%' }} value="hostel">Hostel</Radio.Button>
+                                                    </Radio.Group>
                                                 </div>
 
                                                 <div className="form-group col-md-6">
-                                                    <label>City</label>
-                                                    <input type="text" className="form-control" />
-                                                </div>
-
-                                                <div className="form-group col-md-6">
-                                                    <label>State</label>
-                                                    <input type="text" className="form-control" />
-                                                </div>
-
-                                                <div className="form-group col-md-6">
-                                                    <label>Zip Code</label>
-                                                    <input type="text" className="form-control" />
+                                                    <label>Plan</label> <br />
+                                                    <Radio.Group name='paymentplan' onChange={(e) => this.handleInputChange(e)} buttonStyle="solid">
+                                                        <Radio.Button style={{ fontSize: '180%' }} value="apartment">Per Month</Radio.Button>
+                                                        <Radio.Button style={{ fontSize: '180%' }} value="shared">Per Year</Radio.Button>
+                                                    </Radio.Group>
                                                 </div>
 
                                             </div>
                                         </div>
                                     </div>
+
+                                    <hr />
 
                                     <div className="form-submit">
                                         <h3>Detailed Information</h3>
                                         <div className="submit-section">
                                             <div className="form-row">
 
-                                                <div className="form-group col-md-12">
+                                                <div className="form-group col-md-12 mb-3">
                                                     <label>Description</label>
-                                                    <textarea className="form-control h-120"></textarea>
+                                                    <textarea name="bio" onChange={(e) => this.handleInputChange(e)} className="form-control h-120 mb-4"></textarea>
                                                 </div>
 
-                                                <div className="form-group col-md-4">
-                                                    <label>Building Age (optional)</label>
-                                                    <select id="bage" className="form-control select2-hidden-accessible" data-select2-id="bage" tabindex="-1" aria-hidden="true">
-                                                        <option value="" data-select2-id="14">&nbsp;</option>
-                                                        <option value="1">0 - 5 Years</option>
-                                                        <option value="2">0 - 10Years</option>
-                                                        <option value="3">0 - 15 Years</option>
-                                                        <option value="4">0 - 20 Years</option>
-                                                        <option value="5">20+ Years</option>
-                                                    </select><span className="select2 select2-container select2-container--default" dir="ltr" data-select2-id="13" style={{ width: '363px' }}><span className="selection"><span className="select2-selection select2-selection--single" role="combobox" aria-controls="" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-bage-container"><span className="select2-selection__rendered" id="select2-bage-container" role="textbox" aria-readonly="true"><span className="select2-selection__placeholder">Select An Option</span></span><span className="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span className="dropdown-wrapper" aria-hidden="true"></span></span>
-                                                </div>
+                                                <hr />
 
-                                                <div className="form-group col-md-4">
-                                                    <label>Garage (optional)</label>
-                                                    <select id="garage" className="form-control select2-hidden-accessible" data-select2-id="garage" tabindex="-1" aria-hidden="true">
-                                                        <option value="" data-select2-id="12">&nbsp;</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                    </select><span className="select2 select2-container select2-container--default" dir="ltr" data-select2-id="11" style={{ width: '363px' }}><span className="selection"><span className="select2-selection select2-selection--single" role="combobox" aria-controls="" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-garage-container"><span className="select2-selection__rendered" id="select2-garage-container" role="textbox" aria-readonly="true"><span className="select2-selection__placeholder">Choose Rooms</span></span><span className="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span className="dropdown-wrapper" aria-hidden="true"></span></span>
-                                                </div>
-
-                                                <div className="form-group col-md-4">
-                                                    <label>Rooms (optional)</label>
-                                                    <select id="rooms" className="form-control select2-hidden-accessible" data-select2-id="rooms" tabindex="-1" aria-hidden="true">
-                                                        <option value="" data-select2-id="10">&nbsp;</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="3">3</option>
-                                                        <option value="4">4</option>
-                                                        <option value="5">5</option>
-                                                    </select><span className="select2 select2-container select2-container--default" dir="ltr" data-select2-id="9" style={{ width: '363px' }}><span className="selection"><span className="select2-selection select2-selection--single" role="combobox" aria-controls="" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-rooms-container"><span className="select2-selection__rendered" id="select2-rooms-container" role="textbox" aria-readonly="true"><span className="select2-selection__placeholder">Choose Rooms</span></span><span className="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span className="dropdown-wrapper" aria-hidden="true"></span></span>
-                                                </div>
-
+                                                <h3>Features</h3>
                                                 <div className="form-group col-md-12">
                                                     <label>Other Features (optional)</label>
                                                     <div className="o-features">
@@ -260,17 +312,17 @@ class Submit extends Component {
 
                                                 <div className="form-group col-md-4">
                                                     <label>Name</label>
-                                                    <input type="text" className="form-control" />
+                                                    <input type="text" className="form-control" onChange={(e) => this.handleInputChange(e)} />
                                                 </div>
 
                                                 <div className="form-group col-md-4">
                                                     <label>Email</label>
-                                                    <input type="text" className="form-control" />
+                                                    <input type="text" className="form-control" onChange={(e) => this.handleInputChange(e)} />
                                                 </div>
 
                                                 <div className="form-group col-md-4">
                                                     <label>Phone (optional)</label>
-                                                    <input type="text" className="form-control" />
+                                                    <input type="text" className="form-control" onChange={(e) => this.handleInputChange(e)} />
                                                 </div>
 
                                             </div>
@@ -281,7 +333,7 @@ class Submit extends Component {
                                         <button className="btn btn-theme" type="submit">Submit &amp; Preview</button>
                                     </div>
 
-                                </div>
+                                </form>
                             </div>
 
                         </div>
@@ -289,14 +341,19 @@ class Submit extends Component {
 
                 </section>
             )
-        }else {
+        } else {
             return <Redirect to='/login' />
         }
     }
 }
 
 const mapStateToProps = state => ({
-    auth: state.auth
-})
+    auth: state.auth,
+    user: state.user
+});
 
-export default connect(mapStateToProps)(Submit);
+const mapActionsToProps = {
+    uploadApartment
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(Submit);

@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
 import ProductCard from './ProductCard';
 import { connect } from 'react-redux';
-import { getRecentApartments } from '../redux/actions/shared.actions';
+import { getRecentSharedApartments } from '../redux/actions/shared.actions';
 import loadingGif from '../img/loading.gif';
 import { Link } from 'react-router-dom';
 
 class RecentShared extends Component {
     componentWillMount() {
-        this.props.getRecentApartments();
+        this.props.getRecentApartments(6);
     }
     render() {
         const { sharedLoading, shared } = this.props.shared;
@@ -58,7 +58,7 @@ const mapStateToProps = state => ({
     shared: state.shared
 })
 const mapActionsToProps = {
-    getRecentApartments
+    getRecentApartments: getRecentSharedApartments
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(RecentShared);

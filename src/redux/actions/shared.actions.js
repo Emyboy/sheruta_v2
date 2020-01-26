@@ -16,7 +16,7 @@ const getApartmentError = error => {
     }
 }
 
-export const getRecentApartments = data => dispatch => {
+export const getRecentSharedApartments = limit => dispatch => {
     return Axios(`${process.env.REACT_APP_BASE_URL}/shared`)
         .then(res => {
             switch (res.data.message) {

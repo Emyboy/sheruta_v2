@@ -26,17 +26,17 @@ class Details extends Component {
         const { type } = this.props.match.params;
         const { sharedLoading, shared } = this.props.shared;
         const { getApartmentLoading, apartments } = this.props.apartment;
-        if (type === "apartment" ? getApartmentLoading: sharedLoading) {
+        if (type === "apartment" ? getApartmentLoading : sharedLoading) {
             return (<Pageloader />)
         } else {
             return (
                 <section>
-                    <DetailHeading val={ type === "apartment" ? apartments : shared} />
+                    <DetailHeading val={type === "apartment" ? apartments : shared} />
                     <div className="gray">
                         <div className="container">
                             <div className="row">
                                 <DetailLeft val={type === "apartment" ? apartments : shared} />
-                                <DetailRight />
+                                <DetailRight val={type === "apartment" ? apartments : shared} />
                             </div>
                         </div>
                     </div>

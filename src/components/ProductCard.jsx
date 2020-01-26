@@ -55,6 +55,7 @@ export default (props) => {
                     </div>
                     <div class="listing-like-top">
                         <i class="ti-heart text-danger"></i>
+                        {/* <i class="lni-heart-filled" style={{color:'red'}}></i> */}
                         {/* <i><img width='6%' src='https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png' alt='icon' /></i> */}
                     </div>
                     <div className="list-fx-features">

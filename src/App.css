@@ -16,13 +16,13 @@ body {
     width: 100%;
 }
 .submit{
+    background-color: #d5e4df;
+    /* color: #fafffd; */
+}
+/* .submit h3{
     background-color: #007548;
     color: #fafffd;
-}
-.submit h3{
-    background-color: #007548;
-    color: #fafffd;
-}
+} */
 .submit span{
     color: black;
 }

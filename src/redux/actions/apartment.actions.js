@@ -16,8 +16,8 @@ const getApartmentError = error => {
     }
 }
 
-export const getRecentApartments = data => dispatch => {
-    return Axios(`${process.env.REACT_APP_BASE_URL}/hostels/limit/6`)
+export const getRecentApartments = limit => dispatch => {
+    return Axios(`${process.env.REACT_APP_BASE_URL}/hostels/limit/${limit}`)
         .then(res => {
             switch (res.data.message) {
                 case 'success':
