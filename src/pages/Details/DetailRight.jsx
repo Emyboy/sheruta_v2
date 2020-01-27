@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import HorizontalProductCard from '../../components/HorizontalProductCard';
 import { connect } from 'react-redux';
 import { getRecentApartments } from '../../redux/actions/apartment.actions';
@@ -7,6 +7,7 @@ import { sendRequest } from '../../redux/actions/user.action';
 import { notification } from 'antd';
 
 import loadingGif from '../../img/loading.gif';
+import DoneModal from '../../components/DoneModal';
 
 const mapStateToProps = state => ({
 	shared: state.shared,
@@ -30,16 +31,17 @@ export default connect(mapStateToProps, mapActionsToProps)((props) => {
 	const handleSubmit = e => {
 		console.log(props);
 		e.preventDefault();
-		auth.isLoggedIn ? message = `Hellow, ${auth.user.username} is intrested in ${apartment.apartments.name} apartment, call on ${auth.user.phoneno}` : message = '';
+		auth.isLoggedIn ? message = `Hi there, ${auth.user.username} is intrested in ${apartment.apartments.name} apartment, contact he/she on ${auth.user.phoneno} or ${auth.user.email}. Thank You` : message = '';
 		auth.isLoggedIn ? phoneno = auth.user.phoneno : phoneno = '';
 		auth.isLoggedIn ? email = auth.user.email : email = '';
 		const user_id = auth.isLoggedIn ? auth.user.id : '';
-		auth.isLoggedIn ? props.sendRequest({user_id, message, type: 'request'}) : notification.warning({message: "Please Login to send a request!"})
+		auth.isLoggedIn ? props.sendRequest({user_id, message, type: 'request'}) : notification.warning({message: "Please Login to send a request!"});
 	}
 
 	val.type === "Apartment" ? getRecentApartments(3) : getRecentSharedApartments(3);
 	return (
 		<div className="col-lg-4 col-md-12 col-sm-12">
+			<DoneModal title={'Your request has been sent'} subTitle={"We well get back to you via Phone Call"} status={"success"} />
 			<div className="page-sidebar">
 
 				<div className="agent-widget">

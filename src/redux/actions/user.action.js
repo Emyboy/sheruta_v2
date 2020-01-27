@@ -1,7 +1,13 @@
-import { UPLOAD_ERROR, UPLOAD_LOADING, SEND_REQUEST_ERROR, UPLOAD_SUCCESS, SEND_REQUEST_SUCCESS } from '.';
+import { UPLOAD_ERROR, UPLOAD_LOADING, SEND_REQUEST_ERROR, UPLOAD_SUCCESS, SEND_REQUEST_SUCCESS, TOGGLE_DONE_MODAL } from '.';
 import Axios from 'axios';
 import { notification } from 'antd';
 
+export const toggleDoneModal = (isOpen) => {
+    return {
+        type: TOGGLE_DONE_MODAL,
+        payload: isOpen
+    }
+}
 
 const uploadLoading = () => {
     return {
@@ -60,7 +66,8 @@ export const sendRequest = data => dispatch => {
         .then(res => {
             if(res.data.status === 200){
                 notification.success({message: 'Request Sent..'})
-                dispatch(sendRequestSuccess(res.data))
+                dispatch(sendRequestSuccess(res.data));
+                dispatch(toggleDoneModal(true));
             }else {
                 notification.error({message: 'Request Not Sent..'})
                 dispatch(sendRequestError(res.data))

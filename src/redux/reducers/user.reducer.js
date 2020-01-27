@@ -1,10 +1,11 @@
-import { UPLOAD_ERROR, UPLOAD_LOADING, UPLOAD_SUCCESS, SEND_REQUEST_ERROR, SEND_REQUEST_SUCCESS } from '../actions';
+import { UPLOAD_ERROR, UPLOAD_LOADING, UPLOAD_SUCCESS, SEND_REQUEST_ERROR, SEND_REQUEST_SUCCESS, TOGGLE_DONE_MODAL } from '../actions';
 
 const initialState = {
     uploadLoading: false,
     upload: null,
     error: null,
-    request: null
+    request: null,
+    showDoneModal: false
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -42,6 +43,11 @@ export default (state = initialState, { type, payload }) => {
                 request: payload,
                 error: true,
                 uploadLoading: false
+            }
+        case TOGGLE_DONE_MODAL:
+            return {
+                ...state,
+                showDoneModal: payload
             }
         default:
             return state
