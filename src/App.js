@@ -25,6 +25,7 @@ import 'antd/dist/antd.css';
 import Profile from './pages/Profile/Profile';
 import About from './pages/About/About';
 import BlogDetails from './pages/Blog/BlogDetails';
+import SearchResults from './components/SearchResults';
 
 function App() {
   return (
@@ -48,6 +49,7 @@ function App() {
                 <Route exact path="/:username" component={Profile} />
                 <Route exact path="/blog/:title" component={BlogDetails} />
                 <Route exact path="/:type/:id" component={Details} />
+                <Route exact path="/search/:area/:bedrooms/:bathrooms/:type/:price" component={SearchResults} />
                 <Route component={PageNotFound} />
               </Switch>
             <Footer />

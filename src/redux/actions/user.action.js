@@ -78,3 +78,17 @@ export const sendRequest = data => dispatch => {
             dispatch(sendRequestError(err));
         })
 }
+
+export const addToFavorite = data => dispatch => {
+    console.log('sending ',data);
+    return Axios(`${process.env.REACT_APP_BASE_URL}/cube/${data.userId}`, {
+        data,
+        method: 'POST'
+    })
+    .then(res => {
+        console.log(res);
+    })
+    .catch(err => {
+        console.log(err);
+    })
+}

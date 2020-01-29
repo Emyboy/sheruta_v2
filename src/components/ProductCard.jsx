@@ -1,10 +1,23 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux';
+import { addToFavorite } from '../redux/actions/user.action';
 
-export default (props) => {
+const mapStateToProps = state => ({
+    user: state.user,
+    auth: state.auth
+});
+
+const mapActionsToProps = {
+    addToFavorite
+}
+
+export default connect(mapStateToProps, mapActionsToProps)((props) => {
     console.log(props);
     
     const { area, price, imageurl1, bedrooms, toilets, status, type, id } = props.val;
+    const { addToFavorite, auth } = props;
+    const { isLoggedIn } = props.auth;
     return (
         <div className="single-items" tabindex="1" role="option" aria-selected aria-describedby="slick-slide00" style={{ width: "360px", dataSlickIndex: 0, ariaHidden: "true" }}>
             <div className="property-listing property-2">
@@ -53,9 +66,13 @@ export default (props) => {
                     <div className="listing-price-fx">
                         <h6 className="listing-card-info-price price-prefix">{price}<span className="price-suffix">/mo</span></h6>
                     </div>
-                    <div class="listing-like-top">
-                        <i class="ti-heart text-danger"></i>
-                        {/* <i class="lni-heart-filled" style={{color:'red'}}></i> */}
+                    <div className="listing-like-top">
+                        <i onClick={() => addToFavorite({
+                            hostelId:id,
+                            userId: isLoggedIn ? auth.user.id : null,
+                            imageurl1, type
+                            })} className="ti-heart text-danger"></i>
+                        {/* <i className="lni-heart-filled" style={{color:'red'}}></i> */}
                         {/* <i><img width='6%' src='https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png' alt='icon' /></i> */}
                     </div>
                     <div className="list-fx-features">
@@ -71,4 +88,4 @@ export default (props) => {
             </div>
         </div>
     )
-}
+});
