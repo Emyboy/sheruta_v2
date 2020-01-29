@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import siteIcon from '../img/site-icon.png';
 
 import { logout } from '../redux/actions/auth.action';
 
@@ -10,7 +11,7 @@ class Navbar extends Component {
             <div className="header header-light nav-left-side">
                 <nav className="headnavbar core-nav"><div className="nav-container">
                     <div className="nav-header right">
-                        <a href="#c" className="brand"><img src="assets/img/logo.png" alt="" /></a>
+                        <Link to="/" className="brand mt-1"><img style={{width: '20%'}} src={siteIcon} alt="" /></Link>
                         <button className="toggle-bar core-nav-toggle"><span className="ti-align-justify"></span></button>
                     </div>
                     <div className="wrap-core-nav-list right"><ul className="attributes">

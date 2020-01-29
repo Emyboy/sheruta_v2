@@ -49,7 +49,7 @@ function App() {
                 <Route exact path="/:username" component={Profile} />
                 <Route exact path="/blog/:title" component={BlogDetails} />
                 <Route exact path="/:type/:id" component={Details} />
-                <Route exact path="/search/:area/:bedrooms/:bathrooms/:type/:price" component={SearchResults} />
+                <Route exact path="/search/:area/:bedrooms/:sittingrooms/:type/:price" component={SearchResults} />
                 <Route component={PageNotFound} />
               </Switch>
             <Footer />

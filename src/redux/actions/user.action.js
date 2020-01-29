@@ -1,4 +1,4 @@
-import { UPLOAD_ERROR, UPLOAD_LOADING, SEND_REQUEST_ERROR, UPLOAD_SUCCESS, SEND_REQUEST_SUCCESS, TOGGLE_DONE_MODAL } from '.';
+import { UPLOAD_ERROR, UPLOAD_LOADING, SEND_REQUEST_ERROR, UPLOAD_SUCCESS, SEND_REQUEST_SUCCESS, TOGGLE_DONE_MODAL, SEARCH_ERROR, SEARCH_SUCCESS, SEARCH_LOADING } from '.';
 import Axios from 'axios';
 import { notification } from 'antd';
 
@@ -43,6 +43,27 @@ const sendRequestError = error => {
     }
 }
 
+const searchSuccess = data => {
+    return {
+        type: SEARCH_SUCCESS,
+        payload: data
+    }
+}
+
+const searchError = error => {
+    return {
+        type: SEARCH_ERROR,
+        payload: error
+    }
+}
+
+const searchLoading = () => {
+    return {
+        type: SEARCH_LOADING,
+        payload: {}
+    }
+}
+
 export const uploadApartment = data => dispatch => {
     dispatch(uploadLoading());
     return Axios(`${process.env.REACT_APP_BASE_URL}/hostels`, {
@@ -80,7 +101,6 @@ export const sendRequest = data => dispatch => {
 }
 
 export const addToFavorite = data => dispatch => {
-    console.log('sending ',data);
     return Axios(`${process.env.REACT_APP_BASE_URL}/cube/${data.userId}`, {
         data,
         method: 'POST'
@@ -91,4 +111,23 @@ export const addToFavorite = data => dispatch => {
     .catch(err => {
         console.log(err);
     })
+}
+
+export const search = data => dispatch => {
+    console.log('searchin ' ,data);
+    dispatch(uploadLoading());
+    const { area, bedrooms, sittingrooms, price, type } = data;
+    return Axios(`${process.env.REACT_APP_BASE_URL}/search/${area}/${bedrooms}/${sittingrooms}/${type}/${price}`, {
+        method: 'POST'
+    })
+        .then(res => {
+            console.log(res);
+            res.data.results.length > 0 ?
+                dispatch(searchSuccess(res.data.results)) : dispatch(searchError(res.data))
+        })
+        .catch(err => {
+            notification.error({message: "Error Loading Results!"});
+            dispatch(searchError(err));
+        })
+
 }

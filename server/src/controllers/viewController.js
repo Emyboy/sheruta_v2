@@ -24,16 +24,25 @@ module.exports = class ViewController {
     }
 
     static Search(req, res) {
+        console.log(req.params)
         const { area, bedrooms, sittingrooms, price, type } = req.params;
-        db.select('*').from(type === "apartment" ? "apartment" : "shared").where({
-            bedrooms, toilets: sittingrooms, area
+        db.select('*').from(type === "Apartment" ? "apartment" : "shared").where({
+            bedrooms, sittingrooms, area
         }).returning('*')
-            .then(list => {
-                res.json({
-                    status: 200,
-                    message: type === "apartment" ? "apartment": "shared",
-                    list
-                })
+            .then(results => {
+                if(results.length === 0){
+                    res.json({
+                        status: 200,
+                        message: type === "Apartment" ? "apartment" : "shared",
+                        results
+                    })
+                }else { 
+                    res.json({
+                        status: 404,
+                        message: 'No Result Found',
+                        results
+                    })
+                }
             })
             .catch(err => {
                 res.json({

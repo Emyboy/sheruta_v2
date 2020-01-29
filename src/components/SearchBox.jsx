@@ -1,11 +1,21 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
+import { connect } from 'react-redux';
+import {  search } from '../redux/actions/user.action';
 
-export default () => {
-    const [area, setArea] = useState("Area");
-    const [price, setPrice] = useState("Price");
-    const [bedrooms, setBedrooms] = useState('Bedrooms');
-    const [sittingrooms, setSittingrooms] = useState('Bedrooms');
+const mapStateToProps = state =>({
+    user: state.user
+});
+
+const mapActionsToProps = {
+    search
+}
+
+export default connect(mapStateToProps, mapActionsToProps)(() => {
+    const [area, setArea] = useState("Yaba");
+    const [price, setPrice] = useState("120,000");
+    const [bedrooms, setBedrooms] = useState('1');
+    const [sittingrooms, setSittingrooms] = useState('1');
     const [type, setType] = useState('Apartment');
     const handleSubmit = (d) => {
         sessionStorage.setItem('keywords', JSON.stringify({area, price,bedrooms,sittingrooms,type}))
@@ -21,12 +31,12 @@ export default () => {
                     <div className="row">
                         <div className="col-lg-4 col-md-4 col-sm-12">
                             <div className="form-group">
-                                <label>Area</label>
+                                <label>Location</label>
                                 <div className="input-with-icon">
                                     <select className="form-control" defaultValue={area} onChange={(e) => setArea(e.target.value)}>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
+                                        <option>Yaba</option>
+                                        <option>Okota</option>
+                                        <option>Isolo</option>
                                         <option>4</option>
                                         <option>5</option>
                                     </select>
@@ -98,9 +108,9 @@ export default () => {
                             </div>
                         </div>
 
-                        <div className="mt-3 col-lg-4 col-md-4 col-sm-12">
+                        <div className="mt-4 col-lg-4 col-md-4 col-sm-12">
                             <div className="form-group">
-                                <Link onClick={handleSubmit} to="/search/:area/:bedrooms/:bathrooms/:type/:price" className="btn search-btn">Search Result</Link>
+                                <Link onClick={handleSubmit} to={`/search/${area}/${bedrooms}/${sittingrooms}/${type}/${price}`} className="btn search-btn">Search Result</Link>
                             </div>
                         </div>
 
@@ -114,4 +124,4 @@ export default () => {
 
 
     )
-}
+});

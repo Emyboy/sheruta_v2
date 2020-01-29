@@ -1,7 +1,8 @@
 import React from 'react';
 
 
-export default () => {
+export default (props) => {
+    console.log(props);
     return (
         <div className="col-lg-12 col-md-12">
             <div className="property-listing property-1">
@@ -27,7 +28,7 @@ export default () => {
 
                     <div className="listing-detail-wrapper">
                         <div className="listing-short-detail">
-                            <h4 className="listing-name"><a href="single-property-2.html">Resort Valley Ocs</a></h4>
+                            <h4 className="listing-name"><a href="single-property-2.html">area</a></h4>
                             <span className="listing-location"><i className="ti-location-pin"></i>3848 Swick Hill, New Orleans</span>
                         </div>
                         <div className="list-author">

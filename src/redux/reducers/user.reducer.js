@@ -1,11 +1,13 @@
-import { UPLOAD_ERROR, UPLOAD_LOADING, UPLOAD_SUCCESS, SEND_REQUEST_ERROR, SEND_REQUEST_SUCCESS, TOGGLE_DONE_MODAL } from '../actions';
+import { UPLOAD_ERROR, UPLOAD_LOADING, UPLOAD_SUCCESS, SEND_REQUEST_ERROR, SEND_REQUEST_SUCCESS, TOGGLE_DONE_MODAL, SEARCH_ERROR, SEARCH_SUCCESS, SEARCH_LOADING } from '../actions';
 
 const initialState = {
     uploadLoading: false,
+    searchLoading: false,
     upload: null,
     error: null,
     request: null,
-    showDoneModal: false
+    showDoneModal: false,
+    searchResults: []
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -48,6 +50,27 @@ export default (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 showDoneModal: payload
+            }
+        case SEARCH_SUCCESS:
+            return {
+                ...state,
+                searchResults: payload,
+                searchLoading: false,
+                error: false
+            }
+        case SEARCH_ERROR:
+            return {
+                ...state,
+                error: payload,
+                searchResults: [],
+                searchLoading: false
+            }
+        case SEARCH_LOADING: 
+            return {
+                ...state,
+                error: false,
+                searchResults: [],
+                searchLoading: true
             }
         default:
             return state
