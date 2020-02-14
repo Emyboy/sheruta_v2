@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import HorizontalProductCard from '../../components/HorizontalProductCard';
 import { connect } from 'react-redux';
 import { getRecentApartments } from '../../redux/actions/apartment.actions';
@@ -13,7 +13,8 @@ const mapStateToProps = state => ({
 	shared: state.shared,
 	apartment: state.apartment,
 	auth: state.auth,
-	user: state.user
+	user: state.user,
+	page: state.page
 })
 
 const mapActionsToProps = {
@@ -26,10 +27,15 @@ let email = '';
 let phoneno = '';
 let message = '';
 export default connect(mapStateToProps, mapActionsToProps)((props) => {
-	const { val, auth, apartment, user } = props;
-	console.log('val',val);
+	const { getRecentSharedApartments, getRecentApartments } = props;
+
+	useEffect(() => {
+		val.type === "Apartment" ? getRecentSharedApartments(3) : getRecentApartments(3);
+	},[]);
+
+	const { val, auth, apartment, shared, user } = props;
+
 	const handleSubmit = e => {
-		console.log(props);
 		e.preventDefault();
 		auth.isLoggedIn ? message = `Hi there, ${auth.user.username} is intrested in ${apartment.apartments.name} apartment, contact he/she on ${auth.user.phoneno} or ${auth.user.email}. Thank You` : message = '';
 		auth.isLoggedIn ? phoneno = auth.user.phoneno : phoneno = '';
@@ -38,7 +44,6 @@ export default connect(mapStateToProps, mapActionsToProps)((props) => {
 		auth.isLoggedIn ? props.sendRequest({user_id, message, type: 'request'}) : notification.warning({message: "Please Login to send a request!"});
 	}
 
-	val.type === "Apartment" ? getRecentApartments(3) : getRecentSharedApartments(3);
 	return (
 		<div className="col-lg-4 col-md-12 col-sm-12">
 			<DoneModal title={'Your request has been sent'} subTitle={"We well get back to you via Phone Call"} status={"success"} />
@@ -73,9 +78,9 @@ export default connect(mapStateToProps, mapActionsToProps)((props) => {
 
 					<h4>Mortgage Calculator</h4>
 
-					<HorizontalProductCard />
-					<HorizontalProductCard />
-					<HorizontalProductCard />
+					<HorizontalProductCard val={val} />
+					<HorizontalProductCard val={val} />
+					<HorizontalProductCard val={val} />
 
 				</div>
 

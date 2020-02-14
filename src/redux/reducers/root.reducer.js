@@ -7,6 +7,7 @@ import sharedReducer from './shared.reducer';
 import blogReducer from './blog.reducer';
 import viewReducer from './view.reducer';
 import userReducer from './user.reducer';
+import pageReducer from './page.reducer';
 
 const rootReducer = combineReducers({
     apartment: apartmentReducer,
@@ -14,7 +15,8 @@ const rootReducer = combineReducers({
     auth: authReducer,
     blog: blogReducer,
     view: viewReducer,
-    user: userReducer
+    user: userReducer,
+    page: pageReducer
 });
 
 export default rootReducer;

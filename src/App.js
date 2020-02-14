@@ -26,6 +26,7 @@ import Profile from './pages/Profile/Profile';
 import About from './pages/About/About';
 import BlogDetails from './pages/Blog/BlogDetails';
 import SearchResults from './components/SearchResults';
+import SharedSignup from './pages/SharedSignup/SharedSignup';
 
 function App() {
   return (
@@ -41,13 +42,14 @@ function App() {
                 <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
+                <Route exact path="/submit/:type" component={Submit} />
                 <Route exact path="/blog" component={Blog} />
                 <Route exact path="/:username/submit" component={Submit} />
                 <Route exact path="/contact" component={Contact} />
                 <Route exact path="/about" component={About} />
-                <Route exact path="/submit" component={Submit} />
                 <Route exact path="/:username" component={Profile} />
                 <Route exact path="/blog/:title" component={BlogDetails} />
+                <Route exact path="/shared/signup" component={SharedSignup} />
                 <Route exact path="/:type/:id" component={Details} />
                 <Route exact path="/search/:area/:bedrooms/:sittingrooms/:type/:price" component={SearchResults} />
                 <Route component={PageNotFound} />

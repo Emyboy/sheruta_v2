@@ -12,16 +12,19 @@ class Login extends Component {
         password: null,
         loginBtn: <button type="submit" className="btn btn-md full-width pop-login">Login</button>,
     }
+
     handleSubmit(e) {
         e.preventDefault();
         console.log(this.state);
         this.props.login(this.state);
     }
+
     handleInputChange(e){
         this.setState({
             [e.target.name]: e.target.value
         });
     }
+
     componentWillReceiveProps(newProps){
         if(newProps.auth.authLoading){
             this.setState({
@@ -33,6 +36,7 @@ class Login extends Component {
             })
         }
     }
+    
     render() {
         if(this.props.auth.isLoggedIn){
             return <Redirect to='/' />

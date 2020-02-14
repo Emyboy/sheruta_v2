@@ -37,10 +37,8 @@ export default connect(mapStateToProps, mapActionsToProps)(() => {
                                         <option>Yaba</option>
                                         <option>Okota</option>
                                         <option>Isolo</option>
-                                        <option>4</option>
-                                        <option>5</option>
                                     </select>
-                                    <i className="ti-home"></i>
+                                    <i className="ti-map"></i>
                                 </div>
                             </div>
                         </div>
@@ -56,7 +54,7 @@ export default connect(mapStateToProps, mapActionsToProps)(() => {
                                         <option>4</option>
                                         <option>5</option>
                                     </select>
-                                    <i className="ti-home"></i>
+                                    <i className="fas fa-bed"></i>
                                 </div>
                             </div>
                         </div>
@@ -71,7 +69,7 @@ export default connect(mapStateToProps, mapActionsToProps)(() => {
                                         <option>4</option>
                                         <option>5</option>
                                     </select>
-                                    <i className="lni-apartment"></i>
+                                    <i className="ti-home"></i>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +86,7 @@ export default connect(mapStateToProps, mapActionsToProps)(() => {
                                         <option>Shared Apartment</option>
                                         <option>Hostel</option>
                                     </select>
-                                    <i className="fas fa-bed"></i>
+                                    <i className="fas fa-user"></i>
                                 </div>
                             </div>
                         </div>
@@ -103,7 +101,7 @@ export default connect(mapStateToProps, mapActionsToProps)(() => {
                                         <option>1 Million - 2 Million</option>
                                         <option>Hostel</option>
                                     </select>
-                                    <i className="fas fa-bed"></i>
+                                    <i className="fas fa-money"></i>
                                 </div>
                             </div>
                         </div>

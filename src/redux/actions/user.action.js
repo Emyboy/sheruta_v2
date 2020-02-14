@@ -14,49 +14,42 @@ const uploadLoading = () => {
         type: UPLOAD_LOADING,
     }
 }
-
 const uploadSuccess = data => {
     return {
         type: UPLOAD_SUCCESS,
         payload: data
     }
 }
-
 const uploadError = error => {
     return {
         type: UPLOAD_ERROR,
         payload: error
     }
 }
-
 const sendRequestSuccess = payload => {
     return {
         type: SEND_REQUEST_SUCCESS,
         payload
     }
 }
-
 const sendRequestError = error => {
     return {
         type: SEND_REQUEST_ERROR,
         payload: error
     }
 }
-
 const searchSuccess = data => {
     return {
         type: SEARCH_SUCCESS,
         payload: data
     }
 }
-
 const searchError = error => {
     return {
         type: SEARCH_ERROR,
         payload: error
     }
 }
-
 const searchLoading = () => {
     return {
         type: SEARCH_LOADING,
@@ -77,6 +70,7 @@ export const uploadApartment = data => dispatch => {
             console.log(err);
         })
 }
+
 export const sendRequest = data => dispatch => {
     console.log('sending request', data);
     dispatch(uploadLoading());
@@ -98,6 +92,24 @@ export const sendRequest = data => dispatch => {
             notification.error({message: 'Request Error!'})
             dispatch(sendRequestError(err));
         })
+}
+
+export const sharedSignup = data => dispatch => {
+    dispatch(uploadLoading());
+    return Axios(`${process.env.REACT_APP_BASE_URL}/sharing/signup`, {
+        method: 'POST',
+        data
+    }).then(res => {
+        if(res.data.error){
+            dispatch(uploadError(res.data.error));
+            notification.error({message: 'Request Error!!'})
+        }
+        console.log('res',res)
+    })
+    .catch(err => {
+        dispatch(uploadError(err));
+        console.log('err',err)
+    })
 }
 
 export const addToFavorite = data => dispatch => {

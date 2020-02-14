@@ -10,7 +10,7 @@ const mapStateToProps = state => ({
 
 const mapActionsToProps = {
     addToFavorite
-}
+};
 
 export default connect(mapStateToProps, mapActionsToProps)((props) => {
     console.log(props);
@@ -64,7 +64,7 @@ export default connect(mapStateToProps, mapActionsToProps)((props) => {
 
                 <div className="price-features-wrapper">
                     <div className="listing-price-fx">
-                        <h6 className="listing-card-info-price price-prefix">{price}<span className="price-suffix">/mo</span></h6>
+                        <h6 className="listing-card-info-price price-prefix">₦{price}<span className="price-suffix">/mo</span></h6>
                     </div>
                     <div className="listing-like-top">
                         <i onClick={() => addToFavorite({

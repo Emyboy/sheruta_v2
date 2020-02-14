@@ -18,6 +18,7 @@ const authLoading = () => {
     type: AUTH_LOADING
   }
 }
+
 const loginSuccess = payload => {
   return {
     type: LOGIN,

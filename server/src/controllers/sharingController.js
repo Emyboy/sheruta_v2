@@ -6,6 +6,7 @@ class SharingController {
 
     static async shareSignup(req, res) {
         const { userid } = req.body;
+        delete req.body.loginBtn;
         console.log(req.body);
         try {
             const user = await knex('sharing').insert(req.body).returning('*');
@@ -26,7 +27,11 @@ class SharingController {
                 })
             }
         } catch (error) {
-            res.send(error);
+            res.json({
+                message: 'faild',
+                status: 500,
+                error
+            });
         }
     }
 

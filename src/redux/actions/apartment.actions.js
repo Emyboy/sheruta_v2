@@ -1,7 +1,6 @@
 import { GET_APARTMENT_ERROR, GET_APARTMENT_SUCCESS } from '.'
 import Axios from 'axios'
 
-
 const getApartmentSuccess = payload => {
     return {
         type: GET_APARTMENT_SUCCESS,
