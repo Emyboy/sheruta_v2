@@ -4,15 +4,16 @@ import { connect } from 'react-redux';
 import siteIcon from '../img/site-icon.png';
 
 import { logout } from '../redux/actions/auth.action';
+import { toggleNavbar } from '../redux/actions/view.actions';
 
 class Navbar extends Component {
     render() {
         return (
             <div className="header header-light nav-left-side">
-                <nav className="headnavbar core-nav"><div className="nav-container">
+                <nav className={ !this.props.view.showNavbar ? "headnavbar core-nav" :  "headnavbar core-nav open-responsive open-dropdown"}><div className="nav-container">
                     <div className="nav-header right">
                         <Link to="/" className="brand mt-1"><img style={{width: '20%'}} src={siteIcon} alt="" /></Link>
-                        <button className="toggle-bar core-nav-toggle"><span className="ti-align-justify"></span></button>
+                        <button onClick={() => this.props.toggleNavbar(!this.props.view.showNavbar)} className="toggle-bar core-nav-toggle"><span className="ti-align-justify"></span></button>
                     </div>
                     <div className="wrap-core-nav-list right"><ul className="attributes">
                         {
@@ -74,11 +75,13 @@ class Navbar extends Component {
 }
 
 const mapStateToProps = state =>({
-    auth: state.auth
+    auth: state.auth, 
+    view: state.view
 })
 
 const mapActionToProps = {
-    logout
+    logout,
+    toggleNavbar
 }
 
 export default connect(mapStateToProps, mapActionToProps)(Navbar);
