@@ -23,7 +23,7 @@ class BlogDetails extends React.Component{
                             <div class="row">
                                 <div class="col-lg-12 col-md-12">
 
-                                    <h2 class="ipt-title">Blog Detail</h2>
+                                    <h2 class="ipt-title">{blog.title}</h2>
                                     <span class="ipn-subtitle">See Our Latest Articles &amp; News</span>
 
                                 </div>
