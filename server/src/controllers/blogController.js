@@ -9,12 +9,12 @@ class BlogController {
      * @param {object} res 
      */
     static addPost(req, res) {
-        const { title, body, imageUrl } = req.body;
+        const { title, body, imageUrl, readMore } = req.body;
         const date = new Date();
         const day = date.getDay();
         const month = date.getMonth();
-        console.log(month);
-        knex('blog').insert({ title, body, imageUrl, day, month }).returning('*')
+        console.log(req.body);
+        knex('blog').insert({ title, body, imageUrl, day, month, readmore: readMore }).returning('*')
             .then(blog => {
                 if (blog.length === 1) {
                     res.json({

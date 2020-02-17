@@ -4,16 +4,17 @@ import ImageViews from './ImageViews'
 export default (props) => {
     const { val } = props;
     return (
-        <div class="col-lg-8 col-md-12 col-sm-12">
+        <div className="col-lg-8 col-md-12 col-sm-12">
             <ImageViews val={val} />
-            <div class="block-wrap shadow">
 
-                <div class="block-header">
-                    <h4 class="block-title">Property Info</h4>
+            <div className="block-wrap shadow">
+
+                <div className="block-header">
+                    <h4 className="block-title">Property Info</h4>
                 </div>
 
-                <div class="block-body">
-                    <ul class="dw-proprty-info">
+                <div className="block-body">
+                    <ul className="dw-proprty-info">
                         <li><strong>Bedrooms</strong>{val.bedrooms}</li>
                         <li><strong>Bathrooms</strong>{val.toilets}</li>
                         <li><strong>Sitting Rooms</strong>{val.sittingrooms}</li>
@@ -27,26 +28,26 @@ export default (props) => {
 
             </div>
 
-            <div class="block-wrap shadow">
+            <div className="block-wrap shadow">
 
-                <div class="block-header">
-                    <h4 class="block-title">Description</h4>
+                <div className="block-header">
+                    <h4 className="block-title">Description</h4>
                 </div>
 
-                <div class="block-body">
+                <div className="block-body">
                     <p>{val.bio}</p>
                 </div>
 
             </div>
 
-            <div class="block-wrap shadow">
+            <div className="block-wrap shadow">
 
-                <div class="block-header">
-                    <h4 class="block-title">Ameneties</h4>
+                <div className="block-header">
+                    <h4 className="block-title">Ameneties</h4>
                 </div>
 
-                <div class="block-body">
-                    <ul class="avl-features third">
+                <div className="block-body">
+                    <ul className="avl-features third">
                         <li>Air Conditioning</li>
                         <li>Swimming Pool</li>
                         <li>Central Heating</li>

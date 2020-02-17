@@ -41,10 +41,10 @@ export default class Contact extends Component {
                                     </div>
                                 </div>
 
-                                <div className="form-group">
+                                {/* <div className="form-group">
                                     <label>Subject</label>
                                     <input type="text" className="form-control simple" />
-                                </div>
+                                </div> */}
 
                                 <div className="form-group">
                                     <label>Message</label>

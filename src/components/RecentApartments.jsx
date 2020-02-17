@@ -6,9 +6,7 @@ import loadingGif from '../img/loading.gif';
 import { Link } from 'react-router-dom';
 
 class RecentApartments extends Component {
-    componentWillMount() {
-        this.props.getRecentApartments(6);
-    }
+
     render() {
         const { getApartmentLoading, apartments } = this.props.apartment;
         return (

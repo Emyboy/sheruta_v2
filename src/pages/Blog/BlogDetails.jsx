@@ -12,6 +12,7 @@ class BlogDetails extends React.Component{
     }
     
     render(){
+        const { blog } = this.props.blog;
         if(this.props.blog.blogLoading){
             return <PageLoader />
         }else {
@@ -33,7 +34,7 @@ class BlogDetails extends React.Component{
                     <section>
                         <div className="container">
                             <div className="row">
-                                <BlogDetailLeft />
+                                <BlogDetailLeft val={blog} />
                                 <BlogDetailRight />
                             </div>
                         </div>

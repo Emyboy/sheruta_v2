@@ -1,4 +1,4 @@
-import { UPLOAD_ERROR, UPLOAD_LOADING, SEND_REQUEST_ERROR, UPLOAD_SUCCESS, SEND_REQUEST_SUCCESS, TOGGLE_DONE_MODAL, SEARCH_ERROR, SEARCH_SUCCESS, SEARCH_LOADING } from '.';
+import { UPLOAD_ERROR, UPLOAD_LOADING, SEND_REQUEST_ERROR, UPLOAD_SUCCESS, SEND_REQUEST_SUCCESS, TOGGLE_DONE_MODAL, SEARCH_ERROR, SEARCH_SUCCESS, SEARCH_LOADING, SEND_MESSAGE, SEND_MESSAGE_ERROR } from '.';
 import Axios from 'axios';
 import { notification } from 'antd';
 
@@ -54,6 +54,20 @@ const searchLoading = () => {
     return {
         type: SEARCH_LOADING,
         payload: {}
+    }
+}
+
+const sendMessage = ({data, type}) => {
+    if(type === 'success'){
+        return {
+            type: SEND_MESSAGE,
+            payload: data
+        }
+    }else {
+        return {
+            type: SEND_MESSAGE_ERROR,
+            payload: data
+        }
     }
 }
 
@@ -142,4 +156,17 @@ export const search = data => dispatch => {
             dispatch(searchError(err));
         })
 
+}
+
+export const SendMessage = data => dispatch => {
+    return Axios(`${process.env.REACT_APP_BASE_URL}/message`, {
+        data,
+        method: 'POST'
+    })
+        .then(res => {
+            console.log(res);
+        })
+        .catch(err => {
+            console.log(err);
+        })
 }

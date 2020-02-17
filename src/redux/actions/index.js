@@ -34,3 +34,6 @@ export const SEARCH_ERROR = 'SEARCH_ERROR';
 export const SEARCH_LOADING = 'SEARCH_LOADING';
 
 export const PAGE_LOADING = 'PAGE_LOADING';
+
+export const SEND_MESSAGE = 'SEND_MESSAGE';
+export const SEND_MESSAGE_ERROR = 'SEND_MESSAGE_ERROR';
