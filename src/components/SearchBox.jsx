@@ -1,7 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import {  search } from '../redux/actions/user.action';
+import { getAllAreas } from '../redux/actions/view.actions';
+
+getAllAreas();
 
 const mapStateToProps = state =>({
     user: state.user
@@ -17,9 +20,15 @@ export default connect(mapStateToProps, mapActionsToProps)(() => {
     const [bedrooms, setBedrooms] = useState('1');
     const [sittingrooms, setSittingrooms] = useState('1');
     const [type, setType] = useState('Apartment');
+
     const handleSubmit = (d) => {
         sessionStorage.setItem('keywords', JSON.stringify({area, price,bedrooms,sittingrooms,type}))
     }
+
+    useEffect(() => {
+        getAllAreas();
+    },[]);
+
     return (
         <div className="container">
             <div className="hero-search-wrap full-width">
@@ -118,8 +127,5 @@ export default connect(mapStateToProps, mapActionsToProps)(() => {
 
             </div>
         </div>
-
-
-
     )
 });
