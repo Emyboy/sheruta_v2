@@ -14,7 +14,7 @@ const composeEnhancers = composeWithDevTools({});
 
 const configureStore = (settings = {}) => createStore(
     indexReducer, settings,
-    composeEnhancers(applyMiddleware(thunk, logger)),
+    composeEnhancers(applyMiddleware(thunk, process.env.NODE_ENV === 'development' ? logger : null)),
     
 );
 

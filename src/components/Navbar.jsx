@@ -12,7 +12,7 @@ class Navbar extends Component {
             <div className="header header-light nav-left-side">
                 <nav className={ !this.props.view.showNavbar ? "headnavbar core-nav" :  "headnavbar core-nav open-responsive open-dropdown"}><div className="nav-container">
                     <div className="nav-header right">
-                        <Link to="/" className="brand mt-1"><img style={{width: '20%'}} src={siteIcon} alt="" /></Link>
+                        <Link to="/" className="brand mt-1"><img style={{width: '80%'}} src={siteIcon} alt="" /></Link>
                         <button onClick={() => this.props.toggleNavbar(!this.props.view.showNavbar)} className="toggle-bar core-nav-toggle"><span className="ti-align-justify"></span></button>
                     </div>
                     <div className="wrap-core-nav-list right"><ul className="attributes">
