@@ -60,10 +60,10 @@ export default function ProfileRight(props) {
                                 <input type="text" className="form-control" value="160052" />
                             </div> */}
 
-                            <div className="form-group col-md-12">
+                            {/* <div className="form-group col-md-12">
                                 <label>About</label>
                                 <textarea className="form-control">{val.bio}</textarea>
-                            </div>
+                            </div> */}
 
                         </div>
                     </div>
@@ -95,7 +95,7 @@ export default function ProfileRight(props) {
                             </div> */}
 
                             <div className="form-group col-lg-12 col-md-12">
-                                <button className="btn btn-theme" type="submit">Save Changes</button>
+                                {/* <button className="btn btn-theme" type="submit">Save Changes</button> */}
                             </div>
 
                         </div>

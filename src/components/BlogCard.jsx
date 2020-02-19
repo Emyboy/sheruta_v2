@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 export default function BlogCard(props) {
     const { title, imageUrl, readmore, date } = props.val;
@@ -7,9 +8,9 @@ export default function BlogCard(props) {
             <div className="blog-wrap-grid">
 
                 <div className="blog-thumb">
-                    <a href={`/blog/${title}`}>
+                    <Link to={`/blog/${title}`}>
                         <img src={imageUrl} className="img-fluid" alt=""/>
-                    </a>
+                    </Link>
                 </div>
 
                     <div className="blog-info">
@@ -18,9 +19,9 @@ export default function BlogCard(props) {
 
                     <div className="blog-body">
                         
-                        <h4 className="bl-title"><a href={`/blog/${title}`}>{title}</a></h4>
+                        <h4 className="bl-title"><Link to={`/blog/${title}`}>{title}</Link></h4>
                         <p>{readmore}</p>
-                        <a href={`/blog/${title}`} className="bl-continue">Continue</a>
+                        <Link to={`/blog/${title}`} className="bl-continue">Continue</Link>
                     </div>
 
                 </div>

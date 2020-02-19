@@ -5,9 +5,19 @@ import PageLoader from '../../components/PageLoader';
 import { getAllBlog } from '../../redux/actions/blog.actions';
 
 class Blog extends Component {
+    state = {
+        blogList: []
+    }
     componentWillMount() {
         console.log(this.props);
         this.props.getAllBlog();
+    }f
+
+    componentWillReceiveProps(nextProps) {
+        console.log('new prosp......', nextProps);
+        this.setState({
+            blogList: nextProps.blog.blog
+        })
     }
 
     render() {
@@ -41,7 +51,7 @@ class Blog extends Component {
                             </div>
                             <div className="row">
                                 {
-                                    this.props.blog.blog.map((val, i) => {
+                                    this.state.blogList.map((val, i) => {
                                         return (
                                             <BlogCard val={val} key={i} />
                                         )

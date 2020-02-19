@@ -25,9 +25,9 @@ class Navbar extends Component {
 								</button>
                                         <div className="dropdown-menu pull-right animated flipInX">
                                             <Link to={`/${this.props.auth.user.username}`}><i className="ti-user"></i>My Profile</Link>
-                                            <a href="my-property.html"><i className="ti-layers"></i>Property List</a>
+                                            {/* <a href="my-property.html"><i className="ti-layers"></i>Property List</a>
                                             <a href="bookmark-list.html"><i className="ti-bookmark"></i>Bookmarked Listings</a>
-                                            <a className="active" href="change-password.html"><i className="ti-unlock"></i>Change Password</a>
+                                            <a className="active" href="change-password.html"><i className="ti-unlock"></i>Change Password</a> */}
                                             <hr />
                                             <Link to="/" onClick={() => this.props.logout()}><i className="ti-power-off"></i>Log Out</Link>
                                         </div>

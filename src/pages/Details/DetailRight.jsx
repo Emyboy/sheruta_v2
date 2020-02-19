@@ -37,11 +37,13 @@ export default connect(mapStateToProps, mapActionsToProps)((props) => {
 
 	const handleSubmit = e => {
 		e.preventDefault();
-		auth.isLoggedIn ? message = `Hi there, ${auth.user.username} is intrested in ${apartment.apartments.name} apartment, contact he/she on ${auth.user.phoneno} or ${auth.user.email}. Thank You` : message = '';
+		
+		val.type === "Shared" ? auth.isLoggedIn ? message = `Hi there, ${auth.user.username} is intrested in ${shared.shared.name} apartment, contact he/she on ${auth.user.phoneno} or ${auth.user.email}. Thank You` : message = '' : auth.isLoggedIn ? message = `Hi there, ${auth.user.username} is intrested in ${apartment.apartments.name} apartment, contact he/she on ${auth.user.phoneno} or ${auth.user.email}. Thank You` : message = '';
+
 		auth.isLoggedIn ? phoneno = auth.user.phoneno : phoneno = '';
 		auth.isLoggedIn ? email = auth.user.email : email = '';
 		const user_id = auth.isLoggedIn ? auth.user.id : '';
-		auth.isLoggedIn ? props.sendRequest({user_id, message, type: 'request'}) : notification.warning({message: "Please Login to send a request!"});
+		auth.isLoggedIn ? props.sendRequest({name: auth.user.fullname, phoneno: auth.user.phoneno, message, type: 'Request'}) : notification.warning({message: "Please Login to send a request!"});
 	}
 
 	return (

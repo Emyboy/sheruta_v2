@@ -7,8 +7,9 @@ class MessageController {
      * @param {object} res 
      */
     static sendMessage(req, res) {
-        const { message, user_id, type } = req.body;
-        knex('message').insert({ message, user_id, type }).returning('*')
+        const { message, type, phoneno, name } = req.body;
+        console.log(req.body);
+        knex('message').insert({ message, type, phoneno, name }).returning('*')
             .then(response => {
                 console.log(response);
                 if(response.length === 1){

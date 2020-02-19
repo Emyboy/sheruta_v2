@@ -195,10 +195,11 @@ const schema = () => {
       return knex.schema.createTable("message", function(t) {
         t.increments("id").primary();
         t.string("name", 999).notNullable();
-        t.string("email", 150).notNullable();
+        t.string("phoneno", 150).notNullable();
         t.string("message", 999).notNullable();
         t.boolean("read").defaultTo(false);
         t.string('type').notNullable();
+        t.string('email', 89);
         t.timestamp("date").defaultTo(knex.fn.now());
       });
     }
