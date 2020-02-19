@@ -30,8 +30,8 @@ export default class BlogDetailLeft extends React.Component {
 
                         <div className="post-top-meta">
                             <ul className="meta-comment-tag">
-                                <li><a href="#c"><span className="icons"><i className="ti-user"></i></span>by Rosalina Doe</a></li>
-                                <li><a href="#c"><span className="icons"><i className="ti-comment-alt"></i></span>45 Comments</a></li>
+                                {/* <li><a href="#c"><span className="icons"><i className="ti-user"></i></span>by Rosalina Doe</a></li>
+                                <li><a href="#c"><span className="icons"><i className="ti-comment-alt"></i></span>45 Comments</a></li> */}
                             </ul>
                         </div>
                         <h2 className="post-title">{val.title}</h2>
