@@ -10,9 +10,9 @@ export default (props) => {
             <div className="property-listing property-1">
 
                 <div className="listing-img-wrapper">
-                    <a href="single-property-2.html">
+                    <Link to={`/${String(val.type).toLowerCase()}/${val.id}`}>
                         <img src={val.imageurl1} className="img-fluid mx-auto" alt="" />
-                    </a>
+                    </Link>
                     <div className="listing-like-top">
                         <i className="ti-heart"></i>
                     </div>

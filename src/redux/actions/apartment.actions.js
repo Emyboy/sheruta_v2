@@ -28,11 +28,10 @@ export const getRecentApartments = limit => dispatch => {
                 default:
                     break;
             }
-            console.log(res);
         })
         .catch(err => {
-            console.log(err);
             getApartmentError(err);
+            console.log(err);
         })
 }
 
@@ -49,7 +48,6 @@ export const getApartmentById = id => dispatch => {
                 default:
                     break;
             }
-            console.log(res);
         })
         .catch(err => {
             console.log(err);

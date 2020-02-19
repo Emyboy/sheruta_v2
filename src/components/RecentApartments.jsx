@@ -40,7 +40,7 @@ class RecentApartments extends Component {
                     <div className="row">
                         <div className="col-lg-12 col-md-12">
                             <div className="text-center mt-4">
-                                <Link to="/apartments" className="btn btn-theme-2">Browse More Apartments</Link>
+                                {/* <Link to="/apartments" className="btn btn-theme-2">Browse More Apartments</Link> */}
                             </div>
                         </div>
                     </div>

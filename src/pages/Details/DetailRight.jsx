@@ -78,7 +78,7 @@ export default connect(mapStateToProps, mapActionsToProps)((props) => {
 
 				<div className="sidebar-widgets">
 
-					<h4>Mortgage Calculator</h4>
+					<h4>Recent Apartments</h4>
 
 					<HorizontalProductCard val={val} />
 					<HorizontalProductCard val={val} />

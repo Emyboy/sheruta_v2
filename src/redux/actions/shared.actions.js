@@ -1,5 +1,6 @@
 import { GET_SHARED_ERROR, GET_SHARED_SUCCESS } from '.'
 import Axios from 'axios'
+import { notification } from 'antd'
 
 
 const getApartmentSuccess = payload => {
@@ -29,10 +30,9 @@ export const getRecentSharedApartments = limit => dispatch => {
                 default:
                     break;
             }
-            console.log(res);
         })
         .catch(err => {
-            console.log(err);
+            // notification.error({ message: 'Error Loading Apartment'})
             getApartmentError(err);
         })
 }
@@ -54,9 +54,9 @@ export const getSharedById = id => dispatch => {
                 default:
                     break;
             }
-            console.log(res);
         })
         .catch(err => {
-            console.log(err);
+            // notification.error({message: 'Error Loading Apartment'});
+            getApartmentError(err);
         })
 }
