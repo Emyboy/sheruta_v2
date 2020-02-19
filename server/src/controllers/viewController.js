@@ -27,7 +27,7 @@ module.exports = class ViewController {
         console.log(req.params)
         const { area, bedrooms, sittingrooms, price, type } = req.params;
         db.select('*').from(type === "Apartment" ? "apartment" : "shared").where({
-            bedrooms, sittingrooms, area
+            bedrooms, sittingrooms
         }).returning('*')
             .then(results => {
                 if(results.length === 0){
