@@ -37,8 +37,8 @@ function App() {
           <div className='main-wrapper'>
             <div className="clearfix"></div>
             <BrowserRouter>
-              {/* <TopHeader />
-              <Navbar /> */}
+              <TopHeader />
+              <Navbar />
               <Switch>
                 <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
@@ -56,7 +56,7 @@ function App() {
                 <Route component={PageNotFound} />
                 {/* <Route component={SiteUnderConts} /> */}
               </Switch>
-            {/* <Footer /> */}
+            <Footer />
             </BrowserRouter>
           </div>
         </div>
