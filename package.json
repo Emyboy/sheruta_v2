@@ -43,12 +43,10 @@
     "volleyball": "^1.5.1"
   },
   "scripts": {
-    "start": "node server/src/index.js",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "client": "react-scripts start",
-    "server": "nodemon server/src/index.js"
+    "start": "react-scripts start"
   },
   "eslintConfig": {
     "extends": "react-app"

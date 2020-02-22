@@ -40,7 +40,7 @@ function App() {
               {/* <TopHeader />
               <Navbar /> */}
               <Switch>
-                {/* <Route exact path="/" component={Home} />
+                <Route exact path="/" component={Home} />
                 <Route exact path="/login" component={Login} />
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/submit/:type" component={Submit} />
@@ -53,8 +53,8 @@ function App() {
                 <Route exact path="/shared/signup" component={SharedSignup} />
                 <Route exact path="/:type/:id" component={Details} />
                 <Route exact path="/search/:area/:bedrooms/:sittingrooms/:type/:price" component={SearchResults} />
-                <Route component={PageNotFound} /> */}
-                <Route component={SiteUnderConts} />
+                <Route component={PageNotFound} />
+                {/* <Route component={SiteUnderConts} /> */}
               </Switch>
             {/* <Footer /> */}
             </BrowserRouter>
