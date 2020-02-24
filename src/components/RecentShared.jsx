@@ -6,6 +6,9 @@ import loadingGif from '../img/loading.gif';
 import { Link } from 'react-router-dom';
 
 class RecentShared extends Component {
+    componentWillReceiveProps(props){
+        console.log('.....................',props)
+    }
     render() {
         const { sharedLoading, shared } = this.props.shared;
         return (

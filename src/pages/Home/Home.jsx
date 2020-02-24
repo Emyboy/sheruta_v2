@@ -14,6 +14,7 @@ const mapStateToProps = state => ({
     apartment: state.apartment,
     shared: state.shared
 });
+
 const mapActionsToProps = {
     getRecentSharedApartments,
     getRecentApartments

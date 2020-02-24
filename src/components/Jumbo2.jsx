@@ -3,6 +3,8 @@ import { Link, Redirect } from 'react-router-dom'
 import { notification } from 'antd'
 import { connect } from 'react-redux';
 
+import image from '../img/shared-apartment.jpg';
+
 const mapStateToProps = state => ({
     auth: state.auth
 })
@@ -13,7 +15,7 @@ const mapDispatchToProps = {
 
 export default connect(mapStateToProps, mapDispatchToProps)((props) => {
         return (
-            <section className="image-cover" style={{background: `url(assets/img/bg-1.jpg) no-repeat`}} data-overlay="6">
+            <section className="image-cover" style={{background: `url(${image}) no-repeat`}} data-overlay="6">
                 <div className="container">
                     <div className="row justify-content-md-center">
                         <div className="col-lg-9 col-md-10">
