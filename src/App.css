@@ -63,3 +63,7 @@ a:hover, .bl-continue{
 .top-social i{
     color: white;
 }
+
+.blog-details img {
+    width: 100% !important;
+}
