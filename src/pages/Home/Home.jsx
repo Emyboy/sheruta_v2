@@ -35,9 +35,9 @@ export default connect(mapStateToProps, mapActionsToProps)(class Home extends Co
             return (
                 <div>
                     <Jumbo />
-                    <RecentShared />
+                    <RecentShared shared={shared} />
                     <Jumbo2 />
-                    <RecentApartments />
+                    <RecentApartments apartment={apartment} />
                     <WhatWeDo />
                 </div>
             )

@@ -3,7 +3,6 @@ import ProductCard from './ProductCard';
 import { connect } from 'react-redux';
 import { getRecentSharedApartments } from '../redux/actions/shared.actions';
 import loadingGif from '../img/loading.gif';
-import { Link } from 'react-router-dom';
 
 class RecentShared extends Component {
     componentWillReceiveProps(props){
@@ -61,4 +60,4 @@ const mapActionsToProps = {
     getRecentApartments: getRecentSharedApartments
 }
 
-export default connect(mapStateToProps, mapActionsToProps)(RecentShared);
+export default RecentShared;

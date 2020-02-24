@@ -58,4 +58,4 @@ const mapActionsToProps = {
     getRecentApartments
 }
 
-export default connect(mapStateToProps,mapActionsToProps)(RecentApartments);
+export default RecentApartments;
