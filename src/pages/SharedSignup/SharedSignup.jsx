@@ -149,9 +149,7 @@ class SharedSignup extends React.Component {
                                     <li><a href="#" className="btn connect-twitter"><i className="ti-twitter"></i>Twitter</a></li>
                                 </ul>
                             </div> */}
-                            <div className="text-center">
-                                <p className="mt-5"><i className="ti-user mr-1"></i>Already Have An Account? <Link to="/login" className="link">Go For LogIn</Link></p>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
