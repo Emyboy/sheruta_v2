@@ -3,11 +3,34 @@ import ProductCard from './ProductCard';
 import { connect } from 'react-redux';
 import { getRecentSharedApartments } from '../redux/actions/shared.actions';
 import loadingGif from '../img/loading.gif';
+import Axios from "axios";
+import { notification } from 'antd';
 
 class RecentShared extends Component {
-    componentWillReceiveProps(props){
-        console.log('.....................',props)
+    state = {
+        sharedList: []
+    };
+
+    getSharedApartment(){
+        Axios.get(`${process.env.REACT_APP_BASE_URL}/shared`)
+            .then(res => {
+                if(res.status == 200){
+                    this.setState({
+                        sharedList: res.data.shared
+                    })
+                }else {
+                    notification.error({message: 'Error Loading Shared'})
+                }
+            })
+            .catch(err => {
+                notification.error({message: 'Error Loading Shared'})
+            })
     }
+
+    componentDidMount() {
+        this.getSharedApartment();
+    }
+
     render() {
         const { sharedLoading, shared } = this.props.shared;
         return (
@@ -26,8 +49,7 @@ class RecentShared extends Component {
                     <div className={sharedLoading ? "center pt-5 pb-5" : "row pt-5"}>
                         {
                             
-                            sharedLoading && shared.length > 0? <div className="center" style={{ textAlign: 'center' }}><img src={loadingGif} alt='loading-img' /></div> :
-                                shared.map((val, i) => {
+                            this.state.sharedList.map((val, i) => {
                                     return (
                                         <ProductCard
                                             key={i}

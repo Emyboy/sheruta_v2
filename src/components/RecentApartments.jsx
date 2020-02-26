@@ -1,11 +1,33 @@
 import React, { Component } from 'react'
 import ProductCard from './ProductCard';
-import { connect } from 'react-redux';
 import { getRecentApartments } from '../redux/actions/apartment.actions';
-import loadingGif from '../img/loading.gif';
-import { Link } from 'react-router-dom';
+import Axios from "axios";
+import { notification } from 'antd';
 
 class RecentApartments extends Component {
+    state = {
+        apartmentList: []
+    };
+
+    getApartments(){
+        Axios.get(`${process.env.REACT_APP_BASE_URL}/hostels/limit/${6}`)
+            .then(res => {
+                if(res.data.message === 'success'){
+                    this.setState({
+                        apartmentList: res.data.apartment
+                    })
+                }else {
+                    notification.error({message: 'Error Loding Apartments'})
+                }
+            })
+            .catch(err => {
+                notification.error({message: 'Error Loding Apartments'})
+            })
+    }
+
+    componentWillMount() {
+        this.getApartments()
+    }
 
     render() {
         const { getApartmentLoading, apartments } = this.props.apartment;
@@ -24,8 +46,7 @@ class RecentApartments extends Component {
 
                     <div className={getApartmentLoading ? "center pt-5 pb-5" : "row pt-5"}>
                         {
-                            getApartmentLoading && apartments.length > 0 ? <div className="center" style={{textAlign: 'center'}}><img src={loadingGif} alt='loading-img' /></div> :
-                                apartments.map((val, i) => {
+                            this.state.apartmentList.map((val, i) => {
                                     return (
                                         <ProductCard
                                             key={i}
