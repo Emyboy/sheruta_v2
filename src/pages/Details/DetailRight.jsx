@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import HorizontalProductCard from '../../components/HorizontalProductCard';
 import { connect } from 'react-redux';
 import { getRecentApartments } from '../../redux/actions/apartment.actions';
@@ -8,6 +8,7 @@ import { notification } from 'antd';
 
 import loadingGif from '../../img/loading.gif';
 import DoneModal from '../../components/DoneModal';
+import Axios from 'axios';
 
 const mapStateToProps = state => ({
 	shared: state.shared,
@@ -27,24 +28,36 @@ let email = '';
 let phoneno = '';
 let message = '';
 export default connect(mapStateToProps, mapActionsToProps)((props) => {
-	const { getRecentSharedApartments, getRecentApartments } = props;
 
-	useEffect(() => {
-		val.type === "Apartment" ? getRecentSharedApartments(3) : getRecentApartments(3);
-	},[]);
+	const [apartments, setApartments] = useState([]);
 
 	const { val, auth, apartment, shared, user } = props;
 
+	const getApartment = () => {
+		Axios(`${process.env.REACT_APP_BASE_URL}/hostels/limit/${4}`)
+			.then(res => {
+				console.log('......', res);
+				setApartments(res.data.apartment)
+			})
+			.catch(err => console.log(err))
+	}
+
+	useEffect(() => {
+		getApartment()
+	}, []);
+
 	const handleSubmit = e => {
 		e.preventDefault();
-		
+
 		val.type === "Shared" ? auth.isLoggedIn ? message = `Hi there, ${auth.user.username} is intrested in ${shared.shared.name} apartment, contact he/she on ${auth.user.phoneno} or ${auth.user.email}. Thank You` : message = '' : auth.isLoggedIn ? message = `Hi there, ${auth.user.username} is intrested in ${apartment.apartments.name} apartment, contact he/she on ${auth.user.phoneno} or ${auth.user.email}. Thank You` : message = '';
 
 		auth.isLoggedIn ? phoneno = auth.user.phoneno : phoneno = '';
 		auth.isLoggedIn ? email = auth.user.email : email = '';
 		const user_id = auth.isLoggedIn ? auth.user.id : '';
-		auth.isLoggedIn ? props.sendRequest({name: auth.user.fullname, phoneno: auth.user.phoneno, message, type: 'Request'}) : notification.warning({message: "Please Login to send a request!"});
+		auth.isLoggedIn ? props.sendRequest({ name: auth.user.fullname, phoneno: auth.user.phoneno, message, type: 'Request' }) : notification.warning({ message: "Please Login to send a request!" });
 	}
+
+
 
 	return (
 		<div className="col-lg-4 col-md-12 col-sm-12">
@@ -72,17 +85,19 @@ export default connect(mapStateToProps, mapActionsToProps)((props) => {
 							<textarea className="form-control">I'm interested in this property.</textarea>
 						</div>
 					</Fragment> */}
-					
-					<button className="btn btn-theme full-width" onClick={(e) => handleSubmit(e)}> {user.uploadLoading ? <img src={loadingGif} alt='' /> :  'Send Request'}</button>
+
+					<button className="btn btn-theme full-width" onClick={(e) => handleSubmit(e)}> {user.uploadLoading ? <img src={loadingGif} alt='' /> : 'Send Request'}</button>
 				</div>
 
 				<div className="sidebar-widgets">
 
 					<h4>Recent Apartments</h4>
 
-					<HorizontalProductCard val={val} />
-					<HorizontalProductCard val={val} />
-					<HorizontalProductCard val={val} />
+					{
+						apartments.map((val, i) => {
+							return <HorizontalProductCard key={i} val={val} />
+						})
+					}
 
 				</div>
 
