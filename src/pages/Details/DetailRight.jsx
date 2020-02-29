@@ -36,7 +36,6 @@ export default connect(mapStateToProps, mapActionsToProps)((props) => {
 	const getApartment = () => {
 		Axios(`${process.env.REACT_APP_BASE_URL}/hostels/limit/${4}`)
 			.then(res => {
-				console.log('......', res);
 				setApartments(res.data.apartment)
 			})
 			.catch(err => console.log(err))

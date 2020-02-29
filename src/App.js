@@ -45,7 +45,7 @@ function App() {
                 <Route exact path="/signup" component={Signup} />
                 <Route exact path="/submit/:type" component={Submit} />
                 <Route exact path="/blog" component={Blog} />
-                <Route exact path="/:username/submit" component={Submit} />
+                <Route exact path="/submit" component={Submit} />
                 <Route exact path="/contact" component={Contact} />
                 <Route exact path="/about" component={About} />
                 <Route exact path="/:username" component={Profile} />

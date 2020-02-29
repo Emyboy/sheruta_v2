@@ -93,6 +93,7 @@ export const sendRequest = data => dispatch => {
         data
     })
         .then(res => {
+            console.log('res..', res);
             if(res.data.status === 200){
                 notification.success({message: 'Request Sent..'})
                 dispatch(sendRequestSuccess(res.data));
@@ -105,6 +106,7 @@ export const sendRequest = data => dispatch => {
         .catch(err => {
             notification.error({message: 'Request Error!'})
             dispatch(sendRequestError(err));
+            console.log(err);
         })
 }
 

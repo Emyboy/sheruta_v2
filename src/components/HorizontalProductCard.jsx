@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 
 export default (props) => {
     const { val } = props;
-    console.log(props);
     return (
         <div className="col-lg-12 col-md-12">
             <div className="property-listing property-1">
@@ -30,7 +29,7 @@ export default (props) => {
 
                     <div className="listing-detail-wrapper">
                         <div className="listing-short-detail">
-                            <h4 className="listing-name"><a href="single-property-2.html">{val.area}</a></h4>
+                            <h4 className="listing-name"><Link to={`/${String(val.type).toLowerCase()}/${val.id}`}>{val.area}</Link></h4>
                             <span className="listing-location"><i className="ti-location-pin"></i>{val.street}</span>
                         </div>
                         <div className="list-author">

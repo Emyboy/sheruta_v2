@@ -45,7 +45,7 @@ class Submit extends Component {
     render() {
         console.log(this.props);
         
-        if (!this.props.auth.isLoggedIn) {
+        if (this.props.auth.isLoggedIn) {
             return (
                 <section className='submit'>
 

@@ -1,11 +1,23 @@
 import React from 'react'
-import ImageViews from './ImageViews'
+import ImageViews from './ImageViews';
 
 export default (props) => {
     const { val } = props;
     return (
         <div className="col-lg-8 col-md-12 col-sm-12">
             <ImageViews val={val} />
+
+            <div className='block-wrap shadow mb-3 p-3'>
+            <h4 class="block-title">Like This ?</h4><br />
+                <a target="_blank"
+                  rel="noopener noreferrer"
+                  href="https://wa.me/2348138154470"
+                  alt="sheruta-whatsapp" className='btn btn-theme'><i className='fa fa-user mr-1'>
+                      </i>Chat On Whatsapp
+                </a>
+
+                <a href="tel:" className='btn btn-theme'><i className='fa fa-phone mr-1'></i>Call 08138154470</a>
+            </div>
 
             <div className="block-wrap shadow">
 
