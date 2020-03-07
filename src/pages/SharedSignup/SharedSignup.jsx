@@ -13,10 +13,11 @@ class SharedSignup extends React.Component {
         gender: 'male',
         age: null,
         occupation: null,
-        email: this.props.auth.user.email,
+        userid: this.props.auth.user.id,
         location: null,
         moveInDate: date.toDateString(),
         budget: null,
+        // userid: this.props.auth.
         loginBtn: <button type="submit" className="btn btn-md full-width pop-login">Send</button>,
     }
 

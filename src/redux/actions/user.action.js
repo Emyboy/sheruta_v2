@@ -1,4 +1,12 @@
-import { UPLOAD_ERROR, UPLOAD_LOADING, SEND_REQUEST_ERROR, UPLOAD_SUCCESS, SEND_REQUEST_SUCCESS, TOGGLE_DONE_MODAL, SEARCH_ERROR, SEARCH_SUCCESS, SEARCH_LOADING, SEND_MESSAGE, SEND_MESSAGE_ERROR } from '.';
+import {
+    UPLOAD_ERROR, 
+    UPLOAD_LOADING,
+    SEND_REQUEST_ERROR, 
+    SEND_REQUEST_SUCCESS, 
+    TOGGLE_DONE_MODAL, 
+    SEARCH_ERROR, 
+    SEARCH_SUCCESS
+} from '.';
 import Axios from 'axios';
 import { notification } from 'antd';
 
@@ -14,12 +22,7 @@ const uploadLoading = () => {
         type: UPLOAD_LOADING,
     }
 }
-const uploadSuccess = data => {
-    return {
-        type: UPLOAD_SUCCESS,
-        payload: data
-    }
-}
+
 const uploadError = error => {
     return {
         type: UPLOAD_ERROR,
@@ -50,26 +53,6 @@ const searchError = error => {
         payload: error
     }
 }
-const searchLoading = () => {
-    return {
-        type: SEARCH_LOADING,
-        payload: {}
-    }
-}
-
-const sendMessage = ({data, type}) => {
-    if(type === 'success'){
-        return {
-            type: SEND_MESSAGE,
-            payload: data
-        }
-    }else {
-        return {
-            type: SEND_MESSAGE_ERROR,
-            payload: data
-        }
-    }
-}
 
 export const uploadApartment = data => dispatch => {
     dispatch(uploadLoading());
@@ -94,17 +77,17 @@ export const sendRequest = data => dispatch => {
     })
         .then(res => {
             console.log('res..', res);
-            if(res.data.status === 200){
-                notification.success({message: 'Request Sent..'})
+            if (res.data.status === 200) {
+                notification.success({ message: 'Request Sent..' })
                 dispatch(sendRequestSuccess(res.data));
                 dispatch(toggleDoneModal(true));
-            }else {
-                notification.error({message: 'Request Not Sent..'})
+            } else {
+                notification.error({ message: 'Request Not Sent..' })
                 dispatch(sendRequestError(res.data))
             }
         })
         .catch(err => {
-            notification.error({message: 'Request Error!'})
+            notification.error({ message: 'Request Error!' })
             dispatch(sendRequestError(err));
             console.log(err);
         })
@@ -116,16 +99,16 @@ export const sharedSignup = data => dispatch => {
         method: 'POST',
         data
     }).then(res => {
-        if(res.data.error){
+        if (res.data.error) {
             dispatch(uploadError(res.data.error));
-            notification.error({message: 'Request Error!!'})
+            notification.error({ message: 'Request Error!!' })
         }
-        console.log('res',res)
+        console.log('res', res)
     })
-    .catch(err => {
-        dispatch(uploadError(err));
-        console.log('err',err)
-    })
+        .catch(err => {
+            dispatch(uploadError(err));
+            console.log('err', err)
+        })
 }
 
 export const addToFavorite = data => dispatch => {
@@ -133,16 +116,16 @@ export const addToFavorite = data => dispatch => {
         data,
         method: 'POST'
     })
-    .then(res => {
-        console.log(res);
-    })
-    .catch(err => {
-        console.log(err);
-    })
+        .then(res => {
+            console.log(res);
+        })
+        .catch(err => {
+            console.log(err);
+        })
 }
 
 export const search = data => dispatch => {
-    console.log('searchin ' ,data);
+    console.log('searchin ', data);
     dispatch(uploadLoading());
     const { area, bedrooms, sittingrooms, price, type } = data;
     return Axios(`${process.env.REACT_APP_BASE_URL}/search/${area}/${bedrooms}/${sittingrooms}/${type}/${price}`, {
@@ -154,7 +137,7 @@ export const search = data => dispatch => {
                 dispatch(searchSuccess(res.data.results)) : dispatch(searchError(res.data))
         })
         .catch(err => {
-            notification.error({message: "Error Loading Results!"});
+            notification.error({ message: "Error Loading Results!" });
             dispatch(searchError(err));
         })
 

@@ -8,6 +8,7 @@ import blogReducer from './blog.reducer';
 import viewReducer from './view.reducer';
 import userReducer from './user.reducer';
 import pageReducer from './page.reducer';
+import featuredReducer from './feature.reducer';
 
 const rootReducer = combineReducers({
     apartment: apartmentReducer,
@@ -16,7 +17,8 @@ const rootReducer = combineReducers({
     blog: blogReducer,
     view: viewReducer,
     user: userReducer,
-    page: pageReducer
+    page: pageReducer,
+    featured: featuredReducer
 });
 
 export default rootReducer;

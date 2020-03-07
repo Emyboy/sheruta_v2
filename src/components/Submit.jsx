@@ -2,53 +2,63 @@ import React, { Component } from 'react'
 import { Link, Redirect } from 'react-router-dom';
 
 import { connect } from 'react-redux';
-import { Radio, Button, Icon } from 'antd';
-import Dropzone from 'react-dropzone';
+import { Radio, notification } from 'antd';
 
-import { uploadApartment } from '../redux/actions/user.action';
+import { UploadToDatabase, handdleImageUpload } from '../redux/actions/Featured.action';
+import FeatureModal from './FeatureModal';
+
+const date = new Date();
 
 class Submit extends Component {
-    state = {
-        area: null,
-        street: null,
-        fullstreet: null,
-        bedrooms: null,
-        toilets: null,
-        sittingrooms: null,
-        bio: null,
-        imageurl1: null,
-        imageurl2: null,
-        imageurl3: null,
-        imageurl4: null,
-        price: null,
-        name: null,
-        squarefeet: null,
-        status: null,
-        showModal: false,
-        paymentplan: null,
-        showAmenities: false,
-        amenities: {
-            wifi: true,
-            gym: false,
-        }
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            user_id: props.auth.user.id,
+            email: props.auth.user.email,
+            phoneno: props.auth.user.phoneno,
+            imageurl1: null,
+            imageurl2: null,
+            imageurl3: null,
+            imageurl4: null,
+            imageurl5: null,
+            bedrooms: null,
+            sittingrooms: null,
+            toilets: null,
+            date_added: date.toDateString(),
+            type: null,
+            address: null,
+            state: null,
+            price: null,
+            payment_plan: null,
+            area: null,
+            amenities: {
+                wifi: true,
+                gym: false,
+            },
+            showModal: false,
+            showAmenities: false,
+        };
+    }
+
     handleInputChange(e) {
         this.setState({
             [e.target.name]: e.target.value
         })
     }
-    handleSubmit(e) {
+
+    async handleSubmit(e) {
         e.preventDefault();
-        console.log(e.target.value);
-        this.props.uploadApartment(this.state);
+        console.log('sumitting....')
+        const { imageurl1, imageurl2, imageurl3, imageurl4 } = this.state;
+        const imageData = [imageurl1, imageurl2, imageurl3, imageurl4];
+        this.props.handdleImageUpload(imageData, this.state.email)
     }
+
     render() {
-        console.log(this.props);
-        
         if (this.props.auth.isLoggedIn) {
             return (
                 <section className='submit'>
-
+                    <FeatureModal />
                     <div className="container">
                         <div className="row">
                             <div className="col-lg-12 col-md-12">
@@ -71,23 +81,13 @@ class Submit extends Component {
                                             <div className="form-row">
 
                                                 <div className="form-group col-md-6">
-                                                    <label>Property Title<a href="#c" className="tip-topdata" data-tip="Property Title"><i className="ti-help"></i></a></label>
-                                                    <input type="text" className="form-control" onChange={(e) => this.handleInputChange(e)} />
-                                                </div>
-
-                                                <div className="form-group col-md-6">
                                                     <label>Area</label>
                                                     <input name='area' type="text" className="form-control" onChange={(e) => this.handleInputChange(e)} />
                                                 </div>
 
                                                 <div className="form-group col-md-6">
-                                                    <label>Street</label>
-                                                    <input name='street' type="text" className="form-control" onChange={(e) => this.handleInputChange(e)} />
-                                                </div>
-
-                                                <div className="form-group col-md-6">
-                                                    <label>Full Street</label>
-                                                    <input name='fullstreet' type="text" className="form-control" onChange={(e) => this.handleInputChange(e)} />
+                                                    <label>Address</label>
+                                                    <input name='address' type="text" className="form-control" onChange={(e) => this.handleInputChange(e)} />
                                                 </div>
 
                                                 <div className="form-group col-md-6">
@@ -137,6 +137,16 @@ class Submit extends Component {
                                                     </div>
                                                 </div>
 
+                                                <div className="form-group col-md-6">
+                                                    <label>State</label>
+                                                    <select onChange={(e) => this.handleInputChange(e)} name="state" className="form-control select2-selection select2-selection--single" id="exampleFormControlSelect1">
+                                                        <option>Lagos</option>
+                                                        <option>Abuja</option>
+                                                        <option>Anambra</option>
+                                                        <option>Enugu</option>
+                                                    </select>
+                                                </div>
+
                                             </div>
                                         </div>
                                     </div>
@@ -150,10 +160,22 @@ class Submit extends Component {
 
                                                 <div className="form-group col-md-12">
                                                     <label>Upload Gallery</label>
-                                                    <form action="https://codeminifier.com/upload-target" className="dropzone dz-clickable primary-dropzone">
-                                                        <div className="dz-default dz-message">
-                                                            <i className="ti-gallery"></i>
-                                                            <span>Drag &amp; Drop To Change Logo</span>
+                                                    <form className="row dropzone dz-clickable primary-dropzone">
+                                                        <div className="">
+                                                            <label>1. </label>
+                                                            <input type='file' onChange={(e) => this.setState({ imageurl1: e.target.files[0] })} />
+                                                        </div>
+                                                        <div className="">
+                                                            <label>2. </label>
+                                                            <input type='file' onChange={(e) => this.setState({ imageurl2: e.target.files[0] })} />
+                                                        </div>
+                                                        <div className="">
+                                                            <label>3. </label>
+                                                            <input type='file' onChange={(e) => this.setState({ imageurl3: e.target.files[0] })} />
+                                                        </div>
+                                                        <div className="">
+                                                            <label>4. </label>
+                                                            <input type='file' onChange={(e) => this.setState({ imageurl4: e.target.files[0] })} />
                                                         </div>
                                                     </form>
                                                 </div>
@@ -171,31 +193,6 @@ class Submit extends Component {
                                                         </section>
                                                     )}
                                                 </Dropzone> */}
-
-                                                <div className="form-group col-md-6">
-                                                    <label>ImageUrl 1</label>
-                                                    <div className="form-group">
-                                                        <input placeholder='imageurl 1' name='imageurl1' className='form-control' onChange={(e) => this.handleInputChange(e)} />
-                                                    </div>
-                                                </div>
-                                                <div className="form-group col-md-6">
-                                                    <label>ImageUrl 2</label>
-                                                    <div className="form-group">
-                                                        <input placeholder='imageurl 2' name='imageurl2' className='form-control' onChange={(e) => this.handleInputChange(e)} />
-                                                    </div>
-                                                </div>
-                                                <div className="form-group col-md-6">
-                                                    <label>ImageUrl 3</label>
-                                                    <div className="form-group">
-                                                        <input placeholder='imageurl 3' name='imageurl3' className='form-control' onChange={(e) => this.handleInputChange(e)} />
-                                                    </div>
-                                                </div>
-                                                <div className="form-group col-md-6">
-                                                    <label>ImageUrl 4</label>
-                                                    <div className="form-group">
-                                                        <input placeholder='imageurl 4' name='imageurl4' className='form-control' onChange={(e) => this.handleInputChange(e)} />
-                                                    </div>
-                                                </div>
 
                                             </div>
                                         </div>
@@ -220,7 +217,7 @@ class Submit extends Component {
 
                                                 <div className="form-group col-md-6">
                                                     <label>Plan</label> <br />
-                                                    <Radio.Group name='paymentplan' onChange={(e) => this.handleInputChange(e)} buttonStyle="solid">
+                                                    <Radio.Group name='payment_plan' onChange={(e) => this.handleInputChange(e)} buttonStyle="solid">
                                                         <Radio.Button style={{ fontSize: '180%' }} value="apartment">Per Month</Radio.Button>
                                                         <Radio.Button style={{ fontSize: '180%' }} value="shared">Per Year</Radio.Button>
                                                     </Radio.Group>
@@ -251,15 +248,15 @@ class Submit extends Component {
                                                         <ul className="no-ul-list third-row">
                                                             <li>
                                                                 <input id="a-1" className="checkbox-custom" name="a-1" type="checkbox" />
-                                                                <label htmlFor="a-1" className="checkbox-custom-label">Air Condition</label>
+                                                                <label htmlFor="a-1" className="checkbox-custom-label">Wfi</label>
                                                             </li>
                                                             <li>
                                                                 <input id="a-2" className="checkbox-custom" name="a-2" type="checkbox" />
-                                                                <label for="a-2" className="checkbox-custom-label">Bedding</label>
+                                                                <label for="a-2" className="checkbox-custom-label">Water Supply</label>
                                                             </li>
                                                             <li>
                                                                 <input id="a-3" className="checkbox-custom" name="a-3" type="checkbox" />
-                                                                <label for="a-3" className="checkbox-custom-label">Heating</label>
+                                                                <label for="a-3" className="checkbox-custom-label">Furnished</label>
                                                             </li>
                                                             <li>
                                                                 <input id="a-4" className="checkbox-custom" name="a-4" type="checkbox" />
@@ -304,30 +301,7 @@ class Submit extends Component {
                                             </div>
                                         </div>
                                     </div>
-
-                                    <div className="form-submit">
-                                        <h3>Contact Information</h3>
-                                        <div className="submit-section">
-                                            <div className="form-row">
-
-                                                <div className="form-group col-md-4">
-                                                    <label>Name</label>
-                                                    <input type="text" className="form-control" onChange={(e) => this.handleInputChange(e)} />
-                                                </div>
-
-                                                <div className="form-group col-md-4">
-                                                    <label>Email</label>
-                                                    <input type="text" className="form-control" onChange={(e) => this.handleInputChange(e)} />
-                                                </div>
-
-                                                <div className="form-group col-md-4">
-                                                    <label>Phone (optional)</label>
-                                                    <input type="text" className="form-control" onChange={(e) => this.handleInputChange(e)} />
-                                                </div>
-
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <hr />
 
                                     <div className="form-group col-lg-12 col-md-12">
                                         <button className="btn btn-theme" type="submit">Submit &amp; Preview</button>
@@ -349,11 +323,13 @@ class Submit extends Component {
 
 const mapStateToProps = state => ({
     auth: state.auth,
-    user: state.user
+    user: state.user,
+    featured: state.featured
 });
 
 const mapActionsToProps = {
-    uploadApartment
+    UploadToDatabase,
+    handdleImageUpload
 }
 
 export default connect(mapStateToProps, mapActionsToProps)(Submit);
