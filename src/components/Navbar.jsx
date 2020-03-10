@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import siteIcon from '../img/site-icon.png';
@@ -6,14 +6,16 @@ import siteIcon from '../img/site-icon.png';
 import { logout } from '../redux/actions/auth.action';
 import { toggleNavbar } from '../redux/actions/view.actions';
 
+const desktopSize = 993;
 
 class Navbar extends Component {
+
     render() {
         return (
             <div className="header header-light nav-left-side">
-                <nav className={ !this.props.view.showNavbar ? "headnavbar core-nav" :  "headnavbar core-nav open-responsive open-dropdown"}><div className="nav-container">
+                <nav className={!this.props.view.showNavbar ? "headnavbar core-nav" : "headnavbar core-nav open-responsive open-dropdown"}><div className="nav-container">
                     <div className="nav-header right">
-                        <Link to="/" className="brand mt-1"><img style={{width: '70%'}} src={siteIcon} alt="" /></Link>
+                        <Link to="/" className="brand mt-1"><img style={{ width: '70%' }} src={siteIcon} alt="" /></Link>
                         <button onClick={() => this.props.toggleNavbar(!this.props.view.showNavbar)} className="toggle-bar core-nav-toggle"><span className="ti-align-justify"></span></button>
                     </div>
                     <div className="wrap-core-nav-list right"><ul className="attributes">
@@ -23,7 +25,7 @@ class Navbar extends Component {
                                     <div className="btn-group account-drop">
                                         <button type="button" className="btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                             <img src={this.props.auth.user.imageurl} className="avater-img" alt="" /><span>{this.props.auth.user.username}</span>
-								</button>
+                                        </button>
                                         <div className="dropdown-menu pull-right animated flipInX">
                                             <Link to={`/${this.props.auth.user.username}`}><i className="ti-user"></i>My Profile</Link>
                                             {/* <a href="my-property.html"><i className="ti-layers"></i>Property List</a>
@@ -34,18 +36,18 @@ class Navbar extends Component {
                                         </div>
                                     </div>
                                 </li>
-                            </ul> 
-                            : 
-                            <ul>
+                            </ul>
+                                :
+                                <ul>
                                     <li>
                                         <Link to="/signup" data-toggle="modal" data-target="#signup">Sign Up</Link>
                                     </li>
                                     <li className="login-attri theme-log">
                                         <Link to="/login" data-toggle="modal" data-target="#login">Log In</Link>
                                     </li>
-                            </ul>
+                                </ul>
                         }
-   
+
                     </ul><ul className="menu core-nav-list">
 
                             <li className="dropdown">
@@ -62,21 +64,50 @@ class Navbar extends Component {
 
                             <li className="megamenu" data-width="500" style={{ position: 'relative' }}>
                                 <Link to="/about">About</Link>
-                                
                             </li>
 
-                        </ul></div>
+                            {
+                                window.innerWidth < desktopSize && !this.props.auth.isLoggedIn ?
+                                    (
+                                        <Fragment>
+                                            <li className="dropdown">
+                                                <Link to="/login">Login</Link>
+                                            </li>
+                                            <li className="dropdown">
+                                                <Link to="/signup">Signup</Link>
+                                            </li>
+                                        </Fragment>
+                                    )
+                                    :
+                                    <Fragment>
+                                        {
+                                            window.innerWidth < desktopSize ?
+                                                <li className="dropdown">
+                                                    <Link to={`/${this.props.auth.user.username}`}>{this.props.auth.user.username}</Link>
+                                                </li> : null
+                                        }
+                                    </Fragment>
+                            }
+
+                        </ul>
+                    </div>
 
 
 
-                </div></nav><div className="dropdown-overlay"></div>
+                </div>
+                </nav>
+                <div className="dropdown-overlay"></div>
             </div>
+
+
+
+
         )
     }
 }
 
-const mapStateToProps = state =>({
-    auth: state.auth, 
+const mapStateToProps = state => ({
+    auth: state.auth,
     view: state.view
 })
 
