@@ -2,13 +2,16 @@ import {
     FEATURE_LOADING,
     FEATURE_SUCCESS,
     FEATURE_ERROR,
-    FEATURE_MESSAGE
+    FEATURE_MESSAGE,
+    FEATURE_IMAGE_DONE
 } from '../actions';
 
 const initialState = {
     isLoading: false,
     featureData: null,
     displayMessage: null,
+    imageDone: false,
+    imageUrls: [],
     error: null
 }
 
@@ -18,7 +21,15 @@ export default (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 isLoading: true,
+                imageDone: false,
                 displayMessage: 'Uploading..'
+            }
+        case FEATURE_IMAGE_DONE:
+            return {
+                ...state,
+                imageDone: true,
+                error: null,
+                imageUrls: payload
             }
         case FEATURE_MESSAGE:
             return {
@@ -32,7 +43,8 @@ export default (state = initialState, { type, payload }) => {
                 featureData: payload,
                 isLoading: false,
                 error: null,
-                displayMessage: "Upload Done"
+                displayMessage: "Upload Done",
+                imageDone: false
             }
         case FEATURE_ERROR:
             return {
@@ -40,7 +52,8 @@ export default (state = initialState, { type, payload }) => {
                 featureData: payload,
                 isLoading: false,
                 error: null,
-                displayMessage: "Upload Done"
+                displayMessage: "Upload Done",
+                imageDone: false
             }
         default:
             return state

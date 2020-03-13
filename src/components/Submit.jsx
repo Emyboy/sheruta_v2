@@ -24,7 +24,7 @@ class Submit extends Component {
             bedrooms: null,
             sittingrooms: null,
             toilets: null,
-            date_added: date.toDateString(),
+            date_added: date,
             type: null,
             address: null,
             state: null,
@@ -51,7 +51,15 @@ class Submit extends Component {
         console.log('sumitting....')
         const { imageurl1, imageurl2, imageurl3, imageurl4 } = this.state;
         const imageData = [imageurl1, imageurl2, imageurl3, imageurl4];
-        this.props.handdleImageUpload(imageData, this.state.email)
+        this.props.handdleImageUpload(imageData, this.state.email);
+        setTimeout(() => {
+            console.log(this.props.featured.imageDone)
+        }, 10000);
+        if(this.props.featured.imageDone){
+            this.props.UploadToDatabase()
+        }else {
+            console.log('image to reach ooo')
+        }
     }
 
     render() {

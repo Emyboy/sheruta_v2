@@ -2,7 +2,8 @@ import {
     FEATURE_LOADING,
     FEATURE_SUCCESS,
     FEATURE_ERROR,
-    FEATURE_MESSAGE
+    FEATURE_MESSAGE,
+    FEATURE_IMAGE_DONE,
 } from '.';
 
 import firebase from 'firebase';
@@ -76,7 +77,7 @@ export const handdleImageUpload = (data, email) => dispatch => {
         console.log('sending images', data);
         data.map((val, i) => {
             console.log(val);
-            const image = storage.ref(`featured/${email}/${date.getDate()}/${val.name}`).put(val)
+            const image = storage.ref(`featured/${email}/${`${date}`}/${val.name}`).put(val)
             image.on('state_changed', function (snapshot) {
                 var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
                 console.log('Upload is ' + progress + '% done');
@@ -97,14 +98,11 @@ export const handdleImageUpload = (data, email) => dispatch => {
                 image.snapshot.ref.getDownloadURL().then(function (downloadURL) {
                     console.log('File available at', downloadURL);
                     links.push(downloadURL);
-                    if(links.length === 4){
+                    if (links.length === 4) {
+                        dispatch({ type: FEATURE_IMAGE_DONE, payload: links });
                         console.log('upload done', links);
                         dispatch(changeMessages('Image Upload Done.!!'))
-                        notification.success({ message: 'Images Uploaded'});
-                        // Send To the back-end
-                        setTimeout(() => {
-                            dispatch(changeMessages('Emyboy will finish it next week'))
-                        }, 3000);
+                        notification.success({ message: 'Images Uploaded' });
                     }
                 });
             });
