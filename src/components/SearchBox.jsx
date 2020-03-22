@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
 import {  search } from '../redux/actions/user.action';
-import { getAllAreas } from '../redux/actions/view.actions';
+// import { getAllAreas } from '../redux/actions/view.actions';
+import Axios from 'axios';
 
-getAllAreas();
 
 const mapStateToProps = state =>({
     user: state.user
@@ -20,9 +20,18 @@ export default connect(mapStateToProps, mapActionsToProps)(() => {
     const [bedrooms, setBedrooms] = useState('1');
     const [sittingrooms, setSittingrooms] = useState('1');
     const [type, setType] = useState('Apartment');
+    const [areas, setAreas] = useState([]);
 
     const handleSubmit = (d) => {
         sessionStorage.setItem('keywords', JSON.stringify({area, price,bedrooms,sittingrooms,type}))
+    }
+
+    const getAllAreas = () => {
+        Axios(`${process.env.REACT_APP_BASE_URL}/views/area`)
+            .then(res => {
+                setAreas(res.data);
+            })
+            .catch(err => console.log('.............',err))
     }
 
     useEffect(() => {
@@ -43,9 +52,12 @@ export default connect(mapStateToProps, mapActionsToProps)(() => {
                                 <label>Location</label>
                                 <div className="input-with-icon">
                                     <select className="form-control" defaultValue={area} onChange={(e) => setArea(e.target.value)}>
-                                        <option>Yaba</option>
-                                        <option>Okota</option>
-                                        <option>Isolo</option>
+                                        
+                                        {/* <option>Okota</option>
+                                        <option>Isolo</option> */}
+                                        {
+                                            areas.map((val, i) => <option key={i}>{val}</option>)
+                                        }
                                     </select>
                                     <i className="ti-map"></i>
                                 </div>
