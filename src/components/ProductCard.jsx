@@ -13,7 +13,8 @@ const mapActionsToProps = {
 };
 
 export default connect(mapStateToProps, mapActionsToProps)((props) => {
-    const { area, price, imageurl1, bedrooms, toilets, status, type, id } = props.val;
+    console.log(props);
+    const { area, price, imageurl1, bedrooms, toilets, status, type, id, paymentplan } = props.val;
     const { addToFavorite, auth } = props;
     const { isLoggedIn } = props.auth;
     return (
@@ -56,13 +57,15 @@ export default connect(mapStateToProps, mapActionsToProps)((props) => {
 
                 <div className="listing-detail-wrapper pb-0">
                     <div className="listing-short-detail">
-                        <h4 className="listing-name"><Link to={`${String(type).toLowerCase()}/${id}`} tabindex="-1">{area}</Link><i className="list-status ti-check"></i></h4>
+                        <h3 className="listing-name"><Link to={`${String(type).toLowerCase()}/${id}`} tabindex="-1">{area}</Link>
+                        <i className="list-status ti-check"></i>
+                        </h3>
                     </div>
                 </div>
 
                 <div className="price-features-wrapper">
                     <div className="listing-price-fx">
-                        <h6 className="listing-card-info-price price-prefix">₦{price}<span className="price-suffix">/mo</span></h6>
+                        <h6 className="">₦{price}<span className="price-suffix"> / {paymentplan}</span></h6>
                     </div>
                     <div className="listing-like-top">
                         <i onClick={() => addToFavorite({
