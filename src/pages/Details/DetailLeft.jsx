@@ -33,7 +33,7 @@ export default (props) => {
                         <li><strong>Garage</strong>No</li>
                         <li><strong>Area</strong>... sq ft</li>
                         <li><strong>Type</strong>{val.type}</li>
-                        <li><strong>Price</strong>${val.price}</li>
+                        <li><strong>Price</strong>₦{val.price}</li>
                         <li><strong>Location</strong>{val.area}</li>
                     </ul>
                 </div>
