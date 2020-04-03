@@ -40,7 +40,15 @@ const changeMessages = message => {
     }
 }
 
+const imageDone = urls => {
+    return {
+        type: FEATURE_IMAGE_DONE,
+        payload: urls
+    }
+}
+
 export const UploadToDatabase = data => dispatch => {
+    console.log('sending to DB...', data);
     delete data.showAmenities;
     delete data.showModal;
     console.log('sending to db', data);
@@ -102,6 +110,7 @@ export const handdleImageUpload = (data, email) => dispatch => {
                         dispatch({ type: FEATURE_IMAGE_DONE, payload: links });
                         console.log('upload done', links);
                         dispatch(changeMessages('Image Upload Done.!!'))
+                        dispatch(imageDone(links));
                         notification.success({ message: 'Images Uploaded' });
                     }
                 });

@@ -13,9 +13,9 @@ class Submit extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            user_id: props.auth.user.id,
-            email: props.auth.user.email,
-            phoneno: props.auth.user.phoneno,
+            user_id: {},
+            email: {},
+            phoneno: {},
             imageurl1: null,
             imageurl2: null,
             imageurl3: null,
@@ -40,6 +40,16 @@ class Submit extends Component {
         };
     }
 
+    componentDidMount() {
+        if (this.props.auth.isLoggedIn) {
+            this.setState({
+                user_id: this.props.auth.user.id,
+                email: this.props.auth.user.email,
+                phoneno: this.props.auth.user.phoneno,
+            })
+        }
+    }
+
     handleInputChange(e) {
         this.setState({
             [e.target.name]: e.target.value
@@ -55,9 +65,10 @@ class Submit extends Component {
         setTimeout(() => {
             console.log(this.props.featured.imageDone)
         }, 10000);
-        if(this.props.featured.imageDone){
+        if (this.props.featured.imageDone) {
+            console.log('image is done ooo, i\'m sending ', this.state)
             this.props.UploadToDatabase()
-        }else {
+        } else {
             console.log('image to reach ooo')
         }
     }
@@ -249,8 +260,8 @@ class Submit extends Component {
 
                                                 <hr />
 
-                                                <h3>Features</h3>
-                                                <div className="form-group col-md-12">
+                                                {/* <h3>Features</h3> */}
+                                                {/* <div className="form-group col-md-12">
                                                     <label>Other Features (optional)</label>
                                                     <div className="o-features">
                                                         <ul className="no-ul-list third-row">
@@ -304,7 +315,7 @@ class Submit extends Component {
                                                             </li>
                                                         </ul>
                                                     </div>
-                                                </div>
+                                                </div> */}
 
                                             </div>
                                         </div>

@@ -3,7 +3,8 @@ import {
     FEATURE_SUCCESS,
     FEATURE_ERROR,
     FEATURE_MESSAGE,
-    FEATURE_IMAGE_DONE
+    FEATURE_IMAGE_DONE,
+    FEATURE_PROGRESS
 } from '../actions';
 
 const initialState = {
@@ -12,11 +13,17 @@ const initialState = {
     displayMessage: null,
     imageDone: false,
     imageUrls: [],
-    error: null
+    error: null,
+    progress: '0%'
 }
 
 export default (state = initialState, { type, payload }) => {
     switch (type) {
+        case FEATURE_PROGRESS:
+            return {
+                ...state,
+                progress: payload
+            }
         case FEATURE_LOADING:
             return {
                 ...state,

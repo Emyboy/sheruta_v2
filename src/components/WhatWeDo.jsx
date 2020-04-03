@@ -21,7 +21,7 @@ export default() =>{
                                 <div className="middle-icon-large-features-box"><i className="ti-user text-danger"></i><span className="steps bg-danger">01</span></div>
                                 <div className="middle-icon-features-content">
                                     <h4>Create An Account</h4>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have Ipsum available.</p>
+                                    <p>Sign up, be steps forward towards renting your new home. Enjoy access and updates on many possible flatemate.</p>
                                 </div>
                             </div>
                         </div>
@@ -33,7 +33,7 @@ export default() =>{
                                 <div className="middle-icon-large-features-box"><i className="ti-search text-success"></i><span className="steps bg-success">02</span></div>
                                 <div className="middle-icon-features-content">
                                     <h4>Find &amp; Search Property</h4>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have Ipsum available.</p>
+                                    <p>Find shared apartments that fit your lifestyle and living standard around Lagos without scraping your bank account..</p>
                                 </div>
                             </div>
                         </div>
@@ -45,7 +45,7 @@ export default() =>{
                                 <div className="middle-icon-large-features-box"><i className="ti-location-arrow text-warning"></i><span className="steps bg-warning">03</span></div>
                                 <div className="middle-icon-features-content">
                                     <h4>Book your Property</h4>
-                                    <p>There are many variations of passages of Lorem Ipsum available, but the majority have Ipsum available.</p>
+                                    <p>Book and rent your potential new home at your comfort with little or no stress. Free online consultation for user.</p>
                                 </div>
                             </div>
                         </div>

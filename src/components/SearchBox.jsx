@@ -117,10 +117,12 @@ export default connect(mapStateToProps, mapActionsToProps)(() => {
                                 <label>Price Range</label>
                                 <div className="input-with-icon">
                                     <select className="form-control" defaultValue={price} onChange={(e) => setPrice(e.target.value)}>
-                                        <option>120,000 - 200,000</option>
-                                        <option>5000,000 - 700,000</option>
-                                        <option>1 Million - 2 Million</option>
-                                        <option>Hostel</option>
+                                        <option>50,000 - 150,000</option>
+                                        <option>150,000 - 250,000</option>
+                                        <option>250,000 - 550,000</option>
+                                        <option>550,000 - 1,050,000</option>
+                                        <option>1,050,000 - 3 million</option>
+                                        <option>3 mill and above</option>
                                     </select>
                                     <i className="fas fa-money"></i>
                                 </div>
