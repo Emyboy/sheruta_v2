@@ -86,7 +86,7 @@ export default () => {
                     <div className="row align-items-center">
 
                         <div className="col-lg-12 col-md-12 text-center">
-                            <p className="mb-0">© 2020 Sheruta NG <a href="https://themezhub.com/">Themez Hub</a> All Rights Reserved</p>
+                            <p className="mb-0">© 2020 Sheruta NG <a href="https://github.com/Emyboy">Developer</a> Ifeora S. Chukwuemeka</p>
                         </div>
 
                     </div>
