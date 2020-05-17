@@ -86,7 +86,7 @@ export default () => {
                     <div className="row align-items-center">
 
                         <div className="col-lg-12 col-md-12 text-center">
-                            <p className="mb-0">© 2020 Sheruta NG | Developer <a href="https://github.com/Emyboy"> Ifeora S. Chukwuemeka</a> </p>
+                            <p className="mb-0">© 2020 Sheruta NG | Developer <a style={{ color: 'white'}} href="https://github.com/Emyboy"> Ifeora S. Chukwuemeka</a> </p>
                         </div>
 
                     </div>
