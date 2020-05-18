@@ -17,7 +17,9 @@ export default (props) => {
                 </a>
 
                 {/* <a href="tel:" className='btn btn-theme'>08138154470</a> */}
-                <a href="tel:" class="f6 link blue hover-dark-gray btn btn-theme">08138154470</a>
+                <a href="tel:" class="btn btn-theme btn-md grow">
+                    <span style={{ color: "white" }}>08138154470</span>
+                </a>
             </div>
 
             <div className="block-wrap shadow">
