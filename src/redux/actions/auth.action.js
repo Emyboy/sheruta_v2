@@ -40,6 +40,7 @@ const logoutUser = () => {
 }
 
 export const logout = () => dispatch => {
+  console.log('logedout....')
   dispatch(logoutUser());
   localStorage.clear();
   sessionStorage.clear();
