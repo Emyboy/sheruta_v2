@@ -16,7 +16,8 @@ export default (props) => {
                       </i>Chat On Whatsapp
                 </a>
 
-                <a href="tel:" className='btn btn-theme'><i className='fa fa-phone mr-1'></i>Call 08138154470</a>
+                {/* <a href="tel:" className='btn btn-theme'>08138154470</a> */}
+                <a href="tel:" class="f6 link blue hover-dark-gray btn btn-theme">08138154470</a>
             </div>
 
             <div className="block-wrap shadow">
