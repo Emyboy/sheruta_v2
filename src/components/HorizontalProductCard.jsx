@@ -9,9 +9,9 @@ export default (props) => {
             <div className="property-listing property-1">
 
                 <div className="listing-img-wrapper">
-                    <Link to={`/${String(val.type).toLowerCase()}/${val.id}`}>
+                    <a href={`/${String(val.type).toLowerCase()}/${val.id}`}>
                         <img src={val.imageurl1} className="img-fluid mx-auto" alt="" />
-                    </Link>
+                    </a>
                     <div className="listing-like-top">
                         <i className="ti-heart"></i>
                     </div>
@@ -29,7 +29,9 @@ export default (props) => {
 
                     <div className="listing-detail-wrapper">
                         <div className="listing-short-detail">
-                            <h4 className="listing-name"><Link to={`/${String(val.type).toLowerCase()}/${val.id}`}>{val.area}</Link></h4>
+                            <h4 className="listing-name">
+                                <a href={`/${String(val.type).toLowerCase()}/${val.id}`}>{val.area}</a>
+                            </h4>
                             <span className="listing-location"><i className="ti-location-pin"></i>{val.street}</span>
                         </div>
                         <div className="list-author">
@@ -50,9 +52,9 @@ export default (props) => {
                             <h4 className="list-pr">₦ {val.price}</h4>
                         </div>
                         <div className="listing-detail-btn">
-                        <Link className="more-btn" to={`/${String(val.type).toLowerCase()}/${val.id}`} tabindex="-1">
-                            View ->
-                        </Link>
+                            <a className="more-btn" href={`/${String(val.type).toLowerCase()}/${val.id}`} tabindex="-1">
+                                View ->
+                        </a>
                         </div>
                     </div>
 
