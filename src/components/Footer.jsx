@@ -63,7 +63,7 @@ export default () => {
                             <div className="footer-widget">
                                 <h4 className="widget-title">Follow Us</h4>
                                 <p>Follow us on socail media.</p>
-                                <ul className="footer-bottom-social">
+                                <ul className="footer-bottom-social" style={{ color: 'white' }}>
                                     <li><a target='_blank' rel="noopener noreferrer" href="http://fb.me/sheruta.ng"><i className="ti-facebook"></i></a></li>
                                     <li><a target='_blank' rel="noopener noreferrer" href="https://twitter.com/sheruta_ng"><i className="ti-twitter"></i></a></li>
                                     <li><a target='_blank' rel="noopener noreferrer" href="https://www.instagram.com/sheruta_ng/"><i className="ti-instagram"></i></a></li>
@@ -86,7 +86,7 @@ export default () => {
                     <div className="row align-items-center">
 
                         <div className="col-lg-12 col-md-12 text-center">
-                            <p className="mb-0">© 2020 Sheruta NG | Developer <a style={{ color: 'white'}} href="https://github.com/Emyboy"> Ifeora S. Chukwuemeka</a> </p>
+                            <p className="mb-0">© 2020 Sheruta NG | Developed by <a style={{ color: 'white'}} href="https://github.com/Emyboy"> Ifeora S. Chukwuemeka</a> </p>
                         </div>
 
                     </div>
