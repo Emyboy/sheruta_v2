@@ -1,8 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import ImageViews from './ImageViews';
+import { CopyToClipboard } from 'react-copy-to-clipboard';
+import { notification } from 'antd';
 
 export default (props) => {
     const { val } = props;
+    const [copied, setCopied] = useState(false);
+    const phoneNo = '08138154470';
     return (
         <div className="col-lg-8 col-md-12 col-sm-12">
             <ImageViews val={val} />
@@ -16,10 +20,14 @@ export default (props) => {
                       </i>Chat On Whatsapp
                 </a>
 
-                {/* <a href="tel:" className='btn btn-theme'>08138154470</a> */}
-                <a href="tel:" class="btn btn-theme btn-md grow">
-                    <span style={{ color: "white" }}>08138154470</span>
-                </a>
+                <CopyToClipboard text={phoneNo}
+                    onCopy={() => {
+                        notification.success({ message: 'Copied To Clipboard'})
+                        setCopied(true)
+                    }}
+                >
+                    <a href="tel:" className='btn btn-theme'>{phoneNo}</a>
+                </CopyToClipboard>
             </div>
 
             <div className="block-wrap shadow">
