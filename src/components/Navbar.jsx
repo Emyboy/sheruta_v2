@@ -1,19 +1,53 @@
-import React, { Component } from 'react'
-import { Link } from 'react-router-dom'
+import React, { Component, Fragment } from 'react'
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import siteIcon from '../img/site-icon.png';
 
-export default class Navbar extends Component {
+import { logout } from '../redux/actions/auth.action';
+import { toggleNavbar } from '../redux/actions/view.actions';
+
+const desktopSize = 993;
+
+class Navbar extends Component {
+
     render() {
         return (
             <div className="header header-light nav-left-side">
-                <nav className="headnavbar core-nav"><div className="nav-container">
+                <nav className={!this.props.view.showNavbar ? "headnavbar core-nav" : "headnavbar core-nav open-responsive open-dropdown"}><div className="nav-container">
                     <div className="nav-header right">
-                        <a href="#c" className="brand"><img src="assets/img/logo.png" alt="" /></a>
-                        <button className="toggle-bar core-nav-toggle"><span className="ti-align-justify"></span></button>
+                        <Link to="/" className="brand mt-1"><img style={{ width: '70%' }} src={siteIcon} alt="" /></Link>
+                        <button onClick={() => this.props.toggleNavbar(!this.props.view.showNavbar)} className="toggle-bar core-nav-toggle"><span className="ti-align-justify"></span></button>
                     </div>
                     <div className="wrap-core-nav-list right"><ul className="attributes">
-                        <li className="log-icon log-seprate"><a href="#c" data-toggle="modal" data-target="#login">Log In</a></li>
-                        <li className="log-icon"><a href="#c" data-toggle="modal" data-target="#signup">Sign Up</a></li>
-                        <li className="submit-attri theme-log"><Link to="/submit">Submit Property</Link></li>
+                        {
+                            this.props.auth.isLoggedIn ? <ul className="attributes">
+                                <li className="login-attri">
+                                    <div className="btn-group account-drop">
+                                        <button type="button" className="btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <img src={this.props.auth.user.imageurl} className="avater-img" alt="" /><span>{this.props.auth.user.username}</span>
+                                        </button>
+                                        <div className="dropdown-menu pull-right animated flipInX">
+                                            <Link to={`/${this.props.auth.user.username}`}><i className="ti-user"></i>My Profile</Link>
+                                            {/* <a href="my-property.html"><i className="ti-layers"></i>Property List</a>
+                                            <a href="bookmark-list.html"><i className="ti-bookmark"></i>Bookmarked Listings</a>
+                                            <a className="active" href="change-password.html"><i className="ti-unlock"></i>Change Password</a> */}
+                                            <hr />
+                                            <Link to="/" onClick={() => this.props.logout()}><i className="ti-power-off"></i>Log Out</Link>
+                                        </div>
+                                    </div>
+                                </li>
+                            </ul>
+                                :
+                                <ul>
+                                    <li>
+                                        <Link to="/signup" data-toggle="modal" data-target="#signup">Sign Up</Link>
+                                    </li>
+                                    <li className="login-attri theme-log">
+                                        <Link to="/login" data-toggle="modal" data-target="#login">Log In</Link>
+                                    </li>
+                                </ul>
+                        }
+
                     </ul><ul className="menu core-nav-list">
 
                             <li className="dropdown">
@@ -21,145 +55,68 @@ export default class Navbar extends Component {
                             </li>
 
                             <li className="dropdown">
-                                <a href="#c">Listings</a>
-                                <ul className="dropdown-menu">
-                                    <li className="dropdown">
-                                        <a href="#c">List Layouts</a>
-                                        <ul className="dropdown-menu">
-                                            <li><a href="list-layout-with-sidebar.html">With Sadebar</a></li>
-                                            <li><a href="list-layout-with-map.html">With Map</a></li>
-                                            <li><a href="list-layout-full.html">Full Width</a></li>
-                                        </ul>
-                                    </li>
-                                    <li className="dropdown">
-                                        <a href="#c">Grid Layouts</a>
-                                        <ul className="dropdown-menu">
-                                            <li><a href="grid-layout-with-sidebar.html">With Sidebar</a></li>
-                                            <li><a href="classical-layout-with-sidebar.html">Classical With Sidebar</a></li>
-                                            <li><a href="grid-layout-with-map.html">With Map</a></li>
-                                            <li><a href="grid.html">Full Width</a></li>
-                                            <li><a href="classical-property.html">Classical Full Width</a></li>
-                                        </ul>
-                                    </li>
-                                    <li className="dropdown">
-                                        <a href="#c">With Map Layouts</a>
-                                        <ul className="dropdown-menu">
-                                            <li><a href="list-layout-with-map.html">List With Map</a></li>
-                                            <li><a href="grid-layout-with-map.html">Grid With Map</a></li>
-                                            <li><a href="classical-layout-with-map.html">Classical With Map</a></li>
-                                            <li><a href="half-map.html">Half Map Search</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
+                                <Link to="/blog">Blog</Link>
+                            </li>
+                            <li className="dropdown">
+                                <Link to="/submit">Submit Apartment</Link>
+                            </li>
+                            <li className="dropdown">
+                                <Link to="/contact">Contact Us</Link>
                             </li>
 
-                            <li className="dropdown">
-                                <a href="#c">Features</a>
-                                <ul className="dropdown-menu">
-                                    <li className="dropdown">
-                                        <a href="#c">Single Property</a>
-                                        <ul className="dropdown-menu">
-                                            <li><a href="single-property-1.html">Single Property 1</a></li>
-                                            <li><a href="single-property-2.html">Single Property 2</a></li>
-                                            <li><a href="single-property-3.html">Single Property 3</a></li>
-                                        </ul>
-                                    </li>
-                                    <li className="dropdown">
-                                        <a href="#c">Agencies &amp; Agents</a>
-                                        <ul className="dropdown-menu">
-                                            <li><a href="agents.html">Agents List</a></li>
-                                            <li><a href="agent-page.html">Agent Page</a></li>
-                                            <li><a href="agencies.html">Agencies List</a></li>
-                                            <li><a href="agency-page.html">Agency Page</a></li>
-                                        </ul>
-                                    </li>
-                                    <li className="dropdown">
-                                        <a href="#c">My Account</a>
-                                        <ul className="dropdown-menu">
-                                            <li><a href="my-profile.html">My Profile</a></li>
-                                            <li><a href="my-property.html">Property List</a></li>
-                                            <li><a href="bookmark-list.html">Bookmarked Listings</a></li>
-                                            <li><a href="change-password.html">Change Password</a></li>
-                                        </ul>
-                                    </li>
-                                    <li>
-                                        <a href="compare-property.html">Compare Property</a>
-                                    </li>
-                                    <li>
-                                        <a href="/submit">Submit Property</a>
-                                    </li>
-                                </ul>
-                            </li>
 
                             <li className="megamenu" data-width="500" style={{ position: 'relative' }}>
-                                <a href="#c">Pages</a>
-                                <div className="megamenu-content" style={{ width: '500px' }}>
-                                    <div className="mg-menu">
-                                        <ul>
-                                            <li>
-                                                <a href="blog.html">
-                                                    <div className="mg-menu-items">
-                                                        <i className="ti-layout-grid2"></i>
-                                                        <h5>Blog Page<span>Checkout Our Articles</span></h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <a href="blog-detail.html">
-                                                    <div className="mg-menu-items">
-                                                        <i className="ti-layout"></i>
-                                                        <h5>Blog Detail<span>Detail Blog Page Design</span></h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <a href="pricing.html">
-                                                    <div className="mg-menu-items">
-                                                        <i className="ti-credit-card"></i>
-                                                        <h5>Pricing Page<span>Our Latest Offers &amp; Package</span></h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <a href="contact.html">
-                                                    <div className="mg-menu-items">
-                                                        <i className="ti-location-pin"></i>
-                                                        <h5>Contact Us<span>Need Help? Get In Touch</span></h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <a href="component.html">
-                                                    <div className="mg-menu-items">
-                                                        <i className="ti-ruler-pencil"></i>
-                                                        <h5>Component<span>List of All Components</span></h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-
-                                            <li>
-                                                <a href="404.html">
-                                                    <div className="mg-menu-items">
-                                                        <i className="ti-face-sad"></i>
-                                                        <h5>Error Page<span>Error Page Design</span></h5>
-                                                    </div>
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
+                                <Link to="/about">About</Link>
                             </li>
 
-                        </ul></div>
+                            {
+                                window.innerWidth < desktopSize && !this.props.auth.isLoggedIn ?
+                                    (
+                                        <Fragment>
+                                            <li className="dropdown">
+                                                <Link to="/login">Login</Link>
+                                            </li>
+                                            <li className="dropdown">
+                                                <Link to="/signup">Signup</Link>
+                                            </li>
+                                        </Fragment>
+                                    )
+                                    :
+                                    <Fragment>
+                                        {
+                                            window.innerWidth < desktopSize ?
+                                                <li className="dropdown">
+                                                    <Link to={`/${this.props.auth.user.username}`}>{this.props.auth.user.username}</Link>
+                                                </li> : null
+                                        }
+                                    </Fragment>
+                            }
+
+                        </ul>
+                    </div>
 
 
 
-                </div></nav><div className="dropdown-overlay"></div>
+                </div>
+                </nav>
+                <div className="dropdown-overlay"></div>
             </div>
+
+
+
+
         )
     }
 }
+
+const mapStateToProps = state => ({
+    auth: state.auth,
+    view: state.view
+})
+
+const mapActionToProps = {
+    logout,
+    toggleNavbar
+}
+
+export default connect(mapStateToProps, mapActionToProps)(Navbar);

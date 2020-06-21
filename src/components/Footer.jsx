@@ -1,97 +1,97 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default () => {
     return (
-        <footer class="dark-footer skin-dark-footer">
+        <footer className="dark-footer skin-dark-footer">
             <div>
-                <div class="container">
-                    <div class="row">
+                <div className="container">
+                    <div className="row">
 
-                        <div class="col-lg-3 col-md-6">
-                            <div class="footer-widget">
-                                <h4 class="widget-title">About Workio</h4>
-                                <p>Themez Hub is a team of young professionals that has been successfully creating Creative Website templates already for several years.</p>
-                                <a href="#c" class="other-store-link">
-                                    <div class="other-store-app">
-                                        <div class="os-app-icon">
-                                            <i class="ti-android"></i>
+                        <div className="col-lg-3 col-md-6">
+                            <div className="footer-widget">
+                                <h4 className="widget-title">About Us</h4>
+                                <p>Why use sheruta? Have access to hundreds of potential apartments, earn an alternative source of income. All possible flatmates are verified ensuring your safety. We provide different payment plans that supports both long-term and short-term. lets be your medium, connecting you to your new apartment or that special place you can call home for long-term, short-term and flatshare</p>
+                                {/* <a href="#c" className="other-store-link">
+                                    <div className="other-store-app">
+                                        <div className="os-app-icon">
+                                            <i className="ti-android"></i>
                                         </div>
-                                        <div class="os-app-caps">
+                                        <div className="os-app-caps">
                                             Google Store
 											</div>
                                     </div>
-                                </a>
+                                </a> */}
                             </div>
                         </div>
-                        <div class="col-lg-3 col-md-6">
-                            <div class="footer-widget">
-                                <h4 class="widget-title">Useful links</h4>
-                                <ul class="footer-menu">
-                                    <li><a href="about-us.html">About Us</a></li>
-                                    <li><a href="faq.html">FAQs Page</a></li>
-                                    <li><a href="checkout.html">Checkout</a></li>
-                                    <li><a href="about-us.html">About Us</a></li>
-                                    <li><a href="about-us.html">About Us</a></li>
+                        <div className="col-lg-3 col-md-6">
+                            <div className="footer-widget">
+                                <h4 className="widget-title">Useful links</h4>
+                                <ul className="footer-menu">
+                                    <li><Link to="/about">About Us</Link></li>
+                                    <li><Link to="/blog">Blog</Link></li>
+                                    <li><Link to="/contact">Contact Us</Link></li>
+                                    <li><Link to="/about">About Us</Link></li>
                                 </ul>
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-md-6">
-                            <div class="footer-widget">
-                                <h4 class="widget-title">Get in Touch</h4>
-                                <div class="fw-address-wrap">
-                                    <div class="fw fw-location">
-                                        7744 North Park, New York
+                        <div className="col-lg-3 col-md-6">
+                            <div className="footer-widget">
+                                <h4 className="widget-title">Get in Touch</h4>
+                                <div className="fw-address-wrap">
+                                    <div className="fw fw-location">
+                                        No: 181, Ago Palace Way, Okota, Lagos.
 										</div>
-                                    <div class="fw fw-mail">
-                                        support@drizvato77.com
+                                    <div className="fw fw-mail">
+                                        info@sheruta.ng
 										</div>
-                                    <div class="fw fw-call">
-                                        +91 254 584 7584
+                                    <div className="fw fw-call">
+                                        +2348138154470
 										</div>
-                                    <div class="fw fw-skype">
+                                    {/* <div className="fw fw-skype">
                                         drizvato77
-										</div>
-                                    <div class="fw fw-web">
-                                        www.Themez Hub.com
+										</div> */}
+                                    <div className="fw fw-web">
+                                        http://www.sheruta.ng/
 										</div>
                                 </div>
                             </div>
                         </div>
 
-                        <div class="col-lg-3 col-md-6">
-                            <div class="footer-widget">
-                                <h4 class="widget-title">Follow Us</h4>
-                                <p>Follow &amp; Subscribe your email to get new business tips.</p>
-                                <ul class="footer-bottom-social">
-                                    <li><a href="#c"><i class="ti-facebook"></i></a></li>
-                                    <li><a href="#c"><i class="ti-twitter"></i></a></li>
-                                    <li><a href="#c"><i class="ti-instagram"></i></a></li>
-                                    <li><a href="#c"><i class="ti-linkedin"></i></a></li>
+                        <div className="col-lg-3 col-md-6">
+                            <div className="footer-widget">
+                                <h4 className="widget-title">Follow Us</h4>
+                                <p>Follow us on socail media.</p>
+                                <ul className="footer-bottom-social" style={{ color: 'white' }}>
+                                    <li><a target='_blank' rel="noopener noreferrer" href="http://fb.me/sheruta.ng"><i className="ti-facebook"></i></a></li>
+                                    <li><a target='_blank' rel="noopener noreferrer" href="https://twitter.com/sheruta_ng"><i className="ti-twitter"></i></a></li>
+                                    <li><a target='_blank' rel="noopener noreferrer" href="https://www.instagram.com/sheruta_ng/"><i className="ti-instagram"></i></a></li>
+                                    {/* <li><a href="#c"><i className="ti-linkedin"></i></a></li> */}
                                 </ul>
 
-                                <form class="f-newsletter mt-4">
-                                    <input type="email" class="form-control sigmup-me" placeholder="Your Email Address" required="required"/>
-                                        <button type="submit" class="btn"><i class="ti-arrow-right"></i></button>
-									</form>
-								</div>
+                                {/* <form className="f-newsletter mt-4">
+                                    <input type="email" className="form-control sigmup-me" placeholder="Your Email Address" required="required" />
+                                    <button type="submit" className="btn"><i className="ti-arrow-right"></i></button>
+                                </form> */}
                             </div>
-
                         </div>
+
                     </div>
                 </div>
+            </div>
 
-                <div class="footer-bottom">
-                    <div class="container">
-                        <div class="row align-items-center">
+            <div className="footer-bottom">
+                <div className="container">
+                    <div className="row align-items-center">
 
-                            <div class="col-lg-12 col-md-12 text-center">
-                                <p class="mb-0">© 2020 Sheruta NG <a href="https://themezhub.com/">Themez Hub</a> All Rights Reserved</p>
-                            </div>
-
+                        <div className="col-lg-12 col-md-12 text-center">
+                            <p className="mb-0">© 2020 Sheruta NG | Developed by <a className='pl-2 pr-2' style={{ backgroundColor: '#4b5982'}} href="https://github.com/Emyboy"> Ifeora S. Chukwuemeka</a> </p>
                         </div>
+
                     </div>
                 </div>
-			</footer>
+            </div>
+        </footer>
     )
 }
