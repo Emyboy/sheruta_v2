@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { logout } from '../../redux/actions/auth.action';
-import { Link, Redirect } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 const ProfileLeft = (props) => {

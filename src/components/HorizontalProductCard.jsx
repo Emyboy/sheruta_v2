@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 
 export default (props) => {
@@ -52,8 +52,8 @@ export default (props) => {
                             <h4 className="list-pr">₦ {val.price}</h4>
                         </div>
                         <div className="listing-detail-btn">
-                            <a className="more-btn" href={`/${String(val.type).toLowerCase()}/${val.id}`} tabindex="-1">
-                                View ->
+                            <a className="more-btn" href={`/${String(val.type).toLowerCase()}/${val.id}`} tabIndex="-1">
+                                View <i className='fa fa-arrow-right'></i>
                         </a>
                         </div>
                     </div>

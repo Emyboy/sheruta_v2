@@ -15,7 +15,7 @@ export default connect(mapStateToProps, mapActionsToProps)((props) => {
     const { getRecentApartments, apartment } = props;
     useEffect(() => {
         getRecentApartments(5)
-    }, []);
+    }, [getRecentApartments]);
     return (
         <div className="col-lg-4 col-md-12 col-sm-12 col-12">
 

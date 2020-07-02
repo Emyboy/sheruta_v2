@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState } from 'react';
 import HorizontalProductCard from '../../components/HorizontalProductCard';
 import { connect } from 'react-redux';

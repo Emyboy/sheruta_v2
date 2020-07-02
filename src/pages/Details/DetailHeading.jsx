@@ -26,10 +26,10 @@ export default ({val}) => {
                                                 <i className="lni-share"></i>
                                             </button>
                                             <div className="dropdown-menu animated flipInX">
-                                                <a href="#" className="cl-facebook"><i className="lni-facebook"></i></a>
-                                                <a href="#" className="cl-twitter"><i className="lni-twitter"></i></a>
-                                                <a href="#" className="cl-gplus"><i className="lni-google-plus"></i></a>
-                                                <a href="#" className="cl-instagram"><i className="lni-instagram"></i></a>
+                                                <a href="#c" className="cl-facebook"><i className="lni-facebook"></i></a>
+                                                <a href="#c" className="cl-twitter"><i className="lni-twitter"></i></a>
+                                                <a href="#c" className="cl-gplus"><i className="lni-google-plus"></i></a>
+                                                <a href="#c" className="cl-instagram"><i className="lni-instagram"></i></a>
                                             </div>
                                         </div>
 
@@ -44,7 +44,7 @@ export default ({val}) => {
                                     </div> */}
 
                                     <div className="pr-single-info">
-                                        <a href="JavaScript:Void(0);" className="like-bitt add-to-favorite" data-toggle="tooltip" data-original-title="Add To Favorites"><i className="lni-heart-filled"></i></a>
+                                        <a href="#c" className="like-bitt add-to-favorite" data-toggle="tooltip" data-original-title="Add To Favorites"><i className="lni-heart-filled"></i></a>
                                     </div>
 
                                 </div>

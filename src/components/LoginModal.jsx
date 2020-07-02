@@ -3,46 +3,46 @@ import React, { Component } from 'react'
 export default class LoginModal extends Component {
     render() {
         return (
-			<div class="modal fade show" id="login" tabindex="-1" role="dialog" aria-labelledby="registermodal" style={{ display: 'block'}}>
-				<div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
-					<div class="modal-content" id="registermodal">
-						<span class="mod-close" data-dismiss="modal" aria-hidden="true"><i class="ti-close"></i></span>
-						<div class="modal-body">
-							<h4 class="modal-header-title">Log In</h4>
-							<div class="login-form">
+			<div className="modal fade show" id="login" tabIndex="-1" role="dialog" aria-labelledby="registermodal" style={{ display: 'block'}}>
+				<div className="modal-dialog modal-dialog-centered login-pop-form" role="document">
+					<div className="modal-content" id="registermodal">
+						<span className="mod-close" data-dismiss="modal" aria-hidden="true"><i className="ti-close"></i></span>
+						<div className="modal-body">
+							<h4 className="modal-header-title">Log In</h4>
+							<div className="login-form">
 								<form>
 								
-									<div class="form-group">
+									<div className="form-group">
 										<label>User Name</label>
-										<div class="input-with-icon">
-											<input type="text" class="form-control" placeholder="Username"/>
-											<i class="ti-user"></i>
+										<div className="input-with-icon">
+											<input type="text" className="form-control" placeholder="Username"/>
+											<i className="ti-user"></i>
 										</div>
 									</div>
 									
-									<div class="form-group">
+									<div className="form-group">
 										<label>Password</label>
-										<div class="input-with-icon">
-											<input type="password" class="form-control" placeholder="*******"/>
-											<i class="ti-unlock"></i>
+										<div className="input-with-icon">
+											<input type="password" className="form-control" placeholder="*******"/>
+											<i className="ti-unlock"></i>
 										</div>
 									</div>
 									
-									<div class="form-group">
-										<button type="submit" class="btn btn-md full-width pop-login">Login</button>
+									<div className="form-group">
+										<button type="submit" className="btn btn-md full-width pop-login">Login</button>
 									</div>
 								
 								</form>
 							</div>
-							<div class="modal-divider"><span>Or login via</span></div>
-							<div class="social-login mb-3">
+							<div className="modal-divider"><span>Or login via</span></div>
+							<div className="social-login mb-3">
 								<ul>
-									<li><a href="#" class="btn connect-fb"><i class="ti-facebook"></i>Facebook</a></li>
-									<li><a href="#" class="btn connect-twitter"><i class="ti-twitter"></i>Twitter</a></li>
+									<li><a href="#" className="btn connect-fb"><i className="ti-facebook"></i>Facebook</a></li>
+									<li><a href="#" className="btn connect-twitter"><i className="ti-twitter"></i>Twitter</a></li>
 								</ul>
 							</div>
-							<div class="text-center">
-								<p class="mt-5"><a href="#" class="link">Forgot password?</a></p>
+							<div className="text-center">
+								<p className="mt-5"><a href="#" className="link">Forgot password?</a></p>
 							</div>
 						</div>
 					</div>

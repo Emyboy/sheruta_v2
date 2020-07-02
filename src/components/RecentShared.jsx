@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import ProductCard from './ProductCard';
-import { connect } from 'react-redux';
-import { getRecentSharedApartments } from '../redux/actions/shared.actions';
-import loadingGif from '../img/loading.gif';
+// import { connect } from 'react-redux';
+// import { getRecentSharedApartments } from '../redux/actions/shared.actions';
+// import loadingGif from '../img/loading.gif';
 import Axios from "axios";
 import { notification } from 'antd';
 
@@ -14,7 +14,7 @@ class RecentShared extends Component {
     getSharedApartment(){
         Axios.get(`${process.env.REACT_APP_BASE_URL}/shared`)
             .then(res => {
-                if(res.status == 200){
+                if(res.status === 200){
                     this.setState({
                         sharedList: res.data.shared
                     })
@@ -32,7 +32,7 @@ class RecentShared extends Component {
     }
 
     render() {
-        const { sharedLoading, shared } = this.props.shared;
+        const { sharedLoading } = this.props.shared;
         return (
             <section>
                 <div className="container">
@@ -75,11 +75,11 @@ class RecentShared extends Component {
     }
 }
 
-const mapStateToProps = state => ({
-    shared: state.shared
-})
-const mapActionsToProps = {
-    getRecentApartments: getRecentSharedApartments
-}
+// const mapStateToProps = state => ({
+//     shared: state.shared
+// })
+// const mapActionsToProps = {
+//     getRecentApartments: getRecentSharedApartments
+// }
 
 export default RecentShared;

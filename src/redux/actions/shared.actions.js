@@ -1,6 +1,6 @@
 import { GET_SHARED_ERROR, GET_SHARED_SUCCESS } from '.'
 import Axios from 'axios'
-import { notification } from 'antd'
+// import { notification } from 'antd'
 
 
 const getApartmentSuccess = payload => {

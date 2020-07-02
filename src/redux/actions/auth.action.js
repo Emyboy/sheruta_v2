@@ -1,12 +1,12 @@
 import {
-  SIGNUP,
-  SIGNUP_ERROR,
+  // SIGNUP,
+  // SIGNUP_ERROR,
   LOGIN,
   LOGIN_ERROR,
   AUTH_LOADING,
   LOGOUT,
-  UPDATE_PROFILE_ERROR,
-  UPDATE_PROFILE_SUCCESS,
+  // UPDATE_PROFILE_ERROR,
+  // UPDATE_PROFILE_SUCCESS,
 } from ".";
 
 import { notification } from "antd";

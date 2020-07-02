@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import HorizontalProductCard from './HorizontalProductCard'
 import DetailRight from '../pages/Details/DetailRight';
 import SearchBox from './SearchBox';
@@ -54,14 +54,14 @@ class searchResults extends React.Component {
                                                     return <HorizontalProductCard val={val} key={i} />
                                                 }) :
                                                 <div className="container">
-                                                    <h4 class="col-lg-12 col-md-12 post-title">No Results Fount</h4>
+                                                    <h4 className="col-lg-12 col-md-12 post-title">No Results Fount</h4>
                                                     <div className="error-wrap mb-5">
                                                         <div className="container">
                                                             <div className="row justify-content-center">
-                                                                <div class="text-center">
+                                                                <div className="text-center">
 
                                                                     <p>Didn't find what you are looking for ?</p>
-                                                                    <a class="btn btn-theme" href="index.html">Send Request</a>
+                                                                    <a className="btn btn-theme" href="index.html">Send Request</a>
 
                                                                 </div>
                                                             </div>

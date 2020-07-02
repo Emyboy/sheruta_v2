@@ -28,7 +28,7 @@ export default connect(mapStateToProps, mapActionsToProps)(class Home extends Co
         const { apartment, shared } = this.props;
         const { getApartmentLoading } = apartment;
         const { sharedLoading } = shared;
-        if(getApartmentLoading, sharedLoading){
+        if(getApartmentLoading && sharedLoading){
             return <PageLoader />
         }else {
             return (

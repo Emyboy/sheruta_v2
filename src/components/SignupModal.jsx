@@ -3,92 +3,92 @@ import React, { Component } from 'react';
 export default class SignupModal extends Component {
     render() {
         return (
-            <div class="modal fade signup show" id="signup" tabindex="-1" role="dialog" aria-labelledby="sign-up" style={{ display: 'block'}}>
-				<div class="modal-dialog modal-dialog-centered login-pop-form" role="document">
-					<div class="modal-content" id="sign-up">
-						<span class="mod-close" data-dismiss="modal" aria-hidden="true"><i class="ti-close"></i></span>
-						<div class="modal-body">
-							<h4 class="modal-header-title">Sign Up</h4>
-							<div class="login-form">
+            <div className="modal fade signup show" id="signup" tabIndex="-1" role="dialog" aria-labelledby="sign-up" style={{ display: 'block'}}>
+				<div className="modal-dialog modal-dialog-centered login-pop-form" role="document">
+					<div className="modal-content" id="sign-up">
+						<span className="mod-close" data-dismiss="modal" aria-hidden="true"><i className="ti-close"></i></span>
+						<div className="modal-body">
+							<h4 className="modal-header-title">Sign Up</h4>
+							<div className="login-form">
 								<form>
 									
-									<div class="row">
+									<div className="row">
 										
-										<div class="col-lg-6 col-md-6">
-											<div class="form-group">
-												<div class="input-with-icon">
-													<input type="text" class="form-control" placeholder="Full Name"/>
-													<i class="ti-user"></i>
+										<div className="col-lg-6 col-md-6">
+											<div className="form-group">
+												<div className="input-with-icon">
+													<input type="text" className="form-control" placeholder="Full Name"/>
+													<i className="ti-user"></i>
 												</div>
 											</div>
 										</div>
 										
-										<div class="col-lg-6 col-md-6">
-											<div class="form-group">
-												<div class="input-with-icon">
-													<input type="email" class="form-control" placeholder="Email"/>
-													<i class="ti-email"></i>
+										<div className="col-lg-6 col-md-6">
+											<div className="form-group">
+												<div className="input-with-icon">
+													<input type="email" className="form-control" placeholder="Email"/>
+													<i className="ti-email"></i>
 												</div>
 											</div>
 										</div>
 										
-										<div class="col-lg-6 col-md-6">
-											<div class="form-group">
-												<div class="input-with-icon">
-													<input type="text" class="form-control" placeholder="Username"/>
-													<i class="ti-user"></i>
+										<div className="col-lg-6 col-md-6">
+											<div className="form-group">
+												<div className="input-with-icon">
+													<input type="text" className="form-control" placeholder="Username"/>
+													<i className="ti-user"></i>
 												</div>
 											</div>
 										</div>
 										
-										<div class="col-lg-6 col-md-6">
-											<div class="form-group">
-												<div class="input-with-icon">
-													<input type="password" class="form-control" placeholder="*******"/>
-													<i class="ti-unlock"></i>
+										<div className="col-lg-6 col-md-6">
+											<div className="form-group">
+												<div className="input-with-icon">
+													<input type="password" className="form-control" placeholder="*******"/>
+													<i className="ti-unlock"></i>
 												</div>
 											</div>
 										</div>
 										
-										<div class="col-lg-6 col-md-6">
-											<div class="form-group">
-												<div class="input-with-icon">
-													<input type="password" class="form-control" placeholder="123 546 5847"/>
-													<i class="lni-phone-handset"></i>
+										<div className="col-lg-6 col-md-6">
+											<div className="form-group">
+												<div className="input-with-icon">
+													<input type="password" className="form-control" placeholder="123 546 5847"/>
+													<i className="lni-phone-handset"></i>
 												</div>
 											</div>
 										</div>
 										
-										<div class="col-lg-6 col-md-6">
-											<div class="form-group">
-												<div class="input-with-icon">
-													<select class="form-control">
+										<div className="col-lg-6 col-md-6">
+											<div className="form-group">
+												<div className="input-with-icon">
+													<select className="form-control">
 														<option>As a Customer</option>
 														<option>As a Agent</option>
 														<option>As a Agency</option>
 													</select>
-													<i class="ti-briefcase"></i>
+													<i className="ti-briefcase"></i>
 												</div>
 											</div>
 										</div>
 										
 									</div>
 									
-									<div class="form-group">
-										<button type="submit" class="btn btn-md full-width pop-login">Sign Up</button>
+									<div className="form-group">
+										<button type="submit" className="btn btn-md full-width pop-login">Sign Up</button>
 									</div>
 								
 								</form>
 							</div>
-							<div class="modal-divider"><span>Or login via</span></div>
-							<div class="social-login mb-3">
+							<div className="modal-divider"><span>Or login via</span></div>
+							<div className="social-login mb-3">
 								<ul>
-									<li><a href="#" class="btn connect-fb"><i class="ti-facebook"></i>Facebook</a></li>
-									<li><a href="#" class="btn connect-twitter"><i class="ti-twitter"></i>Twitter</a></li>
+									<li><a href="#" className="btn connect-fb"><i className="ti-facebook"></i>Facebook</a></li>
+									<li><a href="#" className="btn connect-twitter"><i className="ti-twitter"></i>Twitter</a></li>
 								</ul>
 							</div>
-							<div class="text-center">
-								<p class="mt-5"><i class="ti-user mr-1"></i>Already Have An Account? <a href="#" class="link">Go For LogIn</a></p>
+							<div className="text-center">
+								<p className="mt-5"><i className="ti-user mr-1"></i>Already Have An Account? <a href="#" className="link">Go For LogIn</a></p>
 							</div>
 						</div>
 					</div>

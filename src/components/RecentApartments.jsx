@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import ProductCard from './ProductCard';
-import { getRecentApartments } from '../redux/actions/apartment.actions';
+// import { getRecentApartments } from '../redux/actions/apartment.actions';
 import Axios from "axios";
 import { notification } from 'antd';
 
@@ -30,7 +30,7 @@ class RecentApartments extends Component {
     }
 
     render() {
-        const { getApartmentLoading, apartments } = this.props.apartment;
+        const { getApartmentLoading } = this.props.apartment;
         return (
             <section>
                 <div className="container">
@@ -72,11 +72,11 @@ class RecentApartments extends Component {
     }
 }
 
-const mapStateToProps = state =>({
-    apartment: state.apartment
-})
-const mapActionsToProps = {
-    getRecentApartments
-}
+// const mapStateToProps = state =>({
+//     apartment: state.apartment
+// })
+// const mapActionsToProps = {
+//     getRecentApartments
+// }
 
 export default RecentApartments;
