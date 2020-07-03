@@ -46,6 +46,10 @@ const SharedSignup = React.lazy(() => import('./pages/SharedSignup/SharedSignup'
 const Submit = React.lazy(() => import('./components/Submit'));
 const Home = React.lazy(() => import('./pages/Home/Home'));
 const PageNotFound = React.lazy(() => import('./components/PageNotFound'));
+const SharedList = React.lazy(() => import('./pages/SharedList/SharedList'));
+const ApartmentList = React.lazy(() => import('./pages/ApartmentList/ApartmentList'));
+// import SharedList from './pages/SharedList/SharedList';
+// import ApartmentList from './pages/ApartmentList/ApartmentList';
 
 function App() {
   return (
@@ -62,6 +66,8 @@ function App() {
                   <Route exact path="/" component={Home} />
                   <Route exact path="/login" component={Login} />
                   <Route exact path="/signup" component={Signup} />
+                  <Route exact path="/shared" component={SharedList} />
+                  <Route exact path="/apartments" component={ApartmentList} />
                   <Route exact path="/submit/:type" component={Submit} />
                   <Route exact path="/blog" component={Blog} />
                   <Route exact path="/submit" component={Submit} />

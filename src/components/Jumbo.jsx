@@ -14,8 +14,7 @@ function formatAMPM(date) {
 
 export default () => {
     return (
-        // <div className="image-cover hero-banner" style={{ background: `url(${formatAMPM(new Date()) === 'am' ? "https://cdn.dribbble.com/users/149082/screenshots/2331083/city-scroll.gif" : "https://i.giphy.com/media/plyXlAk5JjZeg/source.gif"}) no-repeat` }} data-overlay="6">
-        <div className="image-cover hero-banner" data-overlay="6">
+        <div className="image-cover hero-banner" style={{ background: `url("https://www.bidhaar.com/wp-content/uploads/2019/08/Eva-Sonaike-scaled.jpg") no-repeat` }} data-overlay="6">
             <SearchBox />
         </div >
     )

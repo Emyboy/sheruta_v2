@@ -4,6 +4,7 @@ import React, { Component } from 'react'
 // import loadingGif from '../img/loading.gif';
 import Axios from "axios";
 import { notification } from 'antd';
+import { Link } from 'react-router-dom';
 // import ProductCard from './ProductCard';
 const ProductCard = React.lazy(() => import('./ProductCard'));
 
@@ -65,7 +66,7 @@ class RecentShared extends Component {
                     <div className="row">
                         <div className="col-lg-12 col-md-12">
                             <div className="text-center mt-4">
-                                {/* <Link to="/apartments" className="btn btn-theme-2">Browse More Apartments</Link> */}
+                                <Link to="/shared" className="btn btn-theme-2">Browse More</Link>
                             </div>
                         </div>
                     </div>
