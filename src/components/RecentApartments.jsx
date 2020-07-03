@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import ProductCard from './ProductCard';
 // import { getRecentApartments } from '../redux/actions/apartment.actions';
 import Axios from "axios";
 import { notification } from 'antd';
+// import ProductCard from './ProductCard';
+const ProductCard = React.lazy(() => import('./ProductCard'));
 
 class RecentApartments extends Component {
     state = {

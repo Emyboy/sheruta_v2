@@ -15,8 +15,7 @@ const mapDispatchToProps = {
 
 export default connect(mapStateToProps, mapDispatchToProps)((props) => {
         return (
-            // <section className="image-cover" style={{background: `url(${image}) no-repeat`}} data-overlay="6">
-            <section className="image-cover" data-overlay="6">
+            <section className="image-cover" style={{background: `url(${image}) no-repeat`}} data-overlay="6">
                 <div className="container">
                     <div className="row justify-content-md-center">
                         <div className="col-lg-9 col-md-10">

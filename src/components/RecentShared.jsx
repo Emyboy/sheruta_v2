@@ -1,10 +1,11 @@
 import React, { Component } from 'react'
-import ProductCard from './ProductCard';
 // import { connect } from 'react-redux';
 // import { getRecentSharedApartments } from '../redux/actions/shared.actions';
 // import loadingGif from '../img/loading.gif';
 import Axios from "axios";
 import { notification } from 'antd';
+// import ProductCard from './ProductCard';
+const ProductCard = React.lazy(() => import('./ProductCard'));
 
 class RecentShared extends Component {
     state = {
