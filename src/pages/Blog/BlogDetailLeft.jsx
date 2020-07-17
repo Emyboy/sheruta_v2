@@ -27,6 +27,9 @@ export default class BlogDetailLeft extends React.Component {
                         <meta name="description" content={val.readmore} />
                         <meta property="og:title" content={val.title} />
                         <meta property="og:image" content={val.imageUrl} />
+                        <meta name="keyword" content={val.title} />
+                        <link rel="icon"
+                            href={val.imageUrl} />
                     </MetaTags>
                     <div className="content"> Some Content </div>
                 </div>
