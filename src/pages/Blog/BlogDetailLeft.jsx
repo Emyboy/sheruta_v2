@@ -23,12 +23,14 @@ export default class BlogDetailLeft extends React.Component {
 
                 <div className="wrapper">
                     <MetaTags>
-                        <title>{'Sheruta -' + val.title}</title>
+                        <title>{`Sheruta - ${val.title}`}</title>
                         <meta name="description" content={val.readmore} />
-                        <meta property="og:title" content={'Sheruta -' + val.title} />
+                        <meta property="og:title" content={`Sheruta - ${val.title}`} />
                         <meta property="og:image" content={val.imageUrl} />
-                        <meta name="keyword" content={'Sheruta -' + val.title} />
+                        <meta name="keyword" content={`Sheruta - ${val.title}`} />
                         <link rel="icon"
+                            href={val.imageUrl} />
+                        <link rel="shortcut icon"
                             href={val.imageUrl} />
                     </MetaTags>
                     <div className="content"> Some Content </div>
