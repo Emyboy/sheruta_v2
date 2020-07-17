@@ -11,7 +11,7 @@ export default () => {
                         <img src={image} className="img-fluid mx-auto" alt="" />
                     </a>
                     <div className="listing-like-top">
-                        <i className="ti-heart"></i>
+                        {/* <i className="ti-heart"></i> */}
                     </div>
                     <div className="listing-rating">
                         <i className="ti-star filled"></i>

@@ -1,8 +1,9 @@
 import React, { Component } from 'react'
-import BlogCard from '../../components/BlogCard'
 import { connect } from 'react-redux'
 import PageLoader from '../../components/PageLoader';
 import { getAllBlog } from '../../redux/actions/blog.actions';
+// import BlogCard from '../../components/BlogCard'
+const BlogCard = React.lazy(() => import('../../components/BlogCard'));
 
 class Blog extends Component {
     state = {

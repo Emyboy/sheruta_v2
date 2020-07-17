@@ -57,9 +57,9 @@ export default connect(mapStateToProps, mapActionsToProps)((props) => {
 
                 <div className="listing-detail-wrapper pb-0">
                     <div className="listing-short-detail">
-                        <h3 className="listing-name"><Link to={`${String(type).toLowerCase()}/${id}`} >{area}</Link>
+                        <h1 className="listing-name sh-text"><Link to={`${String(type).toLowerCase()}/${id}`} >{area}</Link>
                         <i className="list-status ti-check"></i>
-                        </h3>
+                        </h1>
                     </div>
                 </div>
 

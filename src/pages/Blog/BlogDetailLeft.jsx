@@ -1,4 +1,5 @@
-import React from 'react'
+import React from 'react';
+import MetaTags from 'react-meta-tags';
 
 // export default function BlogDetailLeft({val}) {
 //     return (
@@ -18,7 +19,17 @@ export default class BlogDetailLeft extends React.Component {
     render() {
         const { val } = this.props;
         return (
-            <div className='col-lg-8 col-md-12 col-sm-12 col-12'>
+            <article className='col-lg-8 col-md-12 col-sm-12 col-12'>
+
+                <div className="wrapper">
+                    <MetaTags>
+                        <title>{val.title}</title>
+                        <meta name="description" content={val.readmore} />
+                        <meta property="og:title" content={val.title} />
+                        <meta property="og:image" content={val.imageUrl} />
+                    </MetaTags>
+                    <div className="content"> Some Content </div>
+                </div>
 
 
                 <div className="blog-details single-post-item format-standard">
@@ -34,7 +45,7 @@ export default class BlogDetailLeft extends React.Component {
                                 <li><a href="#c"><span className="icons"><i className="ti-comment-alt"></i></span>45 Comments</a></li> */}
                             </ul>
                         </div>
-                        <h2 className="post-title">{val.title}</h2>
+                        <h1 className="post-title">{val.title}</h1>
                         <div id='blog-body'>
                             {/* {
                                 document.getElementById('blog-body').innerHTML = val.body
@@ -69,7 +80,7 @@ export default class BlogDetailLeft extends React.Component {
 
 
 
-            </div>
+            </article>
         )
     }
 }

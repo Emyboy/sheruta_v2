@@ -42,7 +42,7 @@ export default connect(mapStateToProps, mapActionsToProps)(() => {
         <div className="container">
             <div className="hero-search-wrap full-width">
             <div className="hero-search">
-                    <h1>Find Your Dream</h1>
+                    <h3 className='text-dark text-bold'>Find Your Dream</h3>
                 </div>
                 <div className="hero-search-content">
 
