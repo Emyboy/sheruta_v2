@@ -28,9 +28,9 @@ export default class BlogDetailLeft extends React.Component {
                         <meta property="og:title" content={`Sheruta - ${val.title}`} />
                         <meta property="og:image" content={val.imageUrl} />
                         <meta name="keyword" content={`Sheruta - ${val.title}`} />
-                        <link rel="icon"
+                        <link rel="icon" type="image/png"
                             href={val.imageUrl} />
-                        <link rel="shortcut icon"
+                        <link rel="shortcut icon" type="image/png"
                             href={val.imageUrl} />
                     </MetaTags>
                     <div className="content"> Some Content </div>
