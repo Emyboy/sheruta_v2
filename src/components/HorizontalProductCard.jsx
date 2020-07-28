@@ -12,9 +12,9 @@ export default (props) => {
                     <a href={`/${String(val.type).toLowerCase()}/${val.id}`}>
                         <img src={val.imageurl1} className="img-fluid mx-auto" alt="" />
                     </a>
-                    <div className="listing-like-top">
+                    {/* <div className="listing-like-top">
                         <i className="ti-heart"></i>
-                    </div>
+                    </div> */}
                     {/* <div className="listing-rating">
                         <i className="ti-star filled"></i>
                         <i className="ti-star filled"></i>

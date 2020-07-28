@@ -84,7 +84,7 @@ class Navbar extends Component {
                                     :
                                     <Fragment>
                                         {
-                                            window.innerWidth < desktopSize ?
+                                            window.innerWidth < desktopSize && this.props.auth.isLogedIn ?
                                                 <li className="dropdown">
                                                     <Link to={`/${this.props.auth.user.username}`}>{this.props.auth.user.username}</Link>
                                                 </li> : null

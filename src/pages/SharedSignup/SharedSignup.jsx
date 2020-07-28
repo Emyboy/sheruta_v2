@@ -61,7 +61,7 @@ class SharedSignup extends React.Component {
                                             <div className="form-group">
                                                 <div className="input-with-icon">
                                                     <input name='currentaddress' onChange={(e) => this.handleInputChange(e)} type="text" className="form-control" placeholder="Current Address" />
-                                                    <i className="ti-user"></i>
+                                                    <i className="ti-map"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -70,7 +70,7 @@ class SharedSignup extends React.Component {
                                             <div className="form-group">
                                                 <div className="input-with-icon">
                                                     <input name='stateoforigin' onChange={(e) => this.handleInputChange(e)} type="text" className="form-control" placeholder="State Of Origin" />
-                                                    <i className="ti-email"></i>
+                                                    <i className="ti-user"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -90,7 +90,7 @@ class SharedSignup extends React.Component {
                                             <div className="form-group">
                                                 <div className="input-with-icon">
                                                     <input name='occupation' onChange={(e) => this.handleInputChange(e)} type="text" className="form-control" placeholder="Occupation" />
-                                                    <i className="ti-unlock"></i>
+                                                    <i className="ti-bag"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -99,7 +99,7 @@ class SharedSignup extends React.Component {
                                             <div className="form-group">
                                                 <div className="input-with-icon">
                                                     <input name='age' onChange={(e) => this.handleInputChange(e)} type="number" className="form-control" placeholder="Age" />
-                                                    <i className="lni-phone-handset"></i>
+                                                    <i className="lni-user"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -108,7 +108,7 @@ class SharedSignup extends React.Component {
                                             <div className="form-group">
                                                 <div className="input-with-icon">
                                                     <input name='budget' onChange={(e) => this.handleInputChange(e)} type="text" className="form-control" placeholder="Prefered Budget" />
-                                                    <i className="lni-phone-handset"></i>
+                                                    <i className="lni-user"></i>
                                                 </div>
                                             </div>
                                         </div>
@@ -117,7 +117,7 @@ class SharedSignup extends React.Component {
                                             <div className="form-group">
                                                 <div className="input-with-icon">
                                                     <input name='location' onChange={(e) => this.handleInputChange(e)} type="text" className="form-control" placeholder="Prefered Location" />
-                                                    <i className="lni-phone-handset"></i>
+                                                    <i className="lni-map"></i>
                                                 </div>
                                             </div>
                                         </div>

@@ -1,4 +1,4 @@
-import { GET_SHARED_ERROR, GET_SHARED_SUCCESS } from '.'
+import { GET_SHARED_ERROR, GET_SHARED_SUCCESS, DETAIL_LOADING } from '.'
 import Axios from 'axios'
 // import { notification } from 'antd'
 
@@ -42,11 +42,13 @@ export const getRecentSharedApartments = limit => dispatch => {
  * @param {id} id 
  */
 export const getSharedById = id => dispatch => {
+    dispatch({ type: DETAIL_LOADING });
     return Axios(`${process.env.REACT_APP_BASE_URL}/shared/${id}`)
         .then(res => {
             switch (res.data.message) {
                 case 'success':
                     dispatch(getApartmentSuccess(res.data.shared[0]));
+                    dispatch({ type: DETAIL_LOADING });
                     break;
                 case 'faild':
                     dispatch(getApartmentError(res.data));

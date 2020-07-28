@@ -1,5 +1,4 @@
 import React from 'react';
-import MetaTags from 'react-meta-tags';
 
 // export default function BlogDetailLeft({val}) {
 //     return (
@@ -22,17 +21,7 @@ export default class BlogDetailLeft extends React.Component {
             <article className='col-lg-8 col-md-12 col-sm-12 col-12'>
 
                 <div className="wrapper">
-                    <MetaTags>
-                        <title>{`Sheruta - ${val.title}`}</title>
-                        <meta name="description" content={val.readmore} />
-                        <meta property="og:title" content={`Sheruta - ${val.title}`} />
-                        <meta property="og:image" content={val.imageUrl} />
-                        <meta name="keyword" content={`Sheruta - ${val.title}`} />
-                        <link rel="icon" type="image/png"
-                            href={val.imageUrl} />
-                        <link rel="shortcut icon" type="image/png"
-                            href={val.imageUrl} />
-                    </MetaTags>
+                    
                     <div className="content"> Some Content </div>
                 </div>
 

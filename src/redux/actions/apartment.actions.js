@@ -1,4 +1,4 @@
-import { GET_APARTMENT_ERROR, GET_APARTMENT_SUCCESS } from '.'
+import { GET_APARTMENT_ERROR, GET_APARTMENT_SUCCESS, DETAIL_LOADING } from '.'
 import Axios from 'axios'
 
 const getApartmentSuccess = payload => {
@@ -36,11 +36,13 @@ export const getRecentApartments = limit => dispatch => {
 }
 
 export const getApartmentById = id => dispatch => {
+    dispatch({ type: DETAIL_LOADING });
     return Axios(`${process.env.REACT_APP_BASE_URL}/hostels/${id}`)
         .then(res => {
             switch (res.data.message) {
                 case 'success':
                     dispatch(getApartmentSuccess(res.data.hostel[0]));
+                    dispatch({ type: DETAIL_LOADING });
                     break;
                 case 'faild':
                     dispatch(getApartmentError(res.data));

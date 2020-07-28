@@ -20,7 +20,7 @@ export default ({val}) => {
                             <div className="slide-property-sec">
                                 <div className="pr-all-info">
 
-                                    <div className="pr-single-info">
+                                    {/* <div className="pr-single-info">
                                         <div className="share-opt-wrap">
                                             <button type="button" className="btn-share" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-original-title="Share this">
                                                 <i className="lni-share"></i>
@@ -33,7 +33,7 @@ export default ({val}) => {
                                             </div>
                                         </div>
 
-                                    </div>
+                                    </div> */}
 
                                     {/* <div className="pr-single-info">
                                         <a href="JavaScript:Void(0);" data-toggle="tooltip" data-original-title="Get Print"><i className="ti-printer"></i></a>
@@ -43,9 +43,9 @@ export default ({val}) => {
                                         <a href="JavaScript:Void(0);" className="compare-button" data-toggle="tooltip" data-original-title="Compare"><i className="ti-control-shuffle"></i></a>
                                     </div> */}
 
-                                    <div className="pr-single-info">
+                                    {/* <div className="pr-single-info">
                                         <a href="#c" className="like-bitt add-to-favorite" data-toggle="tooltip" data-original-title="Add To Favorites"><i className="lni-heart-filled"></i></a>
-                                    </div>
+                                    </div> */}
 
                                 </div>
                             </div>
