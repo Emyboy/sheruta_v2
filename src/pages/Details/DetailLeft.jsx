@@ -4,13 +4,11 @@ import ImageViews from './ImageViews';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { notification } from 'antd';
 import { connect } from 'react-redux';
-import RequestButton from '../../components/RequestButton';
 
 let message = '';
 
 const mapStateToProps = state => ({
-    auth: state.auth,
-    user: state.user
+    auth: state.auth
 });
 
 const mapActionToProps = {
@@ -21,7 +19,6 @@ export default connect(mapStateToProps, mapActionToProps)((props) => {
     const { val, auth } = props;
     const { user } = auth;
     const [copied, setCopied] = useState(false);
-    const [reuqesting, setRequesting] = useState(false);
     const phoneNo = '08138154470';
     
     const handleSubmit = e => {
@@ -35,10 +32,6 @@ export default connect(mapStateToProps, mapActionToProps)((props) => {
     return (
         <div className="col-lg-8 col-md-12 col-sm-12">
             <ImageViews val={val} />
-            <RequestButton 
-                handleSubmit={handleSubmit}
-                loading={props.user.uploadLoading}
-            />
 
             <div className='block-wrap shadow mb-3 p-3'>
             <h4 class="block-title">Contact Us</h4><br />

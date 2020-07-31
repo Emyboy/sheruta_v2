@@ -3,14 +3,39 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import siteIcon from '../img/site-icon.png';
 
-import { logout } from '../redux/actions/auth.action';
+import { logout, handleGoogleLogin } from '../redux/actions/auth.action';
 import { toggleNavbar } from '../redux/actions/view.actions';
+import { firebaseAuth, googleProvider } from '../Firebase';
 
 const desktopSize = 993;
 
 class Navbar extends Component {
 
+    handleGooglePopup(){
+        console.log('working.')
+        firebaseAuth.signInWithPopup(googleProvider)
+            .then((result) => {
+                var user = result.user;
+                console.log(user);
+                this.props.handleGoogleLogin({
+                    username: user.displayName,
+                    fullname: user.displayName,
+                    imageurl: user.photoURL,
+                    phoneno: 0,
+                    password: user.uid,
+                    email: user.email
+                })
+            }).catch((error)  =>{
+                var errorCode = error.code;
+                var email = error.email;
+                var credential = error.credential;
+                var errorMessage = error.message;
+                console.log(errorMessage)
+            });
+    }
+
     render() {
+        console.log(this.props);
         return (
             <div className="header header-light nav-left-side">
                 <nav className={!this.props.view.showNavbar ? "headnavbar core-nav" : "headnavbar core-nav open-responsive open-dropdown"}><div className="nav-container">
@@ -39,11 +64,11 @@ class Navbar extends Component {
                             </ul>
                                 :
                                 <ul>
-                                    <li>
+                                    {/* <li>
                                         <Link to="/signup" data-toggle="modal" data-target="#signup">Sign Up</Link>
-                                    </li>
+                                    </li> */}
                                     <li className="login-attri theme-log">
-                                        <Link to="/login" data-toggle="modal" data-target="#login">Log In</Link>
+                                        <Link to="#c" data-toggle="modal" data-target="#login" onClick={this.handleGooglePopup.bind(this)}>Log In</Link>
                                     </li>
                                 </ul>
                         }
@@ -74,11 +99,11 @@ class Navbar extends Component {
                                     (
                                         <Fragment>
                                             <li className="dropdown">
-                                                <Link to="/login">Login</Link>
+                                                <span to="/login" onClick={this.handleGooglePopup.bind(this)}>Login</span>
                                             </li>
-                                            <li className="dropdown">
+                                            {/* <li className="dropdown">
                                                 <Link to="/signup">Signup</Link>
-                                            </li>
+                                            </li> */}
                                         </Fragment>
                                     )
                                     :
@@ -116,7 +141,8 @@ const mapStateToProps = state => ({
 
 const mapActionToProps = {
     logout,
-    toggleNavbar
+    toggleNavbar,
+    handleGoogleLogin
 }
 
 export default connect(mapStateToProps, mapActionToProps)(Navbar);
