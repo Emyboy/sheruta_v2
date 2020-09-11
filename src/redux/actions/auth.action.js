@@ -5,6 +5,7 @@ import {
   LOGIN_ERROR,
   AUTH_LOADING,
   LOGOUT,
+  TOGGLE_ADD_NUMBER,
   // UPDATE_PROFILE_ERROR,
   // UPDATE_PROFILE_SUCCESS,
 } from ".";
@@ -114,10 +115,25 @@ export const handleGoogleLogin = data => dispatch => {
     .then(res => {
       console.log(res);
       dispatch({ type: LOGIN, payload: res.data.user });
+      dispatch({ type: TOGGLE_ADD_NUMBER })
       notification.success({ message: 'Loged In' });
       localStorage.setItem('token', res.data.token);
     })
     .catch(err => {
       notification.error({ message: 'Login Error Please Try Again '})
+    })
+};
+
+export const updateUserAccount = update => dispatch => {
+  console.log('Adding Update --', update);
+  Axios(`${process.env.REACT_APP_BASE_URL}/users/${update.user_id}`,{
+    method: 'PUT',
+    data: update
+  })
+    .then(update => {
+      console.log('update ----', update);
+    })
+    .catch(err => {
+      console.log('error ---', err);
     })
 }

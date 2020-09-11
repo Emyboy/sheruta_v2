@@ -1,4 +1,4 @@
-import { TOGGLE_LIGHT_BOX, TOGGLE_NAVBAR } from '.'
+import { TOGGLE_LIGHT_BOX, TOGGLE_NAVBAR, TOGGLE_ADD_NUMBER } from '.'
 import Axios from 'axios';
 
 export const toggleLightBox = (lightBoxState, index) => {
@@ -39,4 +39,8 @@ export const getAllAreas = () => dispatch => {
         .catch(err => {
             console.log(err);
         })
+}
+
+export const toggleAddPhoneNo = () => dispatch => {
+    dispatch({type: TOGGLE_ADD_NUMBER })
 }

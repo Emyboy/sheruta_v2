@@ -1,3 +1,6 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/8b32b83a-7199-44e9-9c20-9a609ee9578e/deploy-status)](https://app.netlify.com/sites/sheruta/deploys)
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts

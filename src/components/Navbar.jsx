@@ -6,6 +6,7 @@ import siteIcon from '../img/site-icon.png';
 import { logout, handleGoogleLogin } from '../redux/actions/auth.action';
 import { toggleNavbar } from '../redux/actions/view.actions';
 import { firebaseAuth, googleProvider } from '../Firebase';
+import { PhoneNumberModal } from './PhoneNumberModal';
 
 const desktopSize = 993;
 
@@ -38,6 +39,7 @@ class Navbar extends Component {
         console.log(this.props);
         return (
             <div className="header header-light nav-left-side">
+                {/* <PhoneNumberModal /> */}
                 <nav className={!this.props.view.showNavbar ? "headnavbar core-nav" : "headnavbar core-nav open-responsive open-dropdown"}><div className="nav-container">
                     <div className="nav-header right">
                         <Link to="/" className="brand mt-1"><img style={{ width: '70%' }} src={siteIcon} alt="" /></Link>
@@ -68,7 +70,7 @@ class Navbar extends Component {
                                         <Link to="/signup" data-toggle="modal" data-target="#signup">Sign Up</Link>
                                     </li> */}
                                     <li className="login-attri theme-log">
-                                        <Link to="#c" data-toggle="modal" data-target="#login" onClick={this.handleGooglePopup.bind(this)}>Log In</Link>
+                                        <Link to="#c" data-toggle="modal" data-target="#login" onClick={this.handleGooglePopup.bind(this)}>Login / Signup</Link>
                                     </li>
                                 </ul>
                         }
@@ -99,7 +101,7 @@ class Navbar extends Component {
                                     (
                                         <Fragment>
                                             <li className="dropdown">
-                                                <span to="/login" onClick={this.handleGooglePopup.bind(this)}>Login</span>
+                                                <span to="/login" onClick={this.handleGooglePopup.bind(this)}>Login / Signup</span>
                                             </li>
                                             {/* <li className="dropdown">
                                                 <Link to="/signup">Signup</Link>
@@ -111,7 +113,7 @@ class Navbar extends Component {
                                         {
                                             window.innerWidth < desktopSize && this.props.auth.isLogedIn ?
                                                 <li className="dropdown">
-                                                    <Link to={`/${this.props.auth.user.username}`}>{this.props.auth.user.username}</Link>
+                                                    <Link to={`/user/${this.props.auth.user.username}`}>{this.props.auth.user.username}</Link>
                                                 </li> : null
                                         }
                                     </Fragment>

@@ -1,10 +1,16 @@
-import { TOGGLE_LIGHT_BOX, TOGGLE_NAVBAR, DETAIL_LOADING } from "../actions"
+import { 
+    TOGGLE_LIGHT_BOX, 
+    TOGGLE_NAVBAR, 
+    DETAIL_LOADING,
+    TOGGLE_ADD_NUMBER
+} from "../actions"
 
 const initialState = {
     showLightBox: false,
     showNavbar: false,
     imageViewerIndex: 0,
-    detailLoading: false
+    detailLoading: false,
+    showAddNumber: true
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -24,6 +30,11 @@ export default (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 detailLoading: !state.detailLoading
+            }
+        case TOGGLE_ADD_NUMBER:
+            return {
+                ...state,
+                showAddNumber: !state.showAddNumber
             }
         default:
             return state
