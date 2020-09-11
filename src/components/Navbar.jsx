@@ -54,7 +54,7 @@ class Navbar extends Component {
                                             <img src={this.props.auth.user.imageurl} className="avater-img" alt="" /><span>{this.props.auth.user.username}</span>
                                         </button>
                                         <div className="dropdown-menu pull-right animated flipInX">
-                                            <Link to={`/${this.props.auth.user.username}`}><i className="ti-user"></i>My Profile</Link>
+                                            <Link to={`/user/${this.props.auth.user.username}`}><i className="ti-user"></i>My Profile</Link>
                                             {/* <a href="my-property.html"><i className="ti-layers"></i>Property List</a>
                                             <a href="bookmark-list.html"><i className="ti-bookmark"></i>Bookmarked Listings</a>
                                             <a className="active" href="change-password.html"><i className="ti-unlock"></i>Change Password</a> */}
