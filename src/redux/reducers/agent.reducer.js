@@ -18,7 +18,6 @@ export default (state = initialState, { type, payload }) => {
             ...state,
             agentLoading: payload
         }
-
     default:
         return state
     }
