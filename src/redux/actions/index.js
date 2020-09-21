@@ -53,3 +53,7 @@ export const DETAIL_LOADING = 'DETAIL_LOADING';
 export const TOGGLE_ADD_NUMBER = 'TOGGLE_ADD_NUMBER';
 
 export const UPDATE_PROFILE = 'UPDATE_PROFILE';
+
+
+// View
+export const SET_DASHBOARD_VIEW = 'SET_DASHBOARD_VIEW';

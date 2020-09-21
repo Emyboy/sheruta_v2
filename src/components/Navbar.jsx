@@ -12,7 +12,7 @@ const desktopSize = 993;
 
 class Navbar extends Component {
 
-    handleGooglePopup(){
+    handleGooglePopup() {
         console.log('working.')
         firebaseAuth.signInWithPopup(googleProvider)
             .then((result) => {
@@ -26,7 +26,7 @@ class Navbar extends Component {
                     password: user.uid,
                     email: user.email
                 })
-            }).catch((error)  =>{
+            }).catch((error) => {
                 var errorCode = error.code;
                 var email = error.email;
                 var credential = error.credential;
@@ -46,35 +46,28 @@ class Navbar extends Component {
                         <button onClick={() => this.props.toggleNavbar(!this.props.view.showNavbar)} className="toggle-bar core-nav-toggle"><span className="ti-align-justify"></span></button>
                     </div>
                     <div className="wrap-core-nav-list right"><ul className="attributes">
-                        {
-                            this.props.auth.isLoggedIn ? <ul className="attributes">
-                                <li className="login-attri">
-                                    <div className="btn-group account-drop">
-                                        <button type="button" className="btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            <img src={this.props.auth.user.imageurl} className="avater-img" alt="" /><span>{this.props.auth.user.username}</span>
-                                        </button>
-                                        <div className="dropdown-menu pull-right animated flipInX">
-                                            <Link to={`/user/${this.props.auth.user.username}`}><i className="ti-user"></i>My Profile</Link>
-                                            {/* <a href="my-property.html"><i className="ti-layers"></i>Property List</a>
+
+                        <ul className="attributes">
+                            {this.props.auth.isLoggedIn ? <li className="login-attri">
+                                <div className="btn-group account-drop">
+                                    <button type="button" className="btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img src={this.props.auth.user.imageurl} className="avater-img" alt="" /><span>{this.props.auth.user.username}</span>
+                                    </button>
+                                    <div className="dropdown-menu pull-right animated flipInX">
+                                        <Link to={`/user/${this.props.auth.user.username}`}><i className="ti-user"></i>My Profile</Link>
+                                        {/* <a href="my-property.html"><i className="ti-layers"></i>Property List</a>
                                             <a href="bookmark-list.html"><i className="ti-bookmark"></i>Bookmarked Listings</a>
                                             <a className="active" href="change-password.html"><i className="ti-unlock"></i>Change Password</a> */}
-                                            <hr />
-                                            <Link to="/" onClick={() => this.props.logout()}><i className="ti-power-off"></i>Log Out</Link>
-                                        </div>
+                                        <hr />
+                                        <Link to="/" onClick={() => this.props.logout()}><i className="ti-power-off"></i>Log Out</Link>
                                     </div>
+                                </div>
+                            </li> : <li className="login-attri theme-log">
+                                    <Link to="#c" data-toggle="modal" data-target="#login" onClick={this.handleGooglePopup.bind(this)}>Login / Signup</Link>
                                 </li>
-                            </ul>
-                                :
-                                <ul>
-                                    {/* <li>
-                                        <Link to="/signup" data-toggle="modal" data-target="#signup">Sign Up</Link>
-                                    </li> */}
-                                    <li className="login-attri theme-log">
-                                        <Link to="#c" data-toggle="modal" data-target="#login" onClick={this.handleGooglePopup.bind(this)}>Login / Signup</Link>
-                                    </li>
-                                </ul>
-                        }
-
+                                }
+                        </ul>
+                            
                     </ul><ul className="menu core-nav-list">
 
                             <li className="dropdown">
@@ -83,6 +76,9 @@ class Navbar extends Component {
 
                             <li className="dropdown">
                                 <Link to="/blog">Blog</Link>
+                            </li>
+                            <li className="dropdown">
+                                <Link to="/agents">Agents</Link>
                             </li>
                             <li className="dropdown">
                                 <Link to="/submit">Submit Apartment</Link>
@@ -103,9 +99,6 @@ class Navbar extends Component {
                                             <li className="dropdown">
                                                 <span to="/login" onClick={this.handleGooglePopup.bind(this)}>Login / Signup</span>
                                             </li>
-                                            {/* <li className="dropdown">
-                                                <Link to="/signup">Signup</Link>
-                                            </li> */}
                                         </Fragment>
                                     )
                                     :

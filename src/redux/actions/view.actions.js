@@ -1,4 +1,4 @@
-import { TOGGLE_LIGHT_BOX, TOGGLE_NAVBAR, TOGGLE_ADD_NUMBER } from '.'
+import { TOGGLE_LIGHT_BOX, TOGGLE_NAVBAR, TOGGLE_ADD_NUMBER, SET_DASHBOARD_VIEW } from '.'
 import Axios from 'axios';
 
 export const toggleLightBox = (lightBoxState, index) => {
@@ -43,4 +43,8 @@ export const getAllAreas = () => dispatch => {
 
 export const toggleAddPhoneNo = () => dispatch => {
     dispatch({type: TOGGLE_ADD_NUMBER })
+}
+
+export const setDashboardView = view_name => dispatch => {
+    dispatch({ type: SET_DASHBOARD_VIEW, payload: view_name });
 }

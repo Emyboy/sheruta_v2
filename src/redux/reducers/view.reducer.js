@@ -2,7 +2,7 @@ import {
     TOGGLE_LIGHT_BOX, 
     TOGGLE_NAVBAR, 
     DETAIL_LOADING,
-    TOGGLE_ADD_NUMBER
+    TOGGLE_ADD_NUMBER, SET_DASHBOARD_VIEW
 } from "../actions"
 
 const initialState = {
@@ -10,7 +10,8 @@ const initialState = {
     showNavbar: false,
     imageViewerIndex: 0,
     detailLoading: false,
-    showAddNumber: true
+    showAddNumber: true,
+    currentDashboardView: 'listings'
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -35,6 +36,11 @@ export default (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 showAddNumber: !state.showAddNumber
+            }
+        case SET_DASHBOARD_VIEW:
+            return {
+                ...state,
+                currentDashboardView: payload
             }
         default:
             return state

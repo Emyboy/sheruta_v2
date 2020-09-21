@@ -13,7 +13,7 @@ export default () => {
                 </div>
             </div>
 
-            <div className="row">
+            <div className="row mb-5">
 
                 <div className="col-lg-4 col-md-4">
                     <div className="pricing-wrap">
@@ -36,7 +36,7 @@ export default () => {
                             </ul>
                         </div>
                         <div className="pricing-bottom">
-                            <a href="#c" className="btn-pricing">Choose Plan</a>
+                            <a href="#c" className="btn-pricing text-white">Choose Plan</a>
                         </div>
 
                     </div>
@@ -63,7 +63,7 @@ export default () => {
                             </ul>
                         </div>
                         <div className="pricing-bottom">
-                            <a href="#c" className="btn-pricing">Choose Plan</a>
+                            <a href="#c" className="btn-pricing text-white">Choose Plan</a>
                         </div>
 
                     </div>
@@ -90,7 +90,7 @@ export default () => {
                             </ul>
                         </div>
                         <div className="pricing-bottom">
-                            <a href="#c" className="btn-pricing">Choose Plan</a>
+                            <a href="#c" className="btn-pricing text-white">Choose Plan</a>
                         </div>
 
                     </div>

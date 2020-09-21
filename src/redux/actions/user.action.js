@@ -102,6 +102,12 @@ export const sharedSignup = data => dispatch => {
         if (res.data.error) {
             dispatch(uploadError(res.data.error));
             notification.error({ message: 'Request Error!!' })
+        }else {
+            notification.success({ message: 'Signup'});
+            window.location = '/shared';
+            const state = JSON.parse(localStorage.getItem('state'));
+            state.auth.user.sharing = true;
+            localStorage.setItem('state', state);
         }
         console.log('res', res)
     })

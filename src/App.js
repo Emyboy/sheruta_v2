@@ -17,6 +17,7 @@ import './App.css';
 
 import 'antd/dist/antd.css';
 import PageLoader from './components/PageLoader';
+import { Agents } from './pages/Agents/Agents';
 // import SiteUnderConts from './components/SiteUnderConts';
 
 // import Submit from './components/Submit';
@@ -49,6 +50,7 @@ const PageNotFound = React.lazy(() => import('./components/PageNotFound'));
 const SharedList = React.lazy(() => import('./pages/SharedList/SharedList'));
 const ApartmentList = React.lazy(() => import('./pages/ApartmentList/ApartmentList'));
 const Pricing = React.lazy(() => import('./pages/Pricing/Pricing'));
+const Dashboard = React.lazy(() => import('./pages/Dashboard/Dashboard'));
 // import SharedList from './pages/SharedList/SharedList';
 // import ApartmentList from './pages/ApartmentList/ApartmentList';
 
@@ -74,11 +76,13 @@ function App() {
                   <Route exact path="/blog" component={Blog} />
                   <Route exact path="/submit" component={Submit} />
                   <Route exact path="/contact" component={Contact} />
+                  <Route exact path="/agents" component={Agents} />
                   <Route exact path="/about" component={About} />
                   <Route exact path="/user/:username" component={Profile} />
                   <Route exact path="/blog/:title" component={BlogDetails} />
                   <Route exact path="/shared/signup" component={SharedSignup} />
                   <Route exact path="/:type/:id" component={Details} />
+                  <Route exact path="/dashboard" component={Dashboard} />
                   <Route exact path="/search/:area/:bedrooms/:sittingrooms/:type/:price" component={SearchResults} />
                   <Route component={PageNotFound} />
                   {/* <Route component={SiteUnderConts} /> */}

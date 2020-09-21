@@ -150,7 +150,7 @@ class SharedSignup extends React.Component {
                                     <li><a href="#" className="btn connect-twitter"><i className="ti-twitter"></i>Twitter</a></li>
                                 </ul>
                             </div> */}
-                            
+
                         </div>
                     </div>
                 </div>
