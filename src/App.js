@@ -18,6 +18,7 @@ import './App.css';
 import 'antd/dist/antd.css';
 import PageLoader from './components/PageLoader';
 import { Agents } from './pages/Agents/Agents';
+import AgentForm from './pages/Agents/AgentForm';
 // import SiteUnderConts from './components/SiteUnderConts';
 
 // import Submit from './components/Submit';
@@ -72,6 +73,7 @@ function App() {
                   <Route exact path="/shared" component={SharedList} />
                   <Route exact path="/pricing" component={Pricing} />
                   <Route exact path="/apartments" component={ApartmentList} />
+                  <Route exact path="/agent/new" component={AgentForm} />
                   <Route exact path="/submit/:type" component={Submit} />
                   <Route exact path="/blog" component={Blog} />
                   <Route exact path="/submit" component={Submit} />

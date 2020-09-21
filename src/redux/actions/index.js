@@ -57,3 +57,8 @@ export const UPDATE_PROFILE = 'UPDATE_PROFILE';
 
 // View
 export const SET_DASHBOARD_VIEW = 'SET_DASHBOARD_VIEW';
+
+
+// Agnet
+export const ADD_AGENT = 'ADD_AGENT';
+export const AGENT_LOADING = 'AGENT_LOADING';

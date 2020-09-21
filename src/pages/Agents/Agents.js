@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 import SectionHeading from '../../components/SectionHeading'
 
 export const Agents = () => {
@@ -14,13 +15,13 @@ export const Agents = () => {
             <div className="row">
 
                 <div className="col-lg-4 col-md-4">
-                    <a href="http://themezhub.com/" className="img-wrap">
+                    <Link to='/agent/new' className="img-wrap">
                         <div className="img-wrap-content visible">
                             <h4>Become An Agent</h4>
                             <span>Upload and Share Properties</span>
                         </div>
                         <div className="img-wrap-background" style={{ backgroundImage: `url(https://reic-ng.com/wp-content/uploads/2017/08/Estate-Agents.jpg)` }}></div>
-                    </a>
+                    </Link>
                 </div>
 
                 <div className="col-lg-4 col-md-4">
