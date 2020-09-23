@@ -1,4 +1,6 @@
 import {
+    ADD_AGENT,
+    AGENT_LOADING,
     AUTH_LOADING,
     LOGIN,
     LOGIN_ERROR,
@@ -10,6 +12,8 @@ const initialState = {
     authLoading: false,
     user: null,
     error: false,
+    agentData: null,
+    agentLoading: false
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -40,6 +44,16 @@ export default (state = initialState, { type, payload }) => {
                 isLoggedIn: false,
                 authLoading: true,
                 error: payload
+            }
+        case ADD_AGENT:
+            return {
+                ...state,
+                agentData: payload
+            }
+        case AGENT_LOADING:
+            return {
+                ...state,
+                agentLoading: payload
             }
         default:
             return state

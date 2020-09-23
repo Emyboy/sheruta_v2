@@ -9,7 +9,7 @@ export const Dashboard = (props) => {
     const { view, setView, agent } = props;
     const { agentData } = agent;
     const { currentDashboardView } = view;
-    console.log(view);
+    console.log(agent);
 
     const currentPage = () => {
         switch (currentDashboardView) {

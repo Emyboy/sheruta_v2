@@ -4,16 +4,16 @@ import loadingGif from '../../img/loading.gif';
 import { signup } from '../../redux/actions/auth.action';
 import { connect } from 'react-redux';
 import { useDropzone } from 'react-dropzone'
-import { crate_agent_account } from '../../redux/actions/agent.actions';
+import { crate_agent_account } from '../../redux/actions/auth.action';
 import { notification } from "antd";
 
 const AgentForm = props => {
     const { auth, agent } = props;
     const { agentLoading } = agent;
-    const [name, setName] = useState('');
-    const [phoneNo, setPhoneNo] = useState('');
-    const [address, setAddress] = useState('');
-    const [logo, setLogo] = useState('');
+    const [name, setName] = useState(null);
+    const [phoneNo, setPhoneNo] = useState(null);
+    const [address, setAddress] = useState(null);
+    const [logo, setLogo] = useState(null);
 
     const onDrop = useCallback(acceptedFiles => {
         console.log('file ----', acceptedFiles);
@@ -23,13 +23,18 @@ const AgentForm = props => {
     
     const handleSubmit = e => {
         e.preventDefault();
-        props.createAccount({
-            user_id: auth.user.id,
-            company_name: name,
-            company_phone_no: phoneNo,
-            company_address: address,
-            company_logo: logo
-        })
+        if(name && phoneNo && address && logo){
+            props.createAccount({
+                user_id: auth.user.id,
+                company_name: name,
+                company_phone_no: phoneNo,
+                company_address: address,
+                company_logo: logo
+            })
+        }else {
+            notification.error({ message: 'Please Fill Out The Form'})
+        }
+        
     }
 
     if(agent.agentData){

@@ -78,7 +78,8 @@ export const sendRequest = data => dispatch => {
         .then(res => {
             console.log('res..', res);
             if (res.data.status === 200) {
-                notification.success({ message: 'Request Sent..' })
+                notification.success({ message: 'Request Sent..' });
+                Axios(`${process.env.REACT_APP_BASE_URL}/agent`, )
                 dispatch(sendRequestSuccess(res.data));
                 dispatch(toggleDoneModal(true));
             } else {

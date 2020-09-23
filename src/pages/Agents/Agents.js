@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import SectionHeading from '../../components/SectionHeading'
 
-export const Agents = () => {
+export const Agents = props => {
     return (
         <div className='container-fluid mt-5 mb-5'>
             
@@ -15,7 +15,7 @@ export const Agents = () => {
             <div className="row">
 
                 <div className="col-lg-4 col-md-4">
-                    <Link to='/agent/new' className="img-wrap">
+                    <Link to={'/agent/new'} className="img-wrap">
                         <div className="img-wrap-content visible">
                             <h4>Become An Agent</h4>
                             <span>Upload and Share Properties</span>
@@ -53,7 +53,7 @@ export const Agents = () => {
 }
 
 const mapStateToProps = (state) => ({
-    
+    auth: state.auth
 })
 
 const mapDispatchToProps = {

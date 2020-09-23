@@ -1,8 +1,8 @@
 import { ADD_AGENT, AGENT_LOADING } from "../actions"
 
 const initialState = {
-    agentData: null,
-    agentLoading: false
+    // agentData: null,
+    // agentLoading: false
 }
 
 export default (state = initialState, { type, payload }) => {

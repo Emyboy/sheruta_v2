@@ -6,7 +6,7 @@ export const AgentListingCard = (props) => {
     return (
         <tr>
             <td className="property-container">
-                <img src="assets/img/p-3.jpg" alt="" />
+                <img src="https://firebasestorage.googleapis.com/v0/b/sheruta-try.appspot.com/o/agent%2F1%2Fcompany_logo?alt=media&token=307534ae-bd2b-4545-9b64-5f141143ea6b" alt="" />
                 <div className="title">
                     <h4><a href="#c">Oak Tree Villas</a></h4>
                     <span>71 Lower River Dr. Bronx, NY</span>
