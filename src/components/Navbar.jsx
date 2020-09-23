@@ -36,7 +36,8 @@ class Navbar extends Component {
     }
 
     render() {
-        console.log(this.props);
+        console.log('navbar props ---' ,this.props);
+        const { auth } = this.props.auth;
         return (
             <div className="header header-light nav-left-side">
                 {/* <PhoneNumberModal /> */}
@@ -55,6 +56,10 @@ class Navbar extends Component {
                                     </button>
                                     <div className="dropdown-menu pull-right animated flipInX">
                                         <Link to={`/user/${this.props.auth.user.username}`}><i className="ti-user"></i>My Profile</Link>
+                                        {
+                                            this.props.auth.agentData ? <Link to={`/dashboard`}><i className="ti-blackboard"></i>Dashboard</Link>
+                                            :null
+                                        }
                                         {/* <a href="my-property.html"><i className="ti-layers"></i>Property List</a>
                                             <a href="bookmark-list.html"><i className="ti-bookmark"></i>Bookmarked Listings</a>
                                             <a className="active" href="change-password.html"><i className="ti-unlock"></i>Change Password</a> */}
@@ -65,9 +70,9 @@ class Navbar extends Component {
                             </li> : <li className="login-attri theme-log">
                                     <Link to="#c" data-toggle="modal" data-target="#login" onClick={this.handleGooglePopup.bind(this)}>Login / Signup</Link>
                                 </li>
-                                }
+                            }
                         </ul>
-                            
+
                     </ul><ul className="menu core-nav-list">
 
                             <li className="dropdown">

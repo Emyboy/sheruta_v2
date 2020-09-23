@@ -25,13 +25,13 @@ export const Agents = props => {
                 </div>
 
                 <div className="col-lg-4 col-md-4">
-                    <a href="http://themezhub.com/" className="img-wrap">
+                    <Link to={'/agents/list'} className="img-wrap">
                         <div className="img-wrap-content visible">
                             <h4>View Agents</h4>
                             <span>View List Of Available Agents</span>
                         </div>
                         <div className="img-wrap-background" style={{ backgroundImage: `url(https://img.freepik.com/free-vector/group-people-illustration-set_52683-33806.jpg?size=626&ext=jpg)` }}></div>
-                    </a>
+                    </Link>
                 </div>
 
                 <div className="col-lg-4 col-md-4">

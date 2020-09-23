@@ -8,8 +8,8 @@ import { crate_agent_account } from '../../redux/actions/auth.action';
 import { notification } from "antd";
 
 const AgentForm = props => {
-    const { auth, agent } = props;
-    const { agentLoading } = agent;
+    const { auth } = props;
+    const { agentLoading } = auth;
     const [name, setName] = useState(null);
     const [phoneNo, setPhoneNo] = useState(null);
     const [address, setAddress] = useState(null);
@@ -37,7 +37,7 @@ const AgentForm = props => {
         
     }
 
-    if(agent.agentData){
+    if(auth.agentData){
         // notification.warning({ message: 'Your already an agent' })
         return <Redirect to='/dashboard' />
     }else {

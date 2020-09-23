@@ -1,22 +1,21 @@
-import { ADD_AGENT, AGENT_LOADING } from "../actions"
+import { AGENT_LOADING, SET_AGENT_LIST } from "../actions"
 
 const initialState = {
-    // agentData: null,
-    // agentLoading: false
+    agentList: [],
+    loading: true
 }
 
 export default (state = initialState, { type, payload }) => {
     switch (type) {
-
-    case ADD_AGENT:
+    case SET_AGENT_LIST:
         return {
             ...state,
-            agentData: payload
+            agentList: payload
         }
     case AGENT_LOADING:
         return {
             ...state,
-            agentLoading: payload
+            loading: payload
         }
     default:
         return state

@@ -62,3 +62,4 @@ export const SET_DASHBOARD_VIEW = 'SET_DASHBOARD_VIEW';
 // Agnet
 export const ADD_AGENT = 'ADD_AGENT';
 export const AGENT_LOADING = 'AGENT_LOADING';
+export const SET_AGENT_LIST = 'SET_AGENT_LIST';

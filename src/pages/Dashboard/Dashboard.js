@@ -6,7 +6,7 @@ import { setDashboardView } from '../../redux/actions/view.actions';
 import { Redirect } from 'react-router';
 
 export const Dashboard = (props) => {
-    const { view, setView, agent } = props;
+    const { view, setView, agent, auth } = props;
     const { agentData } = agent;
     const { currentDashboardView } = view;
     console.log(agent);
@@ -23,7 +23,7 @@ export const Dashboard = (props) => {
     }
 
 
-    if(!agentData){
+    if(!auth.agentData){
         return <Redirect to='/agent/new' />
     }else {
         return (
@@ -36,9 +36,9 @@ export const Dashboard = (props) => {
                             <div className="dashboard-navbar">
 
                                 <div className="d-user-avater">
-                                    <img src={agentData.company_logo} className="img-fluid avater" alt={agentData.company_name} />
-                                    <h4>{agentData.company_name}</h4>
-                                    <span>{agentData.company_phone_no}</span>
+                                    <img src={auth.agentData.company_logo} className="img-fluid avater" alt={auth.agentData.company_name} />
+                                    <h4>{auth.agentData.company_name}</h4>
+                                    <span>{auth.agentData.company_phone_no}</span>
                                 </div>
 
                                 <div className="d-navigation">
