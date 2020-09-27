@@ -23,16 +23,20 @@ const AgentForm = props => {
     
     const handleSubmit = e => {
         e.preventDefault();
-        if(name && phoneNo && address && logo){
-            props.createAccount({
-                user_id: auth.user.id,
-                company_name: name,
-                company_phone_no: phoneNo,
-                company_address: address,
-                company_logo: logo
-            })
+        if(auth.isLoggedIn){
+            if (name && phoneNo && address && logo) {
+                props.createAccount({
+                    user_id: auth.user.id,
+                    company_name: name,
+                    company_phone_no: phoneNo,
+                    company_address: address,
+                    company_logo: logo
+                })
+            } else {
+                notification.error({ message: 'Please Fill Out The Form' })
+            }
         }else {
-            notification.error({ message: 'Please Fill Out The Form'})
+            notification.error({ message: "Please Login / Signup" })
         }
         
     }

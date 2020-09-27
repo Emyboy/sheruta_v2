@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { AgentListings } from './AgentListings'
 import { ListingForm } from './ListingForm';
 import { setDashboardView } from '../../redux/actions/view.actions';
 import { Redirect } from 'react-router';
+import EditAgentModal from '../Agents/EditAgentModal';
+import { Button, ButtonGroup } from 'react-bootstrap';
 
 export const Dashboard = (props) => {
-    const { view, setView, agent, auth } = props;
-    const { agentData } = agent;
+    const [show, setShow] = useState(false);
+    const { view, setView, auth } = props;
     const { currentDashboardView } = view;
-    console.log(agent);
 
     const currentPage = () => {
         switch (currentDashboardView) {
@@ -22,15 +23,25 @@ export const Dashboard = (props) => {
         }
     }
 
+    const toggleEdit = () => {
+        console.log('working')
+        setShow(!show);
+    }
 
-    if(!auth.agentData){
+
+    if (!auth.agentData) {
         return <Redirect to='/agent/new' />
-    }else {
+    } else {
         return (
             <section>
                 <div className='container'>
                     <div className='row'>
 
+                        <EditAgentModal
+                            show={show}
+                            handleClose={() => setShow(!show)}
+                            data={auth.agentData}
+                        />
 
                         <div className="col-lg-4 col-md-12">
                             <div className="dashboard-navbar">
@@ -38,7 +49,13 @@ export const Dashboard = (props) => {
                                 <div className="d-user-avater">
                                     <img src={auth.agentData.company_logo} className="img-fluid avater" alt={auth.agentData.company_name} />
                                     <h4>{auth.agentData.company_name}</h4>
-                                    <span>{auth.agentData.company_phone_no}</span>
+                                    <span>{auth.agentData.company_phone_no}</span><br />
+
+                                    <ButtonGroup aria-label="Profile Actions" className='mt-2'>
+                                        <Button className='p-2' onClick={toggleEdit} variant="warning">Edit</Button>
+                                        <Button className='p-2' variant="success">Share</Button>
+                                    </ButtonGroup>
+
                                 </div>
 
                                 <div className="d-navigation">
