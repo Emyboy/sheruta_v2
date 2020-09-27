@@ -175,8 +175,22 @@ export const crate_agent_account = data => dispatch => {
       console.log('error ---', err);
     });
   });
+}
 
-
-
+export const editAgentAccount = data => dispatch => {
+  dispatch({ type: AGENT_LOADING, payload: true });
+  Axios(`${process.env.REACT_APP_BASE_URL}/agent`, {
+    method: 'PUT',
+    data
+  })
+    .then(res => {
+      dispatch({ type: AGENT_LOADING, payload: true });
+      dispatch({ type: ADD_AGENT, payload: res.data.data });
+      console.log('added--', data);
+      console.log(res);
+    })
+    .catch(err => {
+      console.log(err);
+    })
 }
 

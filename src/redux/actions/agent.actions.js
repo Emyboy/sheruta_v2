@@ -1,6 +1,7 @@
 import { notification } from 'antd';
 import Axios from 'axios';
 import {
+    ADD_AGENT,
     AGENT_LOADING,
     SET_AGENT_LIST
 } from '.';
@@ -17,4 +18,6 @@ export const getAllAgents = () => dispatch => {
         .catch(err => {
             notification.error({ message: 'Agent List Failed' })
         })
-}
+};
+
+
