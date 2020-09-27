@@ -93,7 +93,17 @@ export default connect(mapStateToProps, mapActionToProps)((props) => {
 
                 <div className="block-body">
                     <ul className="avl-features third">
-                        <li>Air Conditioning</li>
+                        {
+                            val.features &&
+                                 Object.keys(val.features).filter(key => val.features[key] == true).map(key => (
+                                     <li>{key}</li>
+                                 ))
+                            
+                           
+                        }
+                     
+ 
+                       {/*  <li>Air Conditioning</li>
                         <li>Swimming Pool</li>
                         <li>Central Heating</li>
                         <li>Laundry Room</li>
@@ -104,7 +114,7 @@ export default connect(mapStateToProps, mapActionToProps)((props) => {
                         <li>Pets Allow</li>
                         <li>Free WiFi</li>
                         <li>Car Parking</li>
-                        <li>Spa &amp; Massage</li>
+                        <li>Spa &amp; Massage</li> */}
                     </ul>
                 </div>
 
