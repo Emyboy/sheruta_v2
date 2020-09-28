@@ -42,7 +42,7 @@ class RecentShared extends Component {
                     <div className="row">
                         <div className="col-lg-12 col-md-12">
                             <div className="sec-heading center">
-                                <h2>New &amp; Shared Apartments</h2>
+                                <h3>New &amp; Shared Apartments</h3>
                                 <p>Find new &amp; featured shared apartments for you.</p>
                             </div>
                         </div>

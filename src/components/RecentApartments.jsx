@@ -40,7 +40,7 @@ class RecentApartments extends Component {
                     <div className="row">
                         <div className="col-lg-12 col-md-12">
                             <div className="sec-heading center">
-                                <h2>New &amp; featured Apartments</h2>
+                                <h1>New &amp; featured Apartments</h1>
                                 <p>Find new &amp; featured apartments for you.</p>
                             </div>
                         </div>

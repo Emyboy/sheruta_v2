@@ -2,6 +2,7 @@ import React from 'react'
 import BlogDetailLeft from './BlogDetailLeft'
 import BlogDetailRight from './BlogDetailRight'
 import { connect } from 'react-redux'
+import MetaTags from 'react-meta-tags';
 
 import { getBlogByName } from '../../redux/actions/blog.actions';
 import PageLoader from '../../components/PageLoader';
@@ -18,6 +19,17 @@ class BlogDetails extends React.Component{
         }else {
             return (
                 <div>
+                    <MetaTags>
+                        <title>{`Sheruta - ${blog.title}`}</title>
+                        <meta name="description" content={blog.readmore} />
+                        <meta property="og:title" content={`Sheruta - ${blog.title}`} />
+                        <meta property="og:image" content={blog.imageUrl} />
+                        <meta name="keyword" content={`Sheruta - ${blog.title}`} />
+                        <link rel="icon" type="image/png"
+                            href={blog.imageUrl} />
+                        <link rel="shortcut icon" type="image/png"
+                            href={blog.imageUrl} />
+                    </MetaTags>
                     <div class="page-title">
                         <div class="container">
                             <div class="row">

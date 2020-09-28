@@ -14,7 +14,7 @@ const mapActionsToProps = {
 
 export default connect(mapStateToProps, mapActionsToProps)((props) => {
     // console.log(props);
-    const { area, price, imageurl1, bedrooms, toilets, status, type, id, paymentplan } = props.val;
+    const { area, price, imageurl1, bedrooms, toilets, status, type, id, paymentplan, title } = props.val;
     const { addToFavorite, auth } = props;
     const { isLoggedIn } = props.auth;
     return (
@@ -57,22 +57,22 @@ export default connect(mapStateToProps, mapActionsToProps)((props) => {
 
                 <div className="listing-detail-wrapper pb-0">
                     <div className="listing-short-detail">
-                        <h3 className="listing-name"><Link to={`${String(type).toLowerCase()}/${id}`} >{area}</Link>
-                        <i className="list-status ti-check"></i>
-                        </h3>
+                        <h1 className="listing-name sh-text"><Link to={`${String(type).toLowerCase()}/${id}`} >{title}</Link>
+                        {/* <i className="list-status ti-check"></i> */}
+                        </h1>
                     </div>
                 </div>
 
                 <div className="price-features-wrapper">
                     <div className="listing-price-fx">
-                        <h6 className="">₦{price}<span className="price-suffix"> / {paymentplan}</span></h6>
+                        <label className="">₦{price}<span className="price-suffix"> / {paymentplan}</span></label>
                     </div>
                     <div className="listing-like-top">
-                        <i onClick={() => addToFavorite({
+                        {/* <i onClick={() => addToFavorite({
                             hostelId:id,
                             userId: isLoggedIn ? auth.user.id : null,
                             imageurl1, type
-                            })} className="ti-heart text-danger"></i>
+                            })} className="ti-heart text-danger"></i> */}
                         {/* <i className="lni-heart-filled" style={{color:'red'}}></i> */}
                         {/* <i><img width='6%' src='https://upload.wikimedia.org/wikipedia/commons/thumb/f/f1/Heart_coraz%C3%B3n.svg/1200px-Heart_coraz%C3%B3n.svg.png' alt='icon' /></i> */}
                     </div>

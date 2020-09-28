@@ -105,3 +105,19 @@ export const login = data => dispatch => {
       dispatch(loginError(err))
     })
 }
+
+export const handleGoogleLogin = data => dispatch => {
+  Axios(`${process.env.REACT_APP_BASE_URL}/login/google`,{
+    method: 'POST',
+    data
+  })
+    .then(res => {
+      console.log(res);
+      dispatch({ type: LOGIN, payload: res.data.user });
+      notification.success({ message: 'Loged In' });
+      localStorage.setItem('token', res.data.token);
+    })
+    .catch(err => {
+      notification.error({ message: 'Login Error Please Try Again '})
+    })
+}

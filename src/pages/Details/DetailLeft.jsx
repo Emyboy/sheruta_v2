@@ -3,17 +3,38 @@ import React, { useState } from 'react'
 import ImageViews from './ImageViews';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import { notification } from 'antd';
+import { connect } from 'react-redux';
 
-export default (props) => {
-    const { val } = props;
+let message = '';
+
+const mapStateToProps = state => ({
+    auth: state.auth
+});
+
+const mapActionToProps = {
+
+}
+
+export default connect(mapStateToProps, mapActionToProps)((props) => {
+    const { val, auth } = props;
+    const { user } = auth;
     const [copied, setCopied] = useState(false);
     const phoneNo = '08138154470';
+    
+    const handleSubmit = e => {
+        const { phoneno, email } = user;
+        e.preventDefault();
+        message = `Hi there, ${auth.user.username} is intrested in ${val.name} ${val.type.toLowerCase()} apartment, contact he/she on ${auth.user.phoneno} or ${auth.user.email}. Thank You. The url to the apartment is http://sheruta.ng/${val.type.toString()}/${val.id}`;
+
+        auth.isLoggedIn ? props.sendRequest({ message, user_id: user.user_id, type: 'request', phoneno: auth.user.phoneno, name: auth.user.username, email: auth.user.email }) : notification.warning({ message: "Please Login to send a request!" });
+    }
+
     return (
         <div className="col-lg-8 col-md-12 col-sm-12">
             <ImageViews val={val} />
 
             <div className='block-wrap shadow mb-3 p-3'>
-            <h4 class="block-title">Like This ?</h4><br />
+            <h4 class="block-title">Contact Us</h4><br />
                 <a target="_blank"
                   rel="noopener noreferrer"
                   href="https://wa.me/2348138154470"
@@ -91,4 +112,4 @@ export default (props) => {
 
         </div>
     )
-}
+});
