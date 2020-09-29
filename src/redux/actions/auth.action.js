@@ -184,12 +184,15 @@ export const editAgentAccount = data => dispatch => {
     data
   })
     .then(res => {
-      dispatch({ type: AGENT_LOADING, payload: true });
+      dispatch({ type: AGENT_LOADING, payload: false });
       dispatch({ type: ADD_AGENT, payload: res.data.data });
+      notification.success({ message: 'Saved' })
       console.log('added--', data);
       console.log(res);
     })
     .catch(err => {
+      dispatch({ type: AGENT_LOADING, payload: false });
+      notification.error({ message: 'Error Saving Data' })
       console.log(err);
     })
 }

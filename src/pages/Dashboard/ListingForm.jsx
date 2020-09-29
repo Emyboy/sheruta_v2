@@ -1,46 +1,56 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import TextInput from '../../components/TextInput';
+import DropDownSellect from '../../components/DropdownSelect';
 
 export const ListingForm = () => {
     return (
         <div className="dashboard-wraper">
             <div className="row">
-                <div className="col-lg-12 col-md-12">
+                <div className="col-lg-12 col-md-12 p-0">
                     <div className="submit-page">
                         <div className="form-submit">
                             <h3>Basic Information</h3>
                             <div className="submit-section">
                                 <div className="form-row">
                                     <div className="form-group col-md-12">
-                                        <label>Property Title<a href="#c" className="tip-topdata" data-tip="Property Title"><i className="ti-help"></i></a></label>
-                                        <input type="text" className="form-control" />
+                                        <TextInput
+                                            label={'Title'}
+                                            onChange={e => { }}
+                                            placeholder={'Property Title'}
+                                        />
+                                    </div>
+
+                                    <div className='form-group col-md-6'>
+                                        <DropDownSellect
+                                            options={[1, 2, 3, 4, 5]}
+                                            label={'Bedrooms'}
+                                            onChange={e => { }}
+                                        />
+                                    </div>
+                                    <div className='form-group col-md-6'>
+                                        <DropDownSellect
+                                            options={[1, 2, 3, 4, 5]}
+                                            label={'Bedrooms'}
+                                            onChange={e => { }}
+                                        />
                                     </div>
 
                                     <div className="form-group col-md-6">
-                                        <label>Status</label>
-                                        <select id="status" className="form-control select2-hidden-accessible" data-select2-id="status" tabindex="-1" aria-hidden="true">
-                                            <option value="" data-select2-id="8">&nbsp;</option>
-                                            <option value="1">For Rent</option>
-                                            <option value="2">For Sale</option>
-                                        </select><span className="select2 select2-container select2-container--default" dir="ltr" data-select2-id="7" style={{ width: "522px" }}><span className="selection"><span className="select2-selection select2-selection--single" role="combobox" aria-controls="" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-status-container"><span className="select2-selection__rendered" id="select2-status-container" role="textbox" aria-readonly="true"><span className="select2-selection__placeholder">Select Status</span></span><span className="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span className="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        {/* <label>Property Type</label> */}
+                                        <DropDownSellect
+                                            options={['apartment', 'shared']}
+                                            onChange={e => {}}
+                                            label={'Property Type'}
+                                        />
                                     </div>
 
                                     <div className="form-group col-md-6">
-                                        <label>Property Type</label>
-                                        <select id="ptypes" className="form-control select2-hidden-accessible" data-select2-id="ptypes" tabindex="-1" aria-hidden="true">
-                                            <option value="" data-select2-id="6">&nbsp;</option>
-                                            <option value="1">Houses</option>
-                                            <option value="2">Apartment</option>
-                                            <option value="3">Villas</option>
-                                            <option value="4">Commercial</option>
-                                            <option value="5">Offices</option>
-                                            <option value="6">Garage</option>
-                                        </select><span className="select2 select2-container select2-container--default" dir="ltr" data-select2-id="5" style={{ width: "522px" }}><span className="selection"><span className="select2-selection select2-selection--single" role="combobox" aria-controls="" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-ptypes-container"><span className="select2-selection__rendered" id="select2-ptypes-container" role="textbox" aria-readonly="true"><span className="select2-selection__placeholder">Property Types</span></span><span className="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span className="dropdown-wrapper" aria-hidden="true"></span></span>
-                                    </div>
-
-                                    <div className="form-group col-md-6">
-                                        <label>Price</label>
-                                        <input type="text" className="form-control" placeholder="USD" />
+                                        <DropDownSellect
+                                            options={['for share', 'for rent']}
+                                            onChange={e => { }}
+                                            label={'Status'}
+                                        />
                                     </div>
 
                                     <div className="form-group col-md-6">
@@ -142,7 +152,7 @@ export const ListingForm = () => {
                                             <option value="3">0 - 15 Years</option>
                                             <option value="4">0 - 20 Years</option>
                                             <option value="5">20+ Years</option>
-                                        </select><span className="select2 select2-container select2-container--default" dir="ltr" data-select2-id="13" style={{width: "338px"}}><span className="selection"><span className="select2-selection select2-selection--single" role="combobox" aria-controls="" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-bage-container"><span className="select2-selection__rendered" id="select2-bage-container" role="textbox" aria-readonly="true"><span className="select2-selection__placeholder">Select An Option</span></span><span className="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span className="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        </select><span className="select2 select2-container select2-container--default" dir="ltr" data-select2-id="13" style={{ width: "338px" }}><span className="selection"><span className="select2-selection select2-selection--single" role="combobox" aria-controls="" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-bage-container"><span className="select2-selection__rendered" id="select2-bage-container" role="textbox" aria-readonly="true"><span className="select2-selection__placeholder">Select An Option</span></span><span className="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span className="dropdown-wrapper" aria-hidden="true"></span></span>
                                     </div>
 
                                     <div className="form-group col-md-4">
@@ -154,7 +164,7 @@ export const ListingForm = () => {
                                             <option value="3">3</option>
                                             <option value="4">4</option>
                                             <option value="5">5</option>
-                                        </select><span className="select2 select2-container select2-container--default" dir="ltr" data-select2-id="11" style={{width: "338px"}}><span className="selection"><span className="select2-selection select2-selection--single" role="combobox" aria-controls="" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-garage-container"><span className="select2-selection__rendered" id="select2-garage-container" role="textbox" aria-readonly="true"><span className="select2-selection__placeholder">Choose Rooms</span></span><span className="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span className="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        </select><span className="select2 select2-container select2-container--default" dir="ltr" data-select2-id="11" style={{ width: "338px" }}><span className="selection"><span className="select2-selection select2-selection--single" role="combobox" aria-controls="" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-garage-container"><span className="select2-selection__rendered" id="select2-garage-container" role="textbox" aria-readonly="true"><span className="select2-selection__placeholder">Choose Rooms</span></span><span className="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span className="dropdown-wrapper" aria-hidden="true"></span></span>
                                     </div>
 
                                     <div className="form-group col-md-4">
@@ -166,7 +176,7 @@ export const ListingForm = () => {
                                             <option value="3">3</option>
                                             <option value="4">4</option>
                                             <option value="5">5</option>
-                                        </select><span className="select2 select2-container select2-container--default" dir="ltr" data-select2-id="9" style={{ width: "338px"}}><span className="selection"><span className="select2-selection select2-selection--single" role="combobox" aria-controls="" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-rooms-container"><span className="select2-selection__rendered" id="select2-rooms-container" role="textbox" aria-readonly="true"><span className="select2-selection__placeholder">Choose Rooms</span></span><span className="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span className="dropdown-wrapper" aria-hidden="true"></span></span>
+                                        </select><span className="select2 select2-container select2-container--default" dir="ltr" data-select2-id="9" style={{ width: "338px" }}><span className="selection"><span className="select2-selection select2-selection--single" role="combobox" aria-controls="" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-labelledby="select2-rooms-container"><span className="select2-selection__rendered" id="select2-rooms-container" role="textbox" aria-readonly="true"><span className="select2-selection__placeholder">Choose Rooms</span></span><span className="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span className="dropdown-wrapper" aria-hidden="true"></span></span>
                                     </div>
 
                                     <div className="form-group col-md-12">

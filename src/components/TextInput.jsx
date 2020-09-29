@@ -17,7 +17,7 @@ export default ({
     required
 }) => {
     return (
-        <Form.Group as={Col} controlId={controlId}>
+        <Form.Group as={as} controlId={controlId}>
             {/* <div className="form-group"> */}
             <Form.Label>{label}</Form.Label>
             <div className={icon ? "input-with-icon" : ""}>
