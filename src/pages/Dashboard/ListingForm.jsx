@@ -14,10 +14,10 @@ class ListingForm extends React.Component {
             agent_id: props.auth.agentData.id,
             user_id: props.auth.user.id,
             location: null,
-            bedrooms: null,
-            sittingrooms: null,
+            bedrooms: 1,
+            sittingrooms: 1,
             title: null,
-            toilets: null,
+            toilets: 1,
             image_urls: null,
             description: null,
             price: null,
@@ -48,7 +48,7 @@ class ListingForm extends React.Component {
         console.log(this.state)
     };
 
-    onSubmit(e){
+    onSubmit(e) {
         e.preventDefault();
         this.props.submit(this.state);
     }
@@ -79,7 +79,7 @@ class ListingForm extends React.Component {
         ]
 
         return (
-            <div className="dashboard-wraper">
+            <div className="dashboard-wraper bg-white">
                 <div className="row">
                     <div className="col-lg-12 col-md-12 p-0">
                         <form onSubmit={onSubmit} className="submit-page">
@@ -99,7 +99,13 @@ class ListingForm extends React.Component {
                                         <div className='form-group col-md-6'>
                                             <DropDownSellect
                                                 name='sittingrooms'
-                                                options={[1, 2, 3, 4, 5]}
+                                                options={[
+                                                    { key: 1, value: 1 },
+                                                    { key: 2, value: 2 },
+                                                    { key: 3, value: 3 },
+                                                    { key: 4, value: 4 },
+                                                    { key: 5, value: 5 }
+                                                ]}
                                                 label={'Sitting Rooms'}
                                                 onChange={e => { handleInputChange(e) }}
                                             />
@@ -108,7 +114,13 @@ class ListingForm extends React.Component {
                                         <div className='form-group col-md-6'>
                                             <DropDownSellect
                                                 name='toilets'
-                                                options={[1, 2, 3, 4, 5]}
+                                                options={[
+                                                    { key: 1, value: 1 },
+                                                    { key: 2, value: 2 },
+                                                    { key: 3, value: 3 },
+                                                    { key: 4, value: 4 },
+                                                    { key: 5, value: 5 }
+                                                ]}
                                                 label={'Toilets'}
                                                 onChange={e => { handleInputChange(e) }}
                                             />
@@ -116,7 +128,13 @@ class ListingForm extends React.Component {
                                         <div className='form-group col-md-6'>
                                             <DropDownSellect
                                                 name='bedrooms'
-                                                options={[1, 2, 3, 4, 5]}
+                                                options={[
+                                                    { key: 1, value: 1 },
+                                                    { key: 2, value: 2 },
+                                                    { key: 3, value: 3 },
+                                                    { key: 4, value: 4 },
+                                                    { key: 5, value: 5 }
+                                                ]}
                                                 label={'Bedrooms'}
                                                 onChange={e => { handleInputChange(e) }}
                                             />
@@ -135,7 +153,11 @@ class ListingForm extends React.Component {
                                         <div className="form-group col-md-6">
                                             <DropDownSellect
                                                 name='status'
-                                                options={['for share', 'for rent']}
+                                                options={[
+                                                    { key: 'For Sale', value: 'for_sale' },
+                                                    { key: 'For Rent', value: 'for_rent' },
+                                                    { key: 'Soled', value: 'soled' },
+                                                ]}
                                                 onChange={e => { handleInputChange(e) }}
                                                 label={'Status'}
                                             />
@@ -257,10 +279,10 @@ class ListingForm extends React.Component {
                                 </div>
                             </div>
 
-                            <div className="form-submit">
+                            {/* <div className="form-submit">
                                 <h3>Contact Information</h3>
 
-                            </div>
+                            </div> */}
 
                             {/* <div className="form-group col-lg-12 col-md-12">
                             <label>GDPR Agreement *</label>

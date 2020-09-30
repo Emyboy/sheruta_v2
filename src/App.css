@@ -1,5 +1,7 @@
-body {
-    background-color: #fafffd;
+body, .gray-bg, html {
+    background: #f7f9fc url('./img/pattern.png') !important;
+        background-size: cover;
+    background-position: center;
     /* color: rgba(255, 255, 255, 0.397); */
 }
 .btn-theme {

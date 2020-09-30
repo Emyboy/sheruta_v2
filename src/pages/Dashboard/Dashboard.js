@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
-import { AgentListings } from './AgentListings'
+import AgentListings from './AgentListings'
 import ListingForm from './ListingForm';
 import { setDashboardView } from '../../redux/actions/view.actions';
 import { Redirect } from 'react-router';
@@ -44,7 +44,7 @@ export const Dashboard = (props) => {
                         />
 
                         <div className="col-lg-4 col-md-12">
-                            <div className="dashboard-navbar">
+                            <div className="dashboard-navbar bg-white">
 
                                 <div className="d-user-avater">
                                     <img src={auth.agentData.company_logo} className="img-fluid avater" alt={auth.agentData.company_name} />

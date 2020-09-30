@@ -27,6 +27,8 @@ export default (state = initialState, { type, payload }) => {
                 authLoading: false,
                 user: null,
                 error: false,
+                agentLoading: false,
+                progress: 0
             }
         case LOGIN:
             return {
