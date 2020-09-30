@@ -20,4 +20,17 @@ export const getAllAgents = () => dispatch => {
         })
 };
 
-
+export const addNewProperty = data => dispatch => {
+    console.log('ADDDING ---', data);
+    dispatch({ type: AGENT_LOADING, payload: true })
+    Axios(`${process.env.REACT_APP_BASE_URL}/property`,{
+        method: 'POST',
+        data
+    })
+        .then(res => {
+            console.log(res);
+        })
+        .catch(err => {
+            console.log(err);
+        })
+}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { connect } from 'react-redux'
 import { AgentListings } from './AgentListings'
-import { ListingForm } from './ListingForm';
+import ListingForm from './ListingForm';
 import { setDashboardView } from '../../redux/actions/view.actions';
 import { Redirect } from 'react-router';
 import EditAgentModal from '../Agents/EditAgentModal';

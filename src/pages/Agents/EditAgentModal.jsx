@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Button, Form } from 'react-bootstrap';
+import { Modal, Button, Form, Col } from 'react-bootstrap';
 import DropdownSelect from '../../components/DropdownSelect';
 import TextInput from '../../components/TextInput';
 import { connect } from 'react-redux';
@@ -65,6 +65,7 @@ export default connect(mapStateToProps, mapActionsToProps)(({
                     <h4 className="modal-header-title">Edit Account</h4>
                     <Form.Row>
                         <TextInput
+                            as={Col}
                             label={'Company Name'}
                             required={true}
                             type={"text"}
@@ -73,6 +74,7 @@ export default connect(mapStateToProps, mapActionsToProps)(({
                             defaultValue={data.company_name}
                         />
                         <TextInput
+                            as={Col}
                             label={'Phone Number'}
                             required={true}
                             type={"text"}
@@ -83,6 +85,7 @@ export default connect(mapStateToProps, mapActionsToProps)(({
                     </Form.Row>
                     <Form.Row>
                         <TextInput
+                            as={Col}
                             label={'Company Address'}
                             required={true}
                             type={"text"}
@@ -91,6 +94,7 @@ export default connect(mapStateToProps, mapActionsToProps)(({
                             defaultValue={data.company_phone_no}
                         />
                         <TextInput
+                            as={Col}
                             label={'Company Website'}
                             type={"text"}
                             placeholder={'Eg: www.agent.com'}
@@ -107,6 +111,7 @@ export default connect(mapStateToProps, mapActionsToProps)(({
                         />
 
                         <TextInput
+                            as={Col}
                             label={'Facebook URL'}
                             type={"text"}
                             placeholder={'Eg: www.facebook.com/agent_name'}
@@ -116,6 +121,7 @@ export default connect(mapStateToProps, mapActionsToProps)(({
                     </Form.Row>
                     <Form.Row>
                         <TextInput
+                            as={Col}
                             label={'Twitter URL'}
                             type={"text"}
                             placeholder={'Eg: www.twitter.com/agnet_name'}
@@ -123,6 +129,7 @@ export default connect(mapStateToProps, mapActionsToProps)(({
                             defaultValue={data.twitter}
                         />
                         <TextInput
+                            as={Col}
                             label={'Instagram URL'}
                             type={"text"}
                             placeholder={'Eg: www.instagram.com/agnet_name'}

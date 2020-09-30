@@ -4,7 +4,8 @@ import {
     AUTH_LOADING,
     LOGIN,
     LOGIN_ERROR,
-    LOGOUT
+    LOGOUT,
+    UPDATE_AUTH_PROGRESS
 } from '../actions';
 
 const initialState = {
@@ -13,13 +14,15 @@ const initialState = {
     user: null,
     error: false,
     agentData: null,
-    agentLoading: false
+    agentLoading: false,
+    progress: 0
 }
 
 export default (state = initialState, { type, payload }) => {
     switch (type) {
         case LOGOUT:
             return {
+                ...state,
                 isLoggedIn: false,
                 authLoading: false,
                 user: null,
@@ -27,6 +30,7 @@ export default (state = initialState, { type, payload }) => {
             }
         case LOGIN:
             return {
+                ...state,
                 authLoading: false,
                 user: payload,
                 error: false,
@@ -34,6 +38,7 @@ export default (state = initialState, { type, payload }) => {
             }
         case LOGIN_ERROR: 
             return {
+                ...state,
                 isLoggedIn: false,
                 authLoading: false,
                 user: null,
@@ -41,6 +46,7 @@ export default (state = initialState, { type, payload }) => {
             }
         case AUTH_LOADING:
             return {
+                ...state,
                 isLoggedIn: false,
                 authLoading: true,
                 error: payload
@@ -54,6 +60,11 @@ export default (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 agentLoading: payload
+            }
+        case UPDATE_AUTH_PROGRESS:
+            return {
+                ...state,
+                progress: payload
             }
         default:
             return state

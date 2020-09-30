@@ -8,20 +8,22 @@ const DropdownSelect = ({
     icon,
     controlId,
     label,
-    defaultValue
+    defaultValue,
+    name
 }) => {
     return (
         <Form.Group as={Col} controlId={controlId}>
             <Form.Label>{label}</Form.Label>
             <div className={icon ? "input-with-icon" : null}>
                 <select
+                    name={name}
                     className="form-control"
                     defaultValue={defaultValue}
                     onChange={e => onChange(e)}
                 >
                     {
                         options ? options.map((val, i) => {
-                            return <option>{val}</option>
+                            return <option value={val.value}>{val.key}</option>
                         }) : null
                     }
                 </select>

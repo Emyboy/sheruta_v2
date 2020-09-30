@@ -4,6 +4,7 @@ export const SIGNUP_ERROR = 'SIGNUP_ERROR';
 export const LOGIN = 'LOGIN';
 export const LOGIN_ERROR = 'LOGIN_ERROR';
 export const LOGOUT = 'LOGOUT';
+export const UPDATE_AUTH_PROGRESS = 'UPDATE_AUTH_PROGRESS';
 
 export const AUTH_LOADING = 'AUTH_LOADING';
 
