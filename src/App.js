@@ -3,6 +3,7 @@ import './css/colors.css';
 import './css/nav.css';
 import './css/plugins.css';
 import './css/styles.css';
+import 'react-activity/dist/react-activity.css';
 
 import { Provider } from "react-redux";
 import store from "./redux/store/store";
@@ -13,13 +14,13 @@ import TopHeader from './components/TopHeader';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Details from './pages/Details/Details';
-import './App.css';
 
 import 'antd/dist/antd.css';
 import PageLoader from './components/PageLoader';
 import { Agents } from './pages/Agents/Agents';
 import AgentForm from './pages/Agents/AgentForm';
 import AgentList from './pages/Agents/AgentList';
+import './App.css';
 // import SiteUnderConts from './components/SiteUnderConts';
 
 // import Submit from './components/Submit';

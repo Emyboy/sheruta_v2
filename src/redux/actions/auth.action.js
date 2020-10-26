@@ -6,7 +6,7 @@ import {
   AUTH_LOADING,
   LOGOUT,
   TOGGLE_ADD_NUMBER,
-  ADD_AGENT, AGENT_LOADING
+  ADD_AGENT, AGENT_LOADING, UPDATE_AUTH_PROGRESS
   // UPDATE_PROFILE_ERROR,
   // UPDATE_PROFILE_SUCCESS,
 } from ".";
@@ -113,7 +113,7 @@ export const login = data => dispatch => {
 export const handleGoogleLogin = data => dispatch => {
   Axios(`${process.env.REACT_APP_BASE_URL}/login/google`, {
     method: 'POST',
-    data
+    data: { ...data, login_type: 'google' }
   })
     .then(res => {
       console.log(res);
@@ -151,6 +151,7 @@ export const crate_agent_account = data => dispatch => {
   uploadTask.on('state_changed', (snapshot) => {
     var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
     console.log('Upload is ' + Number.parseInt(progress) + '% done');
+    dispatch({ type: UPDATE_AUTH_PROGRESS, payload: progress })
   }, (error) => {
     // Handle unsuccessful uploads
     notification.error({ message: 'Error Uploading Image ' });
@@ -165,13 +166,17 @@ export const crate_agent_account = data => dispatch => {
           console.log(account);
           dispatch({ type: AGENT_LOADING, payload: false });
           dispatch({ type: ADD_AGENT, payload: account.data.data[0] });
+          notification.error({ message: 'Error Sending data, Please Try Again' });
         })
         .catch(err => {
           dispatch({ type: AGENT_LOADING, payload: false });
+          dispatch({ type: UPDATE_AUTH_PROGRESS, payload: 0 });
+          notification.error({ message: 'Error Sending data, Please Try Again' });
           console.log(err)
         })
     }).catch(err => {
       dispatch({ type: AGENT_LOADING, payload: false });
+      dispatch({ type: UPDATE_AUTH_PROGRESS, payload: 0 });
       console.log('error ---', err);
     });
   });
@@ -184,12 +189,15 @@ export const editAgentAccount = data => dispatch => {
     data
   })
     .then(res => {
-      dispatch({ type: AGENT_LOADING, payload: true });
+      dispatch({ type: AGENT_LOADING, payload: false });
       dispatch({ type: ADD_AGENT, payload: res.data.data });
+      notification.success({ message: 'Saved' })
       console.log('added--', data);
       console.log(res);
     })
     .catch(err => {
+      dispatch({ type: AGENT_LOADING, payload: false });
+      notification.error({ message: 'Error Saving Data' })
       console.log(err);
     })
 }

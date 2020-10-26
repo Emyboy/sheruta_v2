@@ -21,7 +21,7 @@ export default ({
             {/* <div className="form-group"> */}
             <Form.Label>{label}</Form.Label>
             <div className={icon ? "input-with-icon" : ""}>
-                <input
+                <textarea
                     required={required}
                     onChange={e => onChange(e)}
                     disabled={disabled}
@@ -29,9 +29,11 @@ export default ({
                     autoFocus={autoFocus}
                     name={name}
                     type={type}
-                    className="form-control"
                     placeholder={placeholder}
-                />
+                    className="form-control h-120"
+                >
+
+                </textarea>
                 {icon ? <i className={icon}></i> : null}
             </div>
             {/* </div> */}

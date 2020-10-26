@@ -1,6 +1,15 @@
-body {
-    background-color: #fafffd;
+body, .gray-bg, html {
+    background: #f7f9fc url('./img/pattern.png') !important;
+        background-size: cover;
+    background-position: center;
     /* color: rgba(255, 255, 255, 0.397); */
+}
+.btn-theme {
+    border: none !important;
+    background-color: #00ba74 !important;
+}
+.ant-notification {
+    z-index: 10000 !important;
 }
 .hero-search-wrap{
     background-color: rgba(255, 232, 232, 0.678) !important;

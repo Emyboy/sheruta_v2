@@ -2,18 +2,18 @@ import React from 'react'
 import { connect } from 'react-redux'
 
 export const AgentListingCard = (props) => {
-    const { val } = props;
+    const { data } = props;
     return (
         <tr>
             <td className="property-container">
-                <img src="https://firebasestorage.googleapis.com/v0/b/sheruta-try.appspot.com/o/agent%2F1%2Fcompany_logo?alt=media&token=307534ae-bd2b-4545-9b64-5f141143ea6b" alt="" />
+                <img src={data.image_urls.image_url_4} alt={`${data.title}`} />
                 <div className="title">
-                    <h4><a href="#c">Oak Tree Villas</a></h4>
-                    <span>71 Lower River Dr. Bronx, NY</span>
-                    <span className="table-property-price">₦ 535,000</span>
+                    <h4><a href="#c">{data.title}</a></h4>
+                    <span>{data.location}</span>
+                    <span className="table-property-price">₦ {data.price}</span>
                 </div>
             </td>
-            <td className="expire-date">December 12, 2016</td>
+            <td className="expire-date">{data.moment}</td>
             <td className="action">
                 <a href="#c" className='text-warning'><i className="ti-pencil"></i> Edit</a>
                 <a href="#c" className='text-success'><i className="ti-arrow-up"></i> Promote</a>
