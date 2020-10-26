@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import TextInput from './TextInput';
 
 export default class SignupModal extends Component {
     render() {
@@ -17,6 +18,8 @@ export default class SignupModal extends Component {
 										<div className="col-lg-6 col-md-6">
 											<div className="form-group">
 												<div className="input-with-icon">
+													<TextInput controlId="txtFirstname" required="true" placeholder="Firstname"></TextInput>
+													<TextInput controlId="txtLastname" required="true" placeholder="Lastname"></TextInput>
 													<input type="text" className="form-control" placeholder="Full Name"/>
 													<i className="ti-user"></i>
 												</div>

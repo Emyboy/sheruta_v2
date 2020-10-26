@@ -70,7 +70,7 @@ function App() {
                 <Switch>
                   <Route exact path="/" component={Home} />
                   {/* <Route exact path="/login" component={Login} /> */}
-                  {/* <Route exact path="/signup" component={Signup} /> */}
+                  { <Route exact path="/signup" component={Signup} /> }
                   <Route exact path="/shared" component={SharedList} />
                   <Route exact path="/pricing" component={Pricing} />
                   <Route exact path="/apartments" component={ApartmentList} />
