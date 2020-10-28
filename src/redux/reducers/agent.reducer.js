@@ -1,12 +1,19 @@
 import {
     AGENT_LOADING, SET_AGENT_LIST,
-    SET_AGENT_PROPERTIES
+    SET_AGENT_PROPERTIES,
+    UPDATE_AGENT_PROGRESS,
+    LISTING_LOADING,
+    LISTING_STATUS
 } from "../actions"
 
 const initialState = {
     agentList: [],
     loading: true,
-    agentProperties: []
+    agentProperties: [],
+    uploadLoading: false,
+    uploadProgress: 0,
+    uploadMessage: null,
+    uploadStatus: 'loading'
 }
 
 export default (state = initialState, { type, payload }) => {
@@ -25,6 +32,21 @@ export default (state = initialState, { type, payload }) => {
             return {
                 ...state,
                 agentProperties: payload
+            }
+        case UPDATE_AGENT_PROGRESS:
+            return {
+                ...state,
+                uploadProgress: payload
+            }
+        case LISTING_LOADING:
+            return {
+                ...state,
+                uploadLoading: payload
+            }
+        case LISTING_STATUS:
+            return {
+                ...state,
+                uploadStatus: payload
             }
         default:
             return state

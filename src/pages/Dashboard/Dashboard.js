@@ -34,7 +34,7 @@ export const Dashboard = (props) => {
     } else {
         return (
             <section>
-                <div className='container'>
+                <div className='container-fluid'>
                     <div className='row'>
 
                         <EditAgentModal
@@ -43,7 +43,7 @@ export const Dashboard = (props) => {
                             data={auth.agentData}
                         />
 
-                        <div className="col-lg-4 col-md-12">
+                        <div className="col-lg-3 col-md-12">
                             <div className="dashboard-navbar bg-white">
 
                                 <div className="d-user-avater">
@@ -78,7 +78,7 @@ export const Dashboard = (props) => {
 
 
 
-                        <div className='col-lg-8 col-md-12'>
+                        <div className='col-lg-9 col-md-12'>
                             <div className='dashboard-wraper p-0'>
                                 {currentPage()}
                                 {/* <AgentListings /> */}
