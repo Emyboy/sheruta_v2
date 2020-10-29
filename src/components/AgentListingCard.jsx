@@ -8,16 +8,19 @@ import { deleteApartment } from '../redux/actions/agent.actions';
 export const AgentListingCard = (props) => {
     const { data } = props;
     const [showDelete, setShowDelete] = useState(false);
-    
+    console.log('CARD DATA ---', data);
 
     return (
-        <tr>
+        <tr id={`${data.uuid}`}>
             <Modal show={showDelete} onHide={() => setShowDelete(!showDelete)} >
                 <Modal.Body>
                     <div className='text-center'>
                         <h3>Are you sure you want to delete?</h3>
                         <ButtonGroup aria-label="Basic example">
-                            <Button variant="success" onClick={() => props.DeleteApartment(data.id)}>Yes</Button>
+                            <Button variant="success" onClick={() => {
+                                props.DeleteApartment(data);
+                                setShowDelete(!showDelete)
+                            }}>Yes</Button>
                             <Button variant="danger" onClick={() => setShowDelete(!showDelete)}>No</Button>
                         </ButtonGroup>
                     </div>

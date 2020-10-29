@@ -7,6 +7,7 @@ import Btn from '../../components/Btn';
 import FileUplaod from '../../components/FileUplaod';
 import { addNewProperty } from '../../redux/actions/agent.actions';
 import { Modal, ProgressBar } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 class ListingForm extends React.Component {
     constructor(props) {
@@ -113,11 +114,13 @@ class ListingForm extends React.Component {
                                         <i className='h1 ti-check'></i>
                                         <h4>Upload Done!</h4>
                                         <div>
-                                            <Btn
-                                                className='mt-4'
-                                                onClick={() => { }}
-                                                text={'View Property'}
-                                            />
+                                            <Link to={localStorage.getItem('url')}>
+                                                <Btn
+                                                    className='mt-4'
+                                                    onClick={() => { }}
+                                                    text={'View Property'}
+                                                />
+                                            </Link>
                                         </div>
                                     </>
                                     : null

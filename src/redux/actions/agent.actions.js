@@ -8,6 +8,7 @@ import {
     UPDATE_AGENT_PROGRESS, LISTING_LOADING, UPLOAD_LOADING, LISTING_STATUS
 } from '.';
 import { storage } from '../../Firebase';
+import $ from 'jquery'
 
 export const getAllAgents = () => dispatch => {
     console.log('getting agents')
@@ -112,13 +113,30 @@ export const getAgentsProperties = agent_id => dispatch => {
 
 export const deleteApartment = data => dispatch => {
     dispatch({ type: 'DELETE_LOADING', payload: true })
-    Axios(`${process.env.REACT_APP_BASE_URL}/property/${data.id}`, {
+    Axios(`${process.env.REACT_APP_BASE_URL}/property/${data.uuid}`, {
         method: 'DELETE'
     })
         .then(res => {
             console.log(res);
+            if(res.data[0].id){
+                localStorage.setItem('url', '/property/'+res.data[0].id +'/'+res.data[0].agent_id)
+                notification.success({
+                    message: "Deleted"
+                });
+                $(`#${data.uuid}`).css("background-color", "pink");
+                setTimeout(() => {
+                    $(`#${data.uuid}`).fadeOut(1000);
+                }, 2000);
+            }else {
+                notification.error({
+                    message: "Request Error"
+                });
+            }
         })
         .catch(err => {
             console.log(err);
+            notification.error({
+                message: "Bad Request"
+            })
         })
 }

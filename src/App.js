@@ -21,6 +21,7 @@ import { Agents } from './pages/Agents/Agents';
 import AgentForm from './pages/Agents/AgentForm';
 import AgentList from './pages/Agents/AgentList';
 import './App.css';
+import AgentPage from './pages/Agents/AgentPage';
 // import SiteUnderConts from './components/SiteUnderConts';
 
 // import Submit from './components/Submit';
@@ -76,6 +77,7 @@ function App() {
                   <Route exact path="/property/:property_id/:agent_id" component={PropertyDetails} />
                   <Route exact path="/shared" component={SharedList} />
                   <Route exact path="/pricing" component={Pricing} />
+                  <Route exact path="/agent/:company_name" component={AgentPage} />
                   <Route exact path="/apartments" component={ApartmentList} />
                   <Route exact path="/agent/new" component={AgentForm} />
                   <Route exact path="/agents/list" component={AgentList} />

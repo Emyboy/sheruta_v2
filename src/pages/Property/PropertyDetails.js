@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Carousel, Image } from 'react-bootstrap';
 import PageLoader from '../../components/PageLoader';
 import { Spinner } from 'react-activity';
+import AgentDetailCard from '../../components/AgentDetailCard';
 
 export default props => {
     console.log('props ---', props);
@@ -81,7 +82,7 @@ export default props => {
                                 </div>
                             </div>
 
-                            <div class="property3-slide single-advance-property mb-4">
+                            <div className="property3-slide single-advance-property mb-4">
                                 {/* <ImageViewer imageurl1={imageurl1} imageurl2={imageurl2} imageurl3={imageurl3} imageurl4={imageurl4} /> */}
                                 <Carousel>
                                     {
@@ -93,6 +94,9 @@ export default props => {
                                                     <span id='image-viewer' style={{ height: "610px", position: "relative" }}>
                                                         <Image
                                                             // onClick={() => props.toggleLightBox(props.showLightBox, 0)}
+                                                            // style={{ 
+                                                            //     minHeight: '30%'
+                                                            // }}
                                                             fluid
                                                             className="item-slick  slick-current slick-active"
                                                             src={val}
@@ -128,8 +132,16 @@ export default props => {
 
                             </div>
 
+                            <div className="block-header">
+                                <h4 className="block-title">Agent Info</h4>
+                            </div>
 
                             {
+                                agentData ? <AgentDetailCard val={agentData} />:null
+                            }
+
+
+                            {/* {
                                 agentData ? <div className="block-wrap">
 
                                     <div className="block-header">
@@ -137,17 +149,22 @@ export default props => {
                                     </div>
 
                                     <div className="block-body">
-                                        <div class="agent-title">
-                                            <div class="agent-photo">
+                                        <div className="agent-title">
+                                            <div className="agent-photo">
                                                 <img src={agentData.company_logo} alt={'agent company logo'} />
                                             </div>
-                                            <div class="agent-details"><h4>
+                                            <div className="agent-details"><h4>
                                                 <a href="#c">{agentData.company_name}</a>
                                             </h4>
-                                                {/* <a href="tel:" className='btn btn-theme'>{phoneNo}</a> */}
                                                 <a href="tel:">
-                                                    <i class="lni-phone-handset"></i>{agentData.company_phone_no}</a>
-                                                    </div><div class="clearfix"></div></div>
+                                                    <i className="lni-phone-handset"></i>{agentData.company_phone_no}</a>
+                                            </div><div className="clearfix"></div></div>
+                                    </div>
+                                    <div className='block-header'>
+                                        <h6>Follow Me: </h6>
+                                        <a href="#c" className="add-to-favorite btn btn-default text-dark" data-toggle="tooltip" data-original-title="Add To Favorites">
+                                            <i className="lni-facebook h4"></i>
+                                        </a>
                                     </div>
 
                                 </div> :
@@ -155,7 +172,7 @@ export default props => {
                                         <Spinner />
                                         <p className='h5'> Loading Agent Data</p>
                                     </div>
-                            }
+                            } */}
 
 
                             <div className="block-wrap">
