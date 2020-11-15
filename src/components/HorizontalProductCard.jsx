@@ -1,27 +1,35 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 
 
 export default (props) => {
     const { val } = props;
+    console.log('val --', val);
     return (
-        <div className="col-lg-12 col-md-12">
+        <div className="col-lg-3 col-md-12 col-sm-6">
             <div className="property-listing property-1">
 
                 <div className="listing-img-wrapper">
-                    <a href={`/${String(val.type).toLowerCase()}/${val.id}`}>
-                        <img src={val.imageurl1} className="img-fluid mx-auto" alt="" />
-                    </a>
-                    {/* <div className="listing-like-top">
+                    <Link to={{
+                        pathname:`/property/${val.id}/${val.agent_id}`,
+                        state: val
+                    }}
+                     >
+                        <img style={{
+                            maxHeight: '136px'
+                        }} src={val.image_urls.image_url_1} className="img-fluid mx-auto" alt="" />
+                    </Link>
+                    <div className="listing-like-top">
                         <i className="ti-heart"></i>
-                    </div> */}
-                    {/* <div className="listing-rating">
+                    </div>
+                    <div className="listing-rating">
                         <i className="ti-star filled"></i>
                         <i className="ti-star filled"></i>
                         <i className="ti-star filled"></i>
                         <i className="ti-star filled"></i>
                         <i className="ti-star"></i>
-                    </div> */}
+                    </div>
                     <span className="property-type">{val.status}</span>
                 </div>
 
@@ -29,10 +37,29 @@ export default (props) => {
 
                     <div className="listing-detail-wrapper">
                         <div className="listing-short-detail">
-                            <h4 className="listing-name">
-                                <a href={`/${String(val.type).toLowerCase()}/${val.id}`}>{val.area}</a>
-                            </h4>
-                            <span className="listing-location"><i className="ti-location-pin"></i>{val.street}</span>
+                            <h4 className="listing-name"><Link to={{
+                                pathname: `/property/${val.id}/${val.agent_id}`,
+                                state: val
+                            }}
+                            >{val.title}</Link></h4>
+                            <span className="listing-location"><i className="ti-location-pin"></i>{val.location}</span>
+                        </div>
+                        <div className="slide-property-sec">
+                            <div className="pr-all-info">
+
+                                <div className="pr-single-info">
+                                    <a href="#c" data-toggle="tooltip" data-original-title="Get Print"><i className="lni lni-pencil"></i></a>
+                                </div>
+
+                                {/* <div className="pr-single-info">
+                                    <a href="#c" className="compare-button" data-toggle="tooltip" data-original-title="Compare"><i className="ti-control-shuffle"></i></a>
+                                </div> */}
+
+                                <div className="pr-single-info">
+                                    <a href="#c" className="like-bitt add-to-favorite" data-toggle="tooltip" data-original-title="Add To Favorites"><i className="lni lni-trash"></i></a>
+                                </div>
+
+                            </div>
                         </div>
                         <div className="list-author">
                             <a href="#c"><img src="assets/img/add-user.png" className="img-fluid img-circle avater-30" alt="" /></a>
@@ -43,6 +70,7 @@ export default (props) => {
                         <ul>
                             <li><strong>Bed:</strong>{val.bedrooms}</li>
                             <li><strong>Bath:</strong>{val.toilets}</li>
+                            <li><strong>Views:</strong>{val.views}</li>
                             {/* <li><strong>Sqft:</strong>3,700</li> */}
                         </ul>
                     </div>
@@ -51,11 +79,10 @@ export default (props) => {
                         <div className="listing-price">
                             <h4 className="list-pr">₦ {val.price}</h4>
                         </div>
-                        <div className="listing-detail-btn">
-                            <a className="more-btn" href={`/${String(val.type).toLowerCase()}/${val.id}`} tabIndex="-1">
-                                View <i className='fa fa-arrow-right'></i>
-                        </a>
-                        </div>
+                        
+                        {/* <div className="listing-detail-btn">
+                            <a href="single-property-2.html" className="more-btn">More Info</a>
+                        </div> */}
                     </div>
 
                 </div>

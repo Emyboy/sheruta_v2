@@ -1,12 +1,13 @@
 import Axios from 'axios';
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { Tooltip } from 'antd';
 
 
 export default props => {
 
-    const { val } = props;    
-    
+    const { val } = props;
+
     return (
         <>
             <div className="agency-page">
@@ -16,13 +17,19 @@ export default props => {
                             <div className="agency agency-list shadow-0 mb-2 mt-2">
 
                                 <Link to={`/agent/${val.company_name}`} className="agency-avatar">
-                                    <img src={val.company_logo} alt={val.company_name + ' logo'} />
+                                    <Tooltip placement="topLeft" title={'Company Logo'}>
+                                        <img style={{ width: '260px' }} src={val.company_logo} alt={val.company_name + ' logo'} />
+                                    </Tooltip>
                                 </Link>
 
                                 <div className="agency-content">
                                     <div className="agency-name">
-                                        <h4><Link to={`/agent/${val.company_name}`}>{val.company_name}</Link></h4>
-                                        <span><i className="lni-map-marker"></i>{val.company_address}</span>
+                                        <Tooltip placement="topLeft" title={'Company Name'}>
+                                            <h4><Link to={`/agent/${val.company_name}`}>{val.company_name}</Link></h4>
+                                        </Tooltip>
+                                        <Tooltip placement="topLeft" title={'Company Address'}>
+                                            <span><i className="lni-map-marker"></i>{val.company_address}</span>
+                                        </Tooltip>
                                     </div>
 
                                     <div className="agency-desc">
@@ -31,7 +38,9 @@ export default props => {
 
                                     <ul className="agency-detail-info">
                                         <li><i className="lni-phone-handset"></i>{val.company_phone_no}</li>
-                                        <li><i className="lni-envelope"></i><a href="#c">contact@example.com</a></li>
+                                        <Tooltip placement="topLeft" title={'Email'}>
+                                            <li><i className="lni-envelope"></i><a href="#c">contact@example.com</a></li>
+                                        </Tooltip>
                                     </ul>
 
                                     <ul className="social-icons">

@@ -48,11 +48,11 @@ export default props => {
     };
 
     useEffect(() => {
-        if (props.location.query) {
+        if (props.location.state) {
             getAgentDat(props.match.params.agent_id);
-            setQuery(props.location.query);
+            setQuery(props.location.state);
             setIsLoading(false);
-            setImage_urls(Object.values(props.location.query.image_urls));
+            setImage_urls(Object.values(props.location.state.image_urls));
         } else {
             getApartmentDetails();
 

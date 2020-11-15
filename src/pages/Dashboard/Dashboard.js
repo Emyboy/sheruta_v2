@@ -6,11 +6,13 @@ import { setDashboardView } from '../../redux/actions/view.actions';
 import { Redirect } from 'react-router';
 import EditAgentModal from '../Agents/EditAgentModal';
 import { Button, ButtonGroup } from 'react-bootstrap';
+import { Drawer } from 'antd'
 
 export const Dashboard = (props) => {
     const [show, setShow] = useState(false);
     const { view, setView, auth } = props;
     const { currentDashboardView } = view;
+    const [showDrawer, setShowDrawer] = useState(false);
 
     const currentPage = () => {
         switch (currentDashboardView) {
@@ -33,17 +35,50 @@ export const Dashboard = (props) => {
         return <Redirect to='/agent/new' />
     } else {
         return (
-            <section>
-                <div className='container-fluid'>
-                    <div className='row'>
+            <>
+                <section className='pt-3'>
+                    <nav className="shadow mb-3 navbar navbar-expand-lg navbar-light bg-white">
+                        {/* <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button> */}
+                        <i className="ti-menu mr-5 link" onClick={() => setShowDrawer(!showDrawer)}></i>
+                        <span className="navbar-brand" href="c#">{auth.agentData.company_name + "'s Dashboard"}</span>
+                    </nav>
 
-                        <EditAgentModal
-                            show={show}
-                            handleClose={() => setShow(!show)}
-                            data={auth.agentData}
-                        />
+                    <Drawer
+                        // title="Basic Drawer"
+                        placement={'left'}
+                        closable={false}
+                        onClose={() => setShowDrawer(!showDrawer)}
+                        visible={showDrawer}
+                    // key={placement}
+                    >
+                        <div className="d-user-avater mt-0">
+                            <img style={{ width: '100px' }} src={auth.agentData.company_logo} className="img-fluid avater" alt={auth.agentData.company_name} />
+                            <h4>{auth.agentData.company_name}</h4>
+                            {/* <span>{auth.agentData.company_phone_no}</span><br /> */}
 
-                        <div className="col-lg-3 col-md-12">
+                            {/* <ButtonGroup aria-label="Profile Actions" className='mt-2'>
+                            <Button className='p-2' onClick={toggleEdit} variant="warning">Edit</Button>
+                            <Button className='p-2' variant="success">Share</Button>
+                        </ButtonGroup> */}
+
+                        </div>
+                        <p>Some contents...</p>
+                        <p>Some contents...</p>
+                        <p>Some contents...</p>
+                    </Drawer>
+
+                    <div className='container-fluid'>
+                        <div className='row'>
+
+                            <EditAgentModal
+                                show={show}
+                                handleClose={() => setShow(!show)}
+                                data={auth.agentData}
+                            />
+
+                            {/* <div className="col-lg-3 col-md-12">
                             <div className="dashboard-navbar bg-white">
 
                                 <div className="d-user-avater">
@@ -74,22 +109,23 @@ export const Dashboard = (props) => {
                                 </div>
 
                             </div>
-                        </div>
+                        </div> */}
 
 
 
-                        <div className='col-lg-9 col-md-12'>
-                            <div className='dashboard-wraper p-0'>
-                                {currentPage()}
-                                {/* <AgentListings /> */}
-                                {/* <ListingForm /> */}
+                            <div className='col-lg-12 col-md-12'>
+                                <div className='dashboard-wraper p-0'>
+                                    {currentPage()}
+                                    {/* <AgentListings /> */}
+                                    {/* <ListingForm /> */}
+                                </div>
                             </div>
+
+
                         </div>
-
-
                     </div>
-                </div>
-            </section>
+                </section>
+            </>
         )
     }
 }

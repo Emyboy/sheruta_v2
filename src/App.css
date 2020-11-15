@@ -20,7 +20,15 @@ body, .gray-bg, html {
 .modal, #login, #signup{
     background-color: #001f13c7;
 }
-
+.ant-tabs-tab-active{
+    background-color: #00ba74 !important;
+    color: white !important;
+    /* font-weight: bold !important; */
+}
+.ant-tabs-tab:hover{
+    color: #00ba74 !important;
+    color: black !important;
+}
 .carousel-item{
     max-height: 500px !important;
     height: 20%;

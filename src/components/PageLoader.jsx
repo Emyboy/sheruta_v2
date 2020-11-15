@@ -24,7 +24,7 @@ export default () => {
                 // position: 'absolute',
                 // top: '40%',
                 // left: '40vw'
-                marginTop: '30%'
+                marginTop: '40vh'
             }}>
                 <div className="text-center">
                     <img style={{ width: '150px' }} src={Icon} alt='loading-gif' /><br />

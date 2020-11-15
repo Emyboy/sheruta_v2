@@ -77,9 +77,9 @@ function App() {
                   <Route exact path="/property/:property_id/:agent_id" component={PropertyDetails} />
                   <Route exact path="/shared" component={SharedList} />
                   <Route exact path="/pricing" component={Pricing} />
+                  <Route exact path="/agent/new" component={AgentForm} />
                   <Route exact path="/agent/:company_name" component={AgentPage} />
                   <Route exact path="/apartments" component={ApartmentList} />
-                  <Route exact path="/agent/new" component={AgentForm} />
                   <Route exact path="/agents/list" component={AgentList} />
                   <Route exact path="/submit/:type" component={Submit} />
                   <Route exact path="/blog" component={Blog} />

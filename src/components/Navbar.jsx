@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import siteIcon from '../img/site-icon.png';
-
+import { Nav, Navbar, Form, NavDropdown } from 'react-bootstrap';
 import { logout, handleGoogleLogin } from '../redux/actions/auth.action';
 import { toggleNavbar } from '../redux/actions/view.actions';
 import { firebaseAuth, googleProvider } from '../Firebase';
@@ -10,7 +10,7 @@ import { PhoneNumberModal } from './PhoneNumberModal';
 
 const desktopSize = 993;
 
-class Navbar extends Component {
+class Navbar_ extends Component {
 
     handleGooglePopup() {
         console.log('working.')
@@ -36,7 +36,7 @@ class Navbar extends Component {
     }
 
     render() {
-        console.log('navbar props ---' ,this.props);
+        console.log('navbar props ---', this.props);
         const { auth } = this.props.auth;
         return (
             <div className="header header-light nav-left-side">
@@ -58,7 +58,7 @@ class Navbar extends Component {
                                         <Link to={`/user/${this.props.auth.user.username}`}><i className="ti-user"></i>My Profile</Link>
                                         {
                                             this.props.auth.agentData ? <Link to={`/dashboard`}><i className="ti-blackboard"></i>Dashboard</Link>
-                                            :null
+                                                : null
                                         }
                                         {/* <a href="my-property.html"><i className="ti-layers"></i>Property List</a>
                                             <a href="bookmark-list.html"><i className="ti-bookmark"></i>Bookmarked Listings</a>
@@ -85,9 +85,9 @@ class Navbar extends Component {
                             <li className="dropdown">
                                 <Link to="/agents">Agents</Link>
                             </li>
-                            <li className="dropdown">
+                            {/* <li className="dropdown">
                                 <Link to="/submit">Submit Apartment</Link>
-                            </li>
+                            </li> */}
                             <li className="dropdown">
                                 <Link to="/contact">Contact Us</Link>
                             </li>
@@ -134,6 +134,46 @@ class Navbar extends Component {
     }
 }
 
+const Navbar2 = () => {
+    return (
+        <nav className="navbar navbar-expand-lg navbar-light bg-light">
+            <Link to="/" className="brand mb-4"><img style={{ width: '70%' }} src={siteIcon} alt="" /></Link>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span className="navbar-toggler-icon"></span>
+            </button>
+
+            <div className="collapse navbar-collapse left" id="navbarSupportedContent">
+                <ul className="navbar-nav mr-auto">
+                    <li className="nav-item active">
+                        <a className="nav-link" href="#c">Home <span className="sr-only">(current)</span></a>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="#c">Link</a>
+                    </li>
+                    <li className="nav-item dropdown">
+                        <a className="nav-link dropdown-toggle" href="#c" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Dropdown
+        </a>
+                        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <a className="dropdown-item" href="#c">Action</a>
+                            <a className="dropdown-item" href="#c">Another action</a>
+                            <div className="dropdown-divider"></div>
+                            <a className="dropdown-item" href="#c">Something else here</a>
+                        </div>
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link disabled" href="#c" tabindex="-1" aria-disabled="true">Disabled</a>
+                    </li>
+                </ul>
+                <form className="form-inline my-2 my-lg-0">
+                    <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
+                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                </form>
+            </div>
+        </nav>
+    )
+}
+
 const mapStateToProps = state => ({
     auth: state.auth,
     view: state.view
@@ -145,4 +185,4 @@ const mapActionToProps = {
     handleGoogleLogin
 }
 
-export default connect(mapStateToProps, mapActionToProps)(Navbar);
+export default connect(mapStateToProps, mapActionToProps)(Navbar_);
