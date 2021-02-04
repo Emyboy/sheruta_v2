@@ -78,7 +78,8 @@ export const sendRequest = data => dispatch => {
         .then(res => {
             console.log('res..', res);
             if (res.data.status === 200) {
-                notification.success({ message: 'Request Sent..' })
+                notification.success({ message: 'Request Sent..' });
+                Axios(`${process.env.REACT_APP_BASE_URL}/agent`, )
                 dispatch(sendRequestSuccess(res.data));
                 dispatch(toggleDoneModal(true));
             } else {
@@ -102,6 +103,12 @@ export const sharedSignup = data => dispatch => {
         if (res.data.error) {
             dispatch(uploadError(res.data.error));
             notification.error({ message: 'Request Error!!' })
+        }else {
+            notification.success({ message: 'Signup'});
+            window.location = '/shared';
+            const state = JSON.parse(localStorage.getItem('state'));
+            state.auth.user.sharing = true;
+            localStorage.setItem('state', state);
         }
         console.log('res', res)
     })

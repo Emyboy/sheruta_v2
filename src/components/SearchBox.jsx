@@ -52,9 +52,6 @@ export default connect(mapStateToProps, mapActionsToProps)(() => {
                                 <label>Location</label>
                                 <div className="input-with-icon">
                                     <select className="form-control" defaultValue={area} onChange={(e) => setArea(e.target.value)}>
-                                        
-                                        {/* <option>Okota</option>
-                                        <option>Isolo</option> */}
                                         {
                                             areas.map((val, i) => <option key={i}>{val}</option>)
                                         }

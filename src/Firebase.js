@@ -11,18 +11,18 @@ import firebase from "firebase";
 // };
 
 var firebaseConfig = {
-    apiKey: "AIzaSyD_f4OsL8x0KVHBymXOtXCZbQTqRzwyuH0",
-    authDomain: "sheruta-try.firebaseapp.com",
-    databaseURL: "https://sheruta-try.firebaseio.com",
-    projectId: "sheruta-try",
-    storageBucket: "sheruta-try.appspot.com",
-    messagingSenderId: "1080688469617",
-    appId: "1:1080688469617:web:14748e91d45ea49f7cddd0",
-    measurementId: "G-GNLVGS8SM3"
+    apiKey: process.env.REACT_APP_API_KEY,
+    authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+    databaseURL: process.env.REACT_APP_DATABASE_URL,
+    projectId: process.env.REACT_APP_PROJECT_ID,
+    storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+    appId: process.env.REACT_APP_APP_ID,
+    measurementId: process.env.REACT_APP_MEASUREMENT_ID
 };
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 export const googleProvider = new firebase.auth.GoogleAuthProvider();
 export const firebaseAuth = firebase.auth();
-export const storage = firebase.storage();
+export const storage = firebase.storage().ref();

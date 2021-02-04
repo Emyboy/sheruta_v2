@@ -5,6 +5,8 @@ import {
   LOGIN_ERROR,
   AUTH_LOADING,
   LOGOUT,
+  TOGGLE_ADD_NUMBER,
+  ADD_AGENT, AGENT_LOADING, UPDATE_AUTH_PROGRESS
   // UPDATE_PROFILE_ERROR,
   // UPDATE_PROFILE_SUCCESS,
 } from ".";
@@ -12,6 +14,7 @@ import {
 import { notification } from "antd";
 
 import Axios from "axios";
+import { storage } from "../../Firebase";
 
 const authLoading = () => {
   return {
@@ -42,6 +45,7 @@ const logoutUser = () => {
 export const logout = () => dispatch => {
   console.log('logedout....')
   dispatch(logoutUser());
+  dispatch({ type: ADD_AGENT, payload: null })
   localStorage.clear();
   sessionStorage.clear();
 }
@@ -52,7 +56,7 @@ export const signup = data => dispatch => {
     method: 'POST',
     data
   })
-    .then(res => { 
+    .then(res => {
       console.log(res)
       if (res.data.status === 200) {
         dispatch(loginSuccess(res.data.user[0]));
@@ -62,13 +66,13 @@ export const signup = data => dispatch => {
         notification.error({ message: res.data.message })
         dispatch(loginError(res.data))
       }
-      if(res.data.error){
+      if (res.data.error) {
         switch (res.data.error.constraint) {
           case "users_username_unique":
-            notification.error({message: 'Username Already In Use'})
+            notification.error({ message: 'Username Already In Use' })
             break;
           case "users_email_unique":
-            notification.error({message: 'Email Already In Use'})
+            notification.error({ message: 'Email Already In Use' })
             break;
           default:
             break;
@@ -100,24 +104,101 @@ export const login = data => dispatch => {
     })
     .catch(err => {
       console.log(err);
-      err.isAxiosError ? notification.error({message: 'No internet connection'})
-        : notification.error({message: 'Request Error!'})
+      err.isAxiosError ? notification.error({ message: 'No internet connection' })
+        : notification.error({ message: 'Request Error!' })
       dispatch(loginError(err))
     })
 }
 
 export const handleGoogleLogin = data => dispatch => {
-  Axios(`${process.env.REACT_APP_BASE_URL}/login/google`,{
+  Axios(`${process.env.REACT_APP_BASE_URL}/login/google`, {
     method: 'POST',
-    data
+    data: { ...data, login_type: 'google' }
   })
     .then(res => {
       console.log(res);
       dispatch({ type: LOGIN, payload: res.data.user });
+      dispatch({ type: TOGGLE_ADD_NUMBER })
+      dispatch({ type: ADD_AGENT, payload: res.data.user.agent });
       notification.success({ message: 'Loged In' });
       localStorage.setItem('token', res.data.token);
     })
     .catch(err => {
-      notification.error({ message: 'Login Error Please Try Again '})
+      notification.error({ message: 'Login Error Please Try Again ' })
+    })
+};
+
+export const updateUserAccount = update => dispatch => {
+  console.log('Adding Update --', update);
+  Axios(`${process.env.REACT_APP_BASE_URL}/users/${update.user_id}`, {
+    method: 'PUT',
+    data: update
+  })
+    .then(update => {
+      console.log('update ----', update);
+    })
+    .catch(err => {
+      console.log('error ---', err);
     })
 }
+
+
+export const crate_agent_account = data => dispatch => {
+  dispatch({ type: AGENT_LOADING, payload: true });
+  console.log('uploading data ---', data);
+
+  const uploadTask = storage.child(`agent/${data.user_id}/company_logo`).put(data.company_logo)
+  uploadTask.on('state_changed', (snapshot) => {
+    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+    console.log('Upload is ' + Number.parseInt(progress) + '% done');
+    dispatch({ type: UPDATE_AUTH_PROGRESS, payload: progress })
+  }, (error) => {
+    // Handle unsuccessful uploads
+    notification.error({ message: 'Error Uploading Image ' });
+  }, () => {
+    uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+      console.log('File available at', downloadURL);
+      Axios(`${process.env.REACT_APP_BASE_URL}/agent`, {
+        method: 'POST',
+        data: { ...data, company_logo: downloadURL }
+      })
+        .then(account => {
+          console.log(account);
+          dispatch({ type: AGENT_LOADING, payload: false });
+          dispatch({ type: ADD_AGENT, payload: account.data.data[0] });
+          notification.error({ message: 'Error Sending data, Please Try Again' });
+        })
+        .catch(err => {
+          dispatch({ type: AGENT_LOADING, payload: false });
+          dispatch({ type: UPDATE_AUTH_PROGRESS, payload: 0 });
+          notification.error({ message: 'Error Sending data, Please Try Again' });
+          console.log(err)
+        })
+    }).catch(err => {
+      dispatch({ type: AGENT_LOADING, payload: false });
+      dispatch({ type: UPDATE_AUTH_PROGRESS, payload: 0 });
+      console.log('error ---', err);
+    });
+  });
+}
+
+export const editAgentAccount = data => dispatch => {
+  dispatch({ type: AGENT_LOADING, payload: true });
+  Axios(`${process.env.REACT_APP_BASE_URL}/agent`, {
+    method: 'PUT',
+    data
+  })
+    .then(res => {
+      dispatch({ type: AGENT_LOADING, payload: false });
+      dispatch({ type: ADD_AGENT, payload: res.data.data });
+      notification.success({ message: 'Saved' })
+      console.log('added--', data);
+      console.log(res);
+    })
+    .catch(err => {
+      dispatch({ type: AGENT_LOADING, payload: false });
+      notification.error({ message: 'Error Saving Data' })
+      console.log(err);
+    })
+}
+
