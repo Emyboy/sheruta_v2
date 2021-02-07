@@ -80,3 +80,9 @@ a:hover, .bl-continue{
 .sh-text{
     color: #00ba74 !important;
 }
+
+label{
+    font-size: 1.05em;
+    color: 	#1a1a1a;
+    font-weight: 500;
+}

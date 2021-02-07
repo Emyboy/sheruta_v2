@@ -9,31 +9,39 @@ export default ({
     type,
     placeholder,
     onChange,
+    onBlur,
     disabled,
     defaultValue,
     name,
     autoFocus,
     icon,
-    required
+    required,
+    errorMessage
 }) => {
+   
     return (
         <Form.Group as={as} controlId={controlId}>
             {/* <div className="form-group"> */}
             <Form.Label>{label}</Form.Label>
             <div className={icon ? "input-with-icon" : ""}>
-                <input
-                    required={required}
-                    onChange={e => onChange(e)}
-                    disabled={disabled}
-                    defaultValue={defaultValue}
-                    autoFocus={autoFocus}
-                    name={name}
-                    type={type}
-                    className="form-control"
-                    placeholder={placeholder}
+                <Form.Control
+                     required={required}
+                      onChange={onChange? e => onChange(e): null}
+                     disabled={disabled}
+                     defaultValue={defaultValue}
+                     autoFocus={autoFocus}
+                     name={name}
+                     type={type}
+                     placeholder={placeholder}
+                     onBlur={onBlur? e => onBlur(e): null}
                 />
                 {icon ? <i className={icon}></i> : null}
             </div>
+
+            <span className="form-text text-danger">
+                {errorMessage}
+            </span>
+           
             {/* </div> */}
         </Form.Group>
     )

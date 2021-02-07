@@ -54,6 +54,7 @@ const SharedList = React.lazy(() => import('./pages/SharedList/SharedList'));
 const ApartmentList = React.lazy(() => import('./pages/ApartmentList/ApartmentList'));
 const Pricing = React.lazy(() => import('./pages/Pricing/Pricing'));
 const Dashboard = React.lazy(() => import('./pages/Dashboard/Dashboard'));
+const SignUpSuccess =  React.lazy(() => import('./pages/SignUpSuccess/SignUpSuccess'));
 // import SharedList from './pages/SharedList/SharedList';
 // import ApartmentList from './pages/ApartmentList/ApartmentList';
 
@@ -70,8 +71,9 @@ function App() {
                 <Navbar />
                 <Switch>
                   <Route exact path="/" component={Home} />
-                  {/* <Route exact path="/login" component={Login} /> */}
-                  { <Route exact path="/signup" component={Signup} /> }
+                  <Route exact path="/login" component={Login} />
+                   <Route exact path="/signup" component={Signup} /> 
+                   <Route exact path="/signup/success" component={SignUpSuccess} />
                   <Route exact path="/shared" component={SharedList} />
                   <Route exact path="/pricing" component={Pricing} />
                   <Route exact path="/apartments" component={ApartmentList} />

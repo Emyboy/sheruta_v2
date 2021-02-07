@@ -21,6 +21,7 @@ const mapActionsToProps = {
 }
 export default connect(mapStateToProps, mapActionsToProps)(class Home extends Component {
     componentWillMount() {
+        console.log("reached here");
         this.props.getRecentApartments(6);
         this.props.getRecentSharedApartments(6);
     }

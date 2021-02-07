@@ -5,7 +5,10 @@ import {
     LOGIN,
     LOGIN_ERROR,
     LOGOUT,
-    UPDATE_AUTH_PROGRESS
+    UPDATE_AUTH_PROGRESS,
+    SIGNUP,
+    SIGNUP_ERROR,
+    CLEAR_ERROR
 } from '../actions';
 
 const initialState = {
@@ -20,6 +23,20 @@ const initialState = {
 
 export default (state = initialState, { type, payload }) => {
     switch (type) {
+        case SIGNUP:
+            return {
+                ...state,
+                isLoggedIn: false,
+                authLoading: false,
+                user: null,
+                error: false
+                
+            }
+        case CLEAR_ERROR:
+                return {
+                    ...state,
+                    error: payload
+                }
         case LOGOUT:
             return {
                 ...state,
@@ -46,12 +63,20 @@ export default (state = initialState, { type, payload }) => {
                 user: null,
                 error: payload,
             }
-        case AUTH_LOADING:
+
+        case SIGNUP_ERROR: 
             return {
                 ...state,
                 isLoggedIn: false,
+                authLoading: false,
+                error: payload,
+            }
+        case AUTH_LOADING:
+            return {
+                ...state,
+               // isLoggedIn: false,
                 authLoading: true,
-                error: payload
+               // error: payload
             }
         case ADD_AGENT:
             return {

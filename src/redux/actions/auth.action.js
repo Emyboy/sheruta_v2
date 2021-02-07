@@ -1,20 +1,21 @@
 import {
   // SIGNUP,
-  // SIGNUP_ERROR,
+  CLEAR_ERROR,
   LOGIN,
   LOGIN_ERROR,
   AUTH_LOADING,
   LOGOUT,
   TOGGLE_ADD_NUMBER,
-  ADD_AGENT, AGENT_LOADING, UPDATE_AUTH_PROGRESS
+  ADD_AGENT, AGENT_LOADING, UPDATE_AUTH_PROGRESS, SIGNUP_ERROR
   // UPDATE_PROFILE_ERROR,
   // UPDATE_PROFILE_SUCCESS,
 } from ".";
 
 import { notification } from "antd";
-
 import Axios from "axios";
 import { storage } from "../../Firebase";
+
+
 
 const authLoading = () => {
   return {
@@ -36,11 +37,29 @@ const loginError = error => {
   }
 }
 
+const clearError = error => {
+  return {
+    type: CLEAR_ERROR
+  }
+}
+
+const signupError = error =>{
+  return {
+    type: SIGNUP_ERROR,
+    payload: error
+  }
+}
+
 const logoutUser = () => {
   return {
     type: LOGOUT
   }
 }
+
+export const clearErrorMessage = () => dispath => {
+  dispath(clearError());
+}
+
 
 export const logout = () => dispatch => {
   console.log('logedout....')
@@ -52,27 +71,29 @@ export const logout = () => dispatch => {
 
 export const signup = data => dispatch => {
   dispatch(authLoading());
-  return Axios(`${process.env.REACT_APP_BASE_URL}/signup`, {
+ 
+   return Axios(`${process.env.REACT_APP_BASE_URL}/signup`, {
     method: 'POST',
-    data
+    data: data,
+    validateStatus: (status) => {
+      return status == 200 || status == 409; 
+    }
   })
     .then(res => {
-      console.log(res)
-      if (res.data.status === 200) {
+      console.log("Response = ", res)
+      
+      if (res.status === 200) {
         dispatch(loginSuccess(res.data.user[0]));
         notification.success({ message: res.data.message });
-        localStorage.setItem('token', res.data.token);
-      } else {
-        notification.error({ message: res.data.message })
-        dispatch(loginError(res.data))
-      }
-      if (res.data.error) {
-        switch (res.data.error.constraint) {
-          case "users_username_unique":
-            notification.error({ message: 'Username Already In Use' })
+      } else if (res.status === 409 && res.data.errors[0]) {
+        switch (res.data.errors[0].param) {
+          case "username":
+            dispatch(signupError({message:"Username In Use", description:'The username you entered has already been taken. Please enter a different username'}))
+           // notification.error({ message: 'Username Already In Use' })
             break;
-          case "users_email_unique":
-            notification.error({ message: 'Email Already In Use' })
+          case "email":
+           // notification.error({ message: 'Email Already In Use' })
+           dispatch(signupError({message:"Email In Use", description:'The email you entered has already been taken. Please enter a different email'}))
             break;
           default:
             break;
@@ -80,7 +101,12 @@ export const signup = data => dispatch => {
       }
     })
     .catch(err => {
-      console.log(err);
+      err.isAxiosError ? dispatch(signupError({ message:"Network Error", description: 'We apologize that we could not establish server connection at this time. It is possible that you do not have an internet connection or that our server is down currently. Please check that you have an internet connection and sign up again or try signing up at a later time'}))
+      : dispatch(signupError({message:"Request Error", description: "An error occurred while processing your request. Please try signing up again." }))
+     
+       /*notification.error({ message:"Network Error", description: 'Server connection could not be established. You either do not have an internet connection or server is down. Please verify you have an internet connection and try again'})
+      : notification.error({message:"Request Error", description: "An error occurred while processing your request. Please try again.", duration:0 })*/
+      
     })
 }
 

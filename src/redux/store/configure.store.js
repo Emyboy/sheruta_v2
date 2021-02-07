@@ -2,7 +2,7 @@ import {
     createStore,
     applyMiddleware
 } from 'redux';
-import dotenv from 'dotenv';
+//import dotenv from 'dotenv';
 
 import {
     composeWithDevTools
@@ -11,14 +11,12 @@ import thunk from 'redux-thunk';
 // import logger from 'redux-logger';
 import indexReducer from '../reducers/root.reducer';
 
-dotenv.config();
-
-const composeEnhancers = composeWithDevTools({});
-
+//dotenv.config();
+const middleware = [thunk];
 
 const configureStore = (settings = {}) => createStore(
     indexReducer, settings,
-    composeEnhancers(applyMiddleware(thunk)),
+    composeWithDevTools(applyMiddleware(...middleware))
 );
 
 export default configureStore;
