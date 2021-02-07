@@ -3,8 +3,8 @@ import React, { Component } from 'react'
 import Axios from "axios";
 import { notification } from 'antd';
 import { Link } from 'react-router-dom';
-// import ProductCard from './ProductCard';
-const ProductCard = React.lazy(() => import('./ProductCard'));
+import ProductCard from './ProductCard';
+// const ProductCard = React.lazy(() => import('./ProductCard'));
 
 class RecentApartments extends Component {
     state = {
@@ -12,7 +12,10 @@ class RecentApartments extends Component {
     };
 
     getApartments(){
-        Axios.get(`${process.env.REACT_APP_BASE_URL}/hostels/limit/${6}`)
+        const url = `${process.env.REACT_APP_BASE_URL}/hostels/limit/${6}`
+        console.log('GETTING ---', url)
+
+        Axios.get(url)
             .then(res => {
                 if(res.data.message === 'success'){
                     this.setState({
@@ -23,6 +26,7 @@ class RecentApartments extends Component {
                 }
             })
             .catch(err => {
+                console.log('error ---', err)
                 notification.error({message: 'Error Loding Apartments'})
             })
     }
@@ -47,7 +51,8 @@ class RecentApartments extends Component {
                     </div>
 
                     <div className={getApartmentLoading ? "center pt-5 pb-5" : "row pt-5"}>
-                        {
+                        {/* {
+                            this.state.apartmentList.length === 0 ? <h6>Loading..</h6>:
                             this.state.apartmentList.map((val, i) => {
                                     return (
                                         <ProductCard
@@ -56,6 +61,8 @@ class RecentApartments extends Component {
                                         />
                                     )
                                 })
+                        } */}
+                        {
                         }
 
                     </div>

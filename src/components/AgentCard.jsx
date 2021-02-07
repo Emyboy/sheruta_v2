@@ -21,7 +21,7 @@ export default ({ val }) => {
             <div className="agents-grid">
 
                 <div className="jb-bookmark"><a href="/" data-toggle="tooltip" data-original-title="Bookmark"><i className="ti-bookmark"></i></a></div>
-                <div className="agent-call"><a href="#"><i className="lni-phone-handset"></i></a></div>
+                <div className="agent-call"><a href="#c"><i className="lni-phone-handset"></i></a></div>
                 <div className="agents-grid-wrap">
 
                     <div className="fr-grid-thumb">
@@ -31,7 +31,11 @@ export default ({ val }) => {
                         </a>
                     </div>
                     <div className="fr-grid-deatil">
-                        <h5 className="fr-can-name"><a href="#">{company_name}</a></h5>
+                        <h5 className="fr-can-name"><Link to={{
+                            pathname: `/agent/${company_name}`,
+                            query: val,
+                            state: val
+                        }}>{company_name}</Link></h5>
                         <span className="fr-position"><i className="lni-map-marker"></i>{company_address}</span>
                         <br />
                         {/* <div className="fr-can-rating">

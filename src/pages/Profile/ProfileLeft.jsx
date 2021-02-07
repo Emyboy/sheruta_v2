@@ -17,7 +17,7 @@ const ProfileLeft = (props) => {
     }else {
         return (
             <div class="col-lg-4 col-md-12">
-                <div class="dashboard-navbar">
+                <div class="dashboard-navbar bg-white">
 
                     <div class="d-user-avater">
                         <img src={val.imageurl} class="img-fluid avater" alt="" />

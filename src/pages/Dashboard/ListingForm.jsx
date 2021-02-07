@@ -6,6 +6,9 @@ import TextArea from '../../components/TextArea';
 import Btn from '../../components/Btn';
 import FileUplaod from '../../components/FileUplaod';
 import { addNewProperty } from '../../redux/actions/agent.actions';
+import { Modal, ProgressBar } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
+import Aminities from '../../components/Aminities';
 
 class ListingForm extends React.Component {
     constructor(props) {
@@ -27,7 +30,7 @@ class ListingForm extends React.Component {
                 wifi: true,
                 heading: false
             },
-            image_files: null
+            image_files: null,
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleFileSellect = this.handleFileSellect.bind(this);
@@ -54,7 +57,7 @@ class ListingForm extends React.Component {
     }
 
     render() {
-        const { view } = this.props;
+        const { view, agent } = this.props;
         console.log('PROPS -------', this.props);
         const { handleInputChange, handleFileSellect, onSubmit } = this;
 
@@ -80,6 +83,53 @@ class ListingForm extends React.Component {
 
         return (
             <div className="dashboard-wraper bg-white">
+                <Modal show={agent.uploadLoading} onHide={() => { }}>
+                    <Modal.Body>
+                        <div className='text-center'>
+                            {
+                                agent.uploadStatus === 'loading' ?
+                                    <>
+                                        <h4 className='mb-5'>Uploading Property</h4>
+                                        <ProgressBar now={agent.uploadProgress} label={`${agent.uploadProgress}%`} />
+                                        {/* <h6>{agent.uploadProgress}</h6> */}
+                                        <div>
+                                            <Btn
+                                                className='mt-4'
+                                                onClick={() => { }}
+                                                text={'Cancel'}
+                                            />
+                                        </div>
+                                    </> : null
+                            }
+                            {
+                                agent.uploadStatus === 'error' ?
+                                    <>
+                                        <i className='h1 ti-close'></i>
+                                        <h4><b>Upload Error</b></h4>
+                                        <h6>Please Try Again</h6>
+                                    </> : null
+                            }
+                            {
+                                agent.uploadStatus === 'success' ?
+                                    <>
+                                        <i className='h1 ti-check'></i>
+                                        <h4>Upload Done!</h4>
+                                        <div>
+                                            <Link to={localStorage.getItem('url')}>
+                                                <Btn
+                                                    className='mt-4'
+                                                    onClick={() => { }}
+                                                    text={'View Property'}
+                                                />
+                                            </Link>
+                                        </div>
+                                    </>
+                                    : null
+                            }
+
+                        </div>
+                    </Modal.Body>
+                </Modal>
                 <div className="row">
                     <div className="col-lg-12 col-md-12 p-0">
                         <form onSubmit={onSubmit} className="submit-page">
@@ -221,7 +271,8 @@ class ListingForm extends React.Component {
 
                                         <div className="form-group col-md-12">
                                             <h3>Amenities</h3>
-                                            <div className="o-features">
+                                            <Aminities onChange={e => console.log(e)} />
+                                            {/* <div className="o-features">
                                                 <ul className="no-ul-list third-row">
                                                     <li>
                                                         <input id="a-1" className="checkbox-custom" name="a-1" type="checkbox" />
@@ -272,7 +323,7 @@ class ListingForm extends React.Component {
                                                         <label for="a-12" className="checkbox-custom-label">Parking</label>
                                                     </li>
                                                 </ul>
-                                            </div>
+                                            </div> */}
                                         </div>
 
                                     </div>

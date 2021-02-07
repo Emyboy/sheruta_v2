@@ -8,7 +8,7 @@ export const Agents = props => {
         <div className='container-fluid mt-5 mb-5'>
             
             <SectionHeading 
-                heading={'Agent Actions'}
+                heading={'What do you wish to do?'}
 
             />
 

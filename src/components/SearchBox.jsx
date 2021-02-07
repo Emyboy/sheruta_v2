@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import { connect } from 'react-redux';
-import {  search } from '../redux/actions/user.action';
+import { search } from '../redux/actions/user.action';
 // import { getAllAreas } from '../redux/actions/view.actions';
 import Axios from 'axios';
 
 
-const mapStateToProps = state =>({
+const mapStateToProps = state => ({
     user: state.user
 });
 
@@ -23,25 +23,28 @@ export default connect(mapStateToProps, mapActionsToProps)(() => {
     const [areas, setAreas] = useState([]);
 
     const handleSubmit = (d) => {
-        sessionStorage.setItem('keywords', JSON.stringify({area, price,bedrooms,sittingrooms,type}))
+        sessionStorage.setItem('keywords', JSON.stringify({ area, price, bedrooms, sittingrooms, type }))
     }
 
     const getAllAreas = () => {
         Axios(`${process.env.REACT_APP_BASE_URL}/views/area`)
             .then(res => {
-                setAreas(res.data);
+                if (res.data.status !== 200) {
+                    setArea([])
+                } else
+                    setAreas(res.data);
             })
-            .catch(err => console.log('.............',err))
+            .catch(err => console.log('.............', err))
     }
 
     useEffect(() => {
         getAllAreas();
-    },[]);
+    }, []);
 
     return (
         <div className="container">
             <div className="hero-search-wrap full-width">
-            <div className="hero-search">
+                <div className="hero-search">
                     <h4 className='text-dark text-bold' style={{ fontSize: '40px', fontWeight: 'bold' }}>Find Your Dream</h4>
                 </div>
                 <div className="hero-search-content">

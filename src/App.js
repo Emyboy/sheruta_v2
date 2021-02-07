@@ -21,6 +21,7 @@ import { Agents } from './pages/Agents/Agents';
 import AgentForm from './pages/Agents/AgentForm';
 import AgentList from './pages/Agents/AgentList';
 import './App.css';
+import AgentPage from './pages/Agents/AgentPage';
 // import SiteUnderConts from './components/SiteUnderConts';
 
 // import Submit from './components/Submit';
@@ -54,7 +55,11 @@ const SharedList = React.lazy(() => import('./pages/SharedList/SharedList'));
 const ApartmentList = React.lazy(() => import('./pages/ApartmentList/ApartmentList'));
 const Pricing = React.lazy(() => import('./pages/Pricing/Pricing'));
 const Dashboard = React.lazy(() => import('./pages/Dashboard/Dashboard'));
+<<<<<<< HEAD
 const SignUpSuccess =  React.lazy(() => import('./pages/SignUpSuccess/SignUpSuccess'));
+=======
+const PropertyDetails = React.lazy(() => import('./pages/Property/PropertyDetails'));
+>>>>>>> 731a618d051dc0bb7dccb4bbe350c20fcb803f56
 // import SharedList from './pages/SharedList/SharedList';
 // import ApartmentList from './pages/ApartmentList/ApartmentList';
 
@@ -71,13 +76,20 @@ function App() {
                 <Navbar />
                 <Switch>
                   <Route exact path="/" component={Home} />
+<<<<<<< HEAD
                   <Route exact path="/login" component={Login} />
                    <Route exact path="/signup" component={Signup} /> 
                    <Route exact path="/signup/success" component={SignUpSuccess} />
+=======
+                  {/* <Route exact path="/login" component={Login} /> */}
+                  {/* <Route exact path="/signup" component={Signup} /> */}
+                  <Route exact path="/property/:property_id/:agent_id" component={PropertyDetails} />
+>>>>>>> 731a618d051dc0bb7dccb4bbe350c20fcb803f56
                   <Route exact path="/shared" component={SharedList} />
                   <Route exact path="/pricing" component={Pricing} />
-                  <Route exact path="/apartments" component={ApartmentList} />
                   <Route exact path="/agent/new" component={AgentForm} />
+                  <Route exact path="/agent/:company_name" component={AgentPage} />
+                  <Route exact path="/apartments" component={ApartmentList} />
                   <Route exact path="/agents/list" component={AgentList} />
                   <Route exact path="/submit/:type" component={Submit} />
                   <Route exact path="/blog" component={Blog} />
