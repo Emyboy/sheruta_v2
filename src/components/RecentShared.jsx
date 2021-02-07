@@ -5,8 +5,8 @@ import React, { Component } from 'react'
 import Axios from "axios";
 import { notification } from 'antd';
 import { Link } from 'react-router-dom';
-// import ProductCard from './ProductCard';
-const ProductCard = React.lazy(() => import('./ProductCard'));
+import ProductCard from './ProductCard';
+// const ProductCard = React.lazy(() => import('./ProductCard'));
 
 class RecentShared extends Component {
     state = {

@@ -2,7 +2,7 @@ import React, { Component, Fragment } from 'react'
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import siteIcon from '../img/site-icon.png';
-import { Nav, Navbar, Form, NavDropdown } from 'react-bootstrap';
+import { Nav, Navbar, Form, NavDropdown, FormControl, Button } from 'react-bootstrap';
 import { logout, handleGoogleLogin } from '../redux/actions/auth.action';
 import { toggleNavbar } from '../redux/actions/view.actions';
 import { firebaseAuth, googleProvider } from '../Firebase';
@@ -38,98 +38,139 @@ class Navbar_ extends Component {
     render() {
         console.log('navbar props ---', this.props);
         const { auth } = this.props.auth;
+        // return (
+        //     <div className="header header-light nav-left-side">
+        //         <nav className={!this.props.view.showNavbar ? "headnavbar core-nav" : "headnavbar core-nav open-responsive open-dropdown"}><div className="nav-container">
+        //             <div className="nav-header right">
+        //                 <Link to="/" className="brand mt-1"><img style={{ width: '70%' }} src={siteIcon} alt="" /></Link>
+        //                 <button onClick={() => this.props.toggleNavbar(!this.props.view.showNavbar)} className="toggle-bar core-nav-toggle"><span className="ti-align-justify"></span></button>
+        //             </div>
+        //             <div className="wrap-core-nav-list right"><ul className="attributes">
+
+        //                 <ul className="attributes">
+        //                     {this.props.auth.isLoggedIn ? <li className="login-attri">
+        //                         <div className="btn-group account-drop">
+        //                             <button type="button" className="btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        //                                 <img src={this.props.auth.user.imageurl} className="avater-img" alt="" /><span>{this.props.auth.user.username}</span>
+        //                             </button>
+        //                             <div className="dropdown-menu pull-right animated flipInX">
+        //                                 <Link to={`/user/${this.props.auth.user.username}`}><i className="ti-user"></i>My Profile</Link>
+        //                                 {
+        //                                     this.props.auth.agentData ? <Link to={`/dashboard`}><i className="ti-blackboard"></i>Dashboard</Link>
+        //                                         : null
+        //                                 }
+        //                                 <hr />
+        //                                 <Link to="/" onClick={() => this.props.logout()}><i className="ti-power-off"></i>Log Out</Link>
+        //                             </div>
+        //                         </div>
+        //                     </li> : <li className="login-attri theme-log">
+        //                             <Link to="#c" data-toggle="modal" data-target="#login" onClick={this.handleGooglePopup.bind(this)}>Login / Signup</Link>
+        //                         </li>
+        //                     }
+        //                 </ul>
+
+        //             </ul><ul className="menu core-nav-list">
+
+        //                     <li className="dropdown">
+        //                         <Link to='/' className='active'>Home</Link>
+        //                     </li>
+
+        //                     <li className="dropdown">
+        //                         <Link to="/blog">Blog</Link>
+        //                     </li>
+        //                     <li className="dropdown">
+        //                         <Link to="/agents">Agents</Link>
+        //                     </li>
+        //                     <li className="dropdown">
+        //                         <Link to="/contact">Contact Us</Link>
+        //                     </li>
+
+
+        //                     <li className="megamenu" data-width="500" style={{ position: 'relative' }}>
+        //                         <Link to="/about">About</Link>
+        //                     </li>
+
+        //                     {
+        //                         window.innerWidth < desktopSize && !this.props.auth.isLoggedIn ?
+        //                             (
+        //                                 <Fragment>
+        //                                     <li className="dropdown">
+        //                                         <span to="/login" onClick={this.handleGooglePopup.bind(this)}>Login / Signup</span>
+        //                                     </li>
+        //                                 </Fragment>
+        //                             )
+        //                             :
+        //                             <Fragment>
+        //                                 {
+        //                                     window.innerWidth < desktopSize && this.props.auth.isLogedIn ?
+        //                                         <li className="dropdown">
+        //                                             <Link to={`/user/${this.props.auth.user.username}`}>{this.props.auth.user.username}</Link>
+        //                                         </li> : null
+        //                                 }
+        //                             </Fragment>
+        //                     }
+
+        //                 </ul>
+        //             </div>
+
+
+
+        //         </div>
+        //         </nav>
+        //         <div className="dropdown-overlay"></div>
+        //     </div>
+
+
+
+
+        // )
         return (
-            <div className="header header-light nav-left-side">
-                {/* <PhoneNumberModal /> */}
-                <nav className={!this.props.view.showNavbar ? "headnavbar core-nav" : "headnavbar core-nav open-responsive open-dropdown"}><div className="nav-container">
-                    <div className="nav-header right">
-                        <Link to="/" className="brand mt-1"><img style={{ width: '70%' }} src={siteIcon} alt="" /></Link>
-                        <button onClick={() => this.props.toggleNavbar(!this.props.view.showNavbar)} className="toggle-bar core-nav-toggle"><span className="ti-align-justify"></span></button>
-                    </div>
-                    <div className="wrap-core-nav-list right"><ul className="attributes">
-
+            <Navbar bg="white" className='shadow-sm' expand="lg">
+                <Link className='navbar-brand' to='/'><img width='120px' src={siteIcon} alt="" /></Link>
+                {/* <Link to="/" className="brand mt-1"></Link> */}
+                <Navbar.Toggle aria-controls="basic-navbar-nav" />
+                <Navbar.Collapse id="basic-navbar-nav">
+                    <Nav className="mr-auto">
+                        <Link to="/" className='h6 m-3'>Home</Link>
+                        <Link to="/blog" className='h6 m-3'>Blog</Link>
+                        <Link to="/contact" className='h6 m-3'>Contact Us</Link>
+                        <Link to="/about" className='h6 m-3'>About</Link>
+                        {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
+                            <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
+                            <NavDropdown.Item href="#action/3.3">Something</NavDropdown.Item>
+                            <NavDropdown.Divider />
+                            <NavDropdown.Item href="#action/3.4">Separated link</NavDropdown.Item>
+                        </NavDropdown> */}
+                    </Nav>
+                    <Form inline>
+                        {/* <FormControl type="text" placeholder="Search" className="mr-sm-2" />
+                        <Button variant="outline-success">Search</Button> */}
                         <ul className="attributes">
-                            {this.props.auth.isLoggedIn ? <li className="login-attri">
-                                <div className="btn-group account-drop">
-                                    <button type="button" className="btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <img src={this.props.auth.user.imageurl} className="avater-img" alt="" /><span>{this.props.auth.user.username}</span>
-                                    </button>
-                                    <div className="dropdown-menu pull-right animated flipInX">
-                                        <Link to={`/user/${this.props.auth.user.username}`}><i className="ti-user"></i>My Profile</Link>
-                                        {
-                                            this.props.auth.agentData ? <Link to={`/dashboard`}><i className="ti-blackboard"></i>Dashboard</Link>
-                                                : null
-                                        }
-                                        {/* <a href="my-property.html"><i className="ti-layers"></i>Property List</a>
-                                            <a href="bookmark-list.html"><i className="ti-bookmark"></i>Bookmarked Listings</a>
-                                            <a className="active" href="change-password.html"><i className="ti-unlock"></i>Change Password</a> */}
-                                        <hr />
-                                        <Link to="/" onClick={() => this.props.logout()}><i className="ti-power-off"></i>Log Out</Link>
-                                    </div>
+                        {this.props.auth.isLoggedIn ? <li className="login-attri">
+                            <div className="btn-group account-drop">
+                                <button type="button" className="btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    <img src={this.props.auth.user.imageurl} className="avater-img" alt="" /><span>{this.props.auth.user.username}</span>
+                                </button>
+                                <div className="dropdown-menu pull-right animated flipInX">
+                                    <Link to={`/user/${this.props.auth.user.username}`}><i className="ti-user"></i>My Profile</Link>
+                                    {
+                                        this.props.auth.agentData ? <Link to={`/dashboard`}><i className="ti-blackboard"></i>Dashboard</Link>
+                                            : null
+                                    }
+                                    <hr />
+                                    <Link to="/" onClick={() => this.props.logout()}><i className="ti-power-off"></i>Log Out</Link>
                                 </div>
-                            </li> : <li className="login-attri theme-log">
-                                    <Link to="#c" data-toggle="modal" data-target="#login" onClick={this.handleGooglePopup.bind(this)}>Login / Signup</Link>
-                                </li>
-                            }
-                        </ul>
-
-                    </ul><ul className="menu core-nav-list">
-
-                            <li className="dropdown">
-                                <Link to='/' className='active'>Home</Link>
+                            </div>
+                        </li> : <li className="login-attri theme-log">
+                                <Link to="#c" data-toggle="modal" data-target="#login" onClick={this.handleGooglePopup.bind(this)}>Login / Signup</Link>
                             </li>
-
-                            <li className="dropdown">
-                                <Link to="/blog">Blog</Link>
-                            </li>
-                            <li className="dropdown">
-                                <Link to="/agents">Agents</Link>
-                            </li>
-                            {/* <li className="dropdown">
-                                <Link to="/submit">Submit Apartment</Link>
-                            </li> */}
-                            <li className="dropdown">
-                                <Link to="/contact">Contact Us</Link>
-                            </li>
-
-
-                            <li className="megamenu" data-width="500" style={{ position: 'relative' }}>
-                                <Link to="/about">About</Link>
-                            </li>
-
-                            {
-                                window.innerWidth < desktopSize && !this.props.auth.isLoggedIn ?
-                                    (
-                                        <Fragment>
-                                            <li className="dropdown">
-                                                <span to="/login" onClick={this.handleGooglePopup.bind(this)}>Login / Signup</span>
-                                            </li>
-                                        </Fragment>
-                                    )
-                                    :
-                                    <Fragment>
-                                        {
-                                            window.innerWidth < desktopSize && this.props.auth.isLogedIn ?
-                                                <li className="dropdown">
-                                                    <Link to={`/user/${this.props.auth.user.username}`}>{this.props.auth.user.username}</Link>
-                                                </li> : null
-                                        }
-                                    </Fragment>
-                            }
+                        }
 
                         </ul>
-                    </div>
-
-
-
-                </div>
-                </nav>
-                <div className="dropdown-overlay"></div>
-            </div>
-
-
-
-
+                    </Form>
+                </Navbar.Collapse>
+            </Navbar>
         )
     }
 }

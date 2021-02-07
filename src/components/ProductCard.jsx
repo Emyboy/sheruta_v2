@@ -30,7 +30,10 @@ export default connect(mapStateToProps, mapActionsToProps)((props) => {
                             <div aria-live="polite" className="slick-list draggable">
                                 <div className="slick-track" role="listbox" style={{ opacity: 1, width: '1020px', transform: 'translate3d(-340px, 0px, 0px)' }}>
                                     <div className="slick-slide" data-slick-index="0" aria-hidden="true"  role="option" aria-selected aria-describedby="slick-slide50" style={{ width: '340px', }}>
-                                        <Link to={`${String(type).toLowerCase()}/${id}`} >
+                                        <Link to={{
+                                            pathname: `${String(type).toLowerCase()}/${id}`,
+                                            state: props.val
+                                        }} >
                                             <img src={imageurl1} className="img-fluid mx-auto" alt="" />
                                         </Link>
                                     </div>
@@ -57,7 +60,7 @@ export default connect(mapStateToProps, mapActionsToProps)((props) => {
 
                 <div className="listing-detail-wrapper pb-0">
                     <div className="listing-short-detail">
-                        <h1 className="listing-name sh-text"><Link to={`${String(type).toLowerCase()}/${id}`} >{title}</Link>
+                        <h1 className="listing-name sh-text"><Link to={`${String(type).toLowerCase()}/${id}`} >{title || area}</Link>
                         {/* <i className="list-status ti-check"></i> */}
                         </h1>
                     </div>

@@ -7,7 +7,8 @@ export default (props) => {
     const { val } = props;
     console.log('val --', val);
     return (
-        <div className="col-lg-3 col-md-12 col-sm-6">
+        // <div className="col-lg-3 col-md-12 col-sm-6">
+        <div className="w-100">
             <div className="property-listing property-1">
 
                 <div className="listing-img-wrapper">
@@ -18,18 +19,18 @@ export default (props) => {
                      >
                         <img style={{
                             maxHeight: '136px'
-                        }} src={val.image_urls.image_url_1} className="img-fluid mx-auto" alt="" />
+                        }} src={val.imageurl1} className="img-fluid mx-auto" alt="" />
                     </Link>
-                    <div className="listing-like-top">
+                    {/* <div className="listing-like-top">
                         <i className="ti-heart"></i>
-                    </div>
-                    <div className="listing-rating">
+                    </div> */}
+                    {/* <div className="listing-rating">
                         <i className="ti-star filled"></i>
                         <i className="ti-star filled"></i>
                         <i className="ti-star filled"></i>
                         <i className="ti-star filled"></i>
                         <i className="ti-star"></i>
-                    </div>
+                    </div> */}
                     <span className="property-type">{val.status}</span>
                 </div>
 
@@ -41,23 +42,23 @@ export default (props) => {
                                 pathname: `/property/${val.id}/${val.agent_id}`,
                                 state: val
                             }}
-                            >{val.title}</Link></h4>
+                            >{val.title || val.area}</Link></h4>
                             <span className="listing-location"><i className="ti-location-pin"></i>{val.location}</span>
                         </div>
                         <div className="slide-property-sec">
                             <div className="pr-all-info">
 
-                                <div className="pr-single-info">
+                                {/* <div className="pr-single-info">
                                     <a href="#c" data-toggle="tooltip" data-original-title="Get Print"><i className="lni lni-pencil"></i></a>
-                                </div>
+                                </div> */}
 
                                 {/* <div className="pr-single-info">
                                     <a href="#c" className="compare-button" data-toggle="tooltip" data-original-title="Compare"><i className="ti-control-shuffle"></i></a>
                                 </div> */}
 
-                                <div className="pr-single-info">
+                                {/* <div className="pr-single-info">
                                     <a href="#c" className="like-bitt add-to-favorite" data-toggle="tooltip" data-original-title="Add To Favorites"><i className="lni lni-trash"></i></a>
-                                </div>
+                                </div> */}
 
                             </div>
                         </div>
