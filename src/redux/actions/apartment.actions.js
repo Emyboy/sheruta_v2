@@ -23,7 +23,7 @@ export const getRecentApartments = limit => dispatch => {
                     dispatch(getApartmentSuccess(res.data.apartment));
                     break;
                 case 'faild':
-                    dispatch(getApartmentError(res.data));
+                    dispatch(getApartmentError([]));
                     break;
                 default:
                     break;

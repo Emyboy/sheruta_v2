@@ -51,7 +51,7 @@ class RecentApartments extends Component {
                     </div>
 
                     <div className={getApartmentLoading ? "center pt-5 pb-5" : "row pt-5"}>
-                        {
+                        {/* {
                             this.state.apartmentList.length === 0 ? <h6>Loading..</h6>:
                             this.state.apartmentList.map((val, i) => {
                                     return (
@@ -61,7 +61,7 @@ class RecentApartments extends Component {
                                         />
                                     )
                                 })
-                        }
+                        } */}
                         {
                         }
 

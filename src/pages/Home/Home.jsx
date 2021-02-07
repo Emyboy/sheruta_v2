@@ -28,18 +28,15 @@ export default connect(mapStateToProps, mapActionsToProps)(class Home extends Co
         const { apartment, shared } = this.props;
         const { getApartmentLoading } = apartment;
         const { sharedLoading } = shared;
-        if(getApartmentLoading && sharedLoading){
-            return <PageLoader />
-        }else {
-            return (
-                <div>
-                    <Jumbo />
-                    <RecentShared shared={shared} />
-                    <Jumbo2 />
-                    <RecentApartments apartment={apartment} />
-                    <WhatWeDo />
-                </div>
-            )
-        }
+        // if(getApartmentLoading && sharedLoading){
+        return (
+            <div>
+                <Jumbo />
+                <RecentShared shared={shared} />
+                <Jumbo2 />
+                <RecentApartments apartment={apartment} />
+                <WhatWeDo />
+            </div>
+        )
     }
 })

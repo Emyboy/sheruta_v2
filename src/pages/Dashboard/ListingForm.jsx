@@ -8,6 +8,7 @@ import FileUplaod from '../../components/FileUplaod';
 import { addNewProperty } from '../../redux/actions/agent.actions';
 import { Modal, ProgressBar } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import Aminities from '../../components/Aminities';
 
 class ListingForm extends React.Component {
     constructor(props) {
@@ -270,7 +271,8 @@ class ListingForm extends React.Component {
 
                                         <div className="form-group col-md-12">
                                             <h3>Amenities</h3>
-                                            <div className="o-features">
+                                            <Aminities onChange={e => console.log(e)} />
+                                            {/* <div className="o-features">
                                                 <ul className="no-ul-list third-row">
                                                     <li>
                                                         <input id="a-1" className="checkbox-custom" name="a-1" type="checkbox" />
@@ -321,7 +323,7 @@ class ListingForm extends React.Component {
                                                         <label for="a-12" className="checkbox-custom-label">Parking</label>
                                                     </li>
                                                 </ul>
-                                            </div>
+                                            </div> */}
                                         </div>
 
                                     </div>

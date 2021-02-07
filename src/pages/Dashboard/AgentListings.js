@@ -13,7 +13,7 @@ export const AgentListings = ({
     useEffect(() => {
         getProperties(auth.agentData.id);
         // console.log(auth)
-    },[])
+    }, [])
 
     return (
         <div className='bg-white'>
@@ -30,14 +30,14 @@ export const AgentListings = ({
                     
                 </tbody>
             </table> */}
-            <div class="col-lg-12 col-md-12">
-                <div class="filter-fl">
-                    <h4>Total Property: <span class="theme-cl">{agent.agentProperties.length}</span></h4>
-                    <div class="btn-group custom-drop">
-                        <button type="button" class="btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Short By<i class="ti-angle-down"></i>
+            <div className="col-lg-12 col-md-12">
+                <div className="filter-fl">
+                    <h4>Total Property: <span className="theme-cl">{agent.agentProperties.length}</span></h4>
+                    <div className="btn-group custom-drop">
+                        <button type="button" className="btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            Short By<i className="ti-angle-down"></i>
                         </button>
-                        <div class="dropdown-menu pull-right animated flipInX">
+                        <div className="dropdown-menu pull-right animated flipInX">
                             <a href="#c">Latest</a>
                             <a href="#c">Most View</a>
                             <a href="#c">Most Popular</a>
@@ -45,7 +45,7 @@ export const AgentListings = ({
                     </div>
                 </div>
             </div>
-                    <div className='row m-3'>
+            <div className='row m-3 pb-5' style={{ justifyContent: 'center' }}>
                 {
                     agent.agentProperties.length === 0 ?
                         <label className='h4 text-center m-5'>No Property Yet</label> : <>
@@ -59,7 +59,7 @@ export const AgentListings = ({
                                 })
                             }</>
                 }
-                    </div>
+            </div>
 
 
 

@@ -56,7 +56,10 @@ export const addNewProperty = data => dispatch => {
                 if (list.length === data.image_files.length) {
                     Axios(`${process.env.REACT_APP_BASE_URL}/property`, {
                         method: 'POST',
-                        data: { ...data, uuid: id, image_urls }
+                        data: { ...data, uuid: id, image_urls },
+                        headers: { 
+                            authorization: localStorage.getItem('token')
+                        }
                     })
                         .then(res => {
                             console.log('RES -----', res);

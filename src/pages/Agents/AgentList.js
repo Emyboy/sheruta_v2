@@ -15,9 +15,9 @@ const AgentList = (props) => {
 
     console.log(props)
 
-    if (loading) {
-        return <AppLoading />
-    } else {
+    // if (loading) {
+    //     return <AppLoading />
+    // } else {
         return (
             <div className='container mt-5 mb-5'>
                 <SectionHeading
@@ -36,7 +36,7 @@ const AgentList = (props) => {
                 </div>
             </div>
         )
-    }
+    // }
 }
 
 const mapStateToProps = (state) => ({

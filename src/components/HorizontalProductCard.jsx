@@ -8,7 +8,7 @@ export default (props) => {
     console.log('val --', val);
     return (
         // <div className="col-lg-3 col-md-12 col-sm-6">
-        <div className="w-100">
+        <div className="m-2">
             <div className="property-listing property-1">
 
                 <div className="listing-img-wrapper">
@@ -18,8 +18,8 @@ export default (props) => {
                     }}
                      >
                         <img style={{
-                            maxHeight: '136px'
-                        }} src={val.imageurl1} className="img-fluid mx-auto" alt="" />
+                            maxHeight: '200px'
+                        }} src={val.image_urls.image_url_1} className="img-fluid mx-auto" alt="" />
                     </Link>
                     {/* <div className="listing-like-top">
                         <i className="ti-heart"></i>

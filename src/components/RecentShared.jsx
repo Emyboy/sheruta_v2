@@ -49,7 +49,7 @@ class RecentShared extends Component {
                     </div>
 
                     <div className={sharedLoading ? "center pt-5 pb-5" : "row pt-5"}>
-                        {
+                        {/* {
                             
                             this.state.sharedList.map((val, i) => {
                                     return (
@@ -59,7 +59,7 @@ class RecentShared extends Component {
                                         />
                                     )
                                 })
-                        }
+                        } */}
 
                     </div>
 

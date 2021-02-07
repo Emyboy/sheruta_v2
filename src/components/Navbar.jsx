@@ -135,6 +135,7 @@ class Navbar_ extends Component {
                         <Link to="/blog" className='h6 m-3'>Blog</Link>
                         <Link to="/contact" className='h6 m-3'>Contact Us</Link>
                         <Link to="/about" className='h6 m-3'>About</Link>
+                        <Link to="/agents" className='h6 m-3'>Agents</Link>
                         {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
