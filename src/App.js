@@ -17,6 +17,7 @@ import './App.css';
 
 import 'antd/dist/antd.css';
 import PageLoader from './components/PageLoader';
+import Home2 from './pages/Home/Home2';
 // import SiteUnderConts from './components/SiteUnderConts';
 
 // import Submit from './components/Submit';
@@ -63,7 +64,7 @@ function App() {
                 <TopHeader />
                 <Navbar />
                 <Switch>
-                  <Route exact path="/" component={Home} />
+                  <Route exact path="/" component={Home2} />
                   <Route exact path="/login" component={Login} />
                   <Route exact path="/signup" component={Signup} />
                   <Route exact path="/shared" component={SharedList} />
