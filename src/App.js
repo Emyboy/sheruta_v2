@@ -22,6 +22,7 @@ import AgentForm from './pages/Agents/AgentForm';
 import AgentList from './pages/Agents/AgentList';
 import './App.css';
 import AgentPage from './pages/Agents/AgentPage';
+import Home2 from './pages/Home/Home2';
 // import SiteUnderConts from './components/SiteUnderConts';
 
 // import Submit from './components/Submit';
@@ -72,7 +73,7 @@ function App() {
                 <TopHeader />
                 <Navbar />
                 <Switch>
-                  <Route exact path="/" component={Home} />
+                  <Route exact path="/" component={Home2} />
                   <Route exact path="/login" component={Login} />
                    <Route exact path="/signup" component={Signup} /> 
                    <Route exact path="/signup/success" component={SignUpSuccess} />
