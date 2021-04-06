@@ -1,0 +1,12 @@
+@media (min-width: 576px) {
+    .login-pop-form h4.modal-header-title{
+        font-size:4em;
+        line-height: 1;
+    }
+ }
+
+ .login-pop-form h4.modal-header-title{
+    font-size:2em;
+    line-height: 1;
+    
+}

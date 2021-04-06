@@ -1,6 +1,15 @@
-body {
-    background-color: #fafffd;
+body, .gray-bg, html {
+    background: #f7f9fc url('./img/pattern.png') !important;
+        background-size: cover;
+    background-position: center;
     /* color: rgba(255, 255, 255, 0.397); */
+}
+.btn-theme {
+    border: none !important;
+    background-color: #00ba74 !important;
+}
+.ant-notification {
+    z-index: 10000 !important;
 }
 .hero-search-wrap{
     background-color: rgba(255, 232, 232, 0.678) !important;
@@ -11,7 +20,15 @@ body {
 .modal, #login, #signup{
     background-color: #001f13c7;
 }
-
+.ant-tabs-tab-active{
+    background-color: #00ba74 !important;
+    color: white !important;
+    /* font-weight: bold !important; */
+}
+.ant-tabs-tab:hover{
+    color: #00ba74 !important;
+    color: black !important;
+}
 .carousel-item{
     max-height: 500px !important;
     height: 20%;
@@ -51,11 +68,11 @@ a:hover, .bl-continue{
     color: #00ba74 !important;
 }
 #preloader {
-    background-image: url('https://www.un-page.org/files/public/styles/panopoly_image_full/public/general/green_city_2-01_0.png?itok=OSatsUMP') !important;
+    background-image: url('https://image.freepik.com/free-vector/green-eco-city-banner_174191-51.jpg') !important;
     background-repeat: no-repeat;
     background-size: 100% 90%;
     background-position-y: 570%;
-    background-blend-mode: color;
+    background-blend-mode: darken;
 }
 .input-with-icon i {
     color: black !important;
@@ -70,4 +87,10 @@ a:hover, .bl-continue{
 
 .sh-text{
     color: #00ba74 !important;
+}
+
+label{
+    font-size: 1.05em;
+    color: 	#1a1a1a;
+    font-weight: 500;
 }

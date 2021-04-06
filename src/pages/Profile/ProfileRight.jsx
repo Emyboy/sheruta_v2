@@ -13,7 +13,7 @@ export default function ProfileRight(props) {
         //     </Switch>
         // </BrowserRouter>
         <div className="col-lg-8 col-md-12">
-            <div className="dashboard-wraper">
+            <div className="dashboard-wraper bg-white">
 
                 <div className="form-submit">
                     <h4>My Account</h4>

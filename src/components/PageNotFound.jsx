@@ -12,7 +12,7 @@ export default () => {
                         <div className="text-center">
 
                         <img src={image} className="img-fluid" alt=""/>
-                                <p>Maecenas quis consequat libero, a feugiat eros. Nunc ut lacinia tortor morbi ultricies laoreet ullamcorper phasellus semper</p>
+                                <p><span className="font-weight-bold">Oops!</span> The page you are looking for does not exist</p>
                                 <Link className="btn btn-theme" to="/">Back To Home</Link>
 								
 							</div>

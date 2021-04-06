@@ -5,8 +5,8 @@ import React, { Component } from 'react'
 import Axios from "axios";
 import { notification } from 'antd';
 import { Link } from 'react-router-dom';
-// import ProductCard from './ProductCard';
-const ProductCard = React.lazy(() => import('./ProductCard'));
+import ProductCard from './ProductCard';
+// const ProductCard = React.lazy(() => import('./ProductCard'));
 
 class RecentShared extends Component {
     state = {
@@ -49,7 +49,7 @@ class RecentShared extends Component {
                     </div>
 
                     <div className={sharedLoading ? "center pt-5 pb-5" : "row pt-5"}>
-                        {
+                        {/* {
                             
                             this.state.sharedList.map((val, i) => {
                                     return (
@@ -59,7 +59,7 @@ class RecentShared extends Component {
                                         />
                                     )
                                 })
-                        }
+                        } */}
 
                     </div>
 
