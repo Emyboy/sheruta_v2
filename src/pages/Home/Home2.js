@@ -15,29 +15,29 @@ import img2 from './images1/Newpics.png'
 
 export default function Home2() {
 	return (
-		<div>			
-			<div className="image-cover hero-banner" style={{ background: `url(${img1}) no-repeat` }} data-overlay="3.5">
-			<SearchBox/>
+		<div>
+			<div className="image-cover hero-banner" style={{ backgroundImage: `url("https://cdn.apartmenttherapy.info/image/upload/f_auto,q_auto:eco,c_fill,g_auto,w_1500,ar_3:2/project%20prism%2Fcolor%20search%20archive%2Ffdca42285757a45c50328d80460f369b415e66a3")` }} >
+				<SearchBox />
 			</div>
 			<div className="image-" style={{ image: `url(${img2})` }}>
-			<ExploreByPopularCity />
+				<ExploreByPopularCity />
 			</div>
 			<div>
-			<TrendingProperties/>
-			</div>
-		    <div>
-			<HowToUse />
+				<TrendingProperties />
 			</div>
 			<div>
-			<GetStarted />
+				<HowToUse />
+			</div>
+			<div>
+				<GetStarted />
 			</div>
 			<section className="image-cover pb-0" style={{ backgroundColor: "#232020" }}>
-            <WhatPeopleSay/>
+				<WhatPeopleSay />
 			</section>
 			<div>
-			<PropertyLocation/>
+				<PropertyLocation />
 			</div>
 		</div>
-	) 
+	)
 
 }

@@ -4,7 +4,7 @@ import React from 'react'
 export default function SearchBox() {
     return (
         
-            <div className="container">
+		<div className="container bg-white shadow" style={{ borderRadius: '10px' }}>
 					
 					<h1 className="italian-header-capt"> Find verified flatmates matching your lifestle </h1>
 					<div className="full-search-2 italian-search">

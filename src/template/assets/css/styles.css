@@ -5117,7 +5117,7 @@ span.tag_t {
 	padding-left: 0.35em;
 }
 .price-prefix:before {
-    content: '$';
+    content: '₦';
     position: absolute;
     left: 0;
     top:0em;
