@@ -5,7 +5,9 @@ import { Carousel, Image } from 'react-bootstrap';
 import PageLoader from '../../components/PageLoader';
 // import { Spinner } from 'react-activity';
 import AgentDetailCard from '../../components/AgentDetailCard';
+import MetaTags from 'react-meta-tags';
 
+const formatedPrice = new Intl.NumberFormat('en-NG');
 export default props => {
     console.log('props ---', props);
 
@@ -48,8 +50,9 @@ export default props => {
     };
 
     useEffect(() => {
+        console.log('DETAIL PROPS ---', props)
         if (props.location.state) {
-            getAgentDat(props.match.params.agent_id);
+            // getAgentDat(props.match.params.agent_id);
             setQuery(props.location.state);
             setIsLoading(false);
             setImage_urls(Object.values(props.location.state.image_urls));
@@ -59,25 +62,28 @@ export default props => {
         }
     }, []);
 
+    console.log('QUERY ---', query)
+
     if (isLoading) {
         return <PageLoader />
     } else {
-        console.log('query --', query, Object.values(query.image_urls));
+        // console.log('query --', query, Object.values(query.image_urls));
         return (
             <section className="gray">
                 <div className='container'>
                     <div className='row'>
-
-
-
-
-
+                        <MetaTags>
+                            <title>{query.name} | Sheruta NG</title>
+                            <meta name="description" content={query.description} />
+                            <meta property="og:title" content={query.name}/>
+                            <meta property="og:image" content={query.image_urls[0]} />
+                        </MetaTags>
 
                         <div className='col-lg-8 col-md-12 col-sm-12'>
                             <div className="slide-property-first mb-4">
                                 <div className="pr-price-into">
-                                    <h1 className='h3'>{query.title}</h1>
-                                    <h2>₦ {query.price} <i>/ monthly</i> <span className="prt-type rent">{query.status}</span></h2>
+                                    <h1 className='h3'>{query.name}</h1>
+                                    <h2>₦ {formatedPrice.format(query.price)} <i>/ monthly</i> <span className="prt-type rent">{query.statu.name}</span></h2>
                                     <h3 className="h6"><i className="lni-map-marker"></i> {query.location}</h3>
                                 </div>
                             </div>
@@ -146,10 +152,10 @@ export default props => {
 
                                 <div className="block-body">
                                     <ul className="dw-proprty-info">
-                                        <li><strong>Bedrooms</strong>{query.bedrooms}</li>
-                                        <li><strong>Bathrooms</strong>2</li>
-                                        <li><strong>Sitting Rooms</strong>{query.sittingrooms}</li>
-                                        <li><strong>Toilets</strong>{query.toilets}</li>
+                                        <li><strong>Bedrooms</strong>{query.bedroom}</li>
+                                        {/* <li><strong>Bathrooms</strong>2</li> */}
+                                        <li><strong>Sitting Rooms</strong>{query.sittingroom}</li>
+                                        <li><strong>Bathrooms</strong>{query.bathroom}</li>
                                         {/* <li><strong>Price</strong>$53264</li>
                                         <li><strong>City</strong>New York</li>
                                         <li><strong>Build On</strong>2007</li> */}
@@ -214,21 +220,21 @@ export default props => {
                             </div>
 
 
-                            <div className="block-wrap">
+                            <div class="block-wrap">
 
-                                <div className="block-header">
-                                    <h4 className="block-title">Ameneties</h4>
+                                <div class="block-header">
+                                    <h4 class="block-title">Ameneties</h4>
                                 </div>
 
-                                <div className="block-body">
-                                    <ul className="avl-features third">
+                                <div class="block-body">
+                                    <ul class="avl-features third">
                                         {
-                                            Object.keys(query.features).map((val, i) => {
-                                                return <li>{val}</li>
+                                            query.amenities.map((val, i) => {
+                                                return <li>{val.name}</li>
                                             })
                                         }
-                                        {/*                                         
-                                        <li>Swimming Pool</li>
+                                        
+                                        {/* <li>Swimming Pool</li>
                                         <li>Central Heating</li>
                                         <li>Laundry Room</li>
                                         <li>Gym</li>

@@ -164,7 +164,7 @@ class Navbar_ extends Component {
                                 </div>
                             </div>
                         </li> : <li className="login-attri theme-log">
-                                <Link to="#c" data-toggle="modal" data-target="#login" onClick={this.handleGooglePopup.bind(this)}>Login / Signup</Link>
+                                <Link to="/login" data-toggle="modal" data-target="#login">Login</Link>
                             </li>
                         }
 

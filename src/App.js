@@ -79,7 +79,7 @@ function App() {
                    <Route exact path="/signup/success" component={SignUpSuccess} />
                   {/* <Route exact path="/login" component={Login} /> */}
                   {/* <Route exact path="/signup" component={Signup} /> */}
-                  <Route exact path="/property/:property_id/:agent_id" component={PropertyDetails} />
+                  <Route exact path="/property/:name/:property_id" component={PropertyDetails} />
                   <Route exact path="/shared" component={SharedList} />
                   <Route exact path="/pricing" component={Pricing} />
                   <Route exact path="/agent/new" component={AgentForm} />
