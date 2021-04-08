@@ -35,7 +35,7 @@ export default props => {
 
     const getApartmentDetails = () => {
         const { agent_id, property_id } = props.match.params;
-        getAgentDat(agent_id);
+        // getAgentDat(agent_id);
         Axios(`${process.env.REACT_APP_BASE_URL}/properties/?id=${property_id}`)
             .then(res => {
                 console.log(res);
@@ -79,6 +79,7 @@ export default props => {
                                 <title>{query.name} | Sheruta NG</title>
                                 <meta name="description" content={query.description} />
                                 <meta property="og:title" content={query.name} />
+                                <meta property="og:description" content={query.description} />
                                 <meta property="og:image" content={query.image_urls[0]} />
                             </MetaTags>
 
@@ -172,7 +173,7 @@ export default props => {
                                 </div>
 
                                 {
-                                    agentData ? <AgentDetailCard val={agentData} /> : null
+                                    query.agent ? <AgentDetailCard val={query.agent} /> : null
                                 }
 
 
