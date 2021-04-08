@@ -36,7 +36,7 @@ export default props => {
     const getApartmentDetails = () => {
         const { agent_id, property_id } = props.match.params;
         getAgentDat(agent_id);
-        Axios(`${process.env.REACT_APP_BASE_URL}/property/${property_id}/${agent_id}`)
+        Axios(`${process.env.REACT_APP_BASE_URL}/properties/?id=${property_id}`)
             .then(res => {
                 console.log(res);
                 setQuery(res.data[0]);
@@ -68,112 +68,115 @@ export default props => {
         return <PageLoader />
     } else {
         // console.log('query --', query, Object.values(query.image_urls));
-        return (
-            <section className="gray">
-                <div className='container'>
-                    <div className='row'>
-                        <MetaTags>
-                            <title>{query.name} | Sheruta NG</title>
-                            <meta name="description" content={query.description} />
-                            <meta property="og:title" content={query.name}/>
-                            <meta property="og:image" content={query.image_urls[0]} />
-                        </MetaTags>
+        if(!query){
+            return <PageLoader />
+        }else {
+            return (
+                <section className="gray">
+                    <div className='container'>
+                        <div className='row'>
+                            <MetaTags>
+                                <title>{query.name} | Sheruta NG</title>
+                                <meta name="description" content={query.description} />
+                                <meta property="og:title" content={query.name} />
+                                <meta property="og:image" content={query.image_urls[0]} />
+                            </MetaTags>
 
-                        <div className='col-lg-8 col-md-12 col-sm-12'>
-                            <div className="slide-property-first mb-4">
-                                <div className="pr-price-into">
-                                    <h1 className='h3'>{query.name}</h1>
-                                    <h2>₦ {formatedPrice.format(query.price)} <i>/ monthly</i> <span className="prt-type rent">{query.statu.name}</span></h2>
-                                    <h3 className="h6"><i className="lni-map-marker"></i> {query.location}</h3>
-                                </div>
-                            </div>
-
-                            <div className="slide-property-sec mb-4">
-                                <div className="pr-all-info">
-
-                                    <div className="pr-single-info">
-
+                            <div className='col-lg-8 col-md-12 col-sm-12'>
+                                <div className="slide-property-first mb-4">
+                                    <div className="pr-price-into">
+                                        <h1 className='h3'>{query.name}</h1>
+                                        <h2>₦ {formatedPrice.format(query.price)} <i>/ monthly</i> <span className="prt-type rent">{query.statu.name}</span></h2>
+                                        <h3 className="h6"><i className="lni-map-marker"></i> {query.location}</h3>
                                     </div>
-
-                                    <div className="pr-single-info">
-                                        <a href="#c" className="compare-button" data-toggle="tooltip" data-original-title="Compare"><i className="ti-share"></i></a>
-                                    </div>
-
-                                    <div className="pr-single-info">
-                                        <a href="#c" className="compare-button" data-toggle="tooltip" data-original-title="Compare"><i className="ti-bookmark"></i></a>
-                                    </div>
-
-                                    <div className="pr-single-info">
-                                        <a href="#c" className="add-to-favorite" data-toggle="tooltip" data-original-title="Add To Favorites"><i className="lni-heart"></i></a>
-                                    </div>
-
-                                    <div className="pr-single-info">
-                                        <a href="#c" className="like-bitt add-to-favorite" data-toggle="tooltip" data-original-title="Add To Favorites"><i className="lni-heart-filled"></i></a>
-                                    </div>
-
-                                </div>
-                            </div>
-
-                            <div className="property3-slide single-advance-property mb-4">
-                                {/* <ImageViewer imageurl1={imageurl1} imageurl2={imageurl2} imageurl3={imageurl3} imageurl4={imageurl4} /> */}
-                                <Carousel>
-                                    {
-                                        image_urls.map((val, i) => {
-                                            console.log('URLS ---', val);
-                                            return (
-                                                <Carousel.Item>
-                                                    <span aria-hidden="true" className="carousel-control-next-icon" />
-                                                    <span id='image-viewer' style={{ height: "610px", position: "relative" }}>
-                                                        <Image
-                                                            // onClick={() => props.toggleLightBox(props.showLightBox, 0)}
-                                                            // style={{ 
-                                                            //     minHeight: '30%'
-                                                            // }}
-                                                            fluid
-                                                            className="item-slick  slick-current slick-active"
-                                                            src={val}
-                                                            alt={"slide" + i}
-                                                        />
-
-                                                    </span>
-                                                </Carousel.Item>
-                                            )
-                                        })
-                                    }
-                                </Carousel>
-
-                            </div>
-
-                            <div className="block-wrap">
-
-                                <div className="block-header">
-                                    <h4 className="block-title">Property Info</h4>
                                 </div>
 
-                                <div className="block-body">
-                                    <ul className="dw-proprty-info">
-                                        <li><strong>Bedrooms</strong>{query.bedroom}</li>
-                                        {/* <li><strong>Bathrooms</strong>2</li> */}
-                                        <li><strong>Sitting Rooms</strong>{query.sittingroom}</li>
-                                        <li><strong>Bathrooms</strong>{query.bathroom}</li>
-                                        {/* <li><strong>Price</strong>$53264</li>
+                                <div className="slide-property-sec mb-4">
+                                    <div className="pr-all-info">
+
+                                        <div className="pr-single-info">
+
+                                        </div>
+
+                                        <div className="pr-single-info">
+                                            <a href="#c" className="compare-button" data-toggle="tooltip" data-original-title="Compare"><i className="ti-share"></i></a>
+                                        </div>
+
+                                        <div className="pr-single-info">
+                                            <a href="#c" className="compare-button" data-toggle="tooltip" data-original-title="Compare"><i className="ti-bookmark"></i></a>
+                                        </div>
+
+                                        <div className="pr-single-info">
+                                            <a href="#c" className="add-to-favorite" data-toggle="tooltip" data-original-title="Add To Favorites"><i className="lni-heart"></i></a>
+                                        </div>
+
+                                        <div className="pr-single-info">
+                                            <a href="#c" className="like-bitt add-to-favorite" data-toggle="tooltip" data-original-title="Add To Favorites"><i className="lni-heart-filled"></i></a>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                                <div className="property3-slide single-advance-property mb-4">
+                                    {/* <ImageViewer imageurl1={imageurl1} imageurl2={imageurl2} imageurl3={imageurl3} imageurl4={imageurl4} /> */}
+                                    <Carousel>
+                                        {
+                                            image_urls.map((val, i) => {
+                                                console.log('URLS ---', val);
+                                                return (
+                                                    <Carousel.Item>
+                                                        <span aria-hidden="true" className="carousel-control-next-icon" />
+                                                        <span id='image-viewer' style={{ height: "610px", position: "relative" }}>
+                                                            <Image
+                                                                // onClick={() => props.toggleLightBox(props.showLightBox, 0)}
+                                                                // style={{ 
+                                                                //     minHeight: '30%'
+                                                                // }}
+                                                                fluid
+                                                                className="item-slick  slick-current slick-active"
+                                                                src={val}
+                                                                alt={"slide" + i}
+                                                            />
+
+                                                        </span>
+                                                    </Carousel.Item>
+                                                )
+                                            })
+                                        }
+                                    </Carousel>
+
+                                </div>
+
+                                <div className="block-wrap">
+
+                                    <div className="block-header">
+                                        <h4 className="block-title">Property Info</h4>
+                                    </div>
+
+                                    <div className="block-body">
+                                        <ul className="dw-proprty-info">
+                                            <li><strong>Bedrooms</strong>{query.bedroom}</li>
+                                            {/* <li><strong>Bathrooms</strong>2</li> */}
+                                            <li><strong>Sitting Rooms</strong>{query.sittingroom}</li>
+                                            <li><strong>Bathrooms</strong>{query.bathroom}</li>
+                                            {/* <li><strong>Price</strong>$53264</li>
                                         <li><strong>City</strong>New York</li>
                                         <li><strong>Build On</strong>2007</li> */}
-                                    </ul>
+                                        </ul>
+                                    </div>
+
                                 </div>
 
-                            </div>
+                                <div className="block-header">
+                                    <h4 className="block-title">Agent Info</h4>
+                                </div>
 
-                            <div className="block-header">
-                                <h4 className="block-title">Agent Info</h4>
-                            </div>
-
-                            {
-                                agentData ? <AgentDetailCard val={agentData} />:null
-                            }
+                                {
+                                    agentData ? <AgentDetailCard val={agentData} /> : null
+                                }
 
 
-                            {/* {
+                                {/* {
                                 agentData ? <div className="block-wrap">
 
                                     <div className="block-header">
@@ -207,34 +210,34 @@ export default props => {
                             } */}
 
 
-                            <div className="block-wrap">
+                                <div className="block-wrap">
 
-                                <div className="block-header">
-                                    <h4 className="block-title">Description</h4>
+                                    <div className="block-header">
+                                        <h4 className="block-title">Description</h4>
+                                    </div>
+
+                                    <div className="block-body">
+                                        <p>{query.description}</p>
+                                    </div>
+
                                 </div>
 
-                                <div className="block-body">
-                                    <p>{query.description}</p>
-                                </div>
 
-                            </div>
+                                <div class="block-wrap">
 
+                                    <div class="block-header">
+                                        <h4 class="block-title">Ameneties</h4>
+                                    </div>
 
-                            <div class="block-wrap">
+                                    <div class="block-body">
+                                        <ul class="avl-features third">
+                                            {
+                                                query.amenities.map((val, i) => {
+                                                    return <li>{val.name}</li>
+                                                })
+                                            }
 
-                                <div class="block-header">
-                                    <h4 class="block-title">Ameneties</h4>
-                                </div>
-
-                                <div class="block-body">
-                                    <ul class="avl-features third">
-                                        {
-                                            query.amenities.map((val, i) => {
-                                                return <li>{val.name}</li>
-                                            })
-                                        }
-                                        
-                                        {/* <li>Swimming Pool</li>
+                                            {/* <li>Swimming Pool</li>
                                         <li>Central Heating</li>
                                         <li>Laundry Room</li>
                                         <li>Gym</li>
@@ -245,13 +248,15 @@ export default props => {
                                         <li>Free WiFi</li>
                                         <li>Car Parking</li>
                                         <li>Spa &amp; Massage</li> */}
-                                    </ul>
+                                        </ul>
+                                    </div>
+
                                 </div>
+
 
                             </div>
 
 
-                        </div>
 
 
 
@@ -260,14 +265,12 @@ export default props => {
 
 
 
+                            <div className="col-lg-4 col-md-12 col-sm-12">
+                                <div className="page-sidebar">
 
 
-                        <div className="col-lg-4 col-md-12 col-sm-12">
-                            <div className="page-sidebar">
 
-                                
-
-                                {/* <div className="agent-widget">
+                                    {/* <div className="agent-widget">
                                     <div className="agent-title">
                                         <div className="agent-photo"><img src="assets/img/user-6.jpg" alt="" /></div>
                                         <div className="agent-details">
@@ -291,25 +294,26 @@ export default props => {
 
 
 
-                                <div className="sidebar-widgets">
+                                    <div className="sidebar-widgets">
 
-                                    <h4>Featured Property</h4>
+                                        <h4>Featured Property</h4>
 
-                                    
+
+
+                                    </div>
 
                                 </div>
-
                             </div>
+
+
+
+
+
                         </div>
-
-
-
-
-
                     </div>
-                </div>
-            </section>
-        )
+                </section>
+            )
+        }
     }
 }
 
