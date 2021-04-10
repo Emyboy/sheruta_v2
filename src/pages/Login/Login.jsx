@@ -1,46 +1,62 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import loadingGif from '../../img/loading.gif';
-
+import { useForm } from 'react-hook-form'
 import { login } from '../../redux/actions/auth.action';
 import { Redirect } from 'react-router';
+import { setAuthState } from '../../redux/strapi_actions/strapi_auth.actions'
+import Btn from '../../components/Btn'
+import axios from 'axios';
+import { notification } from 'antd';
 
+const mapStateToProps = state => ({
+    auth: state.auth
+});
 
-class Login extends Component {
-    state = {
-        email: null,
-        password: null,
-        loginBtn: <button type="submit" className="btn btn-md full-width pop-login">Login</button>,
-    }
+const mapActionToProps = {
+    setAuthState
+}
 
-    handleSubmit(e) {
-        e.preventDefault();
-        console.log(this.state);
-        this.props.login(this.state);
-    }
+const Login = props => {
 
-    handleInputChange(e){
-        this.setState({
-            [e.target.name]: e.target.value
-        });
-    }
+    const [state, setState] = useState({
+        loading: false,
+        errorMessage: null
+    })
+    const { register, handleSubmit, errors } = useForm();
 
-    componentWillReceiveProps(newProps){
-        if(newProps.auth.authLoading){
-            this.setState({
-                loginBtn: <div style={{ textAlign: 'center' }} className='mt-3'><img src={loadingGif} alt='loading-img' /></div>
+    const onSubmit = data => {
+        setState({ ...state, loading: true })
+        axios(process.env.REACT_APP_BASE_URL + '/auth/local', {
+            method: 'POST',
+            data
+        })
+            .then(res => {
+                setState({ ...state, loading: false })
+                notification.success({ message: 'Welcome Back' })
+                localStorage.setItem('token', res.data.jwt);
+                props.setAuthState({
+                    user: res.data
+                })
+                // console.log(res)
             })
-        }else {
-            this.setState({
-                loginBtn: <button type="submit" className="btn btn-md full-width pop-login">Login</button>
+            .catch(err => {
+                setState({
+                    ...state,
+                    errorMessage: err.response.data.data[0].messages[0].message,
+                    loading: false
+                })
+                setTimeout(() => {
+                    setState({ ...state, errorMessage: null })
+                }, 3000);
+                // console.log(err.response.data.data[0].messages[0].message)
             })
-        }
+        // console.log(data);
     }
-    
-    render() {
-        if(this.props.auth.isLoggedIn){
-            return <Redirect to='/' />
-        }else 
+
+    if (props.auth.user) {
+        return <Redirect to='/' />
+    } else
         return (
             <div >
                 <div className="animate__animated animate__fadeIn modal-dialog modal-dialog-centered login-pop-form" role="document">
@@ -49,56 +65,47 @@ class Login extends Component {
                         <div className="modal-body">
                             <h4 className="modal-header-title">Log In</h4>
                             <div className="login-form">
-                                <form onSubmit={(e) => this.handleSubmit(e)}>
+                                {state.errorMessage ? <div className='alert alert-danger text-center'>
+                                    <b className='m-0 p-0 h5'>{state.errorMessage}</b>
+                                </div> : null}
+                                <form onSubmit={handleSubmit(onSubmit)}>
 
                                     <div className="form-group">
                                         <label>Email</label>
                                         <div className="input-with-icon">
-                                            <input autoFocus required name='email' onChange={(e) => this.handleInputChange(e)} type="email" className="form-control" placeholder="Email" />
+                                            <input disabled={state.loading} autoFocus name='identifier' type="email" className="form-control" placeholder="Email" {...register("identifier")} />
                                             <i className="ti-user"></i>
                                         </div>
+                                        {/* {errors.identifier && <p className='text-danger'>{errors.identifier.message}</p>} */}
                                     </div>
 
                                     <div className="form-group">
                                         <label>Password</label>
                                         <div className="input-with-icon">
-                                            <input required name='password' onChange={(e) => this.handleInputChange(e)} type="password" className="form-control" placeholder="*******" />
+                                            <input disabled={state.loading} name='password' type="password" className="form-control" placeholder="*******" {...register("password")}
+                                            />
                                             <i className="ti-unlock"></i>
                                         </div>
+                                        {/* {errors.password && <p className='text-danger'>{errors.password.message}</p>} */}
                                     </div>
 
                                     <div className="form-group">
-                                        {
-                                            this.state.loginBtn
-                                        }
+                                        <Btn text='Login' loading={state.loading} className='full-width mt-2' type='submit' />
+
                                     </div>
 
                                 </form>
                             </div>
-                            {/* <div className="modal-divider"><span>Or login via</span></div> */}
-                            {/* <div className="social-login mb-3">
-                                <ul>
-                                    <li><a href="#" className="btn connect-fb"><i className="ti-facebook"></i>Facebook</a></li>
-                                    <li><a href="#" className="btn connect-twitter"><i className="ti-twitter"></i>Twitter</a></li>
-                                </ul>
-                            </div>
-                            <div className="text-center">
-                                <p className="mt-5"><a href="#" className="link">Forgot password?</a></p>
-                            </div> */}
+        
                         </div>
                     </div>
                 </div>
             </div>
         )
-    }
 }
 
-const mapStateToProps = state => ({
-    auth: state.auth
-});
 
-const mapActionToProps = {
-    login
-}
 
 export default connect(mapStateToProps, mapActionToProps)(Login);
+
+

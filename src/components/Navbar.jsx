@@ -124,6 +124,7 @@ class Navbar_ extends Component {
 
 
         // )
+        const user = this.props.auth.user;
         return (
             <Navbar bg="white" className='shadow-sm' expand="lg">
                 <Link className='navbar-brand' to='/'><img width='120px' src={siteIcon} alt="" /></Link>
@@ -148,25 +149,25 @@ class Navbar_ extends Component {
                         {/* <FormControl type="text" placeholder="Search" className="mr-sm-2" />
                         <Button variant="outline-success">Search</Button> */}
                         <ul className="attributes">
-                        {this.props.auth.isLoggedIn ? <li className="login-attri">
-                            <div className="btn-group account-drop">
-                                <button type="button" className="btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img src={this.props.auth.user.imageurl} className="avater-img" alt="" /><span>{this.props.auth.user.username}</span>
-                                </button>
-                                <div className="dropdown-menu pull-right animated flipInX">
-                                    <Link to={`/user/${this.props.auth.user.username}`}><i className="ti-user"></i>My Profile</Link>
-                                    {
-                                        this.props.auth.agentData ? <Link to={`/dashboard`}><i className="ti-blackboard"></i>Dashboard</Link>
-                                            : null
-                                    }
-                                    <hr />
-                                    <Link to="/" onClick={() => this.props.logout()}><i className="ti-power-off"></i>Log Out</Link>
+                            {this.props.auth.user ? <li className="login-attri">
+                                <div className="btn-group account-drop">
+                                    <button type="button" className="btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <img src={user.user.avatar_url} className="avater-img" alt="" style={{ width: '30px' }} /><span>{user.user.username}</span>
+                                    </button>
+                                    <div className="dropdown-menu pull-right animated flipInX">
+                                        <Link to={`/profile`}><i className="ti-user"></i>My Profile</Link>
+                                        {
+                                            this.props.auth.agentData ? <Link to={`/dashboard`}><i className="ti-blackboard"></i>Dashboard</Link>
+                                                : null
+                                        }
+                                        <hr />
+                                        <Link to="/" onClick={() => this.props.logout()}><i className="ti-power-off"></i>Log Out</Link>
+                                    </div>
                                 </div>
-                            </div>
-                        </li> : <li className="login-attri theme-log">
+                            </li> : <li className="login-attri theme-log">
                                 <Link to="/login" data-toggle="modal" data-target="#login">Login</Link>
                             </li>
-                        }
+                            }
 
                         </ul>
                     </Form>

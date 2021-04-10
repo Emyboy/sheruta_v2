@@ -14,11 +14,12 @@ const Btn = ({
     return (
         <button
             className={`${className || ''} ` + `btn rounded ${danger ? 'btn-danger' : 'btn-theme'}`}
-            disabled={loading}
+            disabled={disabled || loading}
             onClick={onClick}
             type={type}
+            style={{ fontSize: '20px' }}
         >
-            {loading ? <Spinner /> : text}
+            {loading ? <Spinner color='white' /> : text}
         </button>
     )
 }

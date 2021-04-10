@@ -92,7 +92,7 @@ function App() {
                   <Route exact path="/contact" component={Contact} />
                   <Route exact path="/agents" component={Agents} />
                   <Route exact path="/about" component={About} />
-                  <Route exact path="/user/:username" component={Profile} />
+                  <Route exact path="/profile" component={Profile} />
                   <Route exact path="/blog/:title" component={BlogDetails} />
                   <Route exact path="/shared/signup" component={SharedSignup} />
                   <Route exact path="/:type/:id" component={Details} />

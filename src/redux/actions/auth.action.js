@@ -43,7 +43,7 @@ const clearError = error => {
   }
 }
 
-const signupError = error =>{
+const signupError = error => {
   return {
     type: SIGNUP_ERROR,
     payload: error
@@ -71,29 +71,29 @@ export const logout = () => dispatch => {
 
 export const signup = data => dispatch => {
   dispatch(authLoading());
- 
-   return Axios(`${process.env.REACT_APP_BASE_URL}/signup`, {
+
+  return Axios(`${process.env.REACT_APP_BASE_URL}/signup`, {
     method: 'POST',
     data: data,
     validateStatus: (status) => {
-      return status == 200 || status == 409; 
+      return status == 200 || status == 409;
     }
   })
     .then(res => {
       console.log("Response = ", res)
-      
+
       if (res.status === 200) {
         dispatch(loginSuccess(res.data.user[0]));
         notification.success({ message: res.data.message });
       } else if (res.status === 409 && res.data.errors[0]) {
         switch (res.data.errors[0].param) {
           case "username":
-            dispatch(signupError({message:"Username In Use", description:'The username you entered has already been taken. Please enter a different username'}))
-           // notification.error({ message: 'Username Already In Use' })
+            dispatch(signupError({ message: "Username In Use", description: 'The username you entered has already been taken. Please enter a different username' }))
+            // notification.error({ message: 'Username Already In Use' })
             break;
           case "email":
-           // notification.error({ message: 'Email Already In Use' })
-           dispatch(signupError({message:"Email In Use", description:'The email you entered has already been taken. Please enter a different email'}))
+            // notification.error({ message: 'Email Already In Use' })
+            dispatch(signupError({ message: "Email In Use", description: 'The email you entered has already been taken. Please enter a different email' }))
             break;
           default:
             break;
@@ -101,12 +101,12 @@ export const signup = data => dispatch => {
       }
     })
     .catch(err => {
-      err.isAxiosError ? dispatch(signupError({ message:"Network Error", description: 'We apologize that we could not establish server connection at this time. It is possible that you do not have an internet connection or that our server is down currently. Please check that you have an internet connection and sign up again or try signing up at a later time'}))
-      : dispatch(signupError({message:"Request Error", description: "An error occurred while processing your request. Please try signing up again." }))
-     
-       /*notification.error({ message:"Network Error", description: 'Server connection could not be established. You either do not have an internet connection or server is down. Please verify you have an internet connection and try again'})
-      : notification.error({message:"Request Error", description: "An error occurred while processing your request. Please try again.", duration:0 })*/
-      
+      err.isAxiosError ? dispatch(signupError({ message: "Network Error", description: 'We apologize that we could not establish server connection at this time. It is possible that you do not have an internet connection or that our server is down currently. Please check that you have an internet connection and sign up again or try signing up at a later time' }))
+        : dispatch(signupError({ message: "Request Error", description: "An error occurred while processing your request. Please try signing up again." }))
+
+      /*notification.error({ message:"Network Error", description: 'Server connection could not be established. You either do not have an internet connection or server is down. Please verify you have an internet connection and try again'})
+     : notification.error({message:"Request Error", description: "An error occurred while processing your request. Please try again.", duration:0 })*/
+
     })
 }
 
@@ -228,3 +228,10 @@ export const editAgentAccount = data => dispatch => {
     })
 }
 
+export const setAuthState = state => dispatch => {
+  dispatch({
+    type: 'SET_AUTH_STATE',
+    payload: state
+  })
+
+}

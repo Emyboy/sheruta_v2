@@ -1,17 +1,12 @@
 import React from 'react'
+import Btn from '../../components/Btn';
 // import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
 export default function ProfileRight(props) {
     const { val } = props;
-    console.log(val);
-    
+    console.log('VAL -',val);
+
     return (
-        // <BrowserRouter>
-        //     <Switch>
-        //         <Route path="/home" component={App} />
-        //         <Redirect from="/" to="/home" />
-        //     </Switch>
-        // </BrowserRouter>
         <div className="col-lg-8 col-md-12">
             <div className="dashboard-wraper bg-white">
 
@@ -21,18 +16,18 @@ export default function ProfileRight(props) {
                         <div className="form-row">
 
                             <div className="form-group col-md-6">
-                                <label>Full Name</label>
-                                <input type="text" className="form-control" value={val.fullname} />
+                                <label>Fist Name</label>
+                                <input type="text" className="form-control" value={val.first_name} />
                             </div>
 
                             <div className="form-group col-md-6">
-                                <label>Email</label>
-                                <input disabled type="email" className="form-control" value={val.email} />
+                                <label>Last Name</label>
+                                <input type="email" className="form-control" value={val.last_name} />
                             </div>
 
                             <div className="form-group col-md-6">
                                 <label>Phone</label>
-                                <input type="text" className="form-control" value={val.phoneno} />
+                                <input type="text" className="form-control" value={val.phone_number} />
                             </div>
                             <div className="form-group col-md-6">
                                 <label>Username</label>
@@ -60,12 +55,13 @@ export default function ProfileRight(props) {
                                 <input type="text" className="form-control" value="160052" />
                             </div> */}
 
-                            {/* <div className="form-group col-md-12">
+                            <div className="form-group col-md-12">
                                 <label>About</label>
                                 <textarea className="form-control">{val.bio}</textarea>
-                            </div> */}
+                            </div>
 
                         </div>
+                        {/* <Btn text='Edit Profile' /> */}
                     </div>
                 </div>
 
