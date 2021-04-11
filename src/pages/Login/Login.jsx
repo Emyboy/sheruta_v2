@@ -8,6 +8,7 @@ import { setAuthState } from '../../redux/strapi_actions/strapi_auth.actions'
 import Btn from '../../components/Btn'
 import axios from 'axios';
 import { notification } from 'antd';
+import { Link } from 'react-router-dom';
 
 const mapStateToProps = state => ({
     auth: state.auth
@@ -91,7 +92,9 @@ const Login = props => {
 
                                     <div className="form-group">
                                         <Btn text='Login' loading={state.loading} className='full-width mt-2' type='submit' />
-
+                                        <div className='text-center mt-3'>
+                                            <Link to='/signup' className='text-success h5'>Signup</Link>
+                                        </div>
                                     </div>
 
                                 </form>
