@@ -37,6 +37,7 @@
     "react-copy-to-clipboard": "^5.0.2",
     "react-dom": "^16.13.1",
     "react-dropzone": "^10.2.2",
+    "react-google-places-autocomplete": "^3.3.0",
     "react-h5-audio-player": "^2.3.6",
     "react-hook-form": "^7.0.4",
     "react-horizontal-scrolling-menu": "^0.7.5",

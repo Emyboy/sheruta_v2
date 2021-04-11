@@ -7,41 +7,60 @@ import { useDropzone } from 'react-dropzone'
 import { crate_agent_account } from '../../redux/actions/auth.action';
 import { notification } from "antd";
 import { ProgressBar } from 'react-bootstrap';
+import { storage } from 'firebase';
+import axios from 'axios';
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 
 const AgentForm = props => {
     const { auth } = props;
     const { agentLoading, progress } = auth;
-    const [name, setName] = useState(null);
-    const [phoneNo, setPhoneNo] = useState(null);
-    const [address, setAddress] = useState(null);
-    const [location, setLocation] = useState(null);
-    const [logo, setLogo] = useState(null);
+    const [data, setData] = useState({
+        name: null,
+        location: null,
+        logo_url: null,
+        phone_number: auth.user.user.phone_number,
+        google_location: null,
+        company_logo: null
+    });
+    const [state, setState] = useState({
+        loading: false
+    })
 
     const onDrop = useCallback(acceptedFiles => {
         console.log('file ----', acceptedFiles);
-        setLogo(acceptedFiles[0]);
+        setData({ ...data, company_logo: acceptedFiles[0] });
     }, [])
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
-    const handleSubmit = e => {
-        e.preventDefault();
-        if (auth.isLoggedIn) {
-            if (name && phoneNo && address && logo) {
-                props.createAccount({
-                    user_id: auth.user.id,
-                    company_name: name,
-                    company_phone_no: phoneNo,
-                    company_address: address,
-                    company_logo: logo,
-                    location
+    const crate_agent_account = e => {
+        e.priventDefault()
+        console.log('SENDING ---', data)
+        const uploadTask = storage.child(`image/agent/${data.user_id}/company_logo`).put(data.company_logo)
+        uploadTask.on('state_changed', (snapshot) => {
+            var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+            console.log('Upload is ' + Number.parseInt(progress) + '% done');
+        }, (error) => {
+            // Handle unsuccessful uploads
+            notification.error({ message: 'Error Uploading Image ' });
+        }, () => {
+            uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                console.log('File available at', downloadURL);
+                axios(`${process.env.REACT_APP_BASE_URL}/agent`, {
+                    method: 'POST',
+                    data: { ...data, company_logo: downloadURL }
                 })
-            } else {
-                notification.error({ message: 'Please Fill Out The Form' })
-            }
-        } else {
-            notification.error({ message: "Please Login / Signup" })
-        }
-
+                    .then(account => {
+                        console.log(account);
+                        notification.error({ message: 'Error Sending data, Please Try Again' });
+                    })
+                    .catch(err => {
+                        notification.error({ message: 'Error Sending data, Please Try Again' });
+                        console.log(err)
+                    })
+            }).catch(err => {
+                console.log('error ---', err);
+            });
+        });
     }
 
     if (auth.agentData) {
@@ -56,13 +75,13 @@ const AgentForm = props => {
                         <div className="modal-body">
                             <h4 className="modal-header-title">Agent</h4>
                             <div className="login-form">
-                                <form onSubmit={(e) => this.handleSubmit(e)}>
+                                <form onSubmit={crate_agent_account}>
                                     <div className="row">
 
                                         <div className="col-lg-6 col-md-6">
                                             <div className="form-group">
                                                 <div className="input-with-icon">
-                                                    <input name='company_name' onChange={(e) => setName(e.target.value)} type="text" className="form-control" placeholder="Company Name" />
+                                                    <input name='company_name' onChange={(e) => setData({ ...data, name: e.target.value })} type="text" className="form-control" placeholder="Company Name" />
                                                     <i className="ti-user"></i>
                                                 </div>
                                             </div>
@@ -71,31 +90,55 @@ const AgentForm = props => {
                                         <div className="col-lg-6 col-md-6">
                                             <div className="form-group">
                                                 <div className="input-with-icon">
-                                                    <input name='company_phone_no' onChange={(e) => setPhoneNo(e.target.value)} type="phone" className="form-control" placeholder="Company Phone No:" />
+                                                    <input defaultValue={data.phone_number} name='company_phone_no' onChange={(e) => setData({ ...data, phone_number: e.target.value })} type="phone" className="form-control" placeholder="Company Phone No:" />
                                                     <i className="ti-mobile"></i>
                                                 </div>
                                             </div>
                                         </div>
 
-                                        <div className="col-lg-6 col-md-6">
+                                        {/* <div className="col-lg-6 col-md-6">
                                             <div className="form-group">
                                                 <div className="input-with-icon">
-                                                    <input name='company_address' onChange={(e) => setAddress(e.target.value)} type="text" className="form-control" placeholder="Company Address" />
+                                                    <input name='company_address' onChange={(e) => setData({ ...data, location: e.target.value })} type="text" className="form-control" placeholder="Company Address" />
                                                     <i className="ti-map"></i>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> */}
 
-                                        <div className="col-lg-6 col-md-6">
+                                        {/* <div className="col-lg-6 col-md-6">
                                             <div className="form-group">
                                                 <div className="input-with-icon">
                                                     <input name='location' onChange={(e) => setLocation(e.target.value)} type="text" className="form-control" placeholder="Location" />
                                                     <i className="ti-map"></i>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> */}
 
-                                        <div className="col-lg-12 col-md-12">
+                                        <div className="col-lg-6 col-md-6">
+                                            <div className='form-group'>
+                                                <GooglePlacesAutocomplete
+                                                    apiKey={process.env.REACT_APP_GOOGLE_PLACES_API_KEY}
+                                                    className="form-control"
+                                                    apiOptions={{ language: 'en', region: 'ng' }}
+                                                    selectProps={{
+                                                        // props.state.location,
+                                                        onChange: e => {
+                                                            console.log(e)
+                                                            setData({ ...data, google_location: e, location: e.label })
+                                                        },
+                                                        placeholder:
+                                                            'Location',
+                                                        className: 'form-control shadow-sm rounded input-with-icon'
+                                                    }}
+                                                    autocompletionRequest={{
+                                                        componentRestrictions: {
+                                                            country: ['ng'],
+                                                        },
+                                                    }}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="col-lg-6 col-md-6">
                                             <div className="form-group">
                                                 <div className="input-with-icon">
                                                     <div {...getRootProps()}>
@@ -116,7 +159,7 @@ const AgentForm = props => {
                                     </div>
 
                                     <div className="form-group">
-                                        {!agentLoading ? <button disabled={agentLoading} onClick={e => handleSubmit(e)} type="submit" className="btn btn-md full-width pop-login">{agentLoading ? 'Loading ..' : `Create Account`} </button>
+                                        {!state.loading ? <button disabled={state.loading} type="submit" className="btn btn-md full-width pop-login">{state.loading ? 'Loading ..' : `Create Account`} </button>
                                             :
                                             <ProgressBar striped variant="success" now={progress} />}
                                     </div>

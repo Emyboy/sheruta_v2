@@ -7,8 +7,11 @@ import { logout, handleGoogleLogin } from '../redux/actions/auth.action';
 import { toggleNavbar } from '../redux/actions/view.actions';
 import { firebaseAuth, googleProvider } from '../Firebase';
 import { PhoneNumberModal } from './PhoneNumberModal';
+import axios from 'axios';
+import store from '../redux/store/store';
 
 const desktopSize = 993;
+
 
 class Navbar_ extends Component {
 
@@ -35,108 +38,59 @@ class Navbar_ extends Component {
             });
     }
 
+    getUserData() {
+        const { auth } = this.props;
+        // console.log('AUTH --', auth)
+        axios(process.env.REACT_APP_BASE_URL + "/users/me", {
+            headers: {
+                Authorization:
+                    `Bearer ${auth.user.jwt}`,
+            },
+        })
+            .then(res => {
+                console.log('HEADER USER --', res)
+                store.dispatch({
+                    type: 'SET_AUTH_STATE',
+                    payload: {
+                        user: {
+                            user: res.data,
+                            jwt: auth.user.jwt
+                        }
+                    }
+                })
+            })
+            .catch(err => {
+                console.log('ERRR ----', err)
+            })
+    }
+
+    componentDidMount() {
+        const { user } = this.props.auth;
+        // console.log('HEADER PROPS ----', this.props.auth.user)
+        // console.log('HEADER DON MOUNTH OOO')
+        if (user) {
+            // alert('there is user')
+            this.getUserData()
+        }
+    }
+
+
     render() {
         console.log('navbar props ---', this.props);
         const { auth } = this.props.auth;
-        // return (
-        //     <div className="header header-light nav-left-side">
-        //         <nav className={!this.props.view.showNavbar ? "headnavbar core-nav" : "headnavbar core-nav open-responsive open-dropdown"}><div className="nav-container">
-        //             <div className="nav-header right">
-        //                 <Link to="/" className="brand mt-1"><img style={{ width: '70%' }} src={siteIcon} alt="" /></Link>
-        //                 <button onClick={() => this.props.toggleNavbar(!this.props.view.showNavbar)} className="toggle-bar core-nav-toggle"><span className="ti-align-justify"></span></button>
-        //             </div>
-        //             <div className="wrap-core-nav-list right"><ul className="attributes">
-
-        //                 <ul className="attributes">
-        //                     {this.props.auth.isLoggedIn ? <li className="login-attri">
-        //                         <div className="btn-group account-drop">
-        //                             <button type="button" className="btn btn-order-by-filt" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-        //                                 <img src={this.props.auth.user.imageurl} className="avater-img" alt="" /><span>{this.props.auth.user.username}</span>
-        //                             </button>
-        //                             <div className="dropdown-menu pull-right animated flipInX">
-        //                                 <Link to={`/user/${this.props.auth.user.username}`}><i className="ti-user"></i>My Profile</Link>
-        //                                 {
-        //                                     this.props.auth.agentData ? <Link to={`/dashboard`}><i className="ti-blackboard"></i>Dashboard</Link>
-        //                                         : null
-        //                                 }
-        //                                 <hr />
-        //                                 <Link to="/" onClick={() => this.props.logout()}><i className="ti-power-off"></i>Log Out</Link>
-        //                             </div>
-        //                         </div>
-        //                     </li> : <li className="login-attri theme-log">
-        //                             <Link to="#c" data-toggle="modal" data-target="#login" onClick={this.handleGooglePopup.bind(this)}>Login / Signup</Link>
-        //                         </li>
-        //                     }
-        //                 </ul>
-
-        //             </ul><ul className="menu core-nav-list">
-
-        //                     <li className="dropdown">
-        //                         <Link to='/' className='active'>Home</Link>
-        //                     </li>
-
-        //                     <li className="dropdown">
-        //                         <Link to="/blog">Blog</Link>
-        //                     </li>
-        //                     <li className="dropdown">
-        //                         <Link to="/agents">Agents</Link>
-        //                     </li>
-        //                     <li className="dropdown">
-        //                         <Link to="/contact">Contact Us</Link>
-        //                     </li>
-
-
-        //                     <li className="megamenu" data-width="500" style={{ position: 'relative' }}>
-        //                         <Link to="/about">About</Link>
-        //                     </li>
-
-        //                     {
-        //                         window.innerWidth < desktopSize && !this.props.auth.isLoggedIn ?
-        //                             (
-        //                                 <Fragment>
-        //                                     <li className="dropdown">
-        //                                         <span to="/login" onClick={this.handleGooglePopup.bind(this)}>Login / Signup</span>
-        //                                     </li>
-        //                                 </Fragment>
-        //                             )
-        //                             :
-        //                             <Fragment>
-        //                                 {
-        //                                     window.innerWidth < desktopSize && this.props.auth.isLogedIn ?
-        //                                         <li className="dropdown">
-        //                                             <Link to={`/user/${this.props.auth.user.username}`}>{this.props.auth.user.username}</Link>
-        //                                         </li> : null
-        //                                 }
-        //                             </Fragment>
-        //                     }
-
-        //                 </ul>
-        //             </div>
-
-
-
-        //         </div>
-        //         </nav>
-        //         <div className="dropdown-overlay"></div>
-        //     </div>
-
-
-
-
-        // )
         const user = this.props.auth.user;
         return (
             <Navbar bg="white" className='shadow-sm' expand="lg">
-                <Link className='navbar-brand' to='/'><img width='120px' src={siteIcon} alt="" /></Link>
+                <Link className='navbar-brand' to='/'><img width='120px' src={siteIcon} alt="Site Logo" /></Link>
                 {/* <Link to="/" className="brand mt-1"></Link> */}
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
                         <Link to="/" className='h6 m-3'>Home</Link>
                         <Link to="/blog" className='h6 m-3'>Blog</Link>
+                        <Link to="/agents" className='h6 m-3'>Agents</Link>
                         <Link to="/contact" className='h6 m-3'>Contact Us</Link>
                         <Link to="/about" className='h6 m-3'>About</Link>
-                        <Link to="/agents" className='h6 m-3'>Agents</Link>
                         {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
                             <NavDropdown.Item href="#action/3.2">Another action</NavDropdown.Item>
