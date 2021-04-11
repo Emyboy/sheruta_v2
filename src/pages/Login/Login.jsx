@@ -38,7 +38,7 @@ const Login = props => {
                 props.setAuthState({
                     user: res.data
                 })
-                // console.log(res)
+                // console.log('USER FOUND --', res)
             })
             .catch(err => {
                 setState({
