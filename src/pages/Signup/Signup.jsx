@@ -134,7 +134,7 @@ export const Signup = (props) => {
                                 </div>
 
                                 <div className="form-group">
-                                    <button type="submit" className="btn btn-md full-width pop-login">{state.loading ? <Spinner /> : 'Sign Up'}</button>
+                                    <button disabled={state.loading} type="submit" className="btn btn-md full-width pop-login">{state.loading ? <Spinner color='white' /> : 'Sign Up'}</button>
                                 </div>
 
                             </form>

@@ -50,7 +50,9 @@ export default props => {
                                         <li><a className="linkedin" href="#c"><i className="lni-linkedin"></i></a></li>
                                     </ul> */}
                                     <div className='social-icons'>
-                                        <button className='btn btn-success btn-sm'>Request Agent Information</button>
+                                        <button className='btn btn-success btn-sm rounded shadow'>
+                                            <h5 className='text-white m-0'>View More Information</h5>
+                                        </button>
                                     </div>
                                     <div className="clearfix"></div>
                                 </div>

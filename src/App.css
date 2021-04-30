@@ -68,7 +68,7 @@ a:hover, .bl-continue{
     color: #00ba74 !important;
 }
 #preloader {
-    background-image: url('https://image.freepik.com/free-vector/green-eco-city-banner_174191-51.jpg') !important;
+    /* background-image: url('https://image.freepik.com/free-vector/green-eco-city-banner_174191-51.jpg') !important; */
     background-repeat: no-repeat;
     background-size: 100% 90%;
     background-position-y: 570%;

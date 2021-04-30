@@ -31,7 +31,9 @@ export default React.memo((props) => {
                         <i className="ti-star filled"></i>
                         <i className="ti-star"></i>
                     </div> */}
-                    <span className="property-type">{val.status}</span>
+                    {
+                        val.statu ? <span className="property-type bg-dark shadow text-white"><b>{val.statu.name}</b></span>:null
+                    }
                 </div>
 
                 <div className="listing-content">

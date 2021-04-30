@@ -37,17 +37,20 @@ export default props => {
     }
 
 
-    const getAgentDat = (agent_id) => {
-        Axios(`${process.env.REACT_APP_BASE_URL}/agent/${agent_id}`)
+    const getAgentDat = () => {
+        const { agent_id, property_id } = props.match.params;
+        Axios(`${process.env.REACT_APP_BASE_URL}/agents/free/prop/${property_id}`)
             .then(agent => {
-                console.log('Agent data --', agent);
-                if (typeof agent.data.account) {
-                    setAgentData(agent.data.account[0])
-                } else {
-                    notification.error({ message: 'Error Loading Agent Info' })
-                }
+                console.log('Agent data --', agent.data);
+                setAgentData(agent.data)
+                // if (typeof agent.data.account) {
+                //     setAgentData(agent.data.account[0])
+                // } else {
+                //     notification.error({ message: 'Error Loading Agent Info' })
+                // }
             })
             .catch(err => {
+                console.log('AGENT ERROR ----', err)
                 notification.error({ message: 'Error Loading Agent Info' })
             })
     }
@@ -55,13 +58,13 @@ export default props => {
 
     const getApartmentDetails = () => {
         const { agent_id, property_id } = props.match.params;
-        // getAgentDat(agent_id);
         Axios(`${process.env.REACT_APP_BASE_URL}/properties/?id=${property_id}`)
             .then(res => {
                 // console.log(res);
                 setQuery(res.data[0]);
                 setImage_urls(Object.values(res.data[0].image_urls))
                 setIsLoading(false);
+                // getAgentDat(agent_id);
             })
             .catch(err => {
                 // console.log(err);
@@ -83,7 +86,7 @@ export default props => {
     }, []);
 
     useEffect(() => {
-        if (query) { getApartmentsByCategory(); }
+        if (query) { getApartmentsByCategory(); getAgentDat(); }
     }, [query])
 
     console.log('QUERY ---', query)
@@ -113,7 +116,7 @@ export default props => {
                                         <h1 className='h3'>{query.name}</h1>
                                         <h2>₦ {window.renderPrice(query.price)} <i>/ monthly</i>
                                             {query.statu ?
-                                                <span className="prt-type rent">{query.statu.name}</span>
+                                                <span className="prt-type rent badge p-2">{query.statu.name}</span>
                                                 : null
                                             }
                                         </h2>
@@ -202,7 +205,7 @@ export default props => {
                                 </div>
 
                                 {
-                                    query.agent ? <AgentDetailCard val={query.agent} /> : <div className='text-center'>
+                                    agentData ? <AgentDetailCard val={agentData} /> : <div className='text-center'>
                                         <div className='alert alert-danger'>
                                             <h4>No Agent Data Was Found</h4>
                                             <Link to='/contact' className='btn-info rounded btn btn-sm'><h5 className='m-0'>Contact Sheruta</h5></Link>
