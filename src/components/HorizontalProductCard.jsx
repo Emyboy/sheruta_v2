@@ -16,7 +16,7 @@ export default React.memo((props) => {
                         pathname: `/property/${val.name}/${val.id}`,
                         state: val
                     }}
-                     >
+                    >
                         <img style={{
                             maxHeight: '200px'
                         }} src={val.image_urls[0]} className="img-fluid mx-auto" alt={val.name} />
@@ -69,9 +69,9 @@ export default React.memo((props) => {
 
                     <div className="listing-features-info">
                         <ul>
-                            <li><strong>Bed:</strong>{val.bedrooms}</li>
-                            <li><strong>Bath:</strong>{val.toilets}</li>
-                            <li><strong>Views:</strong>{val.views}</li>
+                            <li><strong>Bed:</strong>{val.bedroom}</li>
+                            <li><strong>Bath:</strong>{val.bathroom}</li>
+                            {/* {val.categorie ? <li><strong>Category:</strong>{val.categorie.name}</li> : null} */}
                             {/* <li><strong>Sqft:</strong>3,700</li> */}
                         </ul>
                     </div>
@@ -80,7 +80,7 @@ export default React.memo((props) => {
                         <div className="listing-price">
                             <h4 className="list-pr">₦ {window.renderPrice(val.price)}</h4>
                         </div>
-                        
+
                         {/* <div className="listing-detail-btn">
                             <a href="single-property-2.html" className="more-btn">More Info</a>
                         </div> */}

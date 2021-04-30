@@ -86,7 +86,7 @@ export default props => {
         if (query) { getApartmentsByCategory(); }
     }, [query])
 
-    // console.log('QUERY ---', query)
+    console.log('QUERY ---', query)
 
     if (isLoading) {
         return <PageLoader />
