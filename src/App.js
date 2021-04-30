@@ -82,18 +82,18 @@ function App() {
                   <Route exact path="/property/:name/:property_id" component={PropertyDetails} />
                   <Route exact path="/shared" component={SharedList} />
                   <Route exact path="/pricing" component={Pricing} />
-                  <Route exact path="/agent/new" component={AgentForm} />
+                  {/* <Route exact path="/agent/new" component={AgentForm} />
                   <Route exact path="/agent/:company_name" component={AgentPage} />
-                  <Route exact path="/apartments" component={ApartmentList} />
                   <Route exact path="/agents/list" component={AgentList} />
+                  <Route exact path="/agents" component={Agents} /> */}
+                  <Route exact path="/apartments" component={ApartmentList} />
                   <Route exact path="/submit/:type" component={Submit} />
-                  <Route exact path="/blog" component={Blog} />
+                  {/* <Route exact path="/blog" component={Blog} />
+                  <Route exact path="/blog/:title" component={BlogDetails} /> */}
                   <Route exact path="/submit" component={Submit} />
                   <Route exact path="/contact" component={Contact} />
-                  <Route exact path="/agents" component={Agents} />
                   <Route exact path="/about" component={About} />
                   <Route exact path="/profile" component={Profile} />
-                  <Route exact path="/blog/:title" component={BlogDetails} />
                   <Route exact path="/shared/signup" component={SharedSignup} />
                   <Route exact path="/:type/:id" component={Details} />
                   <Route exact path="/dashboard" component={Dashboard} />

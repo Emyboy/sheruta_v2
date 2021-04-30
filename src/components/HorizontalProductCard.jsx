@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 // import { Link } from 'react-router-dom';
 
 
-export default (props) => {
+export default React.memo((props) => {
     const { val } = props;
     console.log('val --', val);
     return (
@@ -13,13 +13,13 @@ export default (props) => {
 
                 <div className="listing-img-wrapper">
                     <Link to={{
-                        pathname:`/property/${val.id}/${val.agent_id}`,
+                        pathname: `/property/${val.name}/${val.id}`,
                         state: val
                     }}
                      >
                         <img style={{
                             maxHeight: '200px'
-                        }} src={val.image_urls.image_url_1} className="img-fluid mx-auto" alt="" />
+                        }} src={val.image_urls[0]} className="img-fluid mx-auto" alt={val.name} />
                     </Link>
                     {/* <div className="listing-like-top">
                         <i className="ti-heart"></i>
@@ -39,10 +39,10 @@ export default (props) => {
                     <div className="listing-detail-wrapper">
                         <div className="listing-short-detail">
                             <h4 className="listing-name"><Link to={{
-                                pathname: `/property/${val.id}/${val.agent_id}`,
+                                pathname: `/property/${val.name}/${val.id}`,
                                 state: val
                             }}
-                            >{val.title || val.area}</Link></h4>
+                            >{val.name}</Link></h4>
                             <span className="listing-location"><i className="ti-location-pin"></i>{val.location}</span>
                         </div>
                         <div className="slide-property-sec">
@@ -78,7 +78,7 @@ export default (props) => {
 
                     <div className="listing-footer-wrapper">
                         <div className="listing-price">
-                            <h4 className="list-pr">₦ {val.price}</h4>
+                            <h4 className="list-pr">₦ {window.renderPrice(val.price)}</h4>
                         </div>
                         
                         {/* <div className="listing-detail-btn">
@@ -91,4 +91,4 @@ export default (props) => {
             </div>
         </div>
     )
-}
+});

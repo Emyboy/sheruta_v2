@@ -28,15 +28,15 @@ export default function Home2() {
 			<div>
 				<HowToUse />
 			</div>
-			<div>
+			{/* <div>
 				<GetStarted />
-			</div>
+			</div> */}
 			<section className="image-cover pb-0" style={{ backgroundColor: "#232020" }}>
 				<WhatPeopleSay />
 			</section>
-			<div>
+			{/* <div>
 				<PropertyLocation />
-			</div>
+			</div> */}
 		</div>
 	)
 

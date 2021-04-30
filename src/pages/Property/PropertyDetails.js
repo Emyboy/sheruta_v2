@@ -6,15 +6,35 @@ import PageLoader from '../../components/PageLoader';
 // import { Spinner } from 'react-activity';
 import AgentDetailCard from '../../components/AgentDetailCard';
 import MetaTags from 'react-meta-tags';
+import axios from 'axios';
+import HorizontalProductCard from '../../components/HorizontalProductCard'
+import { Link } from 'react-router-dom';
 
-const formatedPrice = new Intl.NumberFormat('en-NG');
+// const formatedPrice = new Intl.NumberFormat('en-NG');
 export default props => {
-    console.log('props ---', props);
+    // console.log('props ---', props);
 
     const [isLoading, setIsLoading] = useState(true);
     const [query, setQuery] = useState(null);
     const [image_urls, setImage_urls] = useState([]);
     const [agentData, setAgentData] = useState(null);
+    const [categoryList, setCategoryList] = useState([])
+
+    const getApartmentsByCategory = () => {
+        console.log('GETTING BY CAT', query)
+        if (query) {
+            const url = process.env.REACT_APP_BASE_URL + '/properties/category/' + query.categorie.id + "/5";
+            console.log(url)
+            axios(url)
+                .then(res => {
+                    console.log(res)
+                    setCategoryList(res.data)
+                })
+                .catch(err => {
+                    console.log(err)
+                })
+        }
+    }
 
 
     const getAgentDat = (agent_id) => {
@@ -38,19 +58,19 @@ export default props => {
         // getAgentDat(agent_id);
         Axios(`${process.env.REACT_APP_BASE_URL}/properties/?id=${property_id}`)
             .then(res => {
-                console.log(res);
+                // console.log(res);
                 setQuery(res.data[0]);
                 setImage_urls(Object.values(res.data[0].image_urls))
                 setIsLoading(false);
             })
             .catch(err => {
-                console.log(err);
+                // console.log(err);
                 setIsLoading(false);
             })
     };
 
     useEffect(() => {
-        console.log('DETAIL PROPS ---', props)
+        // console.log('DETAIL PROPS ---', props)
         if (props.location.state) {
             // getAgentDat(props.match.params.agent_id);
             setQuery(props.location.state);
@@ -62,15 +82,19 @@ export default props => {
         }
     }, []);
 
-    console.log('QUERY ---', query)
+    useEffect(() => {
+        if (query) { getApartmentsByCategory(); }
+    }, [query])
+
+    // console.log('QUERY ---', query)
 
     if (isLoading) {
         return <PageLoader />
     } else {
         // console.log('query --', query, Object.values(query.image_urls));
-        if(!query){
+        if (!query) {
             return <PageLoader />
-        }else {
+        } else {
             return (
                 <section className="gray">
                     <div className='container'>
@@ -87,12 +111,17 @@ export default props => {
                                 <div className="slide-property-first mb-4">
                                     <div className="pr-price-into">
                                         <h1 className='h3'>{query.name}</h1>
-                                        <h2>₦ {formatedPrice.format(query.price)} <i>/ monthly</i> <span className="prt-type rent">{query.statu.name}</span></h2>
+                                        <h2>₦ {window.renderPrice(query.price)} <i>/ monthly</i>
+                                            {query.statu ?
+                                                <span className="prt-type rent">{query.statu.name}</span>
+                                                : null
+                                            }
+                                        </h2>
                                         <h3 className="h6"><i className="lni-map-marker"></i> {query.location}</h3>
                                     </div>
                                 </div>
 
-                                <div className="slide-property-sec mb-4">
+                                {/* <div className="slide-property-sec mb-4">
                                     <div className="pr-all-info">
 
                                         <div className="pr-single-info">
@@ -116,14 +145,14 @@ export default props => {
                                         </div>
 
                                     </div>
-                                </div>
+                                </div> */}
 
                                 <div className="property3-slide single-advance-property mb-4">
                                     {/* <ImageViewer imageurl1={imageurl1} imageurl2={imageurl2} imageurl3={imageurl3} imageurl4={imageurl4} /> */}
                                     <Carousel>
                                         {
                                             image_urls.map((val, i) => {
-                                                console.log('URLS ---', val);
+                                                // console.log('URLS ---', val);
                                                 return (
                                                     <Carousel.Item>
                                                         <span aria-hidden="true" className="carousel-control-next-icon" />
@@ -173,7 +202,12 @@ export default props => {
                                 </div>
 
                                 {
-                                    query.agent ? <AgentDetailCard val={query.agent} /> : null
+                                    query.agent ? <AgentDetailCard val={query.agent} /> : <div className='text-center'>
+                                        <div className='alert alert-danger'>
+                                            <h4>No Agent Data Was Found</h4>
+                                            <Link to='/contact' className='btn-info rounded btn btn-sm'><h5 className='m-0'>Contact Sheruta</h5></Link>
+                                        </div>
+                                    </div>
                                 }
 
 
@@ -297,9 +331,13 @@ export default props => {
 
                                     <div className="sidebar-widgets">
 
-                                        <h4>Featured Property</h4>
+                                        <h4>Similar Category</h4>
 
-
+                                        {
+                                            categoryList.map((x, i) => {
+                                                return x.id === query.id ? null : <HorizontalProductCard val={x} key={i} />
+                                            })
+                                        }
 
                                     </div>
 

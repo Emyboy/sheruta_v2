@@ -21,9 +21,9 @@ export default function WhatPeopleSay() {
 
 														<div className="smart-tes-author">
 															<div className="st-author-box">
-																<div className="st-author-thumb">
+																{/* <div className="st-author-thumb">
 																	<img src="assets/img/user-6.jpg" className="img-fluid" alt="" />
-																</div>
+																</div> */}
 																<div className="st-author-info">
 																	<h4 className="st-author-title">Onyinye</h4>
 																	<span className="st-author-subtitle">CEO Of Onyx Hair</span>
@@ -44,9 +44,9 @@ export default function WhatPeopleSay() {
 
 														<div className="smart-tes-author">
 															<div className="st-author-box">
-																<div className="st-author-thumb">
+																{/* <div className="st-author-thumb">
 																	<img src="assets/img/user-6.jpg" className="img-fluid" alt="" />
-																</div>
+																</div> */}
 																<div className="st-author-info">
 																	<h4 className="st-author-title">Uche</h4>
 																	<span className="st-author-subtitle">Pharmacist</span>
@@ -57,7 +57,7 @@ export default function WhatPeopleSay() {
 												</div>
 											</div>
 										</Carousel.Item>
-										<Carousel.Item>
+										{/* <Carousel.Item>
 											<img
 												className="d-block w-100"
 												src="holder.js/800x400?text=Third slide&bg=20232a"
@@ -68,7 +68,7 @@ export default function WhatPeopleSay() {
 												<h3>Third slide label</h3>
 												<p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p>
 											</Carousel.Caption>
-										</Carousel.Item>
+										</Carousel.Item> */}
 									</Carousel>
 								</div>
 							</div>

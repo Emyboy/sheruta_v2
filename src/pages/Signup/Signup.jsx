@@ -4,6 +4,7 @@ import { Link, Redirect } from 'react-router-dom'
 import { useForm } from "react-hook-form";
 import axios from 'axios';
 import store from '../../redux/store/store'
+import { Spinner } from 'react-activity';
 
 export const Signup = (props) => {
 
@@ -36,9 +37,9 @@ export const Signup = (props) => {
             })
     }
 
-    if(props.auth.user){
+    if (props.auth.user) {
         return <Redirect to='/' />
-    }else {
+    } else {
         return (
             <div className='animate__animated animate__fadeIn modal-dialog modal-dialog-centered login-pop-form'>
                 <div className="modal-content m-2" id="sign-up">
@@ -133,7 +134,7 @@ export const Signup = (props) => {
                                 </div>
 
                                 <div className="form-group">
-                                    <button type="submit" className="btn btn-md full-width pop-login">Sign Up</button>
+                                    <button type="submit" className="btn btn-md full-width pop-login">{state.loading ? <Spinner /> : 'Sign Up'}</button>
                                 </div>
 
                             </form>
