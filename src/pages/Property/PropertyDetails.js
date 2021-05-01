@@ -114,7 +114,7 @@ export default props => {
                                 <div className="slide-property-first mb-4">
                                     <div className="pr-price-into">
                                         <h1 className='h3'>{query.name}</h1>
-                                        <h2>₦ {window.renderPrice(query.price)} <i>/ monthly</i>
+                                        <h2>₦ {window.renderPrice(query.price)} <i>{query.payment_type && `/ ${query.payment_type.name}`}</i>
                                             {query.statu ?
                                                 <span className="prt-type rent badge p-2">{query.statu.name}</span>
                                                 : null
@@ -274,18 +274,6 @@ export default props => {
                                                     return <li>{val.name}</li>
                                                 })
                                             }
-
-                                            {/* <li>Swimming Pool</li>
-                                        <li>Central Heating</li>
-                                        <li>Laundry Room</li>
-                                        <li>Gym</li>
-                                        <li>Alarm</li>
-                                        <li>Window Covering</li>
-                                        <li>Internet</li>
-                                        <li>Pets Allow</li>
-                                        <li>Free WiFi</li>
-                                        <li>Car Parking</li>
-                                        <li>Spa &amp; Massage</li> */}
                                         </ul>
                                     </div>
 
