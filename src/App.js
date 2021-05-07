@@ -15,15 +15,15 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import Details from './pages/Details/Details';
 
-import 'antd/dist/antd.css';
 import PageLoader from './components/PageLoader';
 import { Agents } from './pages/Agents/Agents';
 import AgentForm from './pages/Agents/AgentForm';
 import AgentList from './pages/Agents/AgentList';
-import './App.css';
 import AgentPage from './pages/Agents/AgentPage';
 import Home2 from './pages/Home/Home2';
 import VerifyEmail from './pages/VerifyEmail/VerifyEmail';
+import 'antd/dist/antd.css';
+import './App.css';
 // import SiteUnderConts from './components/SiteUnderConts';
 
 // import Submit from './components/Submit';

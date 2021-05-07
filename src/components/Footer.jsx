@@ -64,9 +64,9 @@ export default () => {
                                 <h4 className="widget-title">Follow Us</h4>
                                 <p>Follow us on socail media.</p>
                                 <ul className="footer-bottom-social" style={{ color: 'white' }}>
-                                    <li><a target='_blank' rel="noopener noreferrer" href="http://fb.me/sheruta.ng"><i className="ti-facebook"></i></a></li>
-                                    <li><a target='_blank' rel="noopener noreferrer" href="https://twitter.com/sheruta_ng"><i className="ti-twitter"></i></a></li>
-                                    <li><a target='_blank' rel="noopener noreferrer" href="https://www.instagram.com/sheruta_ng/"><i className="ti-instagram"></i></a></li>
+                                    <li><a target='_blank' rel="noopener noreferrer" href="http://fb.me/sheruta.ng"><i className="ti-facebook text-white"></i></a></li>
+                                    <li><a target='_blank' rel="noopener noreferrer" href="https://twitter.com/sheruta_ng"><i className="ti-twitter text-white"></i></a></li>
+                                    <li><a target='_blank' rel="noopener noreferrer" href="https://www.instagram.com/sheruta_ng/"><i className="ti-instagram text-white"></i></a></li>
                                     {/* <li><a href="#c"><i className="ti-linkedin"></i></a></li> */}
                                 </ul>
 
