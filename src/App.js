@@ -23,6 +23,7 @@ import AgentList from './pages/Agents/AgentList';
 import './App.css';
 import AgentPage from './pages/Agents/AgentPage';
 import Home2 from './pages/Home/Home2';
+import VerifyEmail from './pages/VerifyEmail/VerifyEmail';
 // import SiteUnderConts from './components/SiteUnderConts';
 
 // import Submit from './components/Submit';
@@ -77,6 +78,7 @@ function App() {
                   <Route exact path="/login" component={Login} />
                    <Route exact path="/signup" component={Signup} /> 
                    <Route exact path="/signup/success" component={SignUpSuccess} />
+                  <Route exact path="/email/activate/:token/:confirmationToken" component={VerifyEmail} />
                   {/* <Route exact path="/login" component={Login} /> */}
                   {/* <Route exact path="/signup" component={Signup} /> */}
                   <Route exact path="/property/:name/:property_id" component={PropertyDetails} />

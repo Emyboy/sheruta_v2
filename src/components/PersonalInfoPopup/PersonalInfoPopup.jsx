@@ -1,17 +1,42 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Squares } from 'react-activity';
 import { Modal } from 'react-bootstrap';
+import axios from 'axios';
 
 const PersonalInfoPopup = ({
     show,
     val,
-    handleClose
+    handleClose,
+    service
 }) => {
 
-    const [state, setstate] = useState({
-        display: 'agent'
-    })
+    const [state, setState] = useState({
+        display: 'loading'
+    });
+
+    const checkIfRequiresPersonalInfo = () => {
+        setState({ ...state, display: 'loading' })
+        axios(process.env.REACT_APP_BASE_URL + '/services/?id=' + service.id)
+            .then(res => {
+                console.log('SERVICE ---', res);
+                if(res.data.length === 0){
+                    setState({ ...state, display: '404' })
+                } else if (res.data[0].requires_personal_info){
+                    // TODO - Check If User Has access to personal information
+                    // for now I'm sending every agent's information (Sheruta)
+                    setState({ ...state, display: 'info' })
+                }
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }
+
+    useEffect(() => {
+        checkIfRequiresPersonalInfo();
+        console.log('VAL ---', service);
+    }, [])
 
     return (
         <div>
@@ -71,6 +96,12 @@ const PersonalInfoPopup = ({
                             </ul>
                         </div>
 
+                    </div> : null
+                }
+                {
+                    state.display === '404' ? <div className='text-center m-3 mt-5'>
+                        <h1 className='m-0'><b>404</b></h1>
+                        <h4>Not Found</h4>
                     </div> : null
                 }
 

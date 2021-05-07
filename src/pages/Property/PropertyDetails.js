@@ -205,7 +205,7 @@ export default props => {
                                 </div>
 
                                 {
-                                    agentData ? <AgentDetailCard val={agentData} /> : <div className='text-center'>
+                                    agentData ? <AgentDetailCard val={agentData} service={query.service} /> : <div className='text-center'>
                                         <div className='alert alert-danger'>
                                             <h4>No Agent Data Was Found</h4>
                                             <Link to='/contact' className='btn-info rounded btn btn-sm'><h5 className='m-0'>Contact Sheruta</h5></Link>

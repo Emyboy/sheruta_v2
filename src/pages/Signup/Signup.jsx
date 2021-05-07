@@ -5,13 +5,15 @@ import { useForm } from "react-hook-form";
 import axios from 'axios';
 import store from '../../redux/store/store'
 import { Spinner } from 'react-activity';
+import { notification } from 'antd';
 
 export const Signup = (props) => {
 
     const { register, handleSubmit, watch, formState: { errors } } = useForm();
     const [state, setState] = useState({
         loading: false,
-        errorMessage: null
+        errorMessage: null,
+        goToSuccess: false
     })
 
     const onSubmit = e => {
@@ -22,23 +24,32 @@ export const Signup = (props) => {
             data: e,
         })
             .then(res => {
+                if(res.status === 201){
+                    notification.success('Account Created');
+                    sessionStorage.setItem('mail', e.email);
+                    setState({ ...state, loading: false, goToSuccess: true })
+                }
                 setState({ ...state, loading: false })
-                store.dispatch({
-                    type: 'SET_AUTH_STATE',
-                    payload: {
-                        user: res.data
-                    }
-                })
+                // store.dispatch({
+                //     type: 'SET_AUTH_STATE',
+                //     payload: {
+                //         user: res.data
+                //     }
+                // })
                 console.log(res)
             })
             .catch(err => {
-                setState({ ...state, loading: false, errorMessage: err.response.data.message[0].messages[0].message })
-                // console.log({...err.response.data.message[0].messages[0].message})
+                setState({...state, loading: false })
+                setState({ ...state, errorMessage: err.response.data.message || 'Singup Error' })
+                console.log({...err})
+                setTimeout(() => {
+                    setState({ ...state, errorMessage: null })
+                }, 3000);
             })
     }
 
-    if (props.auth.user) {
-        return <Redirect to='/' />
+    if (state.goToSuccess) {
+        return <Redirect to='/signup/success' />
     } else {
         return (
             <div className='animate__animated animate__fadeIn modal-dialog modal-dialog-centered login-pop-form'>

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { connect } from 'react-redux';
 import loadingGif from '../../img/loading.gif';
 import { useForm } from 'react-hook-form'
@@ -9,6 +9,7 @@ import Btn from '../../components/Btn'
 import axios from 'axios';
 import { notification } from 'antd';
 import { Link } from 'react-router-dom';
+import VerifyEmailProcess from '../VerifyEmail/VerifyEmailProcess';
 
 const mapStateToProps = state => ({
     auth: state.auth
@@ -18,28 +19,41 @@ const mapActionToProps = {
     setAuthState
 }
 
+
 const Login = props => {
 
     const [state, setState] = useState({
         loading: false,
-        errorMessage: null
+        errorMessage: null,
+        notVerified: false,
+        userData: null
     })
+    // useEffect(() => {
+
+    // }, [state.userData]);
+
     const { register, handleSubmit, errors } = useForm();
 
     const onSubmit = data => {
+        console.log('SENDING ----', data)
         setState({ ...state, loading: true })
         axios(process.env.REACT_APP_BASE_URL + '/auth/local', {
             method: 'POST',
             data
         })
             .then(res => {
-                setState({ ...state, loading: false })
-                notification.success({ message: 'Welcome Back' })
-                localStorage.setItem('token', res.data.jwt);
-                props.setAuthState({
-                    user: res.data
-                })
-                // console.log('USER FOUND --', res)
+                const isVerified = res.data.user.confirmed;
+                if (isVerified) {
+                    setState({ ...state, loading: false })
+                    notification.success({ message: 'Welcome Back' })
+                    localStorage.setItem('token', res.data.jwt);
+                    props.setAuthState({
+                        user: res.data
+                    })
+                } else {
+                    setState({ ...state, notVerified: true, userData: res.data })
+                }
+                console.log('USER FOUND --', res.data.user.confirmed)
             })
             .catch(err => {
                 setState({
@@ -57,6 +71,8 @@ const Login = props => {
 
     if (props.auth.user) {
         return <Redirect to='/' />
+    } else if (state.notVerified) {
+        return <VerifyEmailProcess userData={state.userData} />
     } else
         return (
             <div >
@@ -99,7 +115,7 @@ const Login = props => {
 
                                 </form>
                             </div>
-        
+
                         </div>
                     </div>
                 </div>

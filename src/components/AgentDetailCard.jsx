@@ -8,7 +8,7 @@ import PersonalInfoPopup from './PersonalInfoPopup/PersonalInfoPopup'
 
 export default props => {
 
-    const { val } = props;
+    const { val, service } = props;
 
     const [state, setState] = useState({
         showAgentPopup: false
@@ -20,6 +20,7 @@ export default props => {
                 val={val}
                 show={state.showAgentPopup}
                 handleClose={() => setState({ ...state, showAgentPopup: false })}
+                service={service}
             />
             <div className="agency-page">
                 <div className="container">
