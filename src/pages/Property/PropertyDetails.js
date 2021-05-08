@@ -86,7 +86,12 @@ export default props => {
     }, []);
 
     useEffect(() => {
-        if (query) { getApartmentsByCategory(); getAgentDat(); }
+        if (query) { 
+            if(query.categorie){
+                getApartmentsByCategory();
+            } 
+            getAgentDat(); 
+        }
     }, [query])
 
     console.log('QUERY ---', query)

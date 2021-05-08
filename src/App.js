@@ -99,7 +99,7 @@ function App() {
                   <Route exact path="/shared/signup" component={SharedSignup} />
                   <Route exact path="/:type/:id" component={Details} />
                   <Route exact path="/dashboard" component={Dashboard} />
-                  <Route exact path="/search/:area/:bedrooms/:sittingrooms/:type/:price" component={SearchResults} />
+                  <Route exact path="/search/:category/:location/:service" component={SearchResults} />
                   <Route component={PageNotFound} />
                   {/* <Route component={SiteUnderConts} /> */}
                 </Switch>

@@ -105,3 +105,8 @@ label{
 .search-dropdown .ant-select-selection{
     border: 0px !important;
 }
+.search-input .css-2b097c-container{
+    width: 80% !important;
+    margin-left: 45px !important;
+    margin-top: 10px !important;
+}
