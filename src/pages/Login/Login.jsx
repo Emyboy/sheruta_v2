@@ -45,7 +45,7 @@ const Login = props => {
                 const isVerified = res.data.user.confirmed;
                 if (isVerified) {
                     setState({ ...state, loading: false })
-                    notification.success({ message: 'Welcome Back' })
+                    notification.success({ message: 'Welcome' })
                     localStorage.setItem('token', res.data.jwt);
                     props.setAuthState({
                         user: res.data
@@ -58,7 +58,7 @@ const Login = props => {
             .catch(err => {
                 setState({
                     ...state,
-                    errorMessage: err.response.data.data[0].messages[0].message,
+                    errorMessage: err.response.data? err.response.data.data[0].messages[0].message : "Server Error",
                     loading: false
                 })
                 setTimeout(() => {

@@ -7,10 +7,11 @@
 
 # testing
 /coverage
-
+sheruta.zip
+.htaccess
 # production
 /build
-
+.env.production
 # misc
 .DS_Store
 .env

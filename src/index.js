@@ -5,6 +5,7 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 
+
 window.renderPrice = (price) => {
     return new Intl.NumberFormat('en-NG').format(price);
 }

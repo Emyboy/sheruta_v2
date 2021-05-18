@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios'
 import { connect } from 'react-redux'
 import Btn from '../../components/Btn'
+import { notification } from 'antd'
 
 const VerifyEmailProcess = ({ userData }) => {
     console.log('USER DATA ---', userData)
@@ -37,7 +38,8 @@ const VerifyEmailProcess = ({ userData }) => {
                     ...state,
                     loading: false
                 })
-                console.log(err)
+                // console.log(err)
+                notification.success({ message: "Error, Please try again." })
             })
     }
 
@@ -48,7 +50,7 @@ const VerifyEmailProcess = ({ userData }) => {
                     {
                         state.display === 'verify' ? <>
                             <h4 className="modal-header-title">Please Verify You Eamil</h4>
-                            
+
                             <div className='text-center'>
                                 <i className='fa fa-times text-center mb-2' style={{ fontSize: '100px' }}></i>
                             </div>

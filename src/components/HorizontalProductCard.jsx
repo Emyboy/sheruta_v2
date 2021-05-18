@@ -84,12 +84,12 @@ export default React.memo((props) => {
                         <img src={val.image_urls[0]} className="img-fluid mx-auto" alt="" />
                     </a>
                     <div className="listing-like-top">
-                        <span className='text-white'>{state.service}</span>
+                        <span className='text-white'><b style={{ textShadow: "0 0 12px black" }}>{state.service}</b></span>
                     </div>
                     <div className="listing-rating rounded text-white">
                         <b>{state.category}</b>
                     </div>
-                    {state.status && <span className="property-type">{state.status}</span>}
+                    {state.status && <span className="property-type shadow"><b>{state.status}</b></span>}
                 </div>
 
                 <div className="listing-content">
