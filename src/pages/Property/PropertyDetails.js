@@ -12,7 +12,6 @@ import { Link } from 'react-router-dom';
 
 // const formatedPrice = new Intl.NumberFormat('en-NG');
 export default props => {
-    // console.log('props ---', props);
 
     const [isLoading, setIsLoading] = useState(true);
     const [query, setQuery] = useState(null);
@@ -21,17 +20,13 @@ export default props => {
     const [categoryList, setCategoryList] = useState([])
 
     const getApartmentsByCategory = () => {
-        console.log('GETTING BY CAT', query)
         if (query) {
             const url = process.env.REACT_APP_BASE_URL + '/properties/category/' + query.categorie.id + "/5";
-            console.log(url)
             axios(url)
                 .then(res => {
-                    console.log(res)
                     setCategoryList(res.data)
                 })
                 .catch(err => {
-                    console.log(err)
                 })
         }
     }
@@ -41,7 +36,6 @@ export default props => {
         const { agent_id, property_id } = props.match.params;
         Axios(`${process.env.REACT_APP_BASE_URL}/agents/free/prop/${property_id}`)
             .then(agent => {
-                console.log('Agent data --', agent.data);
                 setAgentData(agent.data)
                 // if (typeof agent.data.account) {
                 //     setAgentData(agent.data.account[0])
@@ -50,7 +44,6 @@ export default props => {
                 // }
             })
             .catch(err => {
-                console.log('AGENT ERROR ----', err)
                 notification.error({ message: 'Error Loading Agent Info' })
             })
     }
@@ -60,20 +53,17 @@ export default props => {
         const { agent_id, property_id } = props.match.params;
         Axios(`${process.env.REACT_APP_BASE_URL}/properties/?id=${property_id}`)
             .then(res => {
-                // console.log(res);
                 setQuery(res.data[0]);
                 setImage_urls(Object.values(res.data[0].image_urls))
                 setIsLoading(false);
                 // getAgentDat(agent_id);
             })
             .catch(err => {
-                // console.log(err);
                 setIsLoading(false);
             })
     };
 
     useEffect(() => {
-        // console.log('DETAIL PROPS ---', props)
         if (props.location.state) {
             // getAgentDat(props.match.params.agent_id);
             setQuery(props.location.state);
@@ -94,12 +84,10 @@ export default props => {
         }
     }, [query])
 
-    console.log('QUERY ---', query)
 
     if (isLoading) {
         return <PageLoader />
     } else {
-        // console.log('query --', query, Object.values(query.image_urls));
         if (!query) {
             return <PageLoader />
         } else {
@@ -160,7 +148,6 @@ export default props => {
                                     <Carousel>
                                         {
                                             image_urls.map((val, i) => {
-                                                // console.log('URLS ---', val);
                                                 return (
                                                     <Carousel.Item>
                                                         <span aria-hidden="true" className="carousel-control-next-icon" />

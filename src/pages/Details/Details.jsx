@@ -23,7 +23,6 @@ export default props => {
         Axios(`${process.env.REACT_APP_BASE_URL}/${type === 'apartment' ? 'hostels' : type}/${id}`)
             .then(res => {
                 setState({ ...state, loading: false })
-                console.log('RES ---', res)
                 switch (type) {
                     case 'apartment':
                         setData(res.data.hostel[0])
@@ -37,19 +36,16 @@ export default props => {
             })
             .catch(err => {
                 setState({ ...state, loading: false })
-                console.log(err);
             })
     }
 
     useEffect(() => {
-        console.log('PROPS ---', props)
         getApartmentData();
     }, [])
 
     if (!data) {
         return <AppLoading />
     } else {
-        console.log('DATA --', data);
         return (
             // <div>
             //     <h1>hi</h1>
@@ -81,7 +77,6 @@ export default props => {
 
 // class Details extends Component {
 //     componentDidMount() {
-//         console.log('PROPS ---', this.props);
 //         const { type, id } = this.props.match.params;
 //         switch (type) {
 //             case "apartment":

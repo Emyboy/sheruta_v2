@@ -24,22 +24,18 @@ export default function SearchBox() {
 	const getAllCategories = () => {
 		axios(process.env.REACT_APP_BASE_URL + '/categories')
 			.then(res => {
-				// console.log('CATEGORIES ---', res);
 				setState({ ...state, categories: res.data })
 			})
 			.catch(err => {
-				console.log(err)
 			})
 	}
 
 	const getAllServices = () => {
 		axios(process.env.REACT_APP_BASE_URL + '/services')
 			.then(res => {
-				// console.log('CATEGORIES ---', res);
 				setState({ ...state, services: res.data })
 			})
 			.catch(err => {
-				console.log(err)
 			})
 	}
 
@@ -61,23 +57,21 @@ export default function SearchBox() {
 		}
 		axios(process.env.REACT_APP_BASE_URL + '/properties/search/keyword' + keyword)
 			.then(res => {
-				console.log('RESULT ---', res);
 				setData({
 					...data,
 					places: res.data.rows
 				})
 			})
 			.catch(err => {
-				console.log('ERROR ---', err);
 			})
 	}
 
 	const handleSearch = () => {
-		// console.log('searching -----', data);
+		notification.error({ message: 'Feature Coming soon'})
 		if (data.selectedKeyword) {
 			setState({ ...state, showSearchResults: true })
 		} else
-			notification.success({ error: 'Please provide a location' })
+			notification.error({ error: 'Please provide a location' })
 	}
 
 	const searchURL = () => {
@@ -86,7 +80,6 @@ export default function SearchBox() {
 
 
 	useEffect(() => {
-		console.log(data);
 	}, [data])
 
 	return (

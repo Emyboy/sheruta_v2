@@ -30,7 +30,6 @@ export const Dashboard = (props) => {
     }
 
     const toggleEdit = () => {
-        console.log('working')
         setShow(!show);
     }
 

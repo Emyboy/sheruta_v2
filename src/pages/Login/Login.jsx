@@ -35,7 +35,6 @@ const Login = props => {
     const { register, handleSubmit, errors } = useForm();
 
     const onSubmit = data => {
-        console.log('SENDING ----', data)
         setState({ ...state, loading: true })
         axios(process.env.REACT_APP_BASE_URL + '/auth/local', {
             method: 'POST',
@@ -53,7 +52,6 @@ const Login = props => {
                 } else {
                     setState({ ...state, notVerified: true, userData: res.data })
                 }
-                console.log('USER FOUND --', res.data.user.confirmed)
             })
             .catch(err => {
                 setState({
@@ -64,9 +62,7 @@ const Login = props => {
                 setTimeout(() => {
                     setState({ ...state, errorMessage: null })
                 }, 3000);
-                // console.log(err.response.data.data[0].messages[0].message)
             })
-        // console.log(data);
     }
 
     if (props.auth.user) {

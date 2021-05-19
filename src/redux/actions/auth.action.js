@@ -62,7 +62,6 @@ export const clearErrorMessage = () => dispath => {
 
 
 export const logout = () => dispatch => {
-  console.log('logedout....')
   dispatch(logoutUser());
   dispatch({ type: ADD_AGENT, payload: null })
   localStorage.clear();
@@ -80,7 +79,6 @@ export const signup = data => dispatch => {
     }
   })
     .then(res => {
-      console.log("Response = ", res)
 
       if (res.status === 200) {
         dispatch(loginSuccess(res.data.user[0]));
@@ -117,7 +115,6 @@ export const login = data => dispatch => {
     data
   })
     .then(res => {
-      console.log(res);
       if (res.data.status === 200) {
         dispatch(loginSuccess(res.data.user[0]));
         notification.success({ message: res.data.message });
@@ -126,10 +123,8 @@ export const login = data => dispatch => {
         notification.error({ message: res.data.message })
         dispatch(loginError(res.data))
       }
-      console.log(res);
     })
     .catch(err => {
-      console.log(err);
       err.isAxiosError ? notification.error({ message: 'No internet connection' })
         : notification.error({ message: 'Request Error!' })
       dispatch(loginError(err))
@@ -142,7 +137,6 @@ export const handleGoogleLogin = data => dispatch => {
     data: { ...data, login_type: 'google' }
   })
     .then(res => {
-      console.log(res);
       dispatch({ type: LOGIN, payload: res.data.user });
       dispatch({ type: TOGGLE_ADD_NUMBER })
       dispatch({ type: ADD_AGENT, payload: res.data.user.agent });
@@ -155,41 +149,34 @@ export const handleGoogleLogin = data => dispatch => {
 };
 
 export const updateUserAccount = update => dispatch => {
-  console.log('Adding Update --', update);
   Axios(`${process.env.REACT_APP_BASE_URL}/users/${update.user_id}`, {
     method: 'PUT',
     data: update
   })
     .then(update => {
-      console.log('update ----', update);
     })
     .catch(err => {
-      console.log('error ---', err);
     })
 }
 
 
 export const crate_agent_account = data => dispatch => {
   dispatch({ type: AGENT_LOADING, payload: true });
-  console.log('uploading data ---', data);
 
   const uploadTask = storage.child(`agent/${data.user_id}/company_logo`).put(data.company_logo)
   uploadTask.on('state_changed', (snapshot) => {
     var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-    console.log('Upload is ' + Number.parseInt(progress) + '% done');
     dispatch({ type: UPDATE_AUTH_PROGRESS, payload: progress })
   }, (error) => {
     // Handle unsuccessful uploads
     notification.error({ message: 'Error Uploading Image ' });
   }, () => {
     uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-      console.log('File available at', downloadURL);
       Axios(`${process.env.REACT_APP_BASE_URL}/agent`, {
         method: 'POST',
         data: { ...data, company_logo: downloadURL }
       })
         .then(account => {
-          console.log(account);
           dispatch({ type: AGENT_LOADING, payload: false });
           dispatch({ type: ADD_AGENT, payload: account.data.data[0] });
           notification.error({ message: 'Error Sending data, Please Try Again' });
@@ -198,12 +185,10 @@ export const crate_agent_account = data => dispatch => {
           dispatch({ type: AGENT_LOADING, payload: false });
           dispatch({ type: UPDATE_AUTH_PROGRESS, payload: 0 });
           notification.error({ message: 'Error Sending data, Please Try Again' });
-          console.log(err)
         })
     }).catch(err => {
       dispatch({ type: AGENT_LOADING, payload: false });
       dispatch({ type: UPDATE_AUTH_PROGRESS, payload: 0 });
-      console.log('error ---', err);
     });
   });
 }
@@ -218,13 +203,10 @@ export const editAgentAccount = data => dispatch => {
       dispatch({ type: AGENT_LOADING, payload: false });
       dispatch({ type: ADD_AGENT, payload: res.data.data });
       notification.success({ message: 'Saved' })
-      console.log('added--', data);
-      console.log(res);
     })
     .catch(err => {
       dispatch({ type: AGENT_LOADING, payload: false });
       notification.error({ message: 'Error Saving Data' })
-      console.log(err);
     })
 }
 

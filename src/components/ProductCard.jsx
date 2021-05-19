@@ -13,7 +13,6 @@ const mapActionsToProps = {
 };
 
 export default connect(mapStateToProps, mapActionsToProps)((props) => {
-    // console.log(props);
     const { area, price, imageurl1, bedrooms, toilets, status, type, id, paymentplan, title } = props.val;
     const { addToFavorite, auth } = props;
     const { isLoggedIn } = props.auth;

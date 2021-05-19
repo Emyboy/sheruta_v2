@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { Squares } from 'react-activity';
 import { Modal } from 'react-bootstrap';
 import axios from 'axios';
+import { notification } from 'antd';
 
 const PersonalInfoPopup = ({
     show,
@@ -19,7 +20,7 @@ const PersonalInfoPopup = ({
         setState({ ...state, display: 'loading' })
         axios(process.env.REACT_APP_BASE_URL + '/services/?id=' + service.id)
             .then(res => {
-                console.log('SERVICE ---', res);
+                // ('SERVICE ---', res);
                 if(res.data.length === 0){
                     setState({ ...state, display: '404' })
                 } else if (res.data[0].requires_personal_info){
@@ -29,13 +30,12 @@ const PersonalInfoPopup = ({
                 }
             })
             .catch(err => {
-                console.log(err);
+                notification.error({ message: 'Error fetching personal info'})
             })
     }
 
     useEffect(() => {
         checkIfRequiresPersonalInfo();
-        console.log('VAL ---', service);
     }, [])
 
     return (

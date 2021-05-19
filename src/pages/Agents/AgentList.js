@@ -13,7 +13,6 @@ const AgentList = (props) => {
         props.getAgents();
     }, []);
 
-    console.log(props)
 
     // if (loading) {
     //     return <AppLoading />

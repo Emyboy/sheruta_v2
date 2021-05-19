@@ -8,7 +8,6 @@ import { deleteApartment } from '../redux/actions/agent.actions';
 export const AgentListingCard = (props) => {
     const { data } = props;
     const [showDelete, setShowDelete] = useState(false);
-    console.log('CARD DATA ---', data);
 
     return (
         <div className="col-lg-12 col-md-12">

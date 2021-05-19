@@ -19,7 +19,6 @@ const Profile = (props) => {
             loading: false,
             userData: authUser.user
         })
-        console.log(props)
     },[])
 
     if(!authUser){

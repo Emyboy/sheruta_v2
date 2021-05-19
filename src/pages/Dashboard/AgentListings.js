@@ -12,7 +12,6 @@ export const AgentListings = ({
 
     useEffect(() => {
         getProperties(auth.agentData.id);
-        // console.log(auth)
     }, [])
 
     return (

@@ -18,7 +18,6 @@ export const PhoneNumberModal = connect(
     mapStateToProps,
     mapActionsToProps
 )((props) => {
-    console.log('nav props ---', props);
     const [number, setNumber] = useState(null);
     const {
         view

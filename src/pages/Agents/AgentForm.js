@@ -27,38 +27,32 @@ const AgentForm = props => {
     })
 
     const onDrop = useCallback(acceptedFiles => {
-        console.log('file ----', acceptedFiles);
         setData({ ...data, company_logo: acceptedFiles[0] });
     }, [])
     const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
     const crate_agent_account = e => {
         e.priventDefault()
-        console.log('SENDING ---', data)
         const uploadTask = storage.child(`image/agent/${data.user_id}/company_logo`).put(data.company_logo)
         uploadTask.on('state_changed', (snapshot) => {
             var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-            console.log('Upload is ' + Number.parseInt(progress) + '% done');
         }, (error) => {
             // Handle unsuccessful uploads
             notification.error({ message: 'Error Uploading Image ' });
         }, () => {
             uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                console.log('File available at', downloadURL);
                 axios(`${process.env.REACT_APP_BASE_URL}/agent`, {
                     method: 'POST',
                     data: { ...data, company_logo: downloadURL }
                 })
                     .then(account => {
-                        console.log(account);
                         notification.error({ message: 'Error Sending data, Please Try Again' });
                     })
                     .catch(err => {
                         notification.error({ message: 'Error Sending data, Please Try Again' });
-                        console.log(err)
                     })
             }).catch(err => {
-                console.log('error ---', err);
+                notification.error({ message: 'Error creating agent' })
             });
         });
     }
@@ -123,7 +117,6 @@ const AgentForm = props => {
                                                     selectProps={{
                                                         // props.state.location,
                                                         onChange: e => {
-                                                            console.log(e)
                                                             setData({ ...data, google_location: e, location: e.label })
                                                         },
                                                         placeholder:

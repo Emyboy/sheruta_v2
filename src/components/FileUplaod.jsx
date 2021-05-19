@@ -6,7 +6,6 @@ export default ({
     placeholder
 }) => {
     const onDrop = useCallback(acceptedFiles => {
-        console.log('file ----', acceptedFiles);
         // setLogo(acceptedFiles[0]);
         onChange(acceptedFiles)
     }, [])

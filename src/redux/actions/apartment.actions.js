@@ -31,7 +31,6 @@ export const getRecentApartments = limit => dispatch => {
         })
         .catch(err => {
             getApartmentError(err);
-            console.log(err);
         })
 }
 
@@ -52,6 +51,5 @@ export const getApartmentById = id => dispatch => {
             }
         })
         .catch(err => {
-            console.log(err);
         })
 }

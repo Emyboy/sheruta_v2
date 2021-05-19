@@ -7,7 +7,6 @@ const mapStateToProps = state => ({
 })
 
 export default connect(mapStateToProps)((props) => {
-    console.log(props);
     const { isLoading, displayMessage, progress, imageDone } = props.featured
     return (
         <Modal show={isLoading}>

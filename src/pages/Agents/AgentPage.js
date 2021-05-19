@@ -29,16 +29,13 @@ export default props => {
                     default:
                         break;
                 }
-                console.log(data);
                 setStatus('done')
             })
             .catch(err => {
                 notification.error({ message: 'Failed to load data'});
-                console.log(err);
             })
     };
 
-    console.log('PROPS ---', props);
 
     useEffect(() => {
         getAgentData();

@@ -37,10 +37,7 @@ export default connect(mapStateToProps, mapActionsToProps)(({
     });
 
     useEffect(() => {
-        console.log('data ---', data);
-        console.log('auth ---', auth);
         setAgentData(data);
-        console.log('agent data ---', agentData);
     }, []);
 
     const handleSubmit = e => {
@@ -50,7 +47,6 @@ export default connect(mapStateToProps, mapActionsToProps)(({
 
     const handleInputChange = ({ name, data }) => {
         setAgentData({ ...agentData, [name]: data });
-        console.log(agentData);
     }
 
     return (

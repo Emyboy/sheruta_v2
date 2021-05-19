@@ -34,7 +34,9 @@ export default connect(mapStateToProps, mapActionsToProps)(() => {
                 } else
                     setAreas(res.data);
             })
-            .catch(err => console.log('.............', err))
+            .catch(err => {
+                
+            })
     }
 
     useEffect(() => {

@@ -13,7 +13,6 @@ class RecentApartments extends Component {
 
     getApartments(){
         const url = `${process.env.REACT_APP_BASE_URL}/hostels/limit/${6}`
-        console.log('GETTING ---', url)
 
         Axios.get(url)
             .then(res => {
@@ -26,7 +25,6 @@ class RecentApartments extends Component {
                 }
             })
             .catch(err => {
-                console.log('error ---', err)
                 notification.error({message: 'Error Loding Apartments'})
             })
     }

@@ -3,26 +3,25 @@ import { connect } from 'react-redux'
 import { Spinner } from 'react-activity';
 import axios from 'axios';
 import HorizontalProductCard from './HorizontalProductCard';
+import { notification } from 'antd';
 
 const SearchResults = (props) => {
     const [state, setState] = useState({
         loading: true,
         results: []
     })
-    console.log('PROPS --', props);
     const { category, service, location } = props.match.params;
 
     const getSearchResults = () => {
         axios(process.env.REACT_APP_BASE_URL + `/properties/search/${category}/${location}/${service}`)
             .then(res => {
-                console.log('RESULT --', res);
                 setState({
                     loading: false,
                     results: res.data
                 })
             })
             .catch(err => {
-                console.log('ERROR --', err);
+                notification.error({ message: 'Application Error' })
             })
     }
 

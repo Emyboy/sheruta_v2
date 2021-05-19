@@ -30,7 +30,6 @@ export default connect(
             }
         }
         componentDidMount() {
-            console.log('.........', this.state);
         }
 
         handleInputChaneg = e => {
@@ -41,7 +40,6 @@ export default connect(
 
         handleSubmit = (e) => {
             e.preventDefault();
-            console.log(this.state);
             const { name, message, phoneno } = this.state;
             if (name === null || message === null || phoneno === null) {
                 notification.warning({ message: 'Please Fill Out The Form' })

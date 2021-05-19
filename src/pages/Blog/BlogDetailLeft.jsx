@@ -9,7 +9,6 @@ import React from 'react';
 export default class BlogDetailLeft extends React.Component {
     componentWillReceiveProps(newProps) {
         // document.getElementById('blog-body').innerHTML += val.body
-        console.log('new Props .......', newProps);
     }
     componentDidMount() {
         const { val } = this.props;

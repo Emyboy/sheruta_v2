@@ -49,10 +49,8 @@ const imageDone = urls => {
 }
 
 export const UploadToDatabase = data => dispatch => {
-    console.log('sending to DB...', data);
     delete data.showAmenities;
     delete data.showModal;
-    console.log('sending to db', data);
     dispatch(featureLoading());
     return Axios(`${process.env.REACT_APP_BASE_URL}/featured`, {
         method: 'POST',

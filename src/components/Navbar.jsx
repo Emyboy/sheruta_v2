@@ -9,6 +9,7 @@ import { firebaseAuth, googleProvider } from '../Firebase';
 import { PhoneNumberModal } from './PhoneNumberModal';
 import axios from 'axios';
 import store from '../redux/store/store';
+import { notification } from 'antd';
 
 const desktopSize = 993;
 
@@ -16,11 +17,9 @@ const desktopSize = 993;
 class Navbar_ extends Component {
 
     handleGooglePopup() {
-        console.log('working.')
         firebaseAuth.signInWithPopup(googleProvider)
             .then((result) => {
                 var user = result.user;
-                console.log(user);
                 this.props.handleGoogleLogin({
                     username: user.displayName,
                     fullname: user.displayName,
@@ -34,13 +33,11 @@ class Navbar_ extends Component {
                 var email = error.email;
                 var credential = error.credential;
                 var errorMessage = error.message;
-                console.log(errorMessage)
             });
     }
 
     getUserData() {
         const { auth } = this.props;
-        // console.log('AUTH --', auth)
         axios(process.env.REACT_APP_BASE_URL + "/users/me", {
             headers: {
                 Authorization:
@@ -48,7 +45,6 @@ class Navbar_ extends Component {
             },
         })
             .then(res => {
-                console.log('HEADER USER --', res)
                 store.dispatch({
                     type: 'SET_AUTH_STATE',
                     payload: {
@@ -60,14 +56,12 @@ class Navbar_ extends Component {
                 })
             })
             .catch(err => {
-                console.log('ERRR ----', err)
+                notification.error({ message: 'Error fetching user data'})
             })
     }
 
     componentDidMount() {
         const { user } = this.props.auth;
-        // console.log('HEADER PROPS ----', this.props.auth.user)
-        // console.log('HEADER DON MOUNTH OOO')
         if (user) {
             // alert('there is user')
             this.getUserData()
@@ -76,7 +70,6 @@ class Navbar_ extends Component {
 
 
     render() {
-        console.log('navbar props ---', this.props);
         const { auth } = this.props.auth;
         const user = this.props.auth.user;
         return (

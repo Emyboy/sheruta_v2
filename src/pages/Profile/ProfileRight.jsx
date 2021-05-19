@@ -4,7 +4,6 @@ import Btn from '../../components/Btn';
 
 export default function ProfileRight(props) {
     const { val } = props;
-    console.log('VAL -',val);
 
     return (
         <div className="col-lg-8 col-md-12">

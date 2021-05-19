@@ -40,7 +40,9 @@ export default connect(mapStateToProps, mapActionsToProps)((props) => {
 			.then(res => {
 				setApartments(res.data.apartment)
 			})
-			.catch(err => console.log(err))
+			.catch(err => {
+
+			})
 	}
 
 	useEffect(() => {

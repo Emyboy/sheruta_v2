@@ -4,10 +4,10 @@ import { connect } from 'react-redux'
 import Btn from '../../components/Btn';
 import { Spinner } from 'react-activity'
 import { Link } from 'react-router-dom';
+import { notification } from 'antd';
 
 
 const VerifyEmail = (props) => {
-    console.log(props);
     const [state, setState] = useState({
         heading: null,
         error: false,
@@ -23,7 +23,6 @@ const VerifyEmail = (props) => {
             data: { confirmationToken, token }
         })
             .then(res => {
-                console.log(res)
                 if (res.status === 200) {
                     sessionStorage.clear();
                     setState({
@@ -34,14 +33,14 @@ const VerifyEmail = (props) => {
                 }
             })
             .catch(err => {
-                console.log(err)
-                console.log({ ...err })
                 if (err.response.status === 404) {
                     setState({
                         ...state,
                         display: null,
                         heading: 'You are already verified'
                     })
+                }else {
+                    notification.error({ message: 'Error, Please refresh page'})
                 }
             })
     }

@@ -10,12 +10,10 @@ class Blog extends Component {
         blogList: []
     }
     componentWillMount() {
-        console.log(this.props);
         this.props.getAllBlog();
     }f
 
     componentWillReceiveProps(nextProps) {
-        console.log('new prosp......', nextProps);
         this.setState({
             blogList: nextProps.blog.blog
         })

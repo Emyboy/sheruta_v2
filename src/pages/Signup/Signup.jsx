@@ -17,7 +17,6 @@ export const Signup = (props) => {
     })
 
     const onSubmit = e => {
-        console.log(e)
         setState({ ...state, loading: true })
         axios(process.env.REACT_APP_BASE_URL + '/auth/local/register', {
             method: 'POST',
@@ -36,12 +35,10 @@ export const Signup = (props) => {
                 //         user: res.data
                 //     }
                 // })
-                console.log(res)
             })
             .catch(err => {
                 setState({...state, loading: false })
                 setState({ ...state, errorMessage: err.response.data.message || 'Singup Error' })
-                console.log({...err})
                 setTimeout(() => {
                     setState({ ...state, errorMessage: null })
                 }, 3000);

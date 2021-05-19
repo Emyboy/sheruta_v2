@@ -9,11 +9,9 @@ export default function TrendingPoperties() {
 	const getProperties = () => {
 		axios(process.env.REACT_APP_BASE_URL + '/properties/limit/' + "6")
 			.then(res => {
-				console.log(res.data)
 				setState({ ...state, properties: res.data })
 			})
 			.catch(err => {
-				console.log(err)
 			})
 	}
 	useEffect(() => {

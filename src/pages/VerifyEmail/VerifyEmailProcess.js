@@ -5,7 +5,6 @@ import Btn from '../../components/Btn'
 import { notification } from 'antd'
 
 const VerifyEmailProcess = ({ userData }) => {
-    console.log('USER DATA ---', userData)
 
     const [state, setState] = useState({
         loading: false,
@@ -17,7 +16,7 @@ const VerifyEmailProcess = ({ userData }) => {
             ...state,
             loading: true
         })
-        axios(process.env.REACT_APP_BASE_URL + '/verify/email/request', {
+        axios(process.env.REACT_APP_BASE_URL + '/personal-infos/verify/email/request', {
             method: 'POST',
             headers: {
                 Authorization: 'Bearer ' + userData.jwt
@@ -30,7 +29,6 @@ const VerifyEmailProcess = ({ userData }) => {
                     loading: false,
                     display: 'sent'
                 })
-                console.log(res)
 
             })
             .catch(err => {
@@ -38,7 +36,6 @@ const VerifyEmailProcess = ({ userData }) => {
                     ...state,
                     loading: false
                 })
-                // console.log(err)
                 notification.success({ message: "Error, Please try again." })
             })
     }

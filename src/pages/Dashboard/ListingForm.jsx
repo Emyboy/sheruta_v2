@@ -41,14 +41,12 @@ class ListingForm extends React.Component {
         this.setState({
             [e.target.name]: e.target.value
         });
-        console.log(this.state);
     };
 
     handleFileSellect(files) {
         this.setState({
             image_files: files
         })
-        console.log(this.state)
     };
 
     onSubmit(e) {
@@ -58,7 +56,6 @@ class ListingForm extends React.Component {
 
     render() {
         const { view, agent } = this.props;
-        console.log('PROPS -------', this.props);
         const { handleInputChange, handleFileSellect, onSubmit } = this;
 
         const typesOptions = [
@@ -271,7 +268,6 @@ class ListingForm extends React.Component {
 
                                         <div className="form-group col-md-12">
                                             <h3>Amenities</h3>
-                                            <Aminities onChange={e => console.log(e)} />
                                             {/* <div className="o-features">
                                                 <ul className="no-ul-list third-row">
                                                     <li>

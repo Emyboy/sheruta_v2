@@ -12,7 +12,6 @@ export default class SharedList extends React.Component{
     getSharedApartment() {
         Axios.get(`${process.env.REACT_APP_BASE_URL}/shared`)
             .then(res => {
-                console.log('res --', res);
                 if (res.status === 200) {
                     this.setState({
                         sharedList: res.data.shared
@@ -22,7 +21,6 @@ export default class SharedList extends React.Component{
                 }
             })
             .catch(err => {
-                console.log(err)
                 notification.error({ message: 'Error Loading Shared' })
             })
     }

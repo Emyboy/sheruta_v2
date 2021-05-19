@@ -58,20 +58,16 @@ class Submit extends Component {
 
     async handleSubmit(e) {
         e.preventDefault();
-        console.log('sumitting....')
         const { imageurl1, imageurl2, imageurl3, imageurl4, area, address, bedrooms, payment_plan, price, phoneno, state, sittingrooms, type } = this.state;
         const imageData = [imageurl1, imageurl2, imageurl3, imageurl4];
         this.props.handdleImageUpload(imageData, this.state.email, {
             area, address, bedrooms, payment_plan, price, phoneno, state, sittingrooms, type
         });
         setTimeout(() => {
-            console.log(this.props.featured.imageDone)
         }, 10000);
         if (this.props.featured.imageDone) {
-            console.log('image is done ooo, i\'m sending ', this.state)
             this.props.UploadToDatabase()
         } else {
-            console.log('image to reach ooo')
         }
     }
 
