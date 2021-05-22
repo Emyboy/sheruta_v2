@@ -67,7 +67,7 @@ export default function SearchBox() {
 	}
 
 	const handleSearch = () => {
-		notification.error({ message: 'Feature Coming soon'})
+		notification.error({ message: 'Feature Coming soon' })
 		if (data.selectedKeyword) {
 			setState({ ...state, showSearchResults: true })
 		} else
@@ -86,7 +86,7 @@ export default function SearchBox() {
 
 		<div className="container shadow rounded pb-5" style={{ backgroundColor: '#010101b3' }}>
 
-			<h1 className="big-header-capt text-white h2 m-4">Find Verified Flatmates Matching Your Lifestle</h1>
+			<h1 className="big-header-capt text-white m-4" style={{ fontSize: '40px' }}>Find Verified Flatmates Matching Your Lifestle</h1>
 			{/* <p className="text-center mb-5 text-white">From as low as $10 per day with limited time offer</p> */}
 
 			<div className="full-search-2 eclip-search italian-search hero-search-radius">

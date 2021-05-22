@@ -56,7 +56,7 @@ const Login = props => {
             .catch(err => {
                 setState({
                     ...state,
-                    errorMessage: err.response.data? err.response.data.data[0].messages[0].message : "Server Error",
+                    errorMessage: err.response? err.response.data.data[0].messages[0].message : "Server Error",
                     loading: false
                 })
                 setTimeout(() => {
@@ -104,6 +104,7 @@ const Login = props => {
 
                                     <div className="form-group">
                                         <Btn text='Login' loading={state.loading} className='full-width mt-2' type='submit' />
+                                        <Link to='/password/reset/request' className='text-theme pl-0 link btn'>Forgot Password</Link>
                                         <div className='text-center mt-3'>
                                             <Link to='/signup' className='text-success h5'>Signup</Link>
                                         </div>

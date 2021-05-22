@@ -18,9 +18,9 @@ const VerifyEmailProcess = ({ userData }) => {
         })
         axios(process.env.REACT_APP_BASE_URL + '/personal-infos/verify/email/request', {
             method: 'POST',
-            headers: {
-                Authorization: 'Bearer ' + userData.jwt
-            },
+            // headers: {
+            //     Authorization: 'Bearer ' + userData.jwt
+            // },
             data: { token: userData.jwt }
         })
             .then(res => {
@@ -36,7 +36,7 @@ const VerifyEmailProcess = ({ userData }) => {
                     ...state,
                     loading: false
                 })
-                notification.success({ message: "Error, Please try again." })
+                notification.error({ message: "Error, Please try again." })
             })
     }
 

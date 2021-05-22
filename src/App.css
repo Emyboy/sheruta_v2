@@ -110,3 +110,13 @@ label{
     margin-left: 45px !important;
     margin-top: 10px !important;
 }
+.text-theme {
+    color: #00ba74 !important;
+}
+.btn-theme {
+    background-color: #00ba74 !important;
+    color: white !important;
+}
+.bg-theme {
+    background-color: #00ba74 !important;
+}
