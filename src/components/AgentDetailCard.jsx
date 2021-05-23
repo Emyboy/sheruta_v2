@@ -8,7 +8,7 @@ import PersonalInfoPopup from './PersonalInfoPopup/PersonalInfoPopup'
 
 export default props => {
 
-    const { val, service } = props;
+    const { val, service, query } = props;
 
     const [state, setState] = useState({
         showAgentPopup: false
@@ -18,6 +18,7 @@ export default props => {
         <>
             <PersonalInfoPopup
                 val={val}
+                query={query}
                 show={state.showAgentPopup}
                 handleClose={() => setState({ ...state, showAgentPopup: false })}
                 service={service}

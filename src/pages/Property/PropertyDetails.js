@@ -9,6 +9,7 @@ import MetaTags from 'react-meta-tags';
 import axios from 'axios';
 import HorizontalProductCard from '../../components/HorizontalProductCard'
 import { Link } from 'react-router-dom';
+import { Spinner } from 'react-activity';
 
 // const formatedPrice = new Intl.NumberFormat('en-NG');
 export default props => {
@@ -76,11 +77,11 @@ export default props => {
     }, []);
 
     useEffect(() => {
-        if (query) { 
-            if(query.categorie){
+        if (query) {
+            if (query.categorie) {
                 getApartmentsByCategory();
-            } 
-            getAgentDat(); 
+            }
+            getAgentDat();
         }
     }, [query])
 
@@ -196,48 +197,36 @@ export default props => {
                                     <h4 className="block-title">Agent Info</h4>
                                 </div>
 
-                                {
-                                    agentData ? <AgentDetailCard val={agentData} service={query.service} /> : <div className='text-center'>
+                                {/* {
+                                    agentData ? <AgentDetailCard query={query} val={agentData} service={query.service} /> : <div className='text-center'>
                                         <div className='alert alert-danger'>
                                             <h4>No Agent Data Was Found</h4>
                                             <Link to='/contact' className='btn-info rounded btn btn-sm'><h5 className='m-0'>Contact Sheruta</h5></Link>
                                         </div>
                                     </div>
-                                }
+                                } */}
 
 
-                                {/* {
-                                agentData ? <div className="block-wrap">
-
-                                    <div className="block-header">
-                                        <h4 className="block-title">Agent Info</h4>
-                                    </div>
-
-                                    <div className="block-body">
-                                        <div className="agent-title">
-                                            <div className="agent-photo">
-                                                <img src={agentData.company_logo} alt={'agent company logo'} />
+                                {
+                                    agentData ? <div className='block-wrap shadow'>
+                                        <div className="agent-title bg-white">
+                                            <div className="agent-photo"><img src={agentData.logo_url} alt="" /></div>
+                                            <div className="agent-details">
+                                                <h4>{agentData.name}</h4>
+                                                <a href={`tel:${agentData.phone_number}`}>
+                                                    <span><i className="lni-phone-handset"></i>{agentData.phone_number}</span>
+                                                </a>
+                                                
                                             </div>
-                                            <div className="agent-details"><h4>
-                                                <a href="#c">{agentData.company_name}</a>
-                                            </h4>
-                                                <a href="tel:">
-                                                    <i className="lni-phone-handset"></i>{agentData.company_phone_no}</a>
-                                            </div><div className="clearfix"></div></div>
+                                            <div className="clearfix"></div>
+                                        </div>
                                     </div>
-                                    <div className='block-header'>
-                                        <h6>Follow Me: </h6>
-                                        <a href="#c" className="add-to-favorite btn btn-default text-dark" data-toggle="tooltip" data-original-title="Add To Favorites">
-                                            <i className="lni-facebook h4"></i>
-                                        </a>
-                                    </div>
-
-                                </div> :
-                                    <div className='text-center'>
-                                        <Spinner />
-                                        <p className='h5'> Loading Agent Data</p>
-                                    </div>
-                            } */}
+                                        :
+                                        <div className='text-center'>
+                                            <Spinner />
+                                            <p className='h5'> Loading Agent Data</p>
+                                        </div>
+                                }
 
 
                                 <div className="block-wrap">
@@ -253,14 +242,14 @@ export default props => {
                                 </div>
 
 
-                                <div class="block-wrap">
+                                <div className="block-wrap">
 
-                                    <div class="block-header">
-                                        <h4 class="block-title">Ameneties</h4>
+                                    <div className="block-header">
+                                        <h4 className="block-title">Ameneties</h4>
                                     </div>
 
-                                    <div class="block-body">
-                                        <ul class="avl-features third">
+                                    <div className="block-body">
+                                        <ul className="avl-features third">
                                             {
                                                 query.amenities.map((val, i) => {
                                                     return <li>{val.name}</li>

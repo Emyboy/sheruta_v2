@@ -9,7 +9,8 @@ const PersonalInfoPopup = ({
     show,
     val,
     handleClose,
-    service
+    service,
+    query
 }) => {
 
     const [state, setState] = useState({
@@ -20,13 +21,18 @@ const PersonalInfoPopup = ({
         setState({ ...state, display: 'loading' })
         axios(process.env.REACT_APP_BASE_URL + '/services/?id=' + service.id)
             .then(res => {
-                // ('SERVICE ---', res);
+                console.log('SERVICE ---', res);
                 if(res.data.length === 0){
                     setState({ ...state, display: '404' })
-                } else if (res.data[0].requires_personal_info){
+                }
+                if (res.data[0].requires_personal_info){
                     // TODO - Check If User Has access to personal information
                     // for now I'm sending every agent's information (Sheruta)
+                    alert('yup it does')
                     setState({ ...state, display: 'info' })
+                }else {
+                    setState({ ...state, display: 'agent' })
+                    console.log('PARENT VAL ---', query, 'val --', val)
                 }
             })
             .catch(err => {
