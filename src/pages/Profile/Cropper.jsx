@@ -7,6 +7,9 @@ import { storage } from '../../Firebase';
 import firebase from 'firebase';
 import { notification } from 'antd';
 import axios from 'axios';
+import { Spinner } from 'react-activity'
+import { connect } from 'react-redux';
+import { getUser } from '../../redux/strapi_actions/strapi_auth.actions'
 
 const user = JSON.parse(localStorage.getItem('state')).auth.user;
 
@@ -19,12 +22,13 @@ class CustomImage extends PureComponent {
             crop: {
                 unit: '%',
                 width: 100,
-                aspect: this.props.aspect || 4 / 3,
+                aspect: this.props.aspect || 4 / 4,
             },
             confirm: false,
             blob: null,
             confirmed: false,
-            croped: false
+            croped: false,
+            loading: false
         };
 
         this.onSelectFile = this.onSelectFile.bind(this);
@@ -58,6 +62,7 @@ class CustomImage extends PureComponent {
 
     sendToDb(imageUrl) {
         console.log('SENDING TO DB')
+        this.setState({ loading: true })
         axios(process.env.REACT_APP_BASE_URL + `/users-permissions/auth/local/edit/${user.user.id}`, {
             method: 'POST',
             data: {
@@ -68,16 +73,21 @@ class CustomImage extends PureComponent {
             },
         })
             .then(res => {
+                this.props.getUser();
+
+                this.setState({ loading: false })
+                notification.success({ message: 'Image Updated' })
                 console.log('RES ----', res);
-                
+                this.props.handleClose();
+
             })
             .catch(err => {
-
+                notification.error({ message: 'Upload Error, Please try again' })
+                this.setState({ loading: false })
             })
     }
 
     componentDidMount() {
-        this.sendToDb();
         this.setState({ aspect: this.props.aspect });
     }
 
@@ -161,9 +171,10 @@ class CustomImage extends PureComponent {
         console.log('CROPED IMAGE ---', compressedFile)
     }
 
-    
+
 
     handleImageUpload() {
+        this.setState({ loading: true })
         var uploadTask = storage.child(`images/profile/${user.user.id}/image_0`).put(this.state.blob);
         uploadTask.on('state_changed',
             (snapshot) => {
@@ -181,7 +192,8 @@ class CustomImage extends PureComponent {
             (error) => {
                 // Handle unsuccessful uploads
                 console.log('UPLOAD ERROR ---', error);
-                notification.error({ message: 'Upload Error' })
+                notification.error({ message: 'Upload Error' });
+                this.setState({ loading: false })
             },
             () => {
                 // Handle successful uploads on complete
@@ -230,13 +242,15 @@ class CustomImage extends PureComponent {
                         onImageLoaded={this.onImageLoaded}
                         onComplete={this.onCropComplete}
                         onChange={this.onCropChange}
-                        style={{ height: '90%', width: '90%' }}
+                    // style={{ height: '90%', width: '90%' }}
                     />
                 )}
                 {
                     this.state.blob && this.state.confirmed ? <div className='text-center mt-3'>
                         <img src={URL.createObjectURL(this.state.blob)} style={{ borderRadius: '15px' }} /><br />
-                        <button className='btn btn-success rounded mt-3' onClick={this.handleImageUpload.bind(this)}>Upload</button>
+                        <button disabled={this.state.loading} className='btn btn-success rounded mt-3' onClick={() => this.handleImageUpload()}>
+                            {!this.state.loading ? 'Upload' : <Spinner color='white' />}
+                        </button>
                     </div> : null
                 }
                 <div className='text-center'>
@@ -257,4 +271,11 @@ class CustomImage extends PureComponent {
     }
 }
 
-export default CustomImage
+const map_dispatch_to_props = {
+    getUser
+}
+
+export default connect(
+    null,
+    map_dispatch_to_props
+)(CustomImage);

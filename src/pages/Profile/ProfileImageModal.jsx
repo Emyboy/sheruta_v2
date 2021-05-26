@@ -37,7 +37,7 @@ const ProfileImageModal = ({
                 </div> : null}
 
                 {
-                    state.display === 'crop' ? <Cropper imgFile={state.imageFile} /> : null
+                    state.display === 'crop' ? <Cropper imgFile={state.imageFile} handleClose={handleClose} /> : null
                 }
             </Modal.Body>
         </Modal >

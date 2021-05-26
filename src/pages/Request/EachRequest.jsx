@@ -14,7 +14,7 @@ const Eachval = ({
                             val.users_permissions_user ?
                                 <div className="comment-meta row card-body pb-1 pt-1">
                                     <div className="comment-author">
-                                        <img style={{ width: '50px' }} className='img-fluid mr-2' src={val.users_permissions_user.avatar_url} alt={val.users_permissions_user.first_name + " 's Avatar"} />
+                                        <img style={{ width: '50px', borderRadius: '50%' }} className='img-fluid mr-2' src={val.users_permissions_user.avatar_url} alt={val.users_permissions_user.first_name + " 's Avatar"} />
                                     </div>
                                     <div className="comment-left-meta">
                                         <h4 className="author-name text-white mb-1">{`${val.users_permissions_user.first_name}`}</h4>

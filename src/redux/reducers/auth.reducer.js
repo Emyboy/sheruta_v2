@@ -17,6 +17,14 @@ export default (state = initialState, { type, payload }) => {
                 ...state,
                 ...payload
             }
+        case "GET_USER":
+            return {
+                ...state,
+                user: {
+                    ...state.user,
+                    user: payload
+                }
+            }
             case 'LOGOUT':
                 return initialState
         default:
