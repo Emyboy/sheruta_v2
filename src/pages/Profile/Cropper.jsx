@@ -69,6 +69,7 @@ class CustomImage extends PureComponent {
         })
             .then(res => {
                 console.log('RES ----', res);
+                
             })
             .catch(err => {
 
