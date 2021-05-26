@@ -10,6 +10,7 @@ import TrendingProperties from './TrendingPoperties'
 import img1 from './images1/Searchboxpix.jpg'
 import './Stylesheet.css'
 import img2 from './images1/Newpics.png'
+import RequestList from './RequestList'
 
 
 
@@ -31,6 +32,9 @@ export default function Home2() {
 			{/* <div>
 				<GetStarted />
 			</div> */}
+			<section className="image-coverpb-0">
+				<RequestList />
+			</section>
 			<section className="image-cover pb-0" style={{ backgroundColor: "#232020" }}>
 				<WhatPeopleSay />
 			</section>

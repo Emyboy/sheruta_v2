@@ -101,7 +101,7 @@ export const Signup = (props) => {
                                         <div className="form-group">
                                             <div className="input-with-icon">
                                                 <input required type="text" className="form-control" placeholder="Phone No (whatsapp)" name='password' {...register("phone_number")} />
-                                                <i className="ti-unlock"></i>
+                                                <i className="lni lni-phone"></i>
                                             </div>
                                         </div>
                                     </div>

@@ -66,7 +66,7 @@ const Login = props => {
     }
 
     if (props.auth.user) {
-        return <Redirect to='/' />
+        return <Redirect to={localStorage.getItem('after_login') || '/'} />
     } else if (state.notVerified) {
         return <VerifyEmailProcess userData={state.userData} />
     } else

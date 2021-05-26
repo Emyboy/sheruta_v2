@@ -80,6 +80,7 @@ class Navbar_ extends Component {
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="mr-auto">
                         <Link to="/" className='h6 m-3'>Home</Link>
+                        <Link to="/requests" className='h6 m-3'>Requests</Link>
                         {/* <Link to="/blog" className='h6 m-3'>Blog</Link> */}
                         {/* <Link to="/agents" className='h6 m-3'>Agents</Link> */}
                         <Link to="/contact" className='h6 m-3'>Contact Us</Link>

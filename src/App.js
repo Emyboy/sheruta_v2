@@ -20,18 +20,22 @@ import VerifyEmail from './pages/VerifyEmail/VerifyEmail';
 import 'antd/dist/antd.css';
 import './App.css';
 import PasswordReset from './pages/ResetPassword/PasswordReset';
+import Request from './pages/Request/Request';
+import RequestCategory from './pages/Request/CraeteRequest';
+import RequestDetails from './pages/Request/RequestDetails';
+import Profile2 from './pages/Profile/Profile2';
 
 const Contact = React.lazy(() => import('./pages/Contact/Contact'));
 const Signup = React.lazy(() => import('./pages/Signup/Signup'));
 const Login = React.lazy(() => import('./pages/Login/Login'));
 const SearchResults = React.lazy(() => import('./components/SearchResults'));
-const Profile = React.lazy(() => import('./pages/Profile/Profile'));
 const About = React.lazy(() => import('./pages/About/About'));
 const PageNotFound = React.lazy(() => import('./components/PageNotFound'));
-const SignUpSuccess =  React.lazy(() => import('./pages/SignUpSuccess/SignUpSuccess'));
+const SignUpSuccess = React.lazy(() => import('./pages/SignUpSuccess/SignUpSuccess'));
 const PropertyDetails = React.lazy(() => import('./pages/Property/PropertyDetails'));
 const ResetPasswordRequest = React.lazy(() => import('./pages/ResetPassword/ResetPasswordRequest'));
 
+localStorage.setItem('after_login', '/')
 
 function App() {
   return (
@@ -47,13 +51,17 @@ function App() {
                 <Switch>
                   <Route exact path="/" component={Home2} />
                   <Route exact path="/login" component={Login} />
-                   <Route exact path="/signup" component={Signup} /> 
-                   <Route exact path="/signup/success" component={SignUpSuccess} />
+                  <Route exact path="/signup" component={Signup} />
+                  <Route exact path="/signup/success" component={SignUpSuccess} />
+                  {/* -------  REQUESTS ------ */}
+                  <Route exact path="/requests" component={Request} />
+                  <Route exact path="/requests/create" component={RequestCategory} />
+                  <Route exact path="/request/:uid/:user_id" component={RequestDetails} />
                   <Route exact path="/email/activate/:token/:confirmationToken" component={VerifyEmail} />
                   <Route exact path="/property/:name/:property_id" component={PropertyDetails} />
                   <Route exact path="/contact" component={Contact} />
                   <Route exact path="/about" component={About} />
-                  <Route exact path="/profile" component={Profile} />
+                  <Route exact path="/profile" component={Profile2} />
                   <Route exact path="/password/reset/request" component={ResetPasswordRequest} />
                   <Route exact path="/password/reset/u/:token/:resetPasswordToken" component={PasswordReset} />
                   <Route exact path="/search/:category/:location/:service" component={SearchResults} />
