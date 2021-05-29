@@ -25,7 +25,7 @@ export default function TrendingPoperties() {
 					<div className="row">
 						<div className="col-lg-12 col-md-12">
 							<div className="sec-heading center">
-								<h2>Trending Properties.</h2>
+								<h3>Trending Properties.</h3>
 								<p>Find new & featured property for you.</p>
 							</div>
 						</div>

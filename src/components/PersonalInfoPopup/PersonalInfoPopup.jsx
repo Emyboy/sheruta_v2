@@ -21,7 +21,6 @@ const PersonalInfoPopup = ({
         setState({ ...state, display: 'loading' })
         axios(process.env.REACT_APP_BASE_URL + '/services/?id=' + service.id)
             .then(res => {
-                console.log('SERVICE ---', res);
                 if(res.data.length === 0){
                     setState({ ...state, display: '404' })
                 }
@@ -32,7 +31,6 @@ const PersonalInfoPopup = ({
                     setState({ ...state, display: 'info' })
                 }else {
                     setState({ ...state, display: 'agent' })
-                    console.log('PARENT VAL ---', query, 'val --', val)
                 }
             })
             .catch(err => {

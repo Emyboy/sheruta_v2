@@ -7,7 +7,7 @@ export default function WhatPeopleSay() {
             <div className="container">
 						<div className="row align-items-center">
 							<div className="col-lg-6 col-md-7">
-								<h2 className="text-light">What People Say?</h2>
+								<h3 className="text-light">What People Say?</h3>
 
 								<div className="smart-textimonials smart-light slick-initialized slick-slider" id="smart-textimonials">
 									<Carousel controls={false}>

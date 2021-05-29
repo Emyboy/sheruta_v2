@@ -5,12 +5,11 @@ import { logout } from '../../redux/strapi_actions/strapi_auth.actions'
 import ProfileImageModal from './ProfileImageModal';
 
 export const Profile2 = (props) => {
-    console.log('PROFILE PROPS ----', props);
     const { auth } = props;
     const { user } = auth;
 
     const [state, setState] = useState({
-        showImageModal: true
+        showImageModal: false
     })
 
     if (!props.auth.user) {

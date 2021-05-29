@@ -29,14 +29,12 @@ export const ResetPasswordRequest = (props) => {
             })
                 .then(res => {
                     setState({ ...state, loading: false, sent: true, message: res.data.message })
-                    console.log('RES --', res)
                 })
                 .catch(err => {
                     setState({ ...state, loading: false })
                     if (err.response.data.message) {
                         setState({ ...state, errorMessage: err.response.data.message })
                     }
-                    console.log('ERR ---', { ...err });
                 })
         }
     }

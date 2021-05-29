@@ -8,6 +8,7 @@ import { setAuthState } from '../../redux/strapi_actions/strapi_auth.actions'
 import Btn from '../../components/Btn'
 import axios from 'axios';
 import { notification } from 'antd';
+import MetaTags from 'react-meta-tags';
 import { Link } from 'react-router-dom';
 import VerifyEmailProcess from '../VerifyEmail/VerifyEmailProcess';
 
@@ -72,6 +73,12 @@ const Login = props => {
     } else
         return (
             <div >
+                <MetaTags>
+                    <title>Login | Sheruta NG</title>
+                    <meta name="description" content={'Login to Sheruta and get access to shared apartments today'} />
+                    <meta property="og:title" content={'Login | Sheruta NG'} />
+                    <meta property="og:description" content={'Login to Sheruta and get access to shared apartments today'} />
+                </MetaTags>
                 <div className="animate__animated animate__fadeIn modal-dialog modal-dialog-centered login-pop-form" role="document">
                     <div className="modal-content" id="registermodal">
                         <span className="mod-close" data-dismiss="modal" aria-hidden="true"><i className="ti-close"></i></span>

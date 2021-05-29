@@ -13,11 +13,9 @@ export const RequestList = (props) => {
     React.useEffect(() => {
         axios(process.env.REACT_APP_BASE_URL + '/property-requests')
             .then(res => {
-                console.log('REQUESTS ---', res);
                 setState({ ...state, list: res.data })
             })
             .catch(err => {
-                console.log('ERROR ---', err);
             })
     }, []);
 
@@ -27,7 +25,7 @@ export const RequestList = (props) => {
                 <div className="row">
                     <div className="col-lg-12 col-md-12">
                         <div className="sec-heading center">
-                            <h2>Recent Requests</h2>
+                            <h3>Recent Requests</h3>
                             {/* <p>Find new & featured property for you.</p> */}
                         </div>
                     </div>

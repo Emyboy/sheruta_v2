@@ -120,3 +120,6 @@ label{
 .bg-theme {
     background-color: #00ba74 !important;
 }
+.link {
+    cursor: pointer !important;
+}

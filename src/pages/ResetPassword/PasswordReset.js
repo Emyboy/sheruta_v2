@@ -34,11 +34,9 @@ const ResetPassword = (props) => {
                 })
                     .then(res => {
                         setState({ ...state, loading: false, message: res.data.message, changed: true })
-                        console.log(res)
                     })
                     .catch(err => {
-                        setState({ ...state, errorMessage: err.response.data.message, loading: false })
-                        console.log({ ...err })
+                        setState({ ...state, errorMessage: err.response.data ? err.response.data.message : 'Server Error', loading: false })
                     })
             }
         }

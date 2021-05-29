@@ -9,7 +9,7 @@ export default function HowToUse() {
 					<div class="row">
 						<div class="col text-center">
 							<div class="sec-heading center">
-								<h2>How It Works?</h2>
+								<h3>How It Works?</h3>
 								<p>How to start work with us and working process</p>
 							</div>
 						</div>

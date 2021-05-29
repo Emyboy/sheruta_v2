@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { sendRequest } from '../../redux/actions/user.action';
 import { notification } from 'antd';
+import MetaTags from 'react-meta-tags';
 
 import loadingGif from '../../img/loading.gif';
 import DoneModal from '../../components/DoneModal';
@@ -51,6 +52,12 @@ export default connect(
             const { auth, user } = this.props;
             return (
                 <div>
+                    <MetaTags>
+                        <title>Contact Us | Sheruta NG</title>
+                        <meta name="description" content={'No: 181, Ago Palace Way, Okota, Lagos.'} />
+                        <meta property="og:title" content={'Contact Us | Sheruta NG'} />
+                        <meta property="og:description" content={'No: 181, Ago Palace Way, Okota, Lagos.'} />
+                    </MetaTags>
                     <DoneModal title={'Your request has been sent'} subTitle={"We well get back to you via Phone Call"} status={"success"} />
                     <div className="page-title">
                         <div className="container">

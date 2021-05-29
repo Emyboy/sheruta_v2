@@ -16,6 +16,10 @@ const desktopSize = 993;
 
 class Navbar_ extends Component {
 
+    state = {
+        dropped: false
+    }
+
     handleGooglePopup() {
         firebaseAuth.signInWithPopup(googleProvider)
             .then((result) => {
@@ -56,8 +60,13 @@ class Navbar_ extends Component {
                 })
             })
             .catch(err => {
-                notification.error({ message: 'Error fetching user data'})
+                notification.error({ message: 'Error fetching user data' })
             })
+    }
+
+    toggleDropdown(state) {
+        console.log('set it to ---', state)
+        this.setState({ dropped: state })
     }
 
     componentDidMount() {
@@ -72,19 +81,20 @@ class Navbar_ extends Component {
     render() {
         const { auth } = this.props.auth;
         const user = this.props.auth.user;
+        const { dropped } = this.state
         return (
             <Navbar bg="white" className='shadow-sm' expand="lg">
                 <Link className='navbar-brand' to='/'><img width='120px' src={siteIcon} alt="Site Logo" /></Link>
                 {/* <Link to="/" className="brand mt-1"></Link> */}
-                <Navbar.Toggle aria-controls="basic-navbar-nav" />
-                <Navbar.Collapse id="basic-navbar-nav">
+                <Navbar.Toggle  onClick={() => this.toggleDropdown(true)} />
+                <Navbar.Collapse id="basic-navbar-nav" className={dropped ? 'show' : 'hide'}>
                     <Nav className="mr-auto">
-                        <Link to="/" className='h6 m-3'>Home</Link>
-                        <Link to="/requests" className='h6 m-3'>Requests</Link>
+                        <Link to="/" className='h6 m-3' onClick={() => this.toggleDropdown(false)}>Home</Link>
+                        <Link to="/requests" className='h6 m-3' onClick={() => this.toggleDropdown(false)}>Requests</Link>
                         {/* <Link to="/blog" className='h6 m-3'>Blog</Link> */}
                         {/* <Link to="/agents" className='h6 m-3'>Agents</Link> */}
-                        <Link to="/contact" className='h6 m-3'>Contact Us</Link>
-                        <Link to="/about" className='h6 m-3'>About</Link>
+                        <Link to="/contact" className='h6 m-3' onClick={() => this.toggleDropdown(false)} >Contact Us</Link>
+                        <Link to="/about" className='h6 m-3' onClick={() => this.toggleDropdown(false)} >About</Link>
                         <a style={{ fontSize: '0px' }} target='_blank' href="https://ifeora-chukwuemeka.netlify.app/" className='h6 m-3'>Chukwuemeka .S Ifeora</a>
                         {/* <NavDropdown title="Dropdown" id="basic-nav-dropdown">
                             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>

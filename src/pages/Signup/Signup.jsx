@@ -6,6 +6,7 @@ import axios from 'axios';
 import store from '../../redux/store/store'
 import { Spinner } from 'react-activity';
 import { notification } from 'antd';
+import MetaTags from 'react-meta-tags';
 
 export const Signup = (props) => {
 
@@ -50,6 +51,12 @@ export const Signup = (props) => {
     } else {
         return (
             <div className='animate__animated animate__fadeIn modal-dialog modal-dialog-centered login-pop-form'>
+                <MetaTags>
+                    <title>Signup | Sheruta NG</title>
+                    <meta name="description" content={'Be the first to Signup on Sheruta and get access to shared apartments today'} />
+                    <meta property="og:title" content={'Signup | Sheruta NG'} />
+                    <meta property="og:description" content={'Be the first to Signup on Sheruta and get access to shared apartments today'} />
+                </MetaTags>
                 <div className="modal-content m-2" id="sign-up">
                     <Link to='/'><span className="mod-close" data-dismiss="modal" aria-hidden="true"><i className="ti-close"></i></span></Link>
                     <div className="modal-body">

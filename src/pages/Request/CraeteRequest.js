@@ -74,17 +74,13 @@ const CraeteRequest = (props) => {
         })
             .then(res => {
                 setState({ ...state, loading: false, done: true })
-                console.log(res)
             })
             .catch(err => {
-                setState({ ...state, loading: false })
-                console.log(err)
+                setState({ ...state, loading: false });
+                notification.error({ message: 'Error creating request' })
             })
     }
 
-    React.useEffect(() => {
-        console.log(data)
-    }, [data])
 
     if (state.done) {
         return <div className='mt-5 mb-5'>

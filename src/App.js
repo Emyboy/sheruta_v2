@@ -35,7 +35,6 @@ const SignUpSuccess = React.lazy(() => import('./pages/SignUpSuccess/SignUpSucce
 const PropertyDetails = React.lazy(() => import('./pages/Property/PropertyDetails'));
 const ResetPasswordRequest = React.lazy(() => import('./pages/ResetPassword/ResetPasswordRequest'));
 
-localStorage.setItem('after_login', '/')
 
 function App() {
   return (

@@ -11,7 +11,9 @@ import { Spinner } from 'react-activity'
 import { connect } from 'react-redux';
 import { getUser } from '../../redux/strapi_actions/strapi_auth.actions'
 
-const user = JSON.parse(localStorage.getItem('state')).auth.user;
+const state = JSON.parse(localStorage.getItem('state'));
+
+console.log('COPEER STATE ---', state)
 
 class CustomImage extends PureComponent {
     constructor(props) {
@@ -61,15 +63,14 @@ class CustomImage extends PureComponent {
     }
 
     sendToDb(imageUrl) {
-        console.log('SENDING TO DB')
         this.setState({ loading: true })
-        axios(process.env.REACT_APP_BASE_URL + `/users-permissions/auth/local/edit/${user.user.id}`, {
+        axios(process.env.REACT_APP_BASE_URL + `/users-permissions/auth/local/edit/${state.auth.user.user.id}`, {
             method: 'POST',
             data: {
                 avatar_url: imageUrl
             },
             headers: {
-                Authorization: 'Bearer ' + user.jwt
+                Authorization: 'Bearer ' + state.auth.user.jwt
             },
         })
             .then(res => {
@@ -77,7 +78,6 @@ class CustomImage extends PureComponent {
 
                 this.setState({ loading: false })
                 notification.success({ message: 'Image Updated' })
-                console.log('RES ----', res);
                 this.props.handleClose();
 
             })
@@ -115,7 +115,6 @@ class CustomImage extends PureComponent {
                 'newPhoto.jpeg'
             );
             this.setState({ croppedImageUrl });
-            console.log('IMG URL ---', croppedImageUrl);
         }
     }
 
@@ -168,14 +167,13 @@ class CustomImage extends PureComponent {
         const compressedFile = await imageCompression(this.state.blob, options);
         this.setState({ confirm: true, confirmed: true, src: false });
         // getCroppedImage(compressedFile);
-        console.log('CROPED IMAGE ---', compressedFile)
     }
 
 
 
     handleImageUpload() {
         this.setState({ loading: true })
-        var uploadTask = storage.child(`images/profile/${user.user.id}/image_0`).put(this.state.blob);
+        var uploadTask = storage.child(`images/profile/${state.auth.user.user.id}/image_0`).put(this.state.blob);
         uploadTask.on('state_changed',
             (snapshot) => {
                 var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
@@ -191,7 +189,6 @@ class CustomImage extends PureComponent {
             },
             (error) => {
                 // Handle unsuccessful uploads
-                console.log('UPLOAD ERROR ---', error);
                 notification.error({ message: 'Upload Error' });
                 this.setState({ loading: false })
             },
@@ -199,7 +196,6 @@ class CustomImage extends PureComponent {
                 // Handle successful uploads on complete
                 // For instance, get the download URL: https://firebasestorage.googleapis.com/...
                 uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
-                    console.log('File available at', downloadURL);
                     this.sendToDb(downloadURL)
                 });
             }
