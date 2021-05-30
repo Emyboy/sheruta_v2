@@ -85,6 +85,51 @@ export default props => {
         }
     }, [query])
 
+    function makeJobSchema(query) {
+        // const desc = stripHTML(job.description)
+        return JSON.stringify({
+            "@context": process.env.REACT_APP_SITE_URL,
+            "@type": "Product",
+            "name": query.name,
+            "image": query.image_urls.map(val => { return val }),
+            "description": query.description,
+            "datePublished": query.published_at,
+            "dateModified": query.updated_at,
+            // "sku": "0446310786",
+            // "mpn": "925872",
+            // "brand": {
+            //     "@type": "Brand",
+            //     "name": "ACME"
+            // },
+            "review": {
+                "@type": "Review",
+                "reviewRating": {
+                    "@type": "Rating",
+                    "ratingValue": "5",
+                    "bestRating": "5"
+                },
+                "author": {
+                    "@type": "Person",
+                    "name": "Sheruta NG"
+                }
+            },
+            "aggregateRating": {
+                "@type": "AggregateRating",
+                "ratingValue": "4.4",
+                "reviewCount": "89"
+            },
+            // "offers": {
+            //     "@type": "Offer",
+            //     "url": "https://example.com/anvil",
+            //     "priceCurrency": "USD",
+            //     "price": "119.99",
+            //     "priceValidUntil": "2020-11-20",
+            //     "itemCondition": "https://schema.org/UsedCondition",
+            //     "availability": "https://schema.org/InStock"
+            // }
+        })
+    }
+
 
     if (isLoading) {
         return <PageLoader />
@@ -102,6 +147,9 @@ export default props => {
                                 <meta property="og:title" content={query.name} />
                                 <meta property="og:description" content={query.description} />
                                 <meta property="og:image" content={query.image_urls[0]} />
+                                <script type="application/ld+json">
+                                    {makeJobSchema(query)}
+                                </script>
                             </MetaTags>
 
                             <div className='col-lg-8 col-md-12 col-sm-12'>
@@ -216,7 +264,7 @@ export default props => {
                                                 <a href={`tel:${agentData.phone_number}`}>
                                                     <span><i className="lni-phone-handset"></i>{agentData.phone_number}</span>
                                                 </a>
-                                                
+
                                             </div>
                                             <div className="clearfix"></div>
                                         </div>

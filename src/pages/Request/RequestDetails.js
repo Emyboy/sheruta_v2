@@ -4,6 +4,7 @@ import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
 import PageLoader from '../../components/PageLoader';
 import MetaTags from 'react-meta-tags';
+import Global from '../../Global';
 
 const RequestDetails = (props) => {
     const { user_id, uid } = props.match.params;
@@ -17,6 +18,7 @@ const RequestDetails = (props) => {
         setState({ ...state, loading: true })
         axios(process.env.REACT_APP_BASE_URL + "/property-requests/?uuid=" + uid)
             .then(res => {
+                console.log(res)
                 setRequest(res.data[0])
                 setState({ ...state, loading: false })
             })
@@ -24,6 +26,37 @@ const RequestDetails = (props) => {
                 setState({ ...state, loading: false })
                 notification.error({ message: 'Error fetching reqeust data' })
             })
+    }
+
+    function makeJobSchema(request) {
+        // const desc = stripHTML(job.description)
+        return JSON.stringify({
+            "@context": process.env.REACT_APP_SITE_URL,
+            "@type": "Article",
+            "mainEntityOfPage": {
+                "@type": "WebPage",
+                "@id": process.env.REACT_APP_SITE_URL + `/request/${request.uuid}/${request.users_permissions_user.id}`
+            },
+            "headline": request.heading,
+            "description": request.body,
+            "image": [
+                request.users_permissions_user.avatar_url
+            ],
+            "datePublished": request.published_at,
+            "dateModified": request.updated_at,
+            "author": {
+                "@type": "Person",
+                "name": request.users_permissions_user.first_name + " " + request.users_permissions_user.last_name
+            },
+            "publisher": {
+                "@type": "Organization",
+                "name": "Sheruta NG",
+                "logo": {
+                    "@type": "ImageObject",
+                    "url": Global.LOGO_URL
+                }
+            }
+        })
     }
 
     useEffect(() => {
@@ -41,6 +74,9 @@ const RequestDetails = (props) => {
                     <meta property="og:title" content={'Request | ' + request.heading} />
                     <meta property="og:description" content={request.body} />
                     <meta name="keywords" content={`${request.category ? request.category.name : null}, ${request.service ? request.service.name : null}`} />
+                    <script type="application/ld+json">
+                        {makeJobSchema(request)}
+                    </script>
                 </MetaTags>
                 <div className='d-flex justify-content-center mt-5'>
                     <div className='col-lg-8 col-md-12 col-sm-12 col-12'>
