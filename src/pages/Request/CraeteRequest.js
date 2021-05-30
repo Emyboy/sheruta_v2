@@ -8,6 +8,7 @@ import { v4 as Uid } from 'uuid'
 import { notification } from 'antd';
 import { Link } from 'react-router-dom';
 import TextInput from '../../components/TextInput'
+import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 
 const uid = Uid();
 
@@ -26,7 +27,10 @@ const CraeteRequest = (props) => {
         uuid: uid,
         category: null,
         service: null,
-        users_permissions_user: props.auth.user ? props.auth.user.user.id : null
+        users_permissions_user: props.auth.user ? props.auth.user.user.id : null,
+        budget: null,
+        location: null,
+        google_location: null
     })
 
 
@@ -116,24 +120,16 @@ const CraeteRequest = (props) => {
                                 <form onSubmit={handleSubmit}>
                                     <div className="row">
                                         <div className="col-lg-12 col-md-6 col-sm-12">
-                                            {/* <div className="form-group">
-                                                <input defaultValue={data.heading} disabled={state.loading} autofocus required name="title" type="text" className="form-control" placeholder="Request Heading" onChange={e => {
-                                                    setData({ ...data, heading: e.target.value })
-                                                }} />
-                                            </div> */}
                                             <TextInput
                                                 label='Request Heading'
                                                 placeholder="Eg. I need a shared apartment in Ikeja"
                                                 onChange={e => setData({ ...data, heading: e.target.value })}
                                             />
                                         </div>
-                                        {/* <div className="col-lg-6 col-md-6 col-sm-12">
-                                        <div className="form-group">
-                                            <input type="text" className="form-control" placeholder="Your Email" />
-                                        </div>
-                                    </div> */}
+
                                         <div className="col-lg-6 col-md-6 col-sm-12">
                                             <div className="form-group">
+                                                <label>Select Category</label>
                                                 <Select
                                                     placeholder='Select Category'
                                                     options={state.categories.map(val => ({ label: val.name, value: val.id }))}
@@ -147,6 +143,7 @@ const CraeteRequest = (props) => {
                                         </div>
                                         <div className="col-lg-6 col-md-6 col-sm-12">
                                             <div className="form-group">
+                                                <label>Select Service</label>
                                                 <Select
                                                     placeholder='Select Service'
                                                     onChange={e => {
@@ -158,8 +155,45 @@ const CraeteRequest = (props) => {
                                                 />
                                             </div>
                                         </div>
+                                        <div className="col-lg-6 col-md-6 col-sm-12">
+                                            <div className="form-group">
+                                                <label>Location</label>
+                                                <GooglePlacesAutocomplete
+                                                    apiKey={process.env.REACT_APP_GOOGLE_PLACES_API_KEY}
+                                                    apiOptions={{ language: 'en', region: 'ng' }}
+                                                    selectProps={{
+                                                        // props.state.location,
+                                                        className: 'border',
+                                                        onChange: e => {
+                                                            console.log(e)
+                                                            setData({ ...data, google_location: e, location: e.label })
+                                                        },
+                                                        placeholder:
+                                                            'Start typing your address',
+                                                    }}
+                                                    autocompletionRequest={{
+                                                        componentRestrictions: {
+                                                            country: ['ng'],
+                                                        },
+                                                    }}
+                                                />
+                                            </div>
+                                        </div>
+                                        <div className="col-lg-6 col-md-6 col-sm-12">
+                                            <div className="form-group">
+                                                <label>Budget / Price</label>
+                                                <input
+                                                    style={{ height: '40px' }}
+                                                    className='form-control'
+                                                    type='number'
+                                                    placeholder='Eg. 300000'
+                                                    onChange={e => setData({ ...data, budget: e.target.value })}
+                                                />
+                                            </div>
+                                        </div>
                                         <div className="col-lg-12 col-md-12 col-sm-12">
                                             <div className="form-group">
+                                                <label>Request Body</label>
                                                 <textarea onChange={e => {
                                                     setData({
                                                         ...data,

@@ -27,16 +27,19 @@ const EachProperty = ({ data }) => {
 
                 <div className="listing-detail-wrapper pb-0">
                     <div className="listing-short-detail">
-                        <h2 className="listing-name"><Link to={{
+                        <Link to={{
                             pathname: `/property/${data.name}/${data.id}`,
                             state: data
-                        }}>{data.name.length > 35 ? data.name.slice(0, 35) + "..." : data.name}</Link>
-                            {
-                                data.verified ?
-                                    <i className="list-status ti-check"></i> : null
+                        }}>
+                            <h2 className="listing-name">
+                                {data.name.length > 35 ? data.name.slice(0, 35) + "..." : data.name}
+                            </h2>
+                        </Link>
+                        {
+                            data.verified ?
+                                <i className="list-status ti-check"></i> : null
 
-                            }
-                        </h2>
+                        }
                     </div>
                 </div>
 

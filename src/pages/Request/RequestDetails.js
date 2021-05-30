@@ -60,6 +60,14 @@ const RequestDetails = (props) => {
                                     {request.category ? <div className='badge badge-warning shadow'>{request.category.name}</div> : null}
                                     {request.service ? <div className='badge badge-success shadow ml-2'>{request.service.name}</div> : null}
                                 </div>
+                                <div className='d-flex'>
+                                    <span className='text-white'><b>Budget:</b></span>
+                                    <span className='ml-2 text-white'>₦ {window.renderPrice(request.budget)}</span>
+                                </div>
+                                <div className='d-flex'>
+                                    <span className='text-white'><b>Location:</b></span>
+                                    <span className='ml-2 text-white'>{request.location}</span>
+                                </div>
                                 <hr />
                                 <h1 className='text-white' style={{ fontSize: '20px' }}><b>{request.heading}</b></h1>
                                 <p className="pa-text text-white" style={{ textAlign: 'start' }}>{request.body}</p>

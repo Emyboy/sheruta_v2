@@ -10,7 +10,7 @@ const Eachval = ({
     val,
     auth
 }) => {
-    console.log('val --', val)
+    console.log('val ---', val)
     const [state, setState] = useState({
         length: false,
         confirmDelete: false,
@@ -46,20 +46,20 @@ const Eachval = ({
                     </div>
                 </div> : <article className="m-2 single-comment bg-dark  card shadow" style={{ borderRadius: '10px' }}>
                     <div className="comment-details p-2">
-                        <Link className='text-theme' to={`/request/${val.uuid}/${val.users_permissions_user.id}`}>
-                            {
-                                val.users_permissions_user ?
-                                    <div className="comment-meta row card-body pb-1 pt-1">
-                                        <div className="comment-author">
-                                            <img style={{ width: '50px', borderRadius: '50%' }} className='img-fluid mr-2' src={val.users_permissions_user.avatar_url} alt={val.users_permissions_user.first_name + " 's Avatar"} />
-                                        </div>
-                                        <div className="comment-left-meta">
-                                            <h4 className="author-name text-white mb-1">{`${val.users_permissions_user.first_name}`}</h4>
-                                            <div className="comment-date text-white">{new Date(val.created_at).toDateString()}</div>
-                                        </div>
-                                    </div> : null
-                            }
-                        </Link>
+                        {/* <Link className='text-theme' to={`/request/${val.uuid}/${val.users_permissions_user.id}`}> */}
+                        {
+                            val.users_permissions_user ?
+                                <div className="comment-meta row card-body pb-1 pt-1">
+                                    <div className="comment-author">
+                                        <img style={{ width: '50px', borderRadius: '50%' }} className='img-fluid mr-2' src={val.users_permissions_user.avatar_url} alt={val.users_permissions_user.first_name + " 's Avatar"} />
+                                    </div>
+                                    <div className="comment-left-meta">
+                                        <h4 className="author-name text-white mb-1">{`${val.users_permissions_user.first_name}`}</h4>
+                                        <div className="comment-date text-white">{new Date(val.created_at).toDateString()}</div>
+                                    </div>
+                                </div> : null
+                        }
+                        {/* </Link> */}
                         <div className='d-flex justify-content-start mt-2 ml-5'>
                             {val.category ? <div className='badge badge-warning shadow'>{val.category.name}</div> : null}
                             {val.service ? <div className='badge badge-success shadow ml-2'>{val.service.name}</div> : null}
@@ -70,6 +70,15 @@ const Eachval = ({
                         </Link>
                         <div className="comment-text">
                             <p className='text-white mb-0'>{val.body.length > 90 ? val.body.slice(0, 90) + "..." : val.body}</p>
+                        </div>
+                        <hr className='text-gray mb-0 mt-2' />
+                        <div className='d-flex'>
+                            <span className='text-white'><b>Budget:</b></span>
+                            <span className='ml-2 text-white'>₦ {window.renderPrice(val.budget)}</span>
+                        </div>
+                        <div className='d-flex'>
+                            <span className='text-white'><b>Location:</b></span>
+                            <span className='ml-2 text-white'>{val.location}</span>
                         </div>
                     </div>
                     <div className='card-footer d-flex justify-content-between'>
