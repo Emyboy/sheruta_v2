@@ -123,3 +123,7 @@ label{
 .link {
     cursor: pointer !important;
 }
+.profile-content {
+    overflow-y: scroll !important;
+    height: 70vh !important;
+}

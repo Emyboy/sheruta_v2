@@ -1,5 +1,6 @@
 import axios from 'axios'
 import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom';
 import EachProperty from '../../components/EachProperty/EachProperty'
 
 export default function TrendingPoperties() {
@@ -7,7 +8,7 @@ export default function TrendingPoperties() {
 		properties: []
 	});
 	const getProperties = () => {
-		axios(process.env.REACT_APP_BASE_URL + '/properties/limit/' + "6")
+		axios(process.env.REACT_APP_BASE_URL + '/properties/recent/' + "6")
 			.then(res => {
 				setState({ ...state, properties: res.data })
 			})
@@ -42,13 +43,13 @@ export default function TrendingPoperties() {
 						}
 					</div>
 
-					{/* <div className="row">
+					<div className="row">
 						<div className="col-lg-12 col-md-12">
 							<div className="text-center mt-4">
-								<a href="#" className="btn btn-theme-2">Browse More Property</a>
+								<Link to='/properties' className="btn btn-theme-2">View All Properties</Link>
 							</div>
 						</div>
-					</div> */}
+					</div>
 
 				</div>
 			</section>

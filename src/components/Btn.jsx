@@ -9,7 +9,8 @@ const Btn = ({
     disabled,
     onClick,
     danger,
-    type
+    type,
+    icon
 }) => {
     return (
         <button
@@ -19,7 +20,7 @@ const Btn = ({
             type={type}
             style={{ fontSize: '20px' }}
         >
-            {loading ? <Spinner color='white' /> : text}
+            {loading ? <Spinner color='white' /> : <><i className={icon}></i>  {text}</>}
         </button>
     )
 }

@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 
 export default React.memo((props) => {
     const { val } = props;
+    
     const [state, setState] = useState({
         category: null,
         service: null,
@@ -78,12 +79,12 @@ export default React.memo((props) => {
                         <img src={val.image_urls[0]} className="img-fluid mx-auto" alt="" />
                     </a>
                     <div className="listing-like-top">
-                        <span className='text-white'><b style={{ textShadow: "0 0 12px black" }}>{state.service}</b></span>
+                        <span className='text-white'><b style={{ textShadow: "0 0 12px black" }}>{val.service.name}</b></span>
                     </div>
                     <div className="listing-rating rounded text-white">
                         <b>{state.category}</b>
                     </div>
-                    {state.status && <span className="property-type shadow"><b>{state.status}</b></span>}
+                    {val.statu && <span className="property-type shadow"><b>{val.statu.name}</b></span>}
                 </div>
 
                 <div className="listing-content">

@@ -86,7 +86,7 @@ class Navbar_ extends Component {
             <Navbar bg="white" className='shadow-sm' expand="lg">
                 <Link className='navbar-brand' to='/'><img width='120px' src={siteIcon} alt="Site Logo" /></Link>
                 {/* <Link to="/" className="brand mt-1"></Link> */}
-                <Navbar.Toggle  onClick={() => this.toggleDropdown(true)} />
+                <Navbar.Toggle />
                 <Navbar.Collapse id="basic-navbar-nav" className={dropped ? 'show' : 'hide'}>
                     <Nav className="mr-auto">
                         <Link to="/" className='h6 m-3' onClick={() => this.toggleDropdown(false)}>Home</Link>
