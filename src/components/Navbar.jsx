@@ -3,10 +3,9 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import siteIcon from '../img/site-icon.png';
 import { Nav, Navbar, Form, NavDropdown, FormControl, Button } from 'react-bootstrap';
-import { logout, handleGoogleLogin } from '../redux/actions/auth.action';
+import { logout } from '../redux/actions/auth.action';
 import { toggleNavbar } from '../redux/actions/view.actions';
-import { firebaseAuth, googleProvider } from '../Firebase';
-import { PhoneNumberModal } from './PhoneNumberModal';
+import { getAllCategories, getAllServices } from '../redux/strapi_actions/view.action'
 import axios from 'axios';
 import store from '../redux/store/store';
 import { notification } from 'antd';
@@ -18,26 +17,6 @@ class Navbar_ extends Component {
 
     state = {
         dropped: false
-    }
-
-    handleGooglePopup() {
-        firebaseAuth.signInWithPopup(googleProvider)
-            .then((result) => {
-                var user = result.user;
-                this.props.handleGoogleLogin({
-                    username: user.displayName,
-                    fullname: user.displayName,
-                    imageurl: user.photoURL,
-                    phoneno: 0,
-                    password: user.uid,
-                    email: user.email
-                })
-            }).catch((error) => {
-                var errorCode = error.code;
-                var email = error.email;
-                var credential = error.credential;
-                var errorMessage = error.message;
-            });
     }
 
     getUserData() {
@@ -75,6 +54,8 @@ class Navbar_ extends Component {
             // alert('there is user')
             this.getUserData()
         }
+        this.props.getAllCategories()
+        this.props.getAllServices()
     }
 
 
@@ -136,45 +117,6 @@ class Navbar_ extends Component {
     }
 }
 
-const Navbar2 = () => {
-    return (
-        <nav className="navbar navbar-expand-lg navbar-light bg-light">
-            <Link to="/" className="brand mb-4"><img style={{ width: '70%' }} src={siteIcon} alt="" /></Link>
-            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span className="navbar-toggler-icon"></span>
-            </button>
-
-            <div className="collapse navbar-collapse left" id="navbarSupportedContent">
-                <ul className="navbar-nav mr-auto">
-                    <li className="nav-item active">
-                        <a className="nav-link" href="#c">Home <span className="sr-only">(current)</span></a>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="#c">Link</a>
-                    </li>
-                    <li className="nav-item dropdown">
-                        <a className="nav-link dropdown-toggle" href="#c" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown
-        </a>
-                        <div className="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a className="dropdown-item" href="#c">Action</a>
-                            <a className="dropdown-item" href="#c">Another action</a>
-                            <div className="dropdown-divider"></div>
-                            <a className="dropdown-item" href="#c">Something else here</a>
-                        </div>
-                    </li>
-                    <li className="nav-item">
-                        <a className="nav-link disabled" href="#c" tabindex="-1" aria-disabled="true">Disabled</a>
-                    </li>
-                </ul>
-                <form className="form-inline my-2 my-lg-0">
-                    <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" />
-                    <button className="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-                </form>
-            </div>
-        </nav>
-    )
-}
 
 const mapStateToProps = state => ({
     auth: state.auth,
@@ -184,7 +126,8 @@ const mapStateToProps = state => ({
 const mapActionToProps = {
     logout,
     toggleNavbar,
-    handleGoogleLogin
+    getAllCategories,
+     getAllServices
 }
 
 export default connect(mapStateToProps, mapActionToProps)(Navbar_);

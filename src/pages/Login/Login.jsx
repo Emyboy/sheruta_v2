@@ -4,7 +4,7 @@ import loadingGif from '../../img/loading.gif';
 import { useForm } from 'react-hook-form'
 import { login } from '../../redux/actions/auth.action';
 import { Redirect } from 'react-router';
-import { setAuthState } from '../../redux/strapi_actions/strapi_auth.actions'
+import { setAuthState } from '../../redux/strapi_actions/auth.actions'
 import Btn from '../../components/Btn'
 import axios from 'axios';
 import { notification } from 'antd';

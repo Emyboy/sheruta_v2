@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { connect } from 'react-redux'
 import { Redirect } from 'react-router';
-import { logout } from '../../redux/strapi_actions/strapi_auth.actions'
+import { logout } from '../../redux/strapi_actions/auth.actions'
 import ProfileImageModal from './ProfileImageModal';
 import { notification, Tabs } from 'antd';
 import Btn from '../../components/Btn';

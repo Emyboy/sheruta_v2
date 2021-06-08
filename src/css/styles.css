@@ -7069,7 +7069,7 @@ h3.pa-name {
     color: #fd5332;
 }
 .pr-value:before {
-    content: "$";
+    content: "₦";
     position: absolute;
     font-size: 2rem;
     top: -20px;

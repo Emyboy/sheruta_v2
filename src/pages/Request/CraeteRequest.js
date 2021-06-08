@@ -13,12 +13,19 @@ import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
 const uid = Uid();
 
 const CraeteRequest = (props) => {
-    localStorage.setItem('after_login', '/requests/create')
+    localStorage.setItem('after_login', `${window.location.pathname}`)
+
+    const { view, match } = props;
+
+    const { params } = match;
+
+
     const [state, setState] = React.useState({
         categories: [],
         services: [],
         loading: false,
-        done: false
+        done: false,
+        hideOptions: true
     });
 
     const [data, setData] = React.useState({
@@ -30,36 +37,10 @@ const CraeteRequest = (props) => {
         users_permissions_user: props.auth.user ? props.auth.user.user.id : null,
         budget: null,
         location: null,
-        google_location: null
+        google_location: null,
+        is_searching: false
     })
 
-
-    const getAllCategories = () => {
-        axios(process.env.REACT_APP_BASE_URL + '/categories')
-            .then(res => {
-                setState({ ...state, categories: res.data })
-            })
-            .catch(err => {
-            })
-    }
-
-    const getAllServices = () => {
-        axios(process.env.REACT_APP_BASE_URL + '/services')
-            .then(res => {
-                setState({ ...state, services: res.data })
-            })
-            .catch(err => {
-            })
-    }
-
-    React.useEffect(() => {
-        if (state.categories.length === 0) {
-            getAllCategories();
-        }
-        if (state.services.length === 0) {
-            getAllServices();
-        }
-    }, [state])
 
     const handleSubmit = e => {
         // e.priventDefault();
@@ -70,7 +51,7 @@ const CraeteRequest = (props) => {
         setState({ ...state, loading: true })
         axios(process.env.REACT_APP_BASE_URL + "/property-requests", {
             method: 'POST',
-            data: { ...data, body_html: `<p>${data.body}</p>` },
+            data: { ...data, body_html: `<p>${data.body}</p>`, uuid: uid, users_permissions_user: props.auth.user.user.id  },
             headers: {
                 Authorization:
                     `Bearer ${props.auth.user.jwt}`,
@@ -83,7 +64,15 @@ const CraeteRequest = (props) => {
                 setState({ ...state, loading: false });
                 notification.error({ message: 'Error creating request' })
             })
-    }
+    };
+
+    React.useEffect(() => {
+        if (Object.keys(params).length === 0) {
+            setState({ ...state, hideOptions: false })
+        } else {
+            setData({ ...state, services: parseInt(params.service_id), categories: parseInt(params.category_id), is_searching: params.is_searching === "true" })
+        }
+    }, [])
 
 
     if (state.done) {
@@ -127,34 +116,39 @@ const CraeteRequest = (props) => {
                                             />
                                         </div>
 
-                                        <div className="col-lg-6 col-md-6 col-sm-12">
-                                            <div className="form-group">
-                                                <label>Select Category</label>
-                                                <Select
-                                                    placeholder='Select Category'
-                                                    options={state.categories.map(val => ({ label: val.name, value: val.id }))}
-                                                    onChange={e => {
-                                                        setData({ ...data, category: e.value })
-                                                    }}
-                                                    className='border rounded'
-                                                    disabled={state.loading}
-                                                />
-                                            </div>
-                                        </div>
-                                        <div className="col-lg-6 col-md-6 col-sm-12">
-                                            <div className="form-group">
-                                                <label>Select Service</label>
-                                                <Select
-                                                    placeholder='Select Service'
-                                                    onChange={e => {
-                                                        setData({ ...data, service: e.value })
-                                                    }}
-                                                    options={state.services.map(val => ({ label: val.name, value: val.id }))}
-                                                    className='border rounded'
-                                                    disabled={state.loading}
-                                                />
-                                            </div>
-                                        </div>
+                                        {
+                                            state.hideOptions ? null : <>
+                                                <div className="col-lg-6 col-md-6 col-sm-12">
+                                                    <div className="form-group">
+                                                        <label>Select Category</label>
+                                                        <Select
+                                                            placeholder='Select Category'
+                                                            options={view.categories.map(val => ({ label: val.name, value: val.id }))}
+                                                            onChange={e => {
+                                                                setData({ ...data, category: e.value })
+                                                            }}
+                                                            className='border rounded'
+                                                            disabled={state.loading}
+                                                        />
+                                                    </div>
+                                                </div>
+                                                <div className="col-lg-6 col-md-6 col-sm-12">
+                                                    <div className="form-group">
+                                                        <label>Select Service</label>
+                                                        <Select
+                                                            placeholder='Select Service'
+                                                            onChange={e => {
+                                                                setData({ ...data, service: e.value })
+                                                            }}
+                                                            options={view.services.map(val => ({ label: val.name, value: val.id }))}
+                                                            className='border rounded'
+                                                            disabled={state.loading}
+                                                        />
+                                                    </div>
+                                                </div>
+
+                                            </>
+                                        }
                                         <div className="col-lg-6 col-md-6 col-sm-12">
                                             <div className="form-group">
                                                 <label>Location</label>
@@ -219,7 +213,8 @@ const CraeteRequest = (props) => {
 }
 
 const mapStateToProps = (state) => ({
-    auth: state.auth
+    auth: state.auth,
+    view: state.view
 })
 
 const mapDispatchToProps = {

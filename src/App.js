@@ -26,6 +26,7 @@ import RequestDetails from './pages/Request/RequestDetails';
 import Profile2 from './pages/Profile/Profile2';
 import PropertySort from './pages/Property/PropertySort';
 import AllRequests from './pages/Request/AllRequests'
+import Pricing from './pages/Pricing/Pricing';
 
 const Contact = React.lazy(() => import('./pages/Contact/Contact'));
 const Signup = React.lazy(() => import('./pages/Signup/Signup'));
@@ -56,6 +57,7 @@ function App() {
                   <Route exact path="/signup/success" component={SignUpSuccess} />
                   {/* -------  REQUESTS ------ */}
                   <Route exact path="/requests" component={Request} />
+                  <Route exact path="/requests/create/:service_id/:category_id/:is_searching" component={RequestCategory} />
                   <Route exact path="/requests/create" component={RequestCategory} />
                   <Route exact path="/requests/all" component={AllRequests} />
                   <Route exact path="/request/:uid/:user_id" component={RequestDetails} />
@@ -63,6 +65,9 @@ function App() {
                   {/* ------------- PROPERTIES ---------- */}
                   <Route exact path="/property/:name/:property_id" component={PropertyDetails} />
                   <Route exact path="/properties" component={PropertySort} />
+                  {/* ---------------- PAYMENT ---------------- */}
+                  <Route exact path="/pricing" component={Pricing} />
+
                   <Route exact path="/contact" component={Contact} />
                   <Route exact path="/about" component={About} />
                   <Route exact path="/profile" component={Profile2} />

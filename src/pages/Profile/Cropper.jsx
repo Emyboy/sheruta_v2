@@ -9,7 +9,7 @@ import { notification } from 'antd';
 import axios from 'axios';
 import { Spinner } from 'react-activity'
 import { connect } from 'react-redux';
-import { getUser } from '../../redux/strapi_actions/strapi_auth.actions'
+import { getUser } from '../../redux/strapi_actions/auth.actions'
 
 const state = JSON.parse(localStorage.getItem('state'));
 
