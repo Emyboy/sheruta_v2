@@ -127,3 +127,18 @@ label{
     overflow-y: scroll !important;
     height: 70vh !important;
 }
+h1, h2, h3, h4, h5, h6 {
+        line-height: 25px !important;
+}
+div.scrollmenu {
+  overflow: auto;
+  white-space: nowrap;
+}
+
+div.scrollmenu div {
+  display: inline-block;
+  color: white;
+  text-align: center;
+  padding: 14px;
+  text-decoration: none;
+}

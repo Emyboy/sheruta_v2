@@ -11,7 +11,7 @@ import img1 from './images1/Searchboxpix.jpg'
 import './Stylesheet.css'
 import img2 from './images1/Newpics.png'
 import RequestList from './RequestList'
-
+import Jumbo2 from '../../components/Jumbo2'
 
 
 export default function Home2() {
@@ -29,6 +29,9 @@ export default function Home2() {
 			<div>
 				<HowToUse />
 			</div>
+			{/* <div>
+				<Jumbo2 />
+			</div> */}
 			{/* <div>
 				<GetStarted />
 			</div> */}

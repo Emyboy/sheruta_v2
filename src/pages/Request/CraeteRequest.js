@@ -18,6 +18,7 @@ const CraeteRequest = (props) => {
     const { view, match } = props;
 
     const { params } = match;
+    console.log('PARAMS --', params)
 
 
     const [state, setState] = React.useState({
@@ -44,8 +45,13 @@ const CraeteRequest = (props) => {
 
     const handleSubmit = e => {
         // e.priventDefault();
+        console.log('senidng ---', data)
         if (!state.categories) {
             notification.error({ message: 'Please select a category' });
+            return
+        }
+        if (!state.location) {
+            notification.error({ message: 'Please add a location' });
             return
         }
         setState({ ...state, loading: true })
@@ -69,8 +75,9 @@ const CraeteRequest = (props) => {
     React.useEffect(() => {
         if (Object.keys(params).length === 0) {
             setState({ ...state, hideOptions: false })
-        } else {
-            setData({ ...state, services: parseInt(params.service_id), categories: parseInt(params.category_id), is_searching: params.is_searching === "true" })
+        }
+        if(Object.keys(params).length > 0){
+            setData({ ...data, service: parseInt(params.service_id), category: parseInt(params.category_id), is_searching: params.is_searching === "true" })
         }
     }, [])
 

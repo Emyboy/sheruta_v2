@@ -7,6 +7,7 @@ import store from '../../redux/store/store'
 import { Spinner } from 'react-activity';
 import { notification } from 'antd';
 import MetaTags from 'react-meta-tags';
+import SignUpSuccess from '../SignUpSuccess/SignUpSuccess'
 
 export const Signup = (props) => {
 
@@ -14,18 +15,20 @@ export const Signup = (props) => {
     const [state, setState] = useState({
         loading: false,
         errorMessage: null,
-        goToSuccess: false
+        goToSuccess: false,
+        gender: 'male'
     })
 
     const onSubmit = e => {
+        // console.log('SENDING ---', { ...e, username: e.username.replace(/\s/g, '')})
         setState({ ...state, loading: true })
         axios(process.env.REACT_APP_BASE_URL + '/auth/local/register', {
             method: 'POST',
-            data: e,
+            data: { ...e, username: e.username.replace(/\s/g, '')},
         })
             .then(res => {
-                if(res.status === 201){
-                    notification.success('Account Created');
+                if (res.status === 201) {
+                    notification.success({ message: 'Account Created' });
                     sessionStorage.setItem('mail', e.email);
                     setState({ ...state, loading: false, goToSuccess: true })
                 }
@@ -38,7 +41,7 @@ export const Signup = (props) => {
                 // })
             })
             .catch(err => {
-                setState({...state, loading: false })
+                setState({ ...state, loading: false })
                 setState({ ...state, errorMessage: err.response.data.message || 'Singup Error' })
                 setTimeout(() => {
                     setState({ ...state, errorMessage: null })
@@ -47,6 +50,7 @@ export const Signup = (props) => {
     }
 
     if (state.goToSuccess) {
+        // return <SignUpSuccess />
         return <Redirect to='/signup/success' />
     } else {
         return (
@@ -135,7 +139,7 @@ export const Signup = (props) => {
                                     <div className="col-lg-6 col-md-6">
                                         <div className="form-group">
                                             <div className="input-with-icon">
-                                                <select className="form-control" {...register("gender")}>
+                                                <select className="form-control" {...register("gander")}>
                                                     <option value='male'>Male</option>
                                                     <option value='femaile'>Female</option>
                                                 </select>

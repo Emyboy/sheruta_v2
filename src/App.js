@@ -15,12 +15,12 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 
 import PageLoader from './components/PageLoader';
-import Home2 from './pages/Home/Home2';
+import Contact from './pages/Contact/Contact';
 import VerifyEmail from './pages/VerifyEmail/VerifyEmail';
 import 'antd/dist/antd.css';
 import './App.css';
 import PasswordReset from './pages/ResetPassword/PasswordReset';
-import Request from './pages/Request/Request';
+import About from './pages/About/About';
 import RequestCategory from './pages/Request/CraeteRequest';
 import RequestDetails from './pages/Request/RequestDetails';
 import Profile2 from './pages/Profile/Profile2';
@@ -28,15 +28,16 @@ import PropertySort from './pages/Property/PropertySort';
 import AllRequests from './pages/Request/AllRequests'
 import Pricing from './pages/Pricing/Pricing';
 
-const Contact = React.lazy(() => import('./pages/Contact/Contact'));
 const Signup = React.lazy(() => import('./pages/Signup/Signup'));
 const Login = React.lazy(() => import('./pages/Login/Login'));
 const SearchResults = React.lazy(() => import('./components/SearchResults'));
-const About = React.lazy(() => import('./pages/About/About'));
+const Request = React.lazy(() => import('./pages/Request/Request'));
 const PageNotFound = React.lazy(() => import('./components/PageNotFound'));
 const SignUpSuccess = React.lazy(() => import('./pages/SignUpSuccess/SignUpSuccess'));
 const PropertyDetails = React.lazy(() => import('./pages/Property/PropertyDetails'));
 const ResetPasswordRequest = React.lazy(() => import('./pages/ResetPassword/ResetPasswordRequest'));
+const Share = React.lazy(() => import('./pages/share/Share'));
+const Home2 = React.lazy(() => import('./pages/Home/Home2'));
 
 
 function App() {
@@ -67,6 +68,9 @@ function App() {
                   <Route exact path="/properties" component={PropertySort} />
                   {/* ---------------- PAYMENT ---------------- */}
                   <Route exact path="/pricing" component={Pricing} />
+
+                  {/* ------------------ SHARE ----------------------- */}
+                  <Route exact path="/share" component={Share} />
 
                   <Route exact path="/contact" component={Contact} />
                   <Route exact path="/about" component={About} />
