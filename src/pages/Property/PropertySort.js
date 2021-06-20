@@ -12,7 +12,7 @@ const All = (props) => {
     });
 
     const getProperties = () => {
-        axios(process.env.REACT_APP_BASE_URL + '/properties/recent/' + "6")
+        axios(process.env.REACT_APP_BASE_URL + '/properties')
             .then(res => {
                 setState({ ...state, properties: res.data })
             })
