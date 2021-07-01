@@ -49,10 +49,10 @@ const CraeteRequest = (props) => {
             notification.error({ message: 'Please select a category' });
             return
         }
-        // if (!state.location) {
-        //     notification.error({ message: 'Please add a location' });
-        //     return
-        // }
+        if (!state.location) {
+            notification.error({ message: 'Please add a location' });
+            return
+        }
         setState({ ...state, loading: true })
         axios(process.env.REACT_APP_BASE_URL + "/property-requests", {
             method: 'POST',
