@@ -1,11 +1,17 @@
 
 const initialState = {
     services: [],
-    categories: []
+    categories: [],
+    askForUserFeedback: false
 }
 
 export default (state = initialState, { type, payload }) => {
     switch (type) {
+        case 'SET_VIEW_STATE':
+            return {
+                ...state,
+                ...payload
+            }
 
         case 'GET_ALL_SERVICES':
             return { ...state, services: payload }

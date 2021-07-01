@@ -10,7 +10,6 @@ const Eachval = ({
     val,
     auth
 }) => {
-    console.log('val ---', val)
     const [state, setState] = useState({
         length: false,
         confirmDelete: false,

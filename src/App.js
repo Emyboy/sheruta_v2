@@ -28,6 +28,7 @@ import PropertySort from './pages/Property/PropertySort';
 import AllRequests from './pages/Request/AllRequests'
 import Pricing from './pages/Pricing/Pricing';
 import UserFeedback from './pages/Feedback/UserFeedback';
+import FeedbackPopup from './pages/Feedback/FeedbackPopup';
 
 const Signup = React.lazy(() => import('./pages/Signup/Signup'));
 const Login = React.lazy(() => import('./pages/Login/Login'));
@@ -52,6 +53,7 @@ function App() {
               <BrowserRouter>
                 <TopHeader />
                 <Navbar />
+                <FeedbackPopup />
                 <Switch>
                   <Route exact path="/" component={Home2} />
                   <Route exact path="/login" component={Login} />

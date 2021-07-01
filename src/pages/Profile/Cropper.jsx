@@ -13,8 +13,6 @@ import { getUser } from '../../redux/strapi_actions/auth.actions'
 
 const state = JSON.parse(localStorage.getItem('state'));
 
-console.log('COPEER STATE ---', state)
-
 class CustomImage extends PureComponent {
     constructor(props) {
         super(props);

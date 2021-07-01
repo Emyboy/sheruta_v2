@@ -9,6 +9,7 @@ import { notification } from 'antd';
 import { Link } from 'react-router-dom';
 import TextInput from '../../components/TextInput'
 import GooglePlacesAutocomplete from 'react-google-places-autocomplete';
+import { getUserFeedback } from '../../redux/strapi_actions/view.action'
 
 const uid = Uid();
 
@@ -18,7 +19,6 @@ const CraeteRequest = (props) => {
     const { view, match } = props;
 
     const { params } = match;
-    console.log('PARAMS --', params)
 
 
     const [state, setState] = React.useState({
@@ -45,15 +45,14 @@ const CraeteRequest = (props) => {
 
     const handleSubmit = e => {
         // e.priventDefault();
-        console.log('senidng ---', data)
         if (!state.categories) {
             notification.error({ message: 'Please select a category' });
             return
         }
-        if (!state.location) {
-            notification.error({ message: 'Please add a location' });
-            return
-        }
+        // if (!state.location) {
+        //     notification.error({ message: 'Please add a location' });
+        //     return
+        // }
         setState({ ...state, loading: true })
         axios(process.env.REACT_APP_BASE_URL + "/property-requests", {
             method: 'POST',
@@ -64,6 +63,7 @@ const CraeteRequest = (props) => {
             },
         })
             .then(res => {
+                props.getUserFeedback();
                 setState({ ...state, loading: false, done: true })
             })
             .catch(err => {
@@ -225,7 +225,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-
+    getUserFeedback
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(CraeteRequest)
