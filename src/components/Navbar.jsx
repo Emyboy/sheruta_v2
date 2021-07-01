@@ -39,7 +39,7 @@ class Navbar_ extends Component {
                 })
             })
             .catch(err => {
-                notification.error({ message: 'Error fetching user data' })
+                this.props.logout();
             })
     }
 
@@ -101,7 +101,7 @@ class Navbar_ extends Component {
                                                 : null
                                         }
                                         <hr />
-                                        <Link to="/" onClick={() => this.props.logout()}><i className="ti-power-off"></i>Log Out</Link>
+                                        <Link onClick={() => this.props.logout()}><i className="ti-power-off"></i>Log Out</Link>
                                     </div>
                                 </div>
                             </li> : <li className="login-attri theme-log">

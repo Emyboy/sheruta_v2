@@ -27,6 +27,7 @@ import Profile2 from './pages/Profile/Profile2';
 import PropertySort from './pages/Property/PropertySort';
 import AllRequests from './pages/Request/AllRequests'
 import Pricing from './pages/Pricing/Pricing';
+import UserFeedback from './pages/Feedback/UserFeedback';
 
 const Signup = React.lazy(() => import('./pages/Signup/Signup'));
 const Login = React.lazy(() => import('./pages/Login/Login'));
@@ -73,6 +74,7 @@ function App() {
                   <Route exact path="/share" component={Share} />
 
                   <Route exact path="/contact" component={Contact} />
+                  <Route exact path="/feedback" component={UserFeedback} />
                   <Route exact path="/about" component={About} />
                   <Route exact path="/profile" component={Profile2} />
                   <Route exact path="/password/reset/request" component={ResetPasswordRequest} />

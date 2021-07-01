@@ -86,7 +86,7 @@ export default () => {
                     <div className="row align-items-center">
 
                         <div className="col-lg-12 col-md-12 text-center">
-                            <p className="mb-0">© 2020 Sheruta NG | Developed by <a className='pl-2 pr-2 text-white' href="https://emyboy.github.io/portfolio/" target='_blank'> iDegin Media</a> </p>
+                            <p className="mb-0">© 2020 Sheruta NG</p>
                         </div>
 
                     </div>
