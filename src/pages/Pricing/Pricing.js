@@ -4,44 +4,51 @@ import React, { useEffect, useState } from 'react';
 import { usePaystackPayment, PaystackButton } from 'react-paystack';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import { Modal } from 'react-bootstrap';
 
 const formatedPrice = new Intl.NumberFormat('en-NG');
 
 const mapStateToProps = state => ({
     auth: state.auth
-})
+});
 
 export default connect(
     mapStateToProps
 )((props) => {
-    localStorage.setItem('after_login', '/pricing')
+    localStorage.setItem('after_login', '/pricing');
+
+    const mockRef = {
+        message: "Approved",
+        reference: "1625420988167",
+        status: "success",
+        trans: "1203458722",
+        transaction: "1203458722",
+        trxref: "1625420988167"
+    }
+
     const [state, setState] = useState({
         loading: true,
-        plans: []
-    })
+        plans: [],
+        paystackDone: false,
+        message: 'null',
+        messageType: null
+    });
+
+    const [data, setData] = useState({
+        payment_plan: null,
+        reference: null
+    });
 
     const config = {
         reference: (new Date()).getTime(),
-        publicKey: 'pk_test_7130b4dfd9558bafe8f83043a8d50455af44f25b',
+        publicKey: process.env.REACT_APP_PAYSTACK_PUBLIC_KEY,
     };
 
-    const initializePayment = usePaystackPayment(config);
-    // you can call this function anything
-    const onSuccess = (reference) => {
+    const handlePaystackSuccessAction = (reference, payment_plan_id) => {
         // Implementation for whatever you want to do with reference and after success call.
-        console.log(reference);
-    };
-
-    // you can call this function anything
-    const onClose = () => {
-        // implementation for  whatever you want to do when the Paystack dialog closed.
-        console.log('closed')
-    }
-
-    const handlePaystackSuccessAction = (reference) => {
-        // Implementation for whatever you want to do with reference and after success call.
-        console.log(reference);
+        setData({ ...data, payment_plan: payment_plan_id, reference })
+        console.log(reference, data.payment_plan);
+        setState({ ...state, paystackDone: true })
     };
 
     // you can call this function anything
@@ -53,7 +60,7 @@ export default connect(
     const getAllPaymentPlans = () => {
         axios(process.env.REACT_APP_BASE_URL + '/payment-plans')
             .then(res => {
-                console.log(res);
+                console.log(res.data);
                 setState({ ...state, loading: false, plans: res.data })
             })
             .catch(err => {
@@ -61,12 +68,64 @@ export default connect(
             })
     }
 
+    const sendPaymentToBackend = () => {
+        console.log('SENDING ----', {
+            ...data.reference,
+            // ...mockRef,
+            payment_plan: data.payment_plan,
+            users_permissions_user: props.auth.user.user.id
+        })
+        axios(process.env.REACT_APP_BASE_URL + '/transactions', {
+            method: 'POST',
+            headers: {
+                Authorization:
+                    `Bearer ${props.auth.user.jwt}`,
+            },
+            data: {
+                ...data.reference,
+                // ...mockRef,
+                payment_plan: data.payment_plan,
+                users_permissions_user: props.auth.user.user.id
+            }
+        })
+            .then(res => {
+                console.log('Payment ---', res);
+                if (res.status === 201) {
+                    setState({ ...state, paystackDone: false, message: res.data.message, messageType: 'success' })
+                } else
+                    setState({ ...state, paystackDone: false, message: res.data.message, messageType: 'failed' })
+            })
+            .catch(err => {
+                setState({ ...state, paystackDone: false, message: 'Server Error', messageType: 'failed' })
+                console.log({ ...err });
+            })
+    }
+
     useEffect(() => {
         getAllPaymentPlans();
-    }, [])
+    }, []);
+
+    // useEffect(() => {
+    //     sendPaymentToBackend();
+    // },[])
+
+    useEffect(() => {
+        if (state.paystackDone) {
+            sendPaymentToBackend()
+        }
+    }, [state.paystackDone])
 
     return (
         <div className='container mt-4'>
+            <Modal show={state.message ? true : false}>
+                <Modal.Body>
+                    <div className='text-center'>
+                        <i className='fa fa-check display-5'></i>
+                        <h3>{state.message}</h3>
+                        <button className='btn bg-theme'>Continue</button>
+                    </div>
+                </Modal.Body>
+            </Modal>
             <div className="row mt-4">
                 <div className="col text-center">
                     <div className="sec-heading center">
@@ -93,11 +152,14 @@ export default connect(
                                 </div>
                                 <div className="pricing-body">
                                     <ul>
-                                        <li>5+ Listings</li>
-                                        <li>Contact With Agent</li>
-                                        <li>3 Month Validity</li>
-                                        <li>7x24 Fully Support</li>
-                                        <li>50GB Space</li>
+                                        <li>{val.duration_in_days} Days Access To</li>
+                                        {/* <li>{val.property_count} Property Upload</li> */}
+                                        <li>Agent Contacts {val.agent_contact ? <i className='ti ti-check text-theme'></i> : <i className='ti ti-close text-danger'></i>}</li>
+                                        <li>Email Notifications {val.email_update ? <i className='ti ti-check text-theme'></i> : <i className='ti ti-close text-danger'></i>}</li>
+                                        <li>Join Paddy {val.join_paddy ? <i className='ti ti-check text-theme'></i> : <i className='ti ti-close text-danger'></i>}</li>
+                                        <li>Requests {val.requests ? <i className='ti ti-check text-theme'></i> : <i className='ti ti-close text-danger'></i>}</li>
+                                        <li>Property Upload {val.upload_property ? <i className='ti ti-check text-theme'></i> : <i className='ti ti-close text-danger'></i>}</li>
+                                        <li>User Contacts {val.user_contacts ? <i className='ti ti-check text-theme'></i> : <i className='ti ti-close text-danger'></i>}</li>
                                     </ul>
                                 </div>
                                 <div className="pricing-bottom">
@@ -109,7 +171,7 @@ export default connect(
                                                 text: 'Pay Now',
                                                 amount: val.price + "00",
                                                 email: props.auth.user.user.email,
-                                                onSuccess: (reference) => handlePaystackSuccessAction(reference),
+                                                onSuccess: (reference) => handlePaystackSuccessAction(reference, val.id),
                                                 onClose: handlePaystackCloseAction,
                                             }} />
                                     }

@@ -66,10 +66,10 @@ const UserFeedback = (props) => {
                                 <h2 className='mb-4'><b>Hi there.</b></h2>
                                 <h4>Kindly rate your experience so far.</h4>
                                 <div className='row justify-content-center mt-2'>
-                                    <i className={`link m-2 fa fa-smile-beam display-5 ${data.rating === 1 ? 'text-theme' : ''}`} onClick={() => setData({ ...data, rating: 1 })}></i>
-                                    <i className={`link m-2 fa fa-meh display-5 ${data.rating === 2 ? 'text-warning' : ''}`} onClick={() => setData({ ...data, rating: 2 })}></i>
-                                    <i className={`link m-2 fa fa-frown display-5 ${data.rating === 3 ? 'text-info' : ''}`} onClick={() => setData({ ...data, rating: 3 })}></i>
-                                    <i className={`link m-2 fa fa-angry display-5 ${data.rating === 4 ? 'text-danger' : ''}`} onClick={() => setData({ ...data, rating: 4 })}></i>
+                                    <i className={`link m-2 fa fa-smile-beam display-5 ${data.rating === 1 ? 'text-theme' : ''}`} onClick={() => setData({ ...data, rating: 4 })}></i>
+                                    <i className={`link m-2 fa fa-meh display-5 ${data.rating === 2 ? 'text-warning' : ''}`} onClick={() => setData({ ...data, rating: 3 })}></i>
+                                    <i className={`link m-2 fa fa-frown display-5 ${data.rating === 3 ? 'text-info' : ''}`} onClick={() => setData({ ...data, rating: 2 })}></i>
+                                    <i className={`link m-2 fa fa-angry display-5 ${data.rating === 4 ? 'text-danger' : ''}`} onClick={() => setData({ ...data, rating: 1 })}></i>
                                 </div>
                             </div> : null
                         }

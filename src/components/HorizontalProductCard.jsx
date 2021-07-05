@@ -99,15 +99,15 @@ export default React.memo((props) => {
                         </div> */}
                     </div>
 
-                    <div className="listing-features-info">
+                    <div className="listing-features-info border-0">
                         <ul>
-                            <li><strong>Bed:</strong>{val.bedroom}</li>
-                            <li><strong>Bath:</strong>{val.bathroom}</li>
+                            <li><strong>Bedroom:</strong>{val.bedroom}</li>
+                            <li><strong>Bathroom:</strong>{val.bathroom}</li>
                             <li><strong>Sittingroom:</strong>{val.sittingroom}</li>
                         </ul>
                     </div>
 
-                    <div className="listing-footer-wrapper">
+                    <div className="listing-footer-wrapper border-0">
                         <div className="listing-price">
                             <h4 className="list-pr">₦ {window.renderPrice(val.price)}</h4>
                         </div>

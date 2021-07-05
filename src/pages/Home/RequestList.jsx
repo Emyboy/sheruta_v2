@@ -21,7 +21,7 @@ export const RequestList = (props) => {
     }, []);
 
     return (
-        <>
+        <section>
             <div className='container-fluid'>
                 <div className="row">
                     <div className="col-lg-12 col-md-12">
@@ -32,7 +32,7 @@ export const RequestList = (props) => {
                     </div>
                 </div>
             </div>
-            <div className="format-standard">
+            <div className="format-standard container-fluid">
 
                 <div className="comment-area">
                     <div className="all-comments">
@@ -57,7 +57,7 @@ export const RequestList = (props) => {
                 </div>
 
             </div>
-        </>
+        </section>
     )
 }
 

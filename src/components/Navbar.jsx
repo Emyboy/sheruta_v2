@@ -21,6 +21,7 @@ class Navbar_ extends Component {
 
     getUserData() {
         const { auth } = this.props;
+        console.log('getting user --', auth.user)
         axios(process.env.REACT_APP_BASE_URL + "/users/me", {
             headers: {
                 Authorization:

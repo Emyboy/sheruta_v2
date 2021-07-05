@@ -6,6 +6,7 @@ import debounce from 'lodash/debounce';
 import Select from 'react-select';
 import { Redirect } from 'react-router';
 import { notification } from 'antd';
+import { Link } from 'react-router-dom';
 
 export default function SearchBox() {
 	const [state, setState] = useState({
@@ -17,9 +18,9 @@ export default function SearchBox() {
 	const [data, setData] = useState({
 		places: [],
 		selectedCategory: null,
-		selectedService: null,
+		selectedBedroom: null,
 		selectedKeyword: null
-	})
+	});
 
 	const getAllCategories = () => {
 		axios(process.env.REACT_APP_BASE_URL + '/categories')
@@ -67,6 +68,7 @@ export default function SearchBox() {
 	}
 
 	const handleSearch = () => {
+		console.log('DATA --', data, 'state --', state);
 		notification.error({ message: 'Feature Coming soon' })
 		if (data.selectedKeyword) {
 			setState({ ...state, showSearchResults: true })
@@ -75,92 +77,82 @@ export default function SearchBox() {
 	}
 
 	const searchURL = () => {
-		return `/search/${data.selectedCategory.value}/${data.selectedKeyword}/${data.selectedService.value}`
+		return `/search/${data.selectedCategory.value}/${data.selectedKeyword}/${data.selectedBedroom.value}`
 	}
 
 
 	useEffect(() => {
+		if (data.selectedKeyword || data.selectedCategory || data.selectedBedroom) {
+			setState({ ...state, showSearchResults: true })
+		}
+		console.log('DATA ----', data);
 	}, [data])
 
 	return (
 
-		<div className="container shadow rounded pb-5" style={{ backgroundColor: '#010101b3' }}>
+		<div className="full-search-2 eclip-search italian-search hero-search-radius">
+			<div className="hero-search-content">
 
-			<h1 className="big-header-capt text-white m-4" style={{ fontSize: '40px' }}>Find Verified Flatmates Matching Your Lifestle</h1>
-			{/* <p className="text-center mb-5 text-white">From as low as $10 per day with limited time offer</p> */}
+				<div className="row">
 
-			<div className="full-search-2 eclip-search italian-search hero-search-radius">
-				<div className="hero-search-content">
-
-					<div className="row">
-
-						<div className="col-lg-3 col-md-4 col-sm-12 small-padd">
-							<div className="form-group">
-								<div className="input-with-icon search-input">
-									<Select
-										value={data.selectedCategory}
-										onChange={e => setData({ ...data, selectedCategory: e })}
-										placeholder='Category'
-										options={state.categories.map(val => {
-											return { value: val.id, label: val.name }
-										})}
-									/>
-									<i className="ti-home"></i>
-								</div>
+					<div className="col-lg-4 col-md-4 col-sm-12 small-padd">
+						<div className="form-group">
+							<div className="input-with-icon">
+								<input type="text" name='location' className="form-control b-r" placeholder="Location Eg. Lekki, Isolo" onChange={e => {
+									setData({ ...data, selectedKeyword: e.target.value })
+								}} />
+								<i className="fa fa-map"></i>
 							</div>
 						</div>
+					</div>
 
+					<div className="col-lg-3 col-md-4 col-sm-12 small-padd">
+						<div className="form-group">
+							<div className="input-with-icon search-input">
 
-						<div className="col-lg-4 col-md-3 col-sm-12 small-padd">
-							<div className="form-group">
-								<div className="input-with-icon search-input">
-									{/* <input type="text" className="form-control b-r" placeholder="Neighborhood" /> */}
-									{/* <Select
-											styles={{ paddingLeft: "39px" }}
-											value={data.selectedKeyword}
-											onChange={e => setData({ ...data, selectedKeyword: e })}
-											placeholder='Search Location'
-											options={data.places.map(val => {
-												return { value: val.location, label: val.location }
-											})}
-											onInputChange={searchAvailableLocatioins}
-										/> */}
-									<input onChange={e => setData({ ...data, selectedKeyword: e.target.value })} type="text" class="form-control b-r" placeholder="Location" name='location' />
-									<i className="ti-location-pin"></i>
-								</div>
-							</div>
-
-						</div>
-
-
-						<div className="col-lg-3 col-md-3 col-sm-12 small-padd">
-							<div className="form-group">
-								<div className="input-with-icon search-input">
-									<Select
-										value={data.selectedService}
-										onChange={e => setData({ ...data, selectedService: e })}
-										placeholder='Service'
-										options={state.services.map(val => {
-											return { value: val.id, label: val.name }
-										})}
-									/>
-									<i className="ti-briefcase"></i>
-								</div>
+								<select style={{ height: '50px' }} className="form-control " onChange={e => setData({ ...data, selectedBedroom: e.target.value })} >
+									<option value="" data-select2-id="4">Bedroom</option>
+									{
+										[1, 2, 3, 4, 5].map(val => {
+											return <option value={val} key={val.id}>{val}</option>
+										})
+									}
+								</select>
+								<i className="fa fa-bath"></i>
 							</div>
 						</div>
+					</div>
+					<div className="col-lg-3 col-md-4 col-sm-12 small-padd">
+						<div className="form-group">
+							<div className="input-with-icon search-input">
 
-						<div className="col-lg-2 col-md-2 col-sm-12 small-padd">
-							<div className="form-group" onClick={handleSearch}>
-								<a href="#search" className="btn search-btn">Search</a>
+								<select style={{ height: '50px' }} className="form-control " onChange={e => setData({ ...data, selectedCategory: e.target.value })} >
+									<option value="" data-select2-id="4">Type</option>
+									{
+										state.categories.map(val => {
+											return <option value={val.id} key={val.id}>{val.name}</option>
+										})
+									}
+								</select>
+								<i className="fa fa-home"></i>
 							</div>
 						</div>
+					</div>
 
+					<div className="col-lg-2 col-md-2 col-sm-12 small-padd">
+						<div className="form-group">
+							{
+								state.showSearchResults ? <a href={`/search/${data.selectedCategory}/${data.selectedKeyword}/${data.selectedBedroom}`} className="btn search-btn">Search</a> :
+									<button disabled className="btn search-btn">Search</button>
+							}
+						</div>
 					</div>
 
 				</div>
-			</div>
 
+			</div>
 		</div>
+
 
 	)
 }

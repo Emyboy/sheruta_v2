@@ -81,7 +81,7 @@ function App() {
                   <Route exact path="/profile" component={Profile2} />
                   <Route exact path="/password/reset/request" component={ResetPasswordRequest} />
                   <Route exact path="/password/reset/u/:token/:resetPasswordToken" component={PasswordReset} />
-                  <Route exact path="/search/:category/:location/:service" component={SearchResults} />
+                  <Route exact path="/search/:category/:location/:bedroom" component={SearchResults} />
                   <Route component={PageNotFound} />
                   {/* <Route component={SiteUnderConts} /> */}
                 </Switch>
